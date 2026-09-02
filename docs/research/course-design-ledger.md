@@ -4,7 +4,16 @@
 
 ---
 
-## 1. Stable / Accepted Boundaries (稳定边界与已确认决定)
+## 1. Research Gates & Milestone Status (研究门禁与里程碑状态)
+
+- **Phase 1 (PBR Course Foundations)**：`PASS` (完成基线报告 `pbr-course-foundations.md`，确立物理可信性与管线原则)
+- **Phase 1B (Textbook & Learning Source Selection)**：`PASS` (完成教材调研图谱 `textbook-source-map.md`，确立候选教材生态与课程先例矩阵)
+- **Phase 1 收敛里程碑 (Curriculum Coverage Matrix)**：`COMPLETED` (完成 `curriculum-coverage-matrix.md` 六大能力模块与初步教学必要性映射)
+- **下一研究前沿 (Next Frontier)**：`Phase 2 — AI Material & Generative Workflow Impact Research` (基于当前建立的覆盖矩阵，研究生成式 AI 对传统材质管线的重构与替代边界)
+
+---
+
+## 2. Stable / Accepted Boundaries (稳定边界与已确认决定)
 
 以下原则与边界已在前期研究与讨论中确立，作为后续大纲与教学设计的基础约束：
 
@@ -21,10 +30,12 @@
    - **AI-assisted / Generative Material Workflows**：AI 辅助生成、无缝贴图转换与智能纹理工作流。
 5. **双应用出口定位**：
    - 实时游戏（Game Realtime）与动画/视觉开发（Animation / LookDev）是材质能力的两个主要应用出口，本课程将其统一在材质能力框架下，而非拆分为两门独立课程。
+6. **教材体系定位属性**：
+   - 当前形成的教材组合方案（Born Digital Painter 2025 为核心候选、Adobe 官方体系为理论底座、来阳 2026/Blender 为实操伴随）为**推荐评估组合（Recommended Candidates）**，尚非最终课程采用决定。
 
 ---
 
-## 2. Working Hypotheses (工作假设 / 探索中假设)
+## 3. Working Hypotheses (工作假设 / 探索中假设)
 
 *注：以下内容为目前值得深入研究、但**尚未定案**的工作假设，不作为最终课程决定。*
 
@@ -40,7 +51,7 @@
 
 ---
 
-## 3. Open Questions (待解决核心问题清单)
+## 4. Open Questions (待解决核心问题清单)
 
 后续研究与大纲设计需重点回答以下问题：
 
@@ -50,7 +61,7 @@
    - 国内最新出版的相关教材是否具备足够的新颖度与聚焦度，能否作为配套实训参考？
 2. **程序化材质深度**：
    - 在 8 周基础课内，程序化/参数化材质（Procedural / Parametric Material）应达到何种教学深度（节点逻辑理解 vs. 独立输出复杂材质）？
-3. **AI 工作流的重构边界**：
+3. **AI 工作流的重构边界 (Phase 2 重点)**：
    - AI 材质工作流（AI Material Workflow）在教学中究竟应当替代哪些繁琐操作、压缩哪些传统环节，又重新定义了哪些核心审美与技术控制能力？
 4. **双出口能力的平衡标准**：
    - Game Realtime（注重性能、通道打包与实时光照）与 Animation / LookDev（注重高精度着色、次表面散射与复杂多层着色）两个应用出口，分别要求学生掌握到何种深度？
