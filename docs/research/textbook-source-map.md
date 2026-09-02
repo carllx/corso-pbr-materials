@@ -10,7 +10,7 @@
 1. [国外最新教材与专业出版物调研 (2024–2026)](#1-国外最新教材与专业出版物调研-20242026)
 2. [中国大陆教材调研与客观评估](#2-中国大陆教材调研与客观评估)
 3. [持续演进的官方学习体系与技术规范 (Living Official Sources)](#3-持续演进的官方学习体系与技术规范-living-official-sources)
-4. [成熟专业课程与教学先例 (Curriculum Precedents)](#4-成熟专业课程与教学先例-curriculum-precedents)
+4. [成熟专业课程证据与教学先例 (Curriculum Precedents)](#4-成熟专业课程证据与教学先例-curriculum-precedents)
 5. [统一教材与学习资源比较矩阵](#5-统一教材与学习资源比较矩阵)
 6. [综合分析与教材组合策略推荐](#6-综合分析与教材组合策略推荐)
 
@@ -74,9 +74,9 @@
 - **出版社 / 出版年份**：[人民邮电出版社](https://www.ptpress.com.cn/)，2026-07
 - **ISBN**：9787115700612
 - **内容结构剖析**：
-  - 前半部分（约占 40%）：Blender 基础操作、多边形建模、高低模制作、UV 展开；
-  - 中间核心（约占 50%）：Substance 3D Painter 贴图绘制实战，按木纹、金属、皮革、玻璃、布料等常见真实物理材质分类讲解分层绘制技巧；
-  - 后续拓展（约占 10%）：包含腾讯混元 3D（Hunyuan3D）等 AI 辅助建模介绍与 Unreal Engine 资产呈现。
+  - 前半部分（基础与建模，占较大篇幅）：Blender 基础操作、多边形建模、高低模制作、UV 展开；
+  - 中间核心（材质绘制实战，属主要章节）：Substance 3D Painter 贴图绘制实战，按木纹、金属、皮革、玻璃、布料等常见真实物理材质分类讲解分层绘制技巧；
+  - 后续拓展（少量篇幅）：包含腾讯混元 3D（Hunyuan3D）等 AI 辅助建模介绍与 Unreal Engine 资产呈现。
 - **深度评估**：
   - *优点*：软件版本新，结合了目前最主流的 Blender + Painter + UE 组合，材质案例贴合国内教学环境，包含 AI 与引擎展示。
   - *局限*：由于是一本涵盖建模到材质的“全流程实战书”，建模与拓扑占据了较多篇幅，导致其对 PBR 物理原理底层、Texel Density 计算、通道打包与复杂着色器逻辑的理论阐述较浅。
@@ -93,7 +93,7 @@
   - *定位建议*：可作为高校历史教学案例参考（**Teacher Reference**），不建议作为 2026 年学生主教材。
 
 > **国内教材客观现状总结**：  
-> 目前中国大陆出版物中，绝大多数贴图教材均被打包在《次世代游戏模型制作》《三维游戏美术全流程》等大而全的建模教材中，“材质/纹理”常被压缩为后半段的 2~3 个章节；而专讲材质的书籍多为软件菜单操作手册，缺乏贯穿“微表面理论 $\rightarrow$ 严格几何烘焙工程 $\rightarrow$ 引擎实时渲染”的独立高可信教材。
+> 目前中国大陆出版物中，绝大多数贴图教材均被打包在《次世代游戏模型制作》《三维游戏美术全流程》等大而全的建模教材中，“材质/纹理”常被压缩为后半段的几个章节；而专讲材质的书籍多为软件菜单操作手册，缺乏贯穿“微表面理论 $\rightarrow$ 严格几何烘焙工程 $\rightarrow$ 引擎实时渲染”的独立高可信教材。
 
 ---
 
@@ -114,45 +114,37 @@
 
 ---
 
-## 4. 成熟专业课程与教学先例 (Curriculum Precedents)
+## 4. 成熟专业课程证据与教学先例 (Curriculum Precedents)
 
-通过对国际顶尖数字艺术学院（Gnomon、CGMA、The Rookies）成熟材质课程的教学大纲分析，提取其核心教学顺序与课时配比规律：
+通过对具备明确公开大纲与教学记录的专业数字艺术课程进行逐项核查，建立以下课程先例证据矩阵：
 
-```
-                    ┌────────────────────────────────────────────────────────┐
-                    │  Week 1: PBR 理论基础、色彩空间与参考采集 (Reference)    │
-                    └───────────────────────────┬────────────────────────────┘
-                                                ▼
-                    ┌────────────────────────────────────────────────────────┐
-                    │  Week 2: 几何资产准备、UV 接缝与关键贴图烘焙 (Baking)     │
-                    │         (★ 依托 Prepared Model / Project Files)         │
-                    └───────────────────────────┬────────────────────────────┘
-                                                ▼
-                    ┌────────────────────────────────────────────────────────┐
-                    │  Week 3: Base Material 大关系建立 (Albedo/Roughness)   │
-                    └───────────────────────────┬────────────────────────────┘
-                                                ▼
-                    ┌────────────────────────────────────────────────────────┐
-                    │  Week 4-5: 宏观到微观风化、智能遮罩与手绘细节刻画 (Painter) │
-                    └───────────────────────────┬────────────────────────────┘
-                                                ▼
-                    ┌────────────────────────────────────────────────────────┐
-                    │  Week 6: 程序化纹理与跨材质混合 (Procedural / Nodes)    │
-                    └───────────────────────────┬────────────────────────────┘
-                                                ▼
-                    ┌────────────────────────────────────────────────────────┐
-                    │  Week 7-8: 引擎端着色器组装、多光照 IBL 验证与最终交付   │
-                    └────────────────────────────────────────────────────────┘
-```
+### 4.1 Curriculum Precedent Evidence Matrix
 
-### 4.1 核心先例特征与教学启示
+| Source (课程来源) | Duration (周期) | PBR 理论 | UV / Baking | Texture / Painter | Procedural | LookDev / Engine | Prepared Assets | Evidence (可核查事实依据) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **CGMA: Character Texturing for Games in Substance** | 6 周 | 深入 (Week 1 专章) | 包含 (Week 3 头部 UV 拆分与 Painter 烘焙) | 核心主体 (Week 1-6 全程 Painter 材质定义与分层) | 实用级 (Smart Masks / Generators) | 包含 (Week 3 & Week 6 Marmoset Toolbag 着色器设置与呈现) | **是** (提供预制头部与角色模型) | CGMA 官方课程大纲：Week 1 Intro & PBR $\rightarrow$ Week 2 Material Definition $\rightarrow$ Week 3 UVs & Baking $\rightarrow$ Week 4-5 Texturing & Utility Maps $\rightarrow$ Week 6 Shader Setup |
+| **Gnomon: Texturing & Shading 体系与游戏工坊** | 4 阶段学期体系 + 专题工坊 | 深入 (从基础光学到游戏引擎着色网络) | 包含 (高低模贴图烘焙与切线空间法线处理) | 核心主体 (Maya/PS $\rightarrow$ Substance Painter $\rightarrow$ Mari) | 涉及 (Substance Designer 节点材质与贴图合成) | 核心 (Unreal Engine, V-Ray, Marmoset 多环境渲染) | **是** (多门贴图/LookDev 工坊随课提供完整 3D 资产与工程文件) | Gnomon BFA 课程大纲（Texturing & Shading 1-4）及 The Gnomon Workshop 系列实战教程体系 |
+| **Born Digital: 《Substance 3D Painter 実践講座》配套实训体系** | 5 篇章 (23 章节) | 深入 (Part 1 专章讲解 PBR 理论与光学常识) | 包含 (Part 2 & Part 3 详解烘焙功能与 ID 烘焙) | 核心主体 (Part 1-4 覆盖道具、机械车辆、建筑材质绘制) | 涉及 (Triplanar 三面投影与智能生成器) | 包含 (Part 5 专章对比 Cycles, Arnold, Unreal 渲染器差异) | **是** (提供全套实训模型与项目数据包) | Born Digital 出版目录与随书资源包结构：Part 1 基础 $\rightarrow$ Part 2 初级 $\rightarrow$ Part 3 中级 $\rightarrow$ Part 4 进阶 $\rightarrow$ Part 5 渲染器对比 |
 
-1. **预制资产驱动的教学模式（Prepared Assets & Clean UVs）**：
-   多项成熟的 Material/Texturing 专业课程（如 CGMA《Character Texturing for Games in Substance》与 Gnomon 相关课程）提供 prepared model / project files，使学习者能够直接进入材质、烘焙和 LookDev；但这一模式并非所有游戏美术课程的统一做法。对于本项目这种明确聚焦 Material / Texture Authoring 的课程，它构成了值得采用的教学先例，可有效避免学生在前期建模环节消耗过多精力。
-2. **材质分层逻辑的一致性（Material Layering Hierarchy）**：
-   成熟课程均遵循严格的绘制逻辑：`Base Material Block-out (底材固有属性)` $\rightarrow$ `Color & Roughness Breakup (色彩与粗糙度微破损)` $\rightarrow$ `Procedural Generators & Masks (基于烘焙图的边缘磨损与缝隙积垢)` $\rightarrow$ `Hand-painted Micro Details (手工特征细节与微划痕)`。
-3. **闭环验证（LookDev & Engine Validation）**：
-   课程后期均要求将贴图导出至 Unreal Engine 或 Marmoset Toolbag，在多个极端光照（强直射日光、弱环境光、彩色点光源）下旋转检验材质表现，杜绝“仅在 Painter 视口好看”的假象。
+### 4.2 事实与项目推断的区分 (Source Facts vs. Project Inferences)
+
+#### 1. 预制资产与前置知识边界
+- **Source Fact（客观事实）**：
+  在 CGMA《Character Texturing for Games in Substance》与 Gnomon 相关贴图工坊中，课程均提供了 ready-to-import 3D model 与已展开 UV 的项目文件，使学员能够直接进入材质定义、贴图烘焙与着色器调整环节。
+- **Project Inference（项目推断）**：
+  对于本项目这种明确聚焦 **Material / Texture Authoring** 的本科课程，采用“提供高质量预制模型/标准 UV 资产”的模式，构成了值得重点借鉴的教学策略，可避免学生在有限学时内因前期建模卡点而压缩核心材质制作时间。
+
+#### 2. 材质分层与风化逻辑
+- **Source Fact（客观事实）**：
+  在已核查的 CGMA 与 Born Digital 教学案例中，贴图绘制过程均呈现出 `底材固有属性铺设 (Base Color / Roughness)` $\rightarrow$ `局部破损与微变化 (Color/Roughness Breakup)` $\rightarrow$ `基于烘焙图的智能遮罩风化 (Generators/Masks)` $\rightarrow$ `微观手工细节刻画` 的推进次序。
+- **Project Inference（项目推断）**：
+  该逻辑反映了物理世界中材质随时间演变的客观层次，应作为本科阶段材质图层组织与审美分析的基础教学逻辑。
+
+#### 3. 最终多环境验证
+- **Source Fact（客观事实）**：
+  CGMA 课程在后期（Week 3 与 Week 6）设置了 Marmoset Toolbag 着色器组装与呈现环节；Born Digital 教材在 Part 5 专门设置了“各渲染器差异（Cycles, Arnold, Unreal）”对比章节。
+- **Project Inference（项目推断）**：
+  在不同光照环境和实时引擎中进行 LookDev 验证，是避免资产仅在 DCC 视口单向生效的关键闭环，应列为学生作业验收的核心评估点之一。
 
 ---
 
@@ -162,7 +154,7 @@
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Substance 3D Painter実践講座** | CafeGroup / Born Digital | 2025 | Painter 10.x | 资产贴图绘制、烘焙、PBR物理 | 深度 | 深度 | 涉及(Triplanar) | 无 | 涉及 | 间接 | **极低 (仅材质前置)** | 游戏+影视通用 | 完整提供 (需注意二次分发许可) | **Core Textbook Candidate** |
 | **The PBR Guide (Part 1 & 2)** | Wes McDermott / Adobe | 持续更新 | 通用 | PBR光学、微表面、安全色阶 | **极其深入** | 深度结合 | 原理级 | 原理级 | 原理级 | 原理级 | **无** | 全行业基准 | 提供样例 | **Living Official Source** |
-| **Blender+SP建模与材质实战** | 来阳 / 人民邮电出版社 | 2026-07 | Blender+SP | 道具建模、UV、Painter实战 | 中等 | 深度 | 基础 | 无 | 无 | 涉及 (混元3D) | **较重 (含40%建模)** | 游戏为主 | 完整提供 | **Practical Companion** |
+| **Blender+SP建模与材质实战** | 来阳 / 人民邮电出版社 | 2026-07 | Blender+SP | 道具建模、UV、Painter实战 | 中等 | 深度 | 基础 | 无 | 无 | 涉及 (混元3D) | **较重 (含较多建模)** | 游戏为主 | 完整提供 | **Practical Companion** |
 | **Adobe Substance 3D 1日で完成** | Born Digital Tech Support | 2025 | Painter+Sampler | 快速贴图绘制、图像转材质 | 基础 | 基础 | 基础 | 无 | 深度 | 较高 (AI滤镜) | **无** | 快速入门 | 提供 | **Practical Companion** |
 | **作例で学ぶ Designerの教科書** | もんしょ等 / Born Digital | 2022-03 | Designer 11.x/12.x | 程序化2D纹理、.sbsar | 深度 | 接口结合 | **极其深入** | **完全核心** | 结合 | 间接 | **无** | 游戏+影视通用 | 完整提供 | **Teacher Reference** |
 | **Material Fundamentals (Packt)** | Packt Publishing | 2025 | Blender 4.4 | 节点材质、噪声、Cycles烘焙 | 深度 | 无 | **深度** | 无 | 无 | 间接 | 极低 | 通用着色 | 提供工程 | **Practical Companion** |
