@@ -34,17 +34,19 @@
 
 ```
                     ┌────────────────────────────────────────────────────────┐
-                    │               Phase 2 五级证据准则体系                 │
+                    │               Phase 2 证据准则体系                     │
                     ├────────────────────────────────────────────────────────┤
                     │ 1. Vendor Capability (厂商明确提供的产品功能/Beta 特性)│
-                    │ 2. Academic / Demonstrated (学术论文原型或独立演示流)  │
-                    │ 3. Production / Deployment (真实项目/商业工作室落地案例)│
-                    │ 4. Limitation Evidence (经实测或行业指出的缺陷与失效点)│
-                    │ 5. Project Inference (基于上述实证形成的课程教学推断)  │
+                    │ 2. Academic / Demonstrated (学术顶会/论文原型或演示流) │
+                    │ 3. Technical Specification / Platform Documentation    │
+                    │    (材质结构/平台规范标准，非已部署证明)              │
+                    │ 4. Production / Deployment (真实项目/商业工作室落地案例)│
+                    │ 5. Limitation Evidence (经实测或行业指出的缺陷与失效点)│
+                    │ 6. Project Inference (基于上述实证形成的课程教学推断)  │
                     └────────────────────────────────────────────────────────┘
 ```
 
-此外，在归因分析中，严格区分 **生成式 AI（Generative AI）** 与 **传统算法自动化（Non-AI Workflow Automation）**（如 UV 几何打包装箱、预设批处理烘焙等），避免将一般性工程技术进步全部归因为 AI。
+此外，在归因分析中，严格区分 **生成式 AI（Generative AI）** 与 **传统算法自动化（Non-AI Workflow Automation）**（如 UV 几何打包装箱、预设批处理烘焙等），避免将一般性工程技术进步全部归因为 AI。同时将 **Technical Specification / Platform Documentation** 与 **Production / Deployment** 严格区分：前者证明的是“材质应该满足什么技术结构/平台规范”，后者证明的是“真实产品/游戏/工作室生产管线中的落地部署”。
 
 ---
 
@@ -70,16 +72,18 @@
    - *能力现状*：[[Adobe Substance 3D Sampler Generative Features]](https://helpx.adobe.com/substance-3d-sampler/generative-workflows/generative-features.html) [Vendor Capability] 提供了由 Adobe Firefly 驱动的 `Text to Texture`、`Text to Pattern` 与 `Image to Texture` 功能，支持从文本或参考图生成方形无缝平铺纹理。
    - *状态确认*：**截至 2026-04，上述功能在 Adobe 官方产品面板中仍标为 `Generative (Beta)`**，且需要 Adobe 云端积分与商业订阅支持，不能断言其为成熟不变的工业绝对标准。
 2. **多通道 PBR 联合生成与物理去光照 (De-lighting)**：
-   - *学术研究突破*：
-     - [*IntrinsiX: High-Quality PBR Generation using Image Priors* (NeurIPS 2025)](https://arxiv.org/abs/2410.22378) [Academic / Demonstrated]：利用图像先验分解漫反射与高光，探索消除 Albedo 中的光照残留；
-     - [*Material Anything: Generating Materials for Any 3D Object via Diffusion* (CVPR 2025)](https://arxiv.org/abs/2411.15138) [Academic / Demonstrated]：提出端到端扩散框架，针对无纹理或带纹理网格生成解耦的 PBR 贴图；
-     - [*LumiTex: Towards High-Fidelity PBR Texture Generation with Illumination Context* (ICLR 2026 / arXiv:2501.03875)](https://arxiv.org/abs/2501.03875) [Academic / Demonstrated]：引入光照上下文先验进行材质分解与几何引导修复；
-     - [*MatLat: Material Latent Space for PBR Texture Generation* (CVPR 2026)](https://github.com/matlat-pbr/matlat) [Academic / Demonstrated]：构建专用材质隐空间以表达连续物理材质属性。
-   - *跨通道物理一致性缺陷 (Cross-channel Consistency Limitations)*：[[Yanpei Cao, 80 Level Interview (2026-08-28)]](https://80.lv/articles/how-tripo-is-tackling-clean-topology-for-its-3d-asset-pipeline/) [Limitation Evidence]
-     - **Base Color**：去光照后常残留局部环境光漫射暗斑，电介质反射率常发生色偏；
-     - **Roughness**：单目推断的粗糙度贴图对比度往往偏低或全局均匀，缺乏真实物理磨损的微观层次；
-     - **Metallic**：AI 经常在非金属表面生成大量灰度噪点（如 `0.3~0.7`），违反纯材质的物理分类准则；
-     - **Normal**：多视角生成法线在跨 UV 接缝处经常出现切线空间基底失配与凹凸方向反转。
+   - *学术顶会研究突破*：
+     - [*IntrinsiX: High-Quality PBR Generation using Image Priors* (NeurIPS 2025 Proceedings)](https://proceedings.neurips.cc/) [[arXiv:2410.22378]](https://arxiv.org/abs/2410.22378) [Academic / Demonstrated]：利用图像先验分解漫反射与高光，探索消除 Albedo 中的光照残留；
+     - [*Material Anything: Generating Materials for Any 3D Object via Diffusion* (CVPR 2025 Open Access)](https://openaccess.thecvf.com/) [[arXiv:2411.15138]](https://arxiv.org/abs/2411.15138) [Academic / Demonstrated]：提出端到端扩散框架，针对无纹理或带纹理网格生成解耦的 PBR 贴图；
+     - [*LumiTex: Towards High-Fidelity PBR Texture Generation with Illumination Context* (ICLR 2026 Proceedings)](https://openreview.net/) [[arXiv:2501.03875]](https://arxiv.org/abs/2501.03875) [Academic / Demonstrated]：引入光照上下文先验进行材质分解与几何引导修复；
+     - [*MatLat: Material Latent Space for PBR Texture Generation* (CVPR 2026 Open Access)](https://openaccess.thecvf.com/) [[GitHub Project]](https://github.com/matlat-pbr/matlat) [Academic / Demonstrated]：构建专用材质隐空间以表达连续物理材质属性。
+   - *工业界实测缺陷与生产就绪鸿沟*：[[Yanpei Cao (Tripo AI VP of Research), 80 Level Interview (2026-08-28)]](https://80.lv/articles/how-tripo-is-tackling-clean-topology-for-its-3d-asset-pipeline/) [Industry Interview / Limitation]
+     - 访谈直接指出的现实痛点包括：生成模型直接输出的资产并非生产就绪（`generated asset ≠ production-ready asset`）、混乱的拓扑（`messy topology`）、极难编辑的材质（`difficult-to-edit materials`）、多视角不一致的几何（`inconsistent geometry`）、材质/细节定义与可控性仍存在明显问题（`material/detail definition & controllability`），清理与生产就绪仍是主要挑战（`cleanup / production readiness`）。
+   - *常见通道级失效模式 (Observed Channel Failure Modes / Project Inference & Experimental Findings)*：
+     - **Base Color**：去光照后常残留局部环境光漫射暗斑与假阴影，电介质反射率常发生色偏；
+     - **Roughness**：单目推断的粗糙度贴图往往对比度过弱或全局过于均匀，缺乏真实物理磨损与微观接触层级；
+     - **Metallic**：AI 在非金属表面频繁预测出非物理的中间灰度噪点（如大量过渡杂色），破坏电介质与金属的本质划分；
+     - **Normal**：多视角生成法线在跨 UV 接缝处常出现切线空间基底失配与凹凸方向反转。
 
 ---
 
@@ -88,8 +92,8 @@
 对照 Substance 3D Painter 的资产绘制流程：
 
 1. **初稿生成 vs. 局部非破坏性图层编辑**：
-   - [[Meshy 3D Texturing]](https://www.meshy.ai/) [Vendor Capability / Demonstrated] 与 Tripo 能够对 3D 网格生成贴图初稿。然而，生成物输出的是**单层扁平烘焙贴图（Flattened Baked Bitmaps）**。
-   - 一旦遇到艺术指导需求（如“将金属边缘磨损降低并调整底层氧化颜色”），扁平贴图无法进行图层分离调整，必须重新提示生成或在 DCC 中进行繁琐的破坏性修图。
+   - [[Meshy Docs — AI Texturing]](https://docs.meshy.ai/texturing) [Vendor Capability] 记录了针对外部 3D 网格的 AI 贴图生成能力，支持生成 Albedo、Normal、Roughness、Metallic 通道，具备 Remove Lighting 物理去光照，并支持重用既有模型 UV（UV reuse）或自动展开（auto unwrap）。
+   - [Project Inference based on exported PBR bitmap/map representation] 然而，此类生成工具导出的结果为单层扁平烘焙贴图（Flattened Baked Bitmaps），没有类似 Substance 3D Painter 的多通道可编辑图层栈（Painter-style editable layer stack）。一旦遇到艺术指导需求（如“将金属边缘磨损降低并调整底层氧化颜色”），扁平贴图无法进行图层分离调整，必须重新提示生成或在 DCC 中进行繁琐的破坏性修图。
 2. **生产环境定位收敛**：
    - [Project Inference] **Substance 3D Painter 仍是当前资产级非破坏性图层/遮罩绘制（Non-destructive Layer/Mask Authoring）、局部精确修正与通道级控制的重要成熟环境之一**（同时存在 Mari、Designer 及 DCC 着色器网络等专业环境）。
    - AI 加速了底料准备、随机做旧斑痕生成与初期概念变体探索，但资产级多通道图层拆解（Base Layer $\rightarrow$ Wear $\rightarrow$ Dirt $\rightarrow$ Top Coat）与手绘关键特征遮罩依然由人类艺术家主导。
@@ -102,7 +106,7 @@
 
 1. **Text-to-Shader 与节点辅助工具的真实边界**：
    - [[DD3M: Direct Generation of 3D Models via Python Scripts (2024/2025)]](https://arxiv.org/abs/2410.05432) [Academic / Demonstrated]：展示了通过代码生成 Blender 几何与材质节点逻辑的可行性；
-   - [[Node To Talk Blender Addon]](https://blenderartists.org/t/node-to-talk/) [Demonstrated Workflow]：**其已核实能力是将 Blender Geometry / Shader / Compositor 节点图序列化为拓扑有序、连接映射完整的结构化纯文本报告，供 LLM 进行理解与排错**。它本身是“智能体与节点图的通信桥梁（Communication/Serialization Bridge）”，而非黑盒 Text-to-Nodes 生成器。
+   - [[Node To Talk — Superhive]](https://superhivemarket.com/products/node-to-talk) [Vendor Capability / Demonstrated Workflow]：**其已核实能力是将 Blender Geometry / Shader / Compositor 节点图序列化为拓扑有序（topology-ordered）、连接映射完整（connection-mapped）的结构化文本报告，便于 AI/LLM 解析与排错，并提供一键复制到剪贴板或保存为文件（Copy to Clipboard / Save to File）**。它本身是“智能体与节点图的通信与序列化桥梁（Agentic graph communication / serialization bridge）”，而非黑盒 Text-to-Nodes 生成器。
 2. **逻辑天花板与生产脱节**：
    - [Limitation Evidence] 当节点网络涉及复杂数学极坐标变换、距离场混合（SDF）、高阶三向投影（Triplanar Mapping）或自定义视差置换时，LLM/生成式模型极易产生“幻觉连接”（如将色彩标量直连法线向量输入、忽略坐标映射缩放等）。
 3. **能力范式转移**：
@@ -143,12 +147,12 @@
 AI 生成材质在两个下游出口的应用面临不同的工业工程壁垒：
 
 1. **实时游戏（Game Realtime）的硬性阻碍**：
-   - [[Brian Karis, Epic Games (SIGGRAPH 2013)]](https://cdn2.unrealengine.com/Resources/files/2013SiggraphPresentationsNotes-26915738.pdf) / [[Unreal Engine Physically Based Materials]](https://dev.epicgames.com/documentation/en-us/unreal-engine/physically-based-materials-in-unreal-engine) [Production / Deployment]：
-   - 实时引擎要求严格的**通道打包（如 ORM: R=AO, G=Roughness, B=Metallic）**、**2 的幂次方尺寸对齐**以及 **BC7/ASTC 纹理压缩容忍度**；
-   - 目前绝大多数 AI 生成平台仅输出分离的散装 RGB 贴图，法线格式（DirectX vs. OpenGL）经常混淆，必须经过人工管线重组与材质实例化（Material Instance）方可安全运行。
+   - [[Brian Karis, Epic Games (SIGGRAPH 2013)]](https://cdn2.unrealengine.com/Resources/files/2013SiggraphPresentationsNotes-26915738.pdf) / [[Unreal Engine Physically Based Materials]](https://dev.epicgames.com/documentation/en-us/unreal-engine/physically-based-materials-in-unreal-engine) [Technical Specification / Platform Documentation]：
+   - 虚幻引擎官方 PBR 规范直接确立了 Metallic 模型的物理定义：纯材质表面通常接近二值（pure surfaces should be close to 0 or 1）、电介质默认 Specular 0.5 对应约 4% 反射率（0.04）；
+   - 目前绝大多数 AI 生成平台输出的为分离散装 RGB 贴图，法线格式（DirectX vs. OpenGL）经常混淆；而在游戏工业落地中，通常需要针对引擎管线进行贴图压缩与格式匹配，并通过材质实例化（Material Instance）进行调优。
 2. **影视与 LookDev（Animation / LookDev）的硬性阻碍**：
-   - [[ASWF OpenPBR Shading Model Specification]](https://academysoftwarefoundation.github.io/OpenPBR/) [Production / Deployment]：
-   - 影视与高保真着色要求完备的多层光学参数（如清漆涂层 Clearcoat、各向异性 Anisotropy、皮肤次表面散射 SSS 均值自由程、薄膜干涉 Thin Film）；
+   - [[ASWF OpenPBR Surface Specification v1.1.1 (2026-04-17)]](https://academysoftwarefoundation.github.io/OpenPBR/) [Technical Specification / Platform Documentation]：
+   - OpenPBR 作为计算机图形材质表示的开放行业规范（intended as an open standard for CG material representation），要求完备的多层光学参数（如清漆涂层 Clearcoat、各向异性 Anisotropy、次表面散射 SSS 均值自由程、薄膜干涉 Thin Film）；
    - 当前 AI 材质生成主要停留在基础电介质/金属二元漫反射模型，尚无法直接端到端生成符合 OpenPBR 规范的高阶多层散射数据，仍需人工在 LookDev 视口中进行物理定标。
 
 ---
@@ -158,15 +162,16 @@ AI 生成材质在两个下游出口的应用面临不同的工业工程壁垒�
 通过对 2025–2026 年实际工业文献与技术艺术家访谈的梳理：
 
 1. **3D AI 生成资产与 Production-Ready 的现实鸿沟**：
-   - [[Yanpei Cao (Tripo AI VP of Research), 80 Level Interview (2026-08-28)]](https://80.lv/articles/how-tripo-is-tackling-clean-topology-for-its-3d-asset-pipeline/) [Industry Interview / Limitation Evidence]：
-   - 访谈明确指出：直接从生成模型输出的三维网格与贴图**并不等同于工业就绪资产（Generated assets $\ne$ Production-ready assets）**；
-   - 现实资产面临的普遍瓶颈包括：**拓扑结构不规范（Topology irregularity）、缺乏非破坏性图层可编辑性（Lack of layer editability）、材质通道不标准（Non-standard channels）、几何多视角一致性瑕疵（Inconsistency across angles）以及必须依赖下游人工清理与重拓扑（Cleanup & retopology requirement）**。
-2. **Roblox 4D 交互与材质生成演进**：
-   - [[Roblox Cube Foundation Model & 4D Interactive Generation Beta (2026-02-04)]](https://corp.roblox.com/) [Vendor Capability / Demonstrated]：
-   - Roblox 推出了基于 Cube 3D 模型的 4D 生成功能，探索将文本提示词直接转化为具备物理逻辑与脚本驱动的交互物体，但在高保真视觉渲染上依然遵循模块化 PBR 材质装配流程。
+   - [[Yanpei Cao (Tripo AI VP of Research), 80 Level Interview (2026-08-28)]](https://80.lv/articles/how-tripo-is-tackling-clean-topology-for-its-3d-asset-pipeline/) [Industry Interview / Limitation]：
+   - 访谈直接指出：生成资产并不等同于生产就绪资产（`generated asset ≠ production-ready asset`）；
+   - 当前现实瓶颈直接涵盖：混乱的拓扑（`messy topology`）、极难编辑的材质（`difficult-to-edit materials`）、不一致的几何（`inconsistent geometry`）、材质/细节定义与可控性仍存在缺陷（`material/detail definition & controllability`），资产清理与生产就绪仍是主要挑战（`cleanup / production readiness`）。
+2. **Roblox 4D 交互生成模型演进**：
+   - [[Accelerating Creation, Powered by Roblox’s Cube Foundation Model (Roblox Newsroom, 2026-02-04)]](https://corp.roblox.com/newsroom/2026/02/roblox-cube-foundation-model/) [Vendor Capability / Demonstrated]：
+   - Roblox 官方发布了基于 Cube 基础模型（Cube Foundation Model）的 4D 生成 Beta 测试，支持在 Roblox Studio 中通过多模态输入生成功能性、交互式 3D 物体（functional interactive 3D objects），并记录了早期创作者使用案例（documented early-access usage）。该发布用于证明平台级交互资产生成演进，**不用于证明高保真 PBR 材质已在 3A 级影视/游戏中达到生产就绪**。
 3. **厂商客户案例的证据边界**：
-   - [[Meshy 37 Interactive Entertainment Customer Case Study]](https://www.meshy.ai/) [Vendor-hosted Customer Case Study]：
-   - 该案例记录了其在 3D 概念原型建模阶段的提速，但该证据**仅支持其在建模/原型流程中的应用，不能直接外推为材质与纹理全流程已完全实现免人工自动化**。
+   - [[Meshy 37 Interactive Entertainment Customer Case Study]](https://www.meshy.ai/) [Vendor-hosted Customer Case]：
+   - 该案例记录了特定游戏公司在 3D 概念原型建模阶段的提速，但该证据**仅支持其在建模/原型流程中的早期尝试，不能直接外推为材质与纹理全流程已在生产中成熟部署或免人工接管**。
+   - *生产部署实证结论*：**截至 2026 年，完全由 AI 端到端接管工业级高保真 PBR 材质绘制的独立商业生产部署实证依然稀缺（Independent production evidence remains sparse）**。多数成熟工作室仅将 AI 用作前置概念参考、材质灵感草稿或局部噪波填充。
 
 ---
 
@@ -243,7 +248,7 @@ AI 生成材质在两个下游出口的应用面临不同的工业工程壁垒�
 - **Traditional Skill**：传统/基线能力单元
 - **Current Teaching Necessity**：Phase 1 基线评级（`Likely Core` / `Likely Important` / `Likely Optional` / `Supporting prerequisite`）
 - **AI / Automation Capability 2026**：截至 2026 年实际具备的自动化/AI 能力
-- **Evidence Level**：证据等级（`Vendor` / `Academic/Demonstrated` / `Production` / `Limitation` / `Non-AI Automation`）
+- **Evidence Level**：证据等级（`Vendor` / `Academic/Demonstrated` / `Tech Spec` / `Production` / `Limitation` / `Non-AI Automation`）
 - **Automation Degree**：自动化程度（`None` / `Assist` / `Partial` / `High`）
 - **Human Judgment Remaining**：人仍需行使的关键判断与介入
 - **Production Readiness**：生产就绪度（`Low` / `Emerging` / `Usable` / `Mature`）
@@ -330,8 +335,8 @@ AI 生成材质在两个下游出口的应用面临不同的工业工程壁垒�
 | Traditional Skill | Current Teaching Necessity | AI / Automation Capability 2026 | Evidence Level | Automation Degree | Human Judgment Remaining | Production Readiness | Teaching Impact | Confidence |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Blender 材质视口与基础着色验证** | `Likely Important` | 视口着色自动化，支持实时 EEVEE-Next/Cycles | `Vendor` | `High` | 观察材质在不同打光角度下的反射与阴影过渡 | `Mature` | `Keep` | `High` |
-| **Unreal Engine 实时材质实例组装** | `Likely Core` | 支持通过 Python 脚本或插件快速实例化材质 | `Production` | `Partial` | 组装 Master Material、绑定 ORM 参数与微调 | `Mature` | `Keep` | `High` |
-| **游戏运行时材质性能与约束 (ORM/BC7)** | `Likely Important` | 引擎自动压缩，但通道混合配置仍需人工规范 | `Production` | `Partial` | 制定 ORM 压缩策略、排查显存带宽瓶颈 | `Mature` | `Keep` | `High` |
+| **Unreal Engine 实时材质实例组装** | `Likely Core` | 支持通过 Python 脚本或插件快速实例化材质 | `Tech Spec` | `Partial` | 组装 Master Material、绑定 ORM 参数与微调 | `Mature` | `Keep` | `High` |
+| **游戏运行时材质性能与约束 (ORM/BC7)** | `Likely Important` | 引擎自动压缩，但通道混合配置仍需人工规范 | `Tech Spec` | `Partial` | 制定 ORM 压缩策略、排查显存带宽瓶颈 | `Mature` | `Keep` | `High` |
 | **影视/动画高保真着色差异 (SSS/Coat)** | `Likely Optional` | AI 难以准确输出各向异性与 SSS 散射贴图 | `Limitation` | `None` | 设置多层高保真着色参数（进阶选修） | `Low` (AI 精度) | `Keep` (进阶选修) | `High` |
 | **跨渲染器着色表现差异对比** | `Likely Important` | 无（跨渲染器着色模型差异常引发材质异化） | `Limitation` | `None` | 对齐 Cycles / Unreal / Marmoset 的反射一致性 | `Mature` (流程) | `Keep` | `High` |
 | **多环境 IBL 与极端光照压力测试** | `Likely Core` | 支持多 HDR 自动旋转批处理预览 | `Non-AI Automation` | `High` | 终极判定：强直射/弱漫射下材质是否物理穿帮 | `Mature` | `Keep` | `High` |
@@ -342,13 +347,13 @@ AI 生成材质在两个下游出口的应用面临不同的工业工程壁垒�
 
 | AI-Native Skill | Current Teaching Necessity | AI / Automation Capability 2026 | Evidence Level | Automation Degree | Human Judgment Remaining | Production Readiness | Teaching Impact | Confidence |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **材质语义提示词工程 (Material Prompting)** | `New Essential` | 支持专业光学/工艺术语解析并生成对应贴图 | `Production` | `High` | 选定精确物理术语、避免艺术词汇引发歧义 | `Usable` | `Add New Skill` | `High` |
-| **参考图像条件约束 (Reference Conditioning)** | `New Essential` | 基于参考图（IP-Adapter/ControlNet）锁定风格 | `Production` | `High` | 挑选高质量参考样本、调整权重平衡风格与可信度 | `Usable` | `Add New Skill` | `High` |
+| **材质语义提示词工程 (Material Prompting)** | `New Essential` | 支持专业光学/工艺术语解析并生成对应贴图 | `Academic/Demonstrated` | `High` | 选定精确物理术语、避免艺术词汇引发歧义 | `Usable` | `Add New Skill` | `High` |
+| **参考图像条件约束 (Reference Conditioning)** | `New Essential` | 基于参考图（IP-Adapter/ControlNet）锁定风格 | `Academic/Demonstrated` | `High` | 挑选高质量参考样本、调整权重平衡风格与可信度 | `Usable` | `Add New Skill` | `High` |
 | **跨通道 PBR 物理诊断 (Cross-channel Diagnosis)** | `New Essential` | AI 工具缺乏通道间自洽性闭环检验 | `Limitation` | `None` | 跨通道排查假光照、假金属度与法线失真 | `Mature` (人工) | `Add New Skill` | `High` |
 | **光照残留剥离与去光照修正 (De-lighting Fix)** | `New Essential` | 自动 De-lighting 经常残留阴影或丢失反射率 | `Academic/Demonstrated` | `Partial` | 手工或使用曲线滤镜修正 Albedo 暗斑 | `Usable` | `Add New Skill` | `High` |
-| **AI 材质变体策展 (Variation Curation)** | `New Recommended` | 批量快速生成多种材质变体 | `Production` | `High` | 从海量变体中挑选最符合资产叙事的方案 | `Usable` | `Add New Skill` | `High` |
-| **人机协同分层迭代 (Human-in-the-Loop)** | `New Essential` | AI 输出扁平贴图，人类在 Painter 中结构化重构 | `Production` | `Partial` | 融合 AI 细节与人工遮罩、保证可编辑性 | `Usable` | `Add New Skill` | `High` |
-| **版本控制与随机种子管理 (Seed Management)** | `New Recommended` | 保存 Prompt、Seed、采样参数与 Workflow JSON | `Production` | `High` | 建立资产版本台账、确保跨批次资产风格可复现 | `Usable` | `Add New Skill` | `High` |
+| **AI 材质变体策展 (Variation Curation)** | `New Recommended` | 批量快速生成多种材质变体 | `Vendor` | `High` | 从海量变体中挑选最符合资产叙事的方案 | `Usable` | `Add New Skill` | `High` |
+| **人机协同分层迭代 (Human-in-the-Loop)** | `New Essential` | AI 输出扁平贴图，人类在 Painter 中结构化重构 | `Academic/Demonstrated` | `Partial` | 融合 AI 细节与人工遮罩、保证可编辑性 | `Usable` | `Add New Skill` | `High` |
+| **版本控制与随机种子管理 (Seed Management)** | `New Recommended` | 保存 Prompt、Seed、采样参数与 Workflow JSON | `Vendor` | `High` | 建立资产版本台账、确保跨批次资产风格可复现 | `Usable` | `Add New Skill` | `High` |
 
 ---
 
@@ -399,6 +404,7 @@ AI 生成材质在两个下游出口的应用面临不同的工业工程壁垒�
 - 涵盖**材质语义提示词工程、参考图像条件约束、跨通道 PBR 物理诊断、去光照纠偏、AI 材质变体策展、人机协同分层迭代与随机种子版本管理**等核心新技能（详见第 6 节）。
 
 ### Q10: 哪些问题的 production evidence 仍然不足？
+- **独立生产落地实证依然稀缺 (Independent production evidence remains sparse)**：截至 2026 年，完全由 AI 端到端接管工业级高保真 PBR 材质绘制且免人工介入的独立商业生产部署案例几乎没有，生产环境证据普遍呈现碎片化与实验性；
 - **AI 端到端生成高保真 OpenPBR 影视多层材质**（如多层涂层、各向异性拉丝、体积散射参数）的真实生产可用性证据仍然不足；
 - **纯自然语言全自动生成工业级 Substance Designer（`.sbsar`）复杂程序化图**的能力仍处于初级实验阶段；
 - **全自动 AI 网格贴图直接满足 3A 游戏性能合规（零人工修复）**的落地案例依然极其罕见。
@@ -436,21 +442,38 @@ AI 生成材质在两个下游出口的应用面临不同的工业工程壁垒�
 
 ## 10. 证据源与文献详尽登记表 (Structured Evidence Register)
 
+### 证据审计与分类统计 (Evidence Audit Summary)
+截至本次审阅校准，本研究登记表共收录 **17 项直接链接的一手独立来源（Unique Directly Linked Sources）**。为保证证据严格性，不为了维持特定数字而强行分类，不重复计算互斥主类别，其严格主分类统计如下：
+
+- **Vendor Capability (厂商产品功能/Beta特性)**: **5 项**（Adobe Sampler Generative, Adobe Sampler Image-to-Material, Meshy AI Texturing, Node To Talk, Roblox Cube Foundation Model）
+- **Academic / Demonstrated (顶会论文/学术演示)**: **5 项**（IntrinsiX [NeurIPS 2025], Material Anything [CVPR 2025], LumiTex [ICLR 2026], MatLat [CVPR 2026], DD3M [arXiv 2024/2025]）
+- **Technical Specification / Platform Documentation (技术规范/平台文档)**: **3 项**（OpenPBR Surface Spec v1.1.1, Unreal Engine Physically Based Materials, Karis 2013 SIGGRAPH Notes）
+- **Production / Deployment (真实项目/商业落地)**: **0 项**（注：*截至 2026 年，完全由 AI 端到端接管工业级高保真 PBR 材质绘制的独立生产落地证据依然稀缺 [Independent production evidence remains sparse]*）
+- **Industry Interview / Limitation (行业专访/缺陷实证)**: **1 项**（Yanpei Cao / 80 Level Interview 2026-08-28）
+- **Vendor-hosted Customer Case (厂商客户案例)**: **1 项**（Meshy 37 Interactive Entertainment Case Study）
+- **Non-AI Workflow Automation (传统算法自动化)**: **2 项**（Painter Auto Unwrap, Painter GPU Baking）
+
+*(总计：5 + 5 + 3 + 0 + 1 + 1 + 2 = 17 项独立链接来源，互斥无重叠统计)*
+
 | 证据项 (Evidence Item) | 精确一手来源与链接 (Exact Source & Link) | 日期 / 权威级别 (Date & Venue) | 证据类型 (Type) | 支撑的事实结论 (What It Directly Supports) | 不能证明/过度推断的边界 (What It Does NOT Prove) |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Sampler Generative Features** | [[Adobe Substance 3D Sampler Generative Features]](https://helpx.adobe.com/substance-3d-sampler/generative-workflows/generative-features.html) | 2026-04 官方文档 | `Vendor Capability` | 支持基于 Firefly 的 Text to Texture / Pattern 等无缝平铺生成功能 | **不能证明** 其已是成熟且不可替代的工业绝对标准（官方明确标为 Beta） |
 | **Sampler Image-to-Material** | [[Adobe Substance 3D Sampler Image to Material Filters]](https://helpx.adobe.com/substance-3d-sampler/filters/image-to-material.html) | 官方技术文档 | `Vendor Capability` | 证实其包含 AI Powered（去光照+Normal/Rough/Height）与 B2M（全通道程序化）两套不同算法 | **不能证明** AI Powered 能全自动完美恢复包括金属度在内的所有通道 |
-| **Painter Auto Unwrap** | [[Adobe Substance 3D Painter Auto Unwrap]](https://helpx.adobe.com/substance-3d-painter/features/auto-unwrap.html) | 官方技术文档 | `Non-AI Automation` | 证实自动展 UV 与装箱基于确定性计算几何算法 | **不能证明** 该功能属于生成式 AI 能力 |
-| **IntrinsiX 材质解耦** | [*IntrinsiX: High-Quality PBR Generation using Image Priors*](https://arxiv.org/abs/2410.22378) | NeurIPS 2025 | `Academic / Demonstrated` | 证实学术界利用图像先验分解 Albedo 与微表面 Roughness/Normal 的最新进展 | **不能证明** 商业化 DCC 插件已达到零瑕疵商业生产就绪度 |
-| **Material Anything** | [*Material Anything: Generating Materials for Any 3D Object via Diffusion*](https://arxiv.org/abs/2411.15138) | CVPR 2025 | `Academic / Demonstrated` | 证实基于扩散模型直接对任意 3D 网格生成解耦 PBR 材质的研究进展 | **不能证明** 该方法已完全替代传统分层绘制管线 |
-| **LumiTex 光照感知生成** | [*LumiTex: Towards High-Fidelity PBR Texture Generation with Illumination Context*](https://arxiv.org/abs/2501.03875) | ICLR 2026 (arXiv:2501.03875) | `Academic / Demonstrated` | 证实引入光照上下文扩散先验能显著提升材质分解质量 | **不能证明** 跨通道生成的法线与金属度可直接免人工质检 |
-| **MatLat 材质隐空间** | [*MatLat: Material Latent Space for PBR Texture Generation*](https://github.com/matlat-pbr/matlat) | CVPR 2026 | `Academic / Demonstrated` | 证实构建专用材质隐空间对连续物理属性表达的有效性 | **不能证明** 该隐空间模型已被集成进主流商业软件管线 |
-| **Tripo 拓扑与资产访谈** | [[Yanpei Cao, 80 Level Interview]](https://80.lv/articles/how-tripo-is-tackling-clean-topology-for-its-3d-asset-pipeline/) | 2026-08-28 | `Industry Interview / Limitation` | 证实生成 3D 资产 $\ne$ Production-ready 资产，必须解决拓扑、图层可编辑性与清理等问题 | **不能证明** 所有三维生成工具均无法在非关键背景道具中落地 |
-| **Roblox 4D 交互模型** | [[Roblox Cube Foundation Model & 4D Interactive Generation Beta]](https://corp.roblox.com/) | 2026-02-04 官方发布 | `Vendor Capability / Demonstrated` | 证实基于 Cube 模型从文本直接生成带物理交互与材质模式物体的可行性 | **不能证明** 其已能直接输出满足 3A 影视级的高保真 OpenPBR 资产 |
-| **Node To Talk 节点桥梁** | [[Node To Talk Blender Addon]](https://blenderartists.org/t/node-to-talk/) | 社区与开发者文档 | `Demonstrated Workflow` | 证实可将 Blender 节点拓扑序列化为结构化纯文本供 LLM 分析与排错 | **不能证明** LLM 本身已具备全自动稳定生成复杂着色器网络的能力 |
-| **Meshy 商业客户案例** | [[Meshy 37 Interactive Entertainment Customer Case Study]](https://www.meshy.ai/) | 厂商发布客户案例 | `Vendor-hosted Customer Case` | 证实特定游戏公司在 3D 原型/建模阶段使用了 AI 辅助加速 | **不能证明** 该效率提升可直接无损平移至材质绘制与 PBR 资产交付阶段 |
-| **OpenPBR 标准规范** | [[ASWF OpenPBR Shading Model Specification]](https://academysoftwarefoundation.github.io/OpenPBR/) | ASWF 官方规范 v1.0 | `Production / Deployment` | 确立影视与高端渲染对多层光学、次表面散射与各向异性的刚性标准 | **不能证明** 当前轻量级游戏引擎能够无损实时渲染全部 OpenPBR 特性 |
-| **Epic Games PBR 规范** | [[Unreal Engine Physically Based Materials]](https://dev.epicgames.com/documentation/en-us/unreal-engine/physically-based-materials-in-unreal-engine) | Epic Games 官方文档 | `Production / Deployment` | 确立实时游戏对 ORM 通道打包、材质实例与 4% 反射率标准的刚性规范 | **不能证明** 离线影视渲染也必须采用相同的 ORM 通道打包方式 |
+| **Meshy AI Texturing** | [[Meshy Docs — AI Texturing]](https://docs.meshy.ai/texturing) | 官方产品文档 | `Vendor Capability` | 证实支持对外部网格生成 Albedo/Normal/Roughness/Metallic 贴图，支持 Remove Lighting 去光照与 UV 重用/自动展开 | **不能证明** 其具备类似 Painter 的可编辑图层栈（输出为扁平贴图属于 Project Inference） |
+| **Painter Auto Unwrap** | [[Adobe Substance 3D Painter Auto Unwrap]](https://helpx.adobe.com/substance-3d-painter/features/auto-unwrap.html) | 官方技术文档 | `Non-AI Workflow Automation` | 证实自动展 UV 与装箱基于确定性计算几何算法 | **不能证明** 该功能属于生成式 AI 能力 |
+| **Painter Baking 管线** | [[Substance 3D Painter Baking]](https://helpx.adobe.com/substance-3d-painter/baking/baking.html) | 官方技术文档 | `Non-AI Workflow Automation` | 证实基于 GPU 光线投射与高低模匹配命名的确定性贴图烘焙自动化 | **不能证明** 该成熟烘焙管线基于生成式神经网络 |
+| **IntrinsiX 材质解耦** | [*IntrinsiX: High-Quality PBR Generation using Image Priors* (NeurIPS 2025 Proceedings)](https://proceedings.neurips.cc/) [[arXiv:2410.22378]](https://arxiv.org/abs/2410.22378) | NeurIPS 2025 | `Academic / Demonstrated` | 证实学术界利用图像先验分解漫反射 Albedo 与微表面微观粗糙度/法线的最新进展 | **不能证明** 商业化 DCC 插件已达到零瑕疵商业生产就绪度 |
+| **Material Anything** | [*Material Anything: Generating Materials for Any 3D Object via Diffusion* (CVPR 2025 Open Access)](https://openaccess.thecvf.com/) [[arXiv:2411.15138]](https://arxiv.org/abs/2411.15138) | CVPR 2025 | `Academic / Demonstrated` | 证实基于端到端扩散模型对任意网格生成解耦 PBR 材质的研究进展 | **不能证明** 该方法已完全替代传统分层绘制与局部质检管线 |
+| **LumiTex 光照感知生成** | [*LumiTex: Towards High-Fidelity PBR Texture Generation with Illumination Context* (ICLR 2026 Proceedings)](https://openreview.net/) [[arXiv:2501.03875]](https://arxiv.org/abs/2501.03875) | ICLR 2026 | `Academic / Demonstrated` | 证实引入光照上下文扩散先验能显著提升材质分解与几何引导生成质量 | **不能证明** 跨通道生成的法线与金属度可直接免人工质检 |
+| **MatLat 材质隐空间** | [*MatLat: Material Latent Space for PBR Texture Generation* (CVPR 2026 Open Access)](https://openaccess.thecvf.com/) [[GitHub Project]](https://github.com/matlat-pbr/matlat) | CVPR 2026 | `Academic / Demonstrated` | 证实构建专用材质隐空间对连续物理属性表达的有效性 | **不能证明** 该隐空间模型已被集成进主流商业软件生产管线 |
+| **DD3M 代码生成节点** | [*DD3M: Direct Generation of 3D Models via Python Scripts*](https://arxiv.org/abs/2410.05432) | 2024/2025 arXiv | `Academic / Demonstrated` | 证实通过 Python 代码脚本直接生成 Blender 几何与材质节点网络的可行性 | **不能证明** 其生成的复杂着色器网络已能在高阶工业 LookDev 中直接免修使用 |
+| **Node To Talk 节点序列化** | [[Node To Talk — Superhive]](https://superhivemarket.com/products/node-to-talk) | 开发者官方产品文档 | `Vendor Capability` (辅助角色: `Demonstrated`) | 证实可将 Blender Geometry/Shader/Compositor 节点拓扑导出为结构化文本供 AI 解析与排错 | **不能证明** 其本身是 Text-to-Nodes 生成器（定位为通信与序列化桥梁） |
+| **Roblox Cube 基础模型** | [[Accelerating Creation, Powered by Roblox’s Cube Foundation Model]](https://corp.roblox.com/newsroom/2026/02/roblox-cube-foundation-model/) | 2026-02-04 Roblox Newsroom | `Vendor Capability` (辅助角色: `Demonstrated`) | 证实基于 Cube 3D 模型的 4D 生成 Beta 测试，支持在 Studio 中生成功能性交互物体并记录早期创作者使用 | **不能证明** 高保真 PBR 材质生成已在 3A 影视/游戏中达到生产就绪 |
+| **OpenPBR 材质规范** | [[ASWF OpenPBR Surface Specification v1.1.1]](https://academysoftwarefoundation.github.io/OpenPBR/) | 2026-04-17 ASWF 官方规范 v1.1.1 | `Technical Specification / Platform Documentation` | 确立现代计算机图形开放材质标准对多层光学（Coat、SSS、Thin Film）的规范要求 | **不能证明** AI 材质生成技术已在影视工业中成熟部署，亦非所有管线唯一的绝对标准 |
+| **Unreal Engine PBR 规范** | [[Unreal Engine Physically Based Materials]](https://dev.epicgames.com/documentation/en-us/unreal-engine/physically-based-materials-in-unreal-engine) | Epic Games 官方技术文档 | `Technical Specification / Platform Documentation` | 确立虚幻引擎 Metallic 物理模型、纯材质表面接近 0 或 1，以及电介质 Specular 0.5 约对应 4% 反射率 | **不能证明** 游戏运行时的 ORM 打包格式，亦不能证明 AI 材质已经在生产中成熟部署 |
+| **Karis 2013 PBR 基础** | [[Real Shading in Unreal Engine 4 (Brian Karis, SIGGRAPH 2013)]](https://cdn2.unrealengine.com/Resources/files/2013SiggraphPresentationsNotes-26915738.pdf) | SIGGRAPH 2013 | `Technical Specification / Platform Documentation` | 奠定现代实时 PBR 着色方程（GGX/Smith）、电介质 4% 基础反射率与金属度模型理论 | **不能证明** 2026 年现代 AI 生成模型的工业生产成熟度 |
+| **Tripo 资产落地访谈** | [[Yanpei Cao, 80 Level Interview]](https://80.lv/articles/how-tripo-is-tackling-clean-topology-for-its-3d-asset-pipeline/) | 2026-08-28 行业专访 | `Industry Interview / Limitation` | 证实生成资产 ≠ 生产就绪资产，直接指出混乱拓扑、难编辑材质、不一致几何与清理挑战 | **不能证明** 具体的通道失效数值（具体通道数值与接缝反转归为 Project Inference / 观察模式） |
+| **Meshy 商业客户案例** | [[Meshy 37 Interactive Entertainment Customer Case Study]](https://www.meshy.ai/) | 厂商发布客户案例 | `Vendor-hosted Customer Case` | 证实特定游戏公司在 3D 概念原型与初步建模阶段探索了 AI 辅助提速 | **不能证明** 商业工作室已在最终 PBR 材质绘制与交付中完全部署免人工 AI 管线 |
 
 ---
 *报告归档于 `docs/research/ai-impact-on-material-workflows.md`，由 Antigravity 自动化研究流水线生成并核查。*
