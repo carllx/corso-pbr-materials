@@ -7,11 +7,14 @@
 ## 1. Research Gates & Milestone Status (研究门禁与里程碑状态)
 
 - **Phase 1 (PBR Course Foundations)**：`PASS` (完成基线报告 `pbr-course-foundations.md`，确立物理可信性与管线原则)
-- **Stage 1 (Textbook Closeout & Gap Analysis / Issue #2)**：`PASS`
-  - *Gate 1 (Source Inventory Verification)*: `PASS` (核实 Course Knowledge Notebook 实际语料，确认 Shah 2022、Photorealism 2026、The PBR Guide 等核心资产就绪)
-  - *Gate 2 (2026 Living Official Sources)*: `PASS` (补齐 Painter 2026、Designer、Sampler、Blender 4.5 与 OpenPBR 1.1 官方开源权威源)
-  - *Gate 3 (Available-Corpus Gap Analysis)*: `PASS` (形成可审计 Gap Register，确立 Shah 骨架地位与 5 大更新点，裁定无需额外采购国内教材)
-- **下一研究前沿 (Next Frontier)**：`Stage 2 — Teaching Value Matrix / AI 后教学价值整合` (合并传统能力矩阵与 AI Impact Research，逐项判定 Keep / Compress / Reframe / Replace / Add New Skill)
+- **Stage 1 (Textbook Closeout & Gap Analysis / Issue #2)**：`IN PROGRESS`
+  - *Gate 1 (Source Inventory Verification)*: `REPORTED / VERIFIED` (核实 Course Knowledge Notebook 实际语料，确认 Shah 2022、Photorealism 2026、The PBR Guide Part 1&2 等核心资产就绪)
+  - *Gate 2 (2026 Living Official Sources)*: `REPORTED / VERIFIED` (补齐 Painter 官方源、Designer、Sampler、Blender 4.5 与 OpenPBR 1.1 规范)
+  - *Gate 3 (Available-Corpus Gap Analysis)*: `REVISION` (根据 Browser Review 修正版本事实、收紧 Shah 定位为 strong candidate / provisionally sufficient，明确中文教材保留在 Step 4 由 User 决策)
+  - *Step 4 (Conditional Acquisition Decision)*: `PENDING BROWSER REVIEW OF GATE 3`
+  - *Step 5–6 (Textbook Decision & Closeout)*: `PENDING`
+- **Stage 2 (Teaching Value Matrix / AI 后教学价值整合)**：`BLOCKED BY Issue #2`
+- **下一研究前沿 (Next Frontier)**：`Stage 1 / Issue #2 — Step 4 Conditional Acquisition Decision (Pending Browser Review of Gate 3 Revision)`
 
 ---
 
@@ -32,11 +35,12 @@
    - **AI-assisted / Generative Material Workflows**：AI 辅助生成、无缝贴图转换与智能纹理工作流。
 5. **双应用出口定位**：
    - 实时游戏（Game Realtime）与动画/视觉开发（Animation / LookDev）是材质能力的两个主要应用出口，本课程将其统一在材质能力框架下，而非拆分为两门独立课程。
-6. **最终教材与教学资源体系决议 (Textbook Decision Closeout)**：
-   - **Primary Textbook Skeleton**：确立由 **Zeeshan Jawed Shah《Realistic Asset Creation with Adobe Substance 3D》(2022)** 承担，全书 0% 建模拓扑负担，完全契合纯材质工作流；其 5 大技术老化点（烘焙模式、OpenPBR、贴花包裹、曲线路径、资产重载）由 2026 Living Sources 升级修正。
-   - **Theory & Vision Authority**：由 **Eran Dinur《The Complete Guide to Photorealism, 2nd Edition》(2026)** 主导物理光影与质感观察理论，由 **Adobe《The PBR Guide (Part 1 & 2)》** 划定物理参数安全色阶，由 **《Real-Time Rendering 4th (中英双语)》** 承担教师底层渲染技术底座。
-   - **Practical Companion & 本土化落地**：裁定无需让学生人手付费采购国内中文教材；由授课教师基于 Adobe 100% 汉化官方帮助手册制备《8周中文实训界面对照与避坑指南 (Cheat Sheet)》，实现零成本前沿教学落地。
-   - **不可获取教材定性**：CafeGroup 2025 与 Born Digital Designer 2022 保留为 Desired References，实证已证明其缺失不造成教学断层。
+6. **教材体系阶段性共识 (Provisional Textbook Alignments)**：
+   - **Primary Textbook Skeleton**：Zeeshan Jawed Shah《Realistic Asset Creation with Adobe Substance 3D》(2022) 为目前的强候选（strong current candidate / provisionally sufficient on available corpus），其建模前置极低，覆盖 Painter/Designer/Sampler/Stager；其版本老化点由 2026 活体文档修正。
+   - **Living Official Sources 事实更正**：烘焙 UI 重构与 Paint Skew 偏斜修复、OpenPBR 1.1 默认工作流属于 **Painter 12.1 (2026)**；Warp to Geometry 与 Reload Mesh 属于 **Painter 12.0 (2026)**；Ribbon Path 曲线带状工具属于 **Painter 11.1 (2025-11 引入)**。
+   - **Theory & LookDev Authority**：Eran Dinur《The Complete Guide to Photorealism, 2nd ed.》(2026) 承担物理光影与质感观察，Adobe《The PBR Guide》承担光学守恒与安全色阶，RTR4 承担教师图形学理论底座。
+   - **中文教材与采购状态**：确认存在学生端中文实操步骤与界面对照摩擦；“官方中文文档与教师自制 Cheat Sheet 足以替代中文教材”暂列为待检验的 Project Hypothesis；是否采购国内教材（郑琳 2024 / 伍福军 2024）严格保留至 Step 4 由 User 决策。
+   - **不可获取教材定性**：CafeGroup 2025 与 Born Digital Designer 2022 保持为 Desired but currently unavailable，现有语料可作为可用替代（workable substitute），但其未决边际价值在后续阶段评估。
 
 ---
 
@@ -46,13 +50,13 @@
 
 - **假设 1（核心绘制环境）**：Substance 3D Painter 作为资产级纹理绘制（Texture Authoring）的主要实战教学环境（OpenPBR 1.1 默认工作流）。
 - **假设 2（程序化思维入口）**：Blender Shader Nodes 具备轻量、可视与免额外授权门槛的特点，与 Designer 核心节点互通，共同培养学生“程序化/参数化材质思维”。
-- **假设 3（Designer 课时定位）**：Substance 3D Designer 以核心高度图与混合逻辑（Tile Generator, Flood Fill, Height Blend）为主，不展开数百个复杂函数节点，控制认知负荷。
-- **假设 4（传统与 AI 的过渡桥梁）**：Substance 3D Sampler / Image-to-Material 与 Dinur Ch 19 提出的 ComfyUI ControlNet (Depth/Normal) 引导生成，承担起连接传统 PBR 贴图与现代生成式 AI 工作流的桥梁角色。
-- **假设 5（外部资产平台教学角色分工）**：
+- **假设 3（Designer 课时定位）**：Shah + Adobe 官方入门 + Blender 节点足以支撑有限的本科程序化基础，但 Designer 在 8 周整体课程中的最终课时与教学深度仍未决（unresolved），属于 Stage 2 Teaching Value Matrix 裁定事项。
+- **假设 4（传统与 AI 的过渡桥梁）**：Substance 3D Sampler / Image-to-Material 与 Dinur Ch 19 提出的条件式生成控制（ControlNet Depth/Normal），承担起连接传统 PBR 贴图与现代生成式 AI 工作流的探索角色。
+- **假设 5（中文实训支持）**：教师自制《中文实训界面对照 Cheat Sheet》结合官方中文文档，或可作为零成本消除学生实操摩擦的有效途径（待 Step 4 评估）。
+- **假设 6（外部资产平台教学角色分工）**：
   - **Sketchfab**：承担实时模型材质/通道在线拆解与检视（Inspector）的教学分析角色；
   - **Poly Haven**：承担高质量标准 PBR 材质参考与开源真实物理贴图源的角色；
   - **Fab (Epic Games)**：承担工业级生产资产与引擎级材质实例结构的参考角色。
-- **假设 6（作品发布平台）**：是否将 Sketchfab（或 Web 实时 3D 视口）作为学生期末作品的标准发布与交互展示目标，仍待进一步评估作业流程。
 
 ---
 
@@ -60,9 +64,9 @@
 
 后续研究与大纲设计需重点回答以下问题：
 
-1. **教材体系选型**：`CLOSED` (已在 Stage 1 / Issue #2 完成决策与证据闭环，见第二节)。
+1. **教材体系选型与采购决策**：`OPEN / IN PROGRESS` (Gate 3 证据修正完毕，等待 Browser Review 通过后进入 Step 4 Conditional Acquisition 决策)。
 2. **程序化材质深度**：
-   - 在 8 周基础课内，程序化/参数化材质（Procedural / Parametric Material）应达到何种教学深度（节点逻辑理解 vs. 独立输出复杂材质）？
+   - 在 8 周基础课内，Substance 3D Designer 与 Blender Shader Nodes 的课时分配与最终要求深度为何（属于 Stage 2 议题）？
 3. **AI 工作流的重构边界 (Stage 2 重点)**：
    - AI 材质工作流（AI Material Workflow）在教学中究竟应当替代哪些繁琐操作、压缩哪些传统环节，又重新定义了哪些核心审美与技术控制能力？
 4. **双出口能力的平衡标准**：
