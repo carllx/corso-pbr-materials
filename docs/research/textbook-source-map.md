@@ -1,32 +1,32 @@
 # 《三维数字材质制作》教材与学习资源调研图谱 (Textbook & Learning Source Map)
 
 > **研究阶段**：Stage 1 — Textbook Closeout / 教材定稿与知识资源获取 (Issue #2)  
-> **当前状态**：Gate 3 Evidence Revision  
-> **审阅锚点**：基于 Course Knowledge Notebook (`e29f9644-03b2-4e1b-bcb0-b954b5bf08be`) 实际可访问语料与官方版本事实修正  
+> **当前状态**：COMPLETED (Step 5 Final Textbook Decision & Closeout)  
+> **审阅锚点**：基于 Course Knowledge Notebook (`e29f9644-03b2-4e1b-bcb0-b954b5bf08be`) 实际可访问语料与 Step 4B Browser 终审决策  
 > **核心原则**：课程核心严格限定为 **Material / Texture Authoring（材质与纹理创作）**，建模、雕刻、拓扑重构与高低模资产全流程仅作为支撑性前置输入，不反客为主成为主体。
 
 ---
 
 ## 1. 知识库实际资源清单与状态 (Verified Source Inventory)
 
-经 IDE 运行时对 Course Knowledge Notebook 进行全面核查与清理，已剔除抓取失败的死链，当前实际可访问资源生态如下：
+经 IDE 运行时与 NotebookLM 清理（完成 Step 4A 语料瘦身，由 30 个精简为 24 个高纯度核心源，清空死链与实质重复源），当前实际知识库配置如下：
 
 ### 1.1 核心已获取教材与专著 (Core Acquired Textbooks)
-- **Primary Textbook Skeleton Candidate**：
+- **Primary Textbook Skeleton**：
   - 《Realistic Asset Creation with Adobe Substance 3D》— Zeeshan Jawed Shah (Packt Publishing, 2022)
   - *Provenance*: PDF 已就绪 (`6a26e0ee-71de-43cf-be7f-c39d2ad2da43`)。
 - **Observation, Photorealism & LookDev Reference**：
   - 《The Complete Guide to Photorealism: Understanding the Principles of Photorealistic CG and VFX, 2nd Edition》— Eran Dinur (Routledge, 2026)
   - *Provenance*: ePub 已就绪 (`72abf6ec-8c3d-4c9d-83f7-9e5a80f79e43`)。
 - **PBR Theory Authority**：
-  - 《The PBR Guide (Part 1: The Theory of PBR & Part 2: Practical Guidelines for Substance 3D Authors)》— Wes McDermott / Adobe
-  - *Provenance*: Part 1 (`93dd34e7-d6ca-4f55-a5f6-3d4dfc2c6458`) 与 Part 2 (`3b740455-7c40-426d-aeb2-a25688cce706`) 均已就绪。
+  - 《The PBR Guide, Third Edition (2018)》— Wes McDermott / Adobe (Allegorithmic)
+  - *Provenance*: 完整双篇连排 PDF 已就绪 (`7b3dde6d-a06c-42b1-9814-3bed5617c315`，含 Part 1 理论、Part 2 实战及附录反射率表；旧网页镜像源已去重删除)。
 - **Graphics Foundation Reference**：
   - 《Real-Time Rendering, 4th Edition (中英双语)》— Tomas Akenine-Möller et al.
-  - *Provenance*: 中文版 ePub (`447efad6-aad8-4f44-bf86-e60f54d7c57f`) 与英文版 ePub (`e3bc8e81-2fda-4d66-b4bd-4ffefb1448dd`) 均已就绪。
+  - *Provenance*: 中文版 ePub (`447efad6-aad8-4f44-bf86-e60f54d7c57f`) 与英文原版 ePub (`e3bc8e81-2fda-4d66-b4bd-4ffefb1448dd`) 均已就绪。
 
 ### 1.2 持续演进官方技术体系 (Living Official Sources)
-针对 Shah 2022 的版本时效性，直连 AdobeDocs 官方源文档与行业标准以建立活体事实基准：
+针对 Shah 2022 的版本时效性，直连 AdobeDocs 官方源文档与行业标准以建立活体技术基准：
 - **Substance 3D Painter 活体权威源**:
   - Painter Getting Started (`192ed109-2b3d-4c27-bfc4-5c4e87cdf3f1`)
   - Smart Materials & Masks (`c55c2489-0e56-4f9b-9298-fe26a650380e`)
@@ -40,138 +40,119 @@
   - Sampler Image to Material (`32895b88-98e8-4e10-b192-a85398f2b8b4`)
   - Sampler Generative Workflows (`f8999918-65fc-4520-8957-f0999d72afdd`)
 - **Blender 与开放标准**:
-  - Blender 4.5/4.x Materials Intro, Shader Nodes & Principled BSDF (`e7660364-35b2-40e7-9edd-492c6dfc1e00`, `f3313ff9-aaf3-4814-bd0c-a91a97e93456`, `7e000672-195f-434d-8e1e-71d76f18d19a`)
+  - Blender 5.2/4.5 LTS Materials Intro, Shader Nodes & Principled BSDF (`e7660364-35b2-40e7-9edd-492c6dfc1e00`, `f3313ff9-aaf3-4814-bd0c-a91a97e93456`, `7e000672-195f-434d-8e1e-71d76f18d19a`)
   - ASWF OpenPBR 1.1.1 Specification (`32eb7bd7-aa57-4bfe-b291-d40d75f53095`)
 
 ### 1.3 期望但当前不可获取文献 (Desired but Currently Unavailable References)
-保留在知识地图中作为教学思想对标与待解边缘价值参考，但不作为当前排课的物理依赖：
+保留在知识地图中作为教学思想对标与待解边际价值参考，不得列为实际课程依赖：
 - 《Substance 3D Painter実践講座―テクスチャの作り方・考え方を学ぶ》— CafeGroup (Born Digital, 2025)
 - 《作例で学ぶ Substance 3D Designerの教科書》— もんしょ 等 (Born Digital, 2022)
 
 ---
 
-## 2. 实际语料 Gap Analysis 与审查证据 (Gap Register)
+## 2. 最终教材体系决议与角色定性 (Final Role-based Resource Decision)
 
-基于 Course Knowledge Notebook 实际检索与官方版本历史核验，形成以下收敛结论：
+经多模型独立发现、第一方元数据查验、Notebook 语料清洗、可用语料 Gap Analysis 及 Step 4B 采购权衡，确立《三维数字材质制作》最终七层角色化资源体系：
 
-### 2.1 Shah (2022) 承担 Primary Textbook Skeleton 的证据判断
-- **审计定位**：`Primary Textbook Skeleton — strong current candidate / provisionally sufficient on available corpus`。
-- **事实依据 (Source-supported Facts)**：
-  - *建模前置极低 (very low modeling overhead / modeling is not the instructional focus)*：全书 14 章中，前言明确假定读者具备 3D 建模基础知识，并直接以导入外部准备完毕的基础网格切入；不含多边形建模、拓扑重构、高模雕刻等教学。
-  - *工具链章节结构清晰*：
-    - Ch 1–6：聚焦 Substance 3D Painter 贴图绘制全流程（含 Texel Density 规划、多 Texture Set 管理、顶点颜色烘焙 ID Map、Fill/Paint 层级堆叠、Tri-planar 投影、Smart Materials、Anchor Points 锚点微细节动态传递、Position 贴图全场景归一化积灰、多贴图集实例化等）；
-    - Ch 7–10：聚焦 Substance 3D Designer 程序化高度图与节点逻辑；
-    - Ch 11：聚焦 Substance 3D Sampler 基于照片的材质提取与平铺；
-    - Ch 12–14：聚焦 Substance 3D Stager 的场景排版、物理摆放、光照与最终渲染呈现。
-- **阶段结论**：在现有可访问语料中，Shah (2022) 具备作为主教材骨架的强候选资格，且在现有资源下暂时充分（provisionally sufficient）。
+### 2.1 Primary Textbook Skeleton（主教材骨架）
+- **选定文献**：**Zeeshan Jawed Shah —《Realistic Asset Creation with Adobe Substance 3D》(Packt Publishing, 2022)**
+- **决策状态**：`Selected Primary Textbook Skeleton`
+- **核准依据与边界说明**：
+  - 本书并非 2026 最新出版物，但其章节架构与教学逻辑高度契合本科“纯材质/贴图创作”目标；
+  - 建模前置负担极低（`very low modeling overhead / modeling is not the instructional focus`），全书以预制资产导入切入，系统覆盖 Painter 资产贴图绘制、Designer 程序化纹理、Sampler 数字化与 Stager 场景呈现；
+  - 其软件版本老化点严格由 2026 Living Official Sources 予以升级修正。
 
-### 2.2 官方版本更新事实与 Living Sources 修正清单
-针对 Shah (2022) 的技术老化点，根据官方 Release Notes 核实准确版本事实，教学中需由 Living Sources 予以修正：
+### 2.2 PBR Theory Foundation（物理理论基石）
+- **选定文献**：**Wes McDermott / Adobe —《The PBR Guide, Third Edition》(2018)**
+- **决策状态**：`Selected PBR Theory Foundation`
+- **核准依据与边界说明**：
+  - 知识库中已完整收录 2018 年印刷第 3 版 PDF 全本；
+  - 作为全球 CG 工业界最权威的微表面与能量守恒经典读物，为学生建立坚实的物理光学理论与金属/非金属反射率参数色阶（Reflectance Values Chart）；
+  - 明确注明：属于底层稳定 PBR 理论源，而非 2026 软件操作版本事实源。
 
-| 范畴 | 官方版本发布事实 (Version Facts) | Shah (2022) 老旧操作 | 教学执行修正方案 |
-| :--- | :--- | :--- | :--- |
-| **烘焙模式与偏斜修复** | **Painter 12.1 (2026)** 重构烘焙 UI，引入 **Paint Skew（视口涂抹偏斜修正法线）** 与自动重烘焙；此前自 **8.3.0** 起引入独立 Baking Mode (F8) 与隐式包围盒可视化预览。 | 依赖旧版模态对话框，需手动调整 Cage 距离以尝试修复倾斜变形。 | 采用独立 Baking Mode (F8)，直接在视口中使用 Paint Skew 笔刷涂抹修复螺丝孔等法线倾斜。 |
-| **着色器标准对齐** | **Painter 12.1 (2026)** 正式将 **OpenPBR 1.1** 设定为默认工作流与默认着色器。 | 新建项目使用旧版 Adobe Standard Material (ASM) 或旧 PBR Metallic-Roughness。 | 新建工程对齐 OpenPBR 1.1 工业规范，与现代 USD 及 Blender 4.x/5.x Principled BSDF 1:1 互通。 |
-| **曲面贴花自适应** | **Painter 12.0 (2026)** 引入 **Warp to Geometry** 几何体智能包裹投影算法。 | 传统平面投影或旧版 2D 变形在复杂起伏表面产生拉伸与边缘淡出。 | 贴花（Decals）与徽标贴附采用 Warp to Geometry 动态贴合复杂曲面。 |
-| **网格重载流程** | **Painter 12.0 (2026)** 精简新建项目界面，并新增更符合迭代逻辑的 **Reload Mesh（重载网格）** 专用入口。 | 修改低模 UV 或布线需通过复杂的项目配置重新映射。 | 低模调整采用无损 Reload Mesh，完整保留图层栈与烘焙数据。 |
-| **曲线带状路径工具** | **Painter 11.1 (2025-11 引入，非 2026 新功能)** 推出 **Ribbon Path（带状贝塞尔曲线路径工具）** 与 75 种专用预设。 | 规则纹理（缝线、焊缝、边饰）依赖笔刷手动涂刷或 Stencil 耗时印落。 | 规则连续细节采用 Ribbon Path 曲线绘制，单顶点调节宽度与不透明度。 |
+### 2.3 Material Observation / Photorealism / LookDev（质感观察与审美拔高）
+- **选定文献**：**Eran Dinur —《The Complete Guide to Photorealism, 2nd Edition》(Routledge, 2026)**
+- **决策状态**：`Selected Observation / LookDev Reference`
+- **核准依据与边界说明**：
+  - 承担三大角色：① 教师前两周理论讲义与色彩解构源泉；② 学生第 7–8 周渲染 LookDev“消除 CG 塑料感”的审美红宝书（倒角捕光、镜头色差、景深散景、胶片噪点）；③ 第 19 章作为生成式 AI 条件控制（ControlNet Depth/Normal）的视觉工作流拓展参考（photoreal generative-control / AI visual workflow reference）。
 
-### 2.3 CafeGroup 2025 缺失的影响评估
-- **审计定位**：`Desired but currently unavailable / unresolved marginal value`。
-- **客观判断**：
-  - 由于该完整教材当前不可访问，没有直接文本证据证明现有语料“比它更深”或“完全替代且毫无损失”；
-  - 但在实际教学可用性上，`available corpus currently provides a workable substitute for Material Observation / PBR / LookDev`：
-    - Eran Dinur (2026)《The Complete Guide to Photorealism》提供了现实世界物理反向工程框架（人眼 vs 相机、六层色彩拆解、自然光学）；
-    - Adobe《The PBR Guide》提供了光学守恒与安全色阶；
-    - Shah (2022) 第 3–6 章落实了分层落地（底材 $\rightarrow$ 漆面 $\rightarrow$ 边缘磨损 $\rightarrow$ 凹陷藏污 $\rightarrow$ 重力积灰）。
-  - 因此该书保留为高价值参考，但不阻塞当前课程骨架构建。
+### 2.4 Procedural / Parametric Foundation（程序化材质基石）
+- **选定组合**：**Shah Ch 7–10 + Adobe Substance 3D Designer 官方入门源 + Blender Shader Nodes / Principled BSDF**
+- **决策状态**：`Selected bounded procedural foundation`
+- **核准依据与边界说明**：
+  - 满足本科 8 周建立“高度图驱动 (Height-driven)”、“多通道物理联动”与“参数化平铺去重复”的有限边界程序化思维；
+  - 与 Blender 5.2/4.5 节点材质实现跨软件通识互通；
+  - Designer 在课程整体中的最终课时占比与考核深度，按规定留待 Stage 2 Teaching Value Matrix 裁定。
 
-### 2.4 日本 Designer 教材缺失的影响评估
-- **审计定位**：`Shah + Adobe Designer official sources + Blender Nodes appear sufficient for a bounded undergraduate procedural foundation`。
-- **客观判断**：
-  - 日本 576 页教材聚焦于极其深度的节点数学与原子逻辑，因当前不可获取，将其作为高价值备课参考；
-  - 不能将“教材不可获得”混淆或合理化为“科学控制认知负荷的证据”；
-  - 针对本科 8 周的程序化教学，Shah Ch 7–10 结合 Adobe 官方入门及 Blender Shader Nodes，足以支撑一个有限边界的程序化材质基础（高度驱动、多通道联动、平铺去重复）；
-  - **但 Designer 在 8 周整体课程中的最终课时与教学深度仍未决（unresolved），属于后续 Stage 2 Teaching Value Matrix 的讨论范畴**。
+### 2.5 Living Technical Authority（活体技术权威源）
+- **选定组合**：**Substance 3D Painter 2026 官方文档/更新说明 + Designer 官方文档 + Sampler 官方文档 + Blender 官方手册 + ASWF OpenPBR 1.1.1 规范**
+- **决策状态**：`Living technical authority`
+- **修正核心事实**：
+  - **Painter 12.1 (2026)**：带来独立 Baking Mode (F8) 视口重构、Paint Skew 法线偏斜涂抹修复，并正式将 **OpenPBR 1.1** 设定为默认工作流与着色器；
+  - **Painter 12.0 (2026)**：带来 Warp to Geometry 几何体智能包裹投影算法与 Reload Mesh 无损网格重载工作流；
+  - **Painter 11.1 (2025-11 引入)**：带来 Ribbon Path 曲线带状路径工具链与专用预设。
 
-### 2.5 中文实训落地缺口与采购状态
-- **审计定位**：`Conditional Acquisition — student-facing practice gap confirmed; acquisition decision pending Step 4`。
-- **客观判断**：
-  - 确认存在真实缺口：普通高校艺术类本科生面对全英文教材确实存在“上机找按钮、专业术语理解偏差”的实操摩擦；
-  - **项目工作假设 (Project Hypotheses - 待验证)**：
-    - *假设 A*：Adobe 官方提供的简体中文帮助文档足以覆盖日常实操查阅；
-    - *假设 B*：教师提取自制的《中文实训界面对照 Cheat Sheet》足以消除课堂摩擦；
-    - *假设 C*：国内出版教材（郑琳 2024 / 伍福军 2024）可能因出版周期存在版本滞后或偏向食谱式点击，采购必要性较低。
-  - **采购决议**：上述假设尚未通过与国内教材实体的全面对比验证。是否需要出资购买国内教材，**严格保留在 Step 4 由 User 决策**，不在此阶段强行关闭。
+### 2.6 Chinese Student Companion（中文学生实操伴随）
+- **推荐候选**：**郑琳 —《Substance 3D Painter游戏贴图绘制与材质制作》(清华大学出版社, 2024)**
+- **决策状态**：`Preferred Chinese Student Companion Candidate / Optional Acquisition`
+- **核准依据与采购约束**：
+  - **绝不列为已获得或必买教材**；
+  - Step 4B 事实审计表明其仅 127 页、聚焦 PBR+Painter 绘制，且具备上海师范大学天华学院等高校采用证据，若 User 只购买一册样书进行学生端中文实操支持验证，**郑琳优先于伍福军**；
+  - 伍福军、张巧玲《Adobe Substance 3D Painter案例教程》(2024) 保持 `Secondary Chinese Candidate`，仅当郑琳资源不足或未来转向竞赛训练时再作评估；
+  - 明确结论：中文教材采购属于可选验证项（optional future validation），不阻塞课程骨架定稿与后续 Stage 推进。
 
-### 2.6 Eran Dinur《The Complete Guide to Photorealism》(2026) 角色定性
-- **审计定位**：`Material Observation / Photorealism / LookDev / Generative AI Control Reference`。
-- **客观判断**：
-  - 本书特意避免了具体软件点击教学，专注底层物理原理、现实质感观察与摄影镜头光学缺陷（倒角捕光、景深散景、色差、颗粒感）；
-  - 关于第 19 章生成式 AI：官方内容涵盖基于 ControlNet（深度图 Depth、法线图 Normal）等条件引导模型与 ComfyUI 流程在写实画面中的探索；
-  - **纠偏**：不得将第 19 章扩写为其直接指导“无缝 PBR 贴图生成”；其准确角色为提供写实生成式控制与 AI 视觉工作流参考（photoreal generative-control / AI visual workflow reference）。
+### 2.7 Teacher Graphics Reference（教师图形学参考）
+- **选定文献**：**Tomas Akenine-Möller et al. —《Real-Time Rendering, 4th Edition (中英双语)》**
+- **决策状态**：`Teacher Reference`
+- **核准依据**：不作为学生核心教材，作为授课教师查阅微表面 BRDF 数学推导与光照算法的学术底座。
 
 ---
 
-## 3. 成熟专业课程证据与教学先例 (Curriculum Precedents)
-
-通过对具备明确公开大纲与教学记录的专业数字艺术课程进行逐项核查，建立以下课程先例证据矩阵：
-
-### 3.1 Curriculum Precedent Evidence Matrix
-
-| Source (课程来源) | Duration (周期) | PBR 理论 | UV / Baking | Texture / Painter | Procedural | LookDev / Engine | Prepared Assets | Evidence (可核查事实依据) |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **CGMA: Character Texturing for Games in Substance** | 6 周 | 深入 (Week 1 专章) | 包含 (Week 3 头部 UV 拆分与 Painter 烘焙) | 核心主体 (Week 1-6 全程 Painter 材质定义与分层) | 实用级 (Smart Masks / Generators) | 包含 (Week 3 & Week 6 Marmoset Toolbag 着色器设置与呈现) | **是** (提供预制头部与角色模型) | CGMA 官方课程大纲：Week 1 Intro & PBR $\rightarrow$ Week 2 Material Definition $\rightarrow$ Week 3 UVs & Baking $\rightarrow$ Week 4-5 Texturing & Utility Maps $\rightarrow$ Week 6 Shader Setup |
-| **Gnomon: Texturing & Shading 体系与游戏工坊** | 4 阶段学期体系 + 专题工坊 | 深入 (从基础光学到游戏引擎着色网络) | 包含 (高低模贴图烘焙与切线空间法线处理) | 核心主体 (Maya/PS $\rightarrow$ Substance Painter $\rightarrow$ Mari) | 涉及 (Substance Designer 节点材质与贴图合成) | 核心 (Unreal Engine, V-Ray, Marmoset 多环境渲染) | **是** (多门贴图/LookDev 工坊随课提供完整 3D 资产与工程文件) | Gnomon BFA 课程大纲（Texturing & Shading 1-4）及 The Gnomon Workshop 系列实战教程体系 |
-
-### 3.2 事实与项目推断的区分 (Source Facts vs. Project Inferences)
-1. **预制资产与前置知识边界**：
-   - *Source Fact*：CGMA 与 Gnomon 贴图课程均提供 ready-to-import 3D 模型与已展开 UV 的项目文件，直接切入材质定义与着色器调整。
-   - *Project Inference*：本科《三维数字材质制作》应坚持提供高质量预制模型/标准 UV 资产，避免学生因建模卡点压缩核心材质制作时间。
-2. **材质分层演化逻辑**：
-   - *Source Fact*：贴图绘制过程均呈现出 `底材固有属性铺设` $\rightarrow$ `局部破损与微变化` $\rightarrow$ `基于烘焙图的智能遮罩风化` $\rightarrow$ `微观手工细节刻画`。
-   - *Project Inference*：该物理演变次序与 Shah 及 Dinur 的分层模型一致，作为本科图层组织的标准认知法则。
-3. **最终多环境 LookDev 验证**：
-   - *Source Fact*：CGMA 在 Week 3/6 设置 Marmoset Toolbag 着色器验证；Dinur 强调最终环境照明下的镜头真实感。
-   - *Project Inference*：多环境与引擎 LookDev 是避免资产仅在 DCC 视口单向生效的必经闭环。
-
----
-
-## 4. 建议资源分工架构 (Provisional Resource Architecture)
+## 3. 最终教材与资源架构矩阵 (Final Course Resource Architecture)
 
 ```
 +-----------------------------------------------------------------------------------+
 |                        物理理论与质感观察 (Theory & Observation)                    |
 |  - Eran Dinur《The Complete Guide to Photorealism》(2026, 2nd ed.)                  |
-|    (人眼 vs 相机、色彩解构、镜头光学缺陷、写实生成式 AI 控制参考)                    |
-|  - Wes McDermott / Adobe《The PBR Guide (Part 1 & 2)》(光学理论与安全色阶基准)        |
-|  - Akenine-Möller《Real-Time Rendering 4th (中英双语)》(教师图形学理论底座)          |
+|    [Selected Observation / LookDev Reference]                                     |
+|  - Wes McDermott / Adobe《The PBR Guide, 3rd ed.》(2018)                          |
+|    [Selected PBR Theory Foundation]                                               |
+|  - Akenine-Möller《Real-Time Rendering 4th (中英双语)》                             |
+|    [Teacher Reference]                                                            |
 +-----------------------------------------------------------------------------------+
                                          |
                                          v
 +-----------------------------------------------------------------------------------+
-|                  主教材实操骨架候选 (Primary Textbook Skeleton Candidate)           |
+|                  主教材实操骨架 (Selected Primary Textbook Skeleton)                 |
 |  - Zeeshan Jawed Shah《Realistic Asset Creation with Adobe Substance 3D》(2022)  |
-|    (以 Retro TV / TV Shelf 贯穿 Painter 绘制、Designer 基础节点、Sampler 与 Stager)  |
+|    (以 Retro TV 资产贯穿 Painter 绘制、Designer 基础节点、Sampler 与 Stager)         |
 +-----------------------------------------------------------------------------------+
                                          |
                                          v
 +-----------------------------------------------------------------------------------+
-|                     官方版本事实对齐 (Living Official Sources)                      |
+|                  程序化基石 (Selected Bounded Procedural Foundation)               |
+|  - Shah Ch 7–10 + Adobe Designer 官方文档 + Blender 5.2/4.5 Shader Nodes           |
+|    (深度留待 Stage 2 Teaching Value Matrix 决定)                                  |
++-----------------------------------------------------------------------------------+
+                                         |
+                                         v
++-----------------------------------------------------------------------------------+
+|                     活体技术权威 (Living Technical Authority)                       |
 |  - Painter 12.1 (2026): improved baking / skew painting / OpenPBR 1.1 default     |
 |  - Painter 12.0 (2026): Warp to Geometry / improved mesh reimport                 |
 |  - Painter 11.1 (2025-11): Ribbon Path 路径工具链                                 |
-|  - Blender 4.5/4.x Principled BSDF & Shader Nodes (开源跨软件节点材质标准)         |
-|  - Adobe 官方简体中文帮助文档 (中文界面名词支撑)                                    |
+|  - Blender 5.2/4.5 LTS Principled BSDF & Shader Nodes (开源跨软件节点材质标准)     |
+|  - ASWF OpenPBR 1.1.1 规范                                                        |
 +-----------------------------------------------------------------------------------+
                                          |
                                          v
 +-----------------------------------------------------------------------------------+
-|                  本土实训支撑与待决项 (Practical Support & Pending)                  |
-|  - 教师自制中文实训 Cheat Sheet (工作假设，待检验)                                  |
-|  - 国内中文教材 (郑琳 2024 / 伍福军 2024) 是否采购 (保留至 Step 4 由 User 决策)      |
+|           中文伴随教材候选 / 可选验证项 (Chinese Companion / Optional)              |
+|  - 郑琳《Substance 3D Painter游戏贴图绘制与材质制作》(2024) [Preferred Candidate]  |
+|  - 伍福军《Adobe Substance 3D Painter案例教程》(2024) [Secondary Candidate]       |
+|    (购买属 User choice 可选验证，不阻塞课程设计)                                  |
 +-----------------------------------------------------------------------------------+
 ```
 
 ---
-*文档归档于 `docs/research/textbook-source-map.md`，由 Antigravity 自动化研究流水线基于 Course Knowledge Notebook 实际语料实证生成并经 Browser Review 严密修正。*
+*文档归档于 `docs/research/textbook-source-map.md`，由 Antigravity 自动化研究流水线基于 Course Knowledge Notebook 实证分析与 Browser 评审定稿。*
