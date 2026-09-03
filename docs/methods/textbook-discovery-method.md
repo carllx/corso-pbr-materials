@@ -42,8 +42,13 @@
 - 依据预先设立的严密边界（聚焦 Material/Texture Authoring，建模拓扑仅作支撑），在国际与国内专业出版物、高校培养方案及行业课程中广泛初筛候选教材与教学规范。
 
 ### 2. Independent Multi-model Lanes（独立多模型车道）
-- 引入异构大模型独立运行搜索与筛选（如 Claude Code / Gemini / NotebookLM / Perplexity），互不干扰、独立产出候选名单；
-- 避免单模型产生的幻觉与信息茧房，通过交叉比对发现重合的高置信度候选文献。
+- 引入异构大模型与工具车道独立运行搜索与筛选，互不干扰、独立产出候选名单，避免单模型产生的幻觉与信息茧房，通过交叉比对发现重合的高置信度候选文献：
+  - **本项目实战验证工具车道 (Validated in this project)**：
+    - **ChatGPT / Browser Web Research**：负责多语种全网教材、大纲检索与外部第一方采用证据核实；
+    - **Gemini Pro (Antigravity)**：负责技术深度推理、版本差异审计与多方案交叉比对；
+    - **NotebookLM via IDE runtime**：负责专著全文/官方源文档的高置信度语料库问答、事实核验与 gap 分析。
+  - **通用参考扩展示例 (Possible future lane examples)**：
+    - Claude Code、Perplexity 等（本轮教材发现阶段未实际作为独立车道运行，列为未来可选拓展参考）。
 
 ### 3. Owning-source Verification（第一方元数据核实）
 - **绝不凭引用文本或第三方二手博客作结论**；

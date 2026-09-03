@@ -40,7 +40,7 @@
    - **PBR Theory Foundation**：**Wes McDermott / Adobe《The PBR Guide, 3rd ed.》(2018)** 完整 PDF 正式定稿为物理理论底座（Selected PBR Theory Foundation），作为稳定的光学原理与反射率色阶基准，不作为 2026 软件操作源。
    - **Observation & LookDev Reference**：**Eran Dinur《The Complete Guide to Photorealism, 2nd ed.》(2026)** 正式定稿为质感观察与审美拔高参考（Selected Observation / LookDev Reference）。
    - **Bounded Procedural Foundation**：**Shah Ch 7–10 + Adobe Designer 官方入门 + Blender 5.2/4.5 Shader Nodes** 定稿为程序化基础组合；最终课时深度留待 Stage 2 裁定。
-   - **Living Technical Authority**：Painter 12.1 (2026: F8 Baking Mode, Paint Skew, OpenPBR 1.1 默认规范)、Painter 12.0 (2026: Warp to Geometry, Reload Mesh)、Painter 11.1 (2025-11: Ribbon Path) 及 Blender/OpenPBR 官方源定稿为活体技术权威。
+   - **Living Technical Authority**：Painter 8.3 (2023: dedicated Baking Mode, F8 快捷键, 视口包围盒预览)、Painter 12.1 (2026: redesigned/improved baking workflow, auto rebake, Paint Skew 偏斜修复, edge protection, OpenPBR 1.1 默认规范与工作流)、Painter 12.0 (2026: Warp to Geometry, Reload Mesh)、Painter 11.1 (2025-11: Ribbon Path) 及 Blender/OpenPBR 官方源定稿为活体技术权威。
    - **Chinese Student Companion**：**郑琳《Substance 3D Painter游戏贴图绘制与材质制作》(2024)** 为首选中文学生伴随候选（Preferred Candidate / Optional Acquisition），伍福军为次选；明确记录：*Chinese companion acquisition remains optional future validation, not a blocker.*
    - **Teacher Graphics Reference**：《Real-Time Rendering 4th (中英双语)》定稿为教师底层渲染参考。
    - **不可获取文献**：CafeGroup 2025 与 Born Digital Designer 2022 保持为 Desired References，不构成实际课程依赖。

@@ -88,7 +88,8 @@
 - **选定组合**：**Substance 3D Painter 2026 官方文档/更新说明 + Designer 官方文档 + Sampler 官方文档 + Blender 官方手册 + ASWF OpenPBR 1.1.1 规范**
 - **决策状态**：`Living technical authority`
 - **修正核心事实**：
-  - **Painter 12.1 (2026)**：带来独立 Baking Mode (F8) 视口重构、Paint Skew 法线偏斜涂抹修复，并正式将 **OpenPBR 1.1** 设定为默认工作流与着色器；
+  - **Painter 8.3 (2023-01-10)**：引入专用独立 Baking Mode、F8 快捷键与视口包围盒可视化预览（viewport cage visualization）；
+  - **Painter 12.1 (2026)**：重构烘焙工作流（redesigned/improved baking workflow）、支持自动重烘焙（auto rebake）、视口法线偏斜涂抹修复（Paint Skew）与边缘保护（edge protection），并正式将 **OpenPBR 1.1** 设定为默认工作流与默认着色器；
   - **Painter 12.0 (2026)**：带来 Warp to Geometry 几何体智能包裹投影算法与 Reload Mesh 无损网格重载工作流；
   - **Painter 11.1 (2025-11 引入)**：带来 Ribbon Path 曲线带状路径工具链与专用预设。
 
