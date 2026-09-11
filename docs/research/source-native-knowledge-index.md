@@ -6,12 +6,17 @@
 > * **绝对遵循准则**：仅基于 Course Knowledge Notebook (`e29f9644-03b2-4e1b-bcb0-b954b5bf08be`) 内真实教材 PDF 源（Shah 2022 `6a26e0ee-71de-43cf-be7f-c39d2ad2da43` 与 The PBR Guide `7b3dde6d-a06c-42b1-9814-3bed5617c315`）的 Direct Retrieval 与提取文本。
 > * **不采用任何二手证据**：绝不引用旧 transcript、旧 task log、`curriculum-coverage-matrix.md`、`textbook-source-map.md` 或现有 draft 作为事实证据。
 > * **严禁凭空拟造页码**：所有章节名称、层级标题与页码均来自于教材正文目录（TOC）与正文检索。
+> * **严格区分一手事实与归纳总结（Source Interpretation Discipline）**：每项条目严格归入以下四类之一，严禁将归纳措辞、代数推演或工具总结伪装为作者原生术语：
+>   1. `EXPLICITLY TAUGHT`：教材正文明确给出概念定义、公式、参数原理或系统性讲授的内容；
+>   2. `PRACTICALLY DEMONSTRATED`：教材未提供形式化理论定义，而是通过具体软件操作步骤与案例进行示范的实践技能；
+>   3. `MENTIONED / USED ONLY`：教材仅在界面中掠过、使用默认预设或仅作为已知前提提及，未做深入教学；
+>   4. `INTERPRETIVE SUMMARY`：对教材工作流的概括性归纳、补充性数学化表达或跨教材总结；若涉及未在正文明确给出的数学代数推演，必须注明 `INTERPRETIVE SUMMARY — independent math verification required`。
 
 ---
 
 ## 目录
 
-1. [Source 1: Zeeshan Jawed Shah (2022) 全章索引 (Ch 1–11)](#source-1-zeeshan-jawed-shah-2022)
+1. [Source 1: Zeeshan Jawed Shah (2022) - Material-Relevant Extraction (Ch 1–11 of 16)](#source-1-zeeshan-jawed-shah-2022)
    - [Chapter 1: Getting Started with Adobe Substance 3D Painter](#ch-1-getting-started-with-adobe-substance-3d-painter-pp-133)
    - [Chapter 2: Working with Assets in Adobe Substance 3D Painter](#ch-2-working-with-assets-in-adobe-substance-3d-painter-pp-3562)
    - [Chapter 3: Working with Layers and Maps in Adobe Substance 3D Painter](#ch-3-working-with-layers-and-maps-in-adobe-substance-3d-painter-pp-63102)
@@ -29,7 +34,7 @@
    - [Part 1: The Theory of Physically Based Rendering and Shading](#part-1-the-theory-of-physically-based-rendering-and-shading-pp-1840)
    - [Part 2: Practical Guidelines for Creating PBR Textures](#part-2-practical-guidelines-for-creating-pbr-textures-pp-4588)
    - [Appendix: PBR Charts & Comparisons](#appendix-pbr-charts--comparisons-pp-8992)
-3. [两本教材在 8 周本科课程中的知识结构对照与边界沉淀](#两本教材在-8-周本科课程中的知识结构对照与边界沉淀)
+3. [Source Complementarity and Coverage Boundaries](#source-complementarity-and-coverage-boundaries)
 
 ---
 
@@ -37,9 +42,12 @@
 
 * **书名**：*Realistic Asset Creation with Adobe Substance 3D: Create materials, textures, filters, and 3D models using Substance 3D Painter, Designer, and Stager*
 * **作者**：Zeeshan Jawed Shah
-* **出版方**：Packt Publishing, 2022
-* **ISBN**：978-1-80181-450-8
-* **总页数**：478 页（正文含 Index）
+* **出版年份**：2022 (Packt Publishing)
+* **Paperback ISBN-13**：`9781803233406`
+* **eBook ISBN**：`9781803240206`
+* **总页数**：486 pages
+* **全书结构**：16 chapters
+* **提取范围说明**：`Material-relevant source-native extraction: Chapters 1–11 of 16`（聚焦于 Substance 3D Painter, Designer 与 Sampler 材质与纹理制作，未抽取后续 Stager/三维排版及渲染章节；全书共 16 章）。
 
 ---
 
@@ -217,7 +225,7 @@
    * **Smart Materials 原理与结构**：对比普通 Material（单一材质预设）与 Smart Material（`.spsm` 复合图层包），解释智能材质如何依赖烘焙的网格贴图（Curvature, AO, Position）自适应贴合不同模型。
    * **Anchor Points（锚点联动机制）**：将底层图层/蒙版的信息（如手绘高度、滤镜模糊）暴露为锚点，供上层图层通过 Fill 效果或 Generator 跨图层调用，实现非破坏性双向联动。
    * **Position Map 全局落灰（Multi-Set Dust Effect）**：利用场景空间 Y 轴渐变，配合 `Instantiate across texture sets`（跨纹理集实例化），在多纹理集模型上生成统一沉降灰尘。
-   * **贴图导出色彩位深（Bit Depths）**：Normal/Height 必须导出为 16-bit 以防断层梯级，Base Color/Roughness 导出为 8-bit。
+   * **贴图导出位深建议（Export Bit Depths Workflow）**：Shah 在其实操流程中演示与推荐的导出设置中，Normal/Height 贴图指定为 16-bit 以减少阶梯断层伪影，Base Color/Roughness 指定为 8-bit（此为 Shah 演示/推荐的导出设置，而非跨引擎的通用绝对法则）。
    * **Iray 离线写实渲染流程**：地面贴合（Ground plane 勾选与 Y 轴偏移）、HDRI 旋转（`Shift` + 右键拖拽）、景深（DOF Aperture 0.5，`Ctrl/Cmd` + 中键拾取焦平面）、色彩校正与炫光（Glare, Vignette）。
 2. **PRACTICALLY DEMONSTRATED**：
    * 从零搭建包含磨损边缘的金属与塑料智能材质并导出至货架。
@@ -299,7 +307,7 @@
 #### 知识分类解析
 1. **EXPLICITLY TAUGHT**：
    * **原子节点 vs 复合库节点**：Atomic nodes（Blend, Uniform Color, Bitmap, Levels, Normal, Curve, Output 等）不可进入内部；Library nodes（Tile Generator, Dirt, Blur HQ 等）是官方基于原子节点封装的复合图。
-   * **灰度转彩色管道规范**：灰度图性能远高于彩色图；必须使用 `Gradient Map` 进行灰度转彩色；使用 `Grayscale Conversion` 进行彩色转灰度。
+   * **灰度与彩色类型处理规范（Grayscale vs. Color Handling）**：作者强调灰度计算开销低于彩色，演示了使用 `Gradient Map` 将灰度信息映射为彩色、使用 `Grayscale Conversion` 将彩色转为灰度的工作流。
    * **核心节点功能与参数**：
      * `Tile Generator`：程序化阵列生成器（控制 X/Y 数量、偏移 Offset Random、间距与形变）。
      * `Flood Fill`：连通域分析节点，为分割区域赋予独立索引，配合 `Flood Fill to Random Grayscale` / `Gradient` 产生随机高度或倾角。
@@ -338,26 +346,30 @@
 * Summary (p. 320)
 
 #### 知识分类解析
-1. **EXPLICITLY TAUGHT（12 种混合模式算法与数学交换律）**：
-   * 明确所有模式在 `[0, 1]` 归一化区间内执行逐像素运算，输出值钳位（Clamped）在 `[0, 1]`：
-     1. **Copy**（p. 305）：前景直接覆盖背景，非交换律（Non-commutative）。
-     2. **Add**（p. 307）：数值相加，$F + B$，溢出切至 1，满足交换律（Commutative）。
-     3. **Subtract**（p. 307）：背景减前景，$B - F$，下溢切至 0，非交换律。
-     4. **Min (Darken)**（p. 308）：取暗部最小值，$\min(F, B)$，满足交换律。
-     5. **Max (Lighten)**（p. 308）：取亮部最大值，$\max(F, B)$，满足交换律。
-     6. **Multiply**（p. 310）：相乘变暗，$F \times B$，满足交换律。
-     7. **Divide**（p. 310）：相除变亮，$B / F$，非交换律。
-     8. **Screen**（p. 312）：滤色防过曝，$1 - (1-F)(1-B)$，满足交换律。
-     9. **Soft Light**（p. 312）：柔光对比，根据前景亮度决定提亮或压暗，非交换律。
-     10. **Add Sub**（p. 314）：以 0.5 为阈值，$F > 0.5$ 则加，$F < 0.5$ 则减，非交换律。
-     11. **Overlay**（p. 314）：结合正片叠底与滤色（按背景 0.5 分割），非交换律。
-     12. **Switch**（p. 317）：纯基于不透明度与裁剪范围的通道切换，满足交换律。
+1. **EXPLICITLY TAUGHT（原书明确讲授与行为定义）**：
+   * **逐像素归一化计算**：所有混合模式均在 `[0, 1]` 归一化区间内对输入像素进行操作，输出数值钳位（Clamped）在 `[0, 1]`。
+   * **交换律文本分类（Commutative vs. Non-commutative）**：作者正文明确且贯穿使用 `commutative`（交换 Foreground 与 Background 连接不影响输出结果）与 `non-commutative`（交换连接顺序会改变输出结果）术语对全部 12 种模式进行定性分类：
+     1. **Copy**（pp. 305–307）：前景直接覆盖背景（Non-commutative）。
+     2. **Add**（pp. 307–308）：前景与背景像素数值相加，溢出 1 的部分被截断（Commutative）。
+     3. **Subtract**（pp. 307–308）：从背景像素数值中减去前景数值，低于 0 被截断（Non-commutative）。
+     4. **Min (Darken)**（pp. 308–310）：逐像素比较两层并保留较小/较暗的数值（Commutative）。
+     5. **Max (Lighten)**（pp. 308–310）：逐像素比较两层并保留较大/较亮的数值（Commutative）。
+     6. **Multiply**（pp. 310–312）：前景与背景像素数值相乘，整体变暗（Commutative）。
+     7. **Divide**（pp. 310–312）：背景数值除以前景数值，产生提亮效果（Non-commutative）。
+     8. **Screen**（pp. 312–314）：概念上先反转两层像素数值、相乘后再反转，实现防过曝的提亮（Commutative）。
+     9. **Soft Light**（pp. 312–314）：柔光对比混合，根据输入亮度产生平滑的提亮或压暗（Non-commutative）。
+     10. **Add Sub**（pp. 314–317）：以 0.5 为基准阈值，大于 0.5 提亮/相加，小于 0.5 压暗/相减（Non-commutative）。
+     11. **Overlay**（pp. 314–317）：组合正片叠底与滤色，底层像素低于 0.5 时应用 Multiply，高于 0.5 时应用 Screen（Non-commutative）。
+     12. **Switch**（pp. 317–320）：依靠 Opacity 属性在前景与背景间过渡（Opacity 接近 0 显示背景，接近 1 显示前景），并支持 Cropping Area（Left/Right/Top/Bottom）裁切控制（作者正文文本定性为 Commutative，见下文归纳分析）。
 2. **PRACTICALLY DEMONSTRATED**：
    * 使用 Transformation 2D 平移/缩放纹理。
    * 使用 Levels 控制灰度白平衡与黑阶截断。
    * 观察灰度高度相加与相减在 3D 视口细分网格上的实际隆起与凹陷物理表现。
 3. **MENTIONED / USED ONLY**：
-   * 颜色通道混合时的色彩空间加权（如感知亮度加权未作展开）。
+   * 颜色通道混合时的色彩空间感知加权（如感知亮度加权未作展开）。
+4. **INTERPRETIVE SUMMARY — independent math verification required**：
+   * **代数公式形式化表达**：原书正文主要使用自然语言（plain English）描述计算逻辑，并未提供统一的代数公式（如 $F + B$, $1 - (1-F)(1-B)$ 等）。此类公式属于行业技术文档的常见代数归纳，并非作者原书排版内容。
+   - **Switch 模式交换律的数学与代码核实**：原书文本虽明确将 Switch 模式定性为 "commutative"，但其实际操作由 Opacity 滑条与 Cropping 裁切边界控制（Opacity=0 显背景，Opacity=1 显前景）。在严格代数意义上，若保持 Opacity 不变且不等于 0.5，交换 Foreground 与 Background 的输入端口会导致输出反转，并不满足严格数学交换律 $f(A, B) = f(B, A)$。此处反映了原书文本分类与严谨数学定义之间的概念争议，建议在代码实现或深度教学中予以独立核对澄清。
 
 ---
 
@@ -374,7 +386,7 @@
 #### 知识分类解析
 1. **EXPLICITLY TAUGHT**：
    * **大型家具资产程序化构筑流程**：分块规划顶部/底部台面、侧边立柱、前面板柜门、通风百叶窗与金属把手。
-   * **高度图驱动全通道（Height-Driven Pipeline）**：先完成精准的高度轮廓混合，再利用 Curvature、AO、Normal 从高度图中派生所有表面光影与材质细节。
+   * **高度轮廓优先与贴图派生流程（Height-First Texturing Workflow）**：Shah 演示了先集中构建高度/轮廓混合，再基于高度图节点派生 Curvature、AO、Normal 并驱动全通道材质细节的制作流程（注：“Height-Driven Pipeline”为现代技术总结性概括，非作者原生术语，归入 INTERPRETIVE SUMMARY）。
    * **材质通道融合**：木纹主体（Wood Grain）与金属构件（Metallic 1.0, 低粗糙度）通过蒙版合并为一套完整的 PBR 输出贴图。
 2. **PRACTICALLY DEMONSTRATED**：
    * 使用 Shape, Transformation 2D 与 Blend 节点雕刻柜台斜角截面。
@@ -426,14 +438,14 @@
 
 ---
 
-### Shah (2022) 教学范围与未教授盲区总结
+### Shah (2022) Chapters 1–11 知识范围与未覆盖边界总结
 
-在将 Shah (2022) 纳入本科 8 周教学设计时，必须清醒确认以下**已被一手正文确证的事实盲区**：
+基于一手正文核查，确认 Shah (2022) Chapters 1–11 存在以下明确未覆盖边界（Source Boundaries / Not Covered）：
 
-1. **未教授 PBR 底层理论**：全书仅把 PBR 作为默认软件模板，完全未解释 Fresnel 反射率、GGX 积分分布、能量守恒定律及金属/绝缘体微观差异（必须由 *The PBR Guide* 承担）。
-2. **未教授 UV 展平工艺**：全书直接提供预展平的 FBX 资产，完全不涉及拓扑与接缝切割。
-3. **未教授 Painter 中的 Geometry Mask 与 Symmetry Tool**：第 5 章的高级工具实操中，漏掉了对称工具和现代几何体列表隔离蒙版。
-4. **未教授 Designer 中的高级数学与参数暴露**：第 7–10 章为初阶节点连线指南，完全未涉及 `$time`、自定义数学函数图、Pixel Processor，在第 10 章实战中也**未教授参数暴露（Expose Parameters）**。
+1. **未教授 PBR 底层理论**：全书仅把 PBR 作为默认软件模板，完全未解释 Fresnel 反射率、微表面散射分布、能量守恒定律及金属/绝缘体微观反射差异。
+2. **未教授 UV 拆分与展平工艺**：全书直接提供预展平的 FBX 资产，完全不涉及拓扑与接缝切割展开。
+3. **未教授 Painter 中的 Geometry Mask 与 Symmetry Tool**：第 5 章的高级工具实操中，未涉及对称工具和现代几何体列表隔离蒙版。
+4. **未教授 Designer 中的高级数学与参数暴露**：第 7–10 章为初阶节点连线指南，完全未涉及自定义数学函数图、Pixel Processor，在第 10 章实战中亦未教授参数暴露（Expose Parameters）。
 
 ---
 
@@ -486,13 +498,13 @@
    * **金属（Conductor/导体）$F_0$**：极高，通常介于 **70% 至 100%**（sRGB 180–255），且金属高光带有强烈的自身反射色彩（Tinted Specular）。
 5. **导体与绝缘体划分规则（Conductors vs. Insulators）**：
    * 纯金属由于自由电子的存在，折射光在极短距离内被 100% 吸收，**金属没有漫反射（Diffuse = 0 / 纯黑）**，其视觉表现完全由带色彩的强镜面高光主导。
-   * 铁锈、油污、漆面属于绝缘体（非金属），一旦金属生锈氧化，必须立即转为绝缘体处理。
+   * 铁锈、油污、漆面属于绝缘体（非金属），一旦金属表面氧化生锈，在物理光学着色中应按绝缘体特性处理。
 6. **线性工作流（Linear Space Rendering）**：
-   * 物理渲染引擎的加减乘除计算必须在线性色彩空间（Gamma 1.0）中进行。
+   * 物理渲染引擎的光照加减乘除计算在线性色彩空间（Gamma 1.0）中进行。
    * 人眼对暗部变化更敏感，显示器采用 sRGB（约 Gamma 2.2）编码显示。
-   * **通道色彩空间黄金法则**：
-     * **sRGB**：所有表征人眼可见颜色的贴图（Base Color, Diffuse, Specular Tint）。
-     * **Linear**：所有表征数学数据或物理遮罩的贴图（Roughness, Metallic, Normal, Height, Ambient Occlusion）。
+    * **通道色彩空间分配归纳（Color vs. Data Maps）[INTERPRETIVE SUMMARY]**：
+      * **sRGB**：所有表征人眼可见颜色的贴图（Base Color, Diffuse, Specular Tint）。
+      * **Linear**：所有表征数学数据或物理遮罩的贴图（Roughness, Metallic, Normal, Height, Ambient Occlusion）。
 
 ---
 
@@ -526,25 +538,26 @@
 #### 核心实战规范与贴图准则（PRACTICALLY DEMONSTRATED & RULES）
 1. **Metallic/Roughness 工作流贴图通道准则**：
    * **Base Color（sRGB）**：
-     * 非金属：表征纯粹的漫反射反照率（Diffuse Albedo），**绝对禁止烘焙任何定向光照或投射阴影**。最暗非金属（木炭）不低于 30–50 sRGB，最亮非金属（雪）不高于 240 sRGB。
-     * 金属：表征其在 0 度入射下的反射色彩（$F_0$），数值必须在 180–255 sRGB 之间。
-   * **Metallic（Linear 灰度）**：
-     * **二值化原则（Binary Mask）**：真实材质在物理上要么是金属（1.0 / 255 白色），要么是非金属（0.0 / 0 黑色）。
-     * **过渡灰阶的唯一合法性**：仅允许出现在微观过渡边缘（抗锯齿边缘）或半透明污染层（极薄的灰尘、未完全氧化的极薄锈膜）。
+     * 非金属：表征纯粹的漫反射反照率（Diffuse Albedo），**不应烘焙任何定向光照或投射阴影**。最暗非金属（木炭）通常不低于 30–50 sRGB，最亮非金属（雪）通常不高于 240 sRGB。
+     * 金属：表征其在 0 度入射下的反射色彩（$F_0$），数值通常在 180–255 sRGB 之间。
+   * **Metallic（Linear 灰度，pp. 53–59）**：
+     * **基础取值倾向**：纯净、裸露的材质区域通常映射为接近 0（非金属/绝缘体）或接近 1（纯金属/导体）。
+     * **过渡灰阶说明（Transitional Grayscale）**：教材明确指出金属贴图并不总是严格二值化的（may not always be binary）；表面灰尘、微观污渍、氧化层、极薄的半透明绝缘体覆盖层或抗锯齿过滤边缘均可产生合理的中间过渡灰阶。
+     * **非绝对死板法则**：教材特别强调此处不存在硬性死板的铁律（"There are no hard-and-fast rules here"），明确不能将其简化为“过渡灰阶的唯一合法性”。
    * **Roughness（Linear 灰度）**：
      * 0.0（纯黑）代表绝对光滑镜面，1.0（纯白）代表极度粗糙漫散。
 2. **Specular/Glossiness 工作流对比**：
    * **Diffuse**：仅存储非金属的漫反射颜色；在金属区域为纯黑（0 sRGB）。
    * **Specular**：存储所有材质的 $F_0$ 镜面反射率。非金属区域填充 4% 左右的灰度色阶（30–75 sRGB），金属区域填充带色彩的高光反射率（180–255 sRGB）。
    * **Glossiness**：Roughness 的反相显示（1.0 光滑，0.0 粗糙）。
-   * **优缺点权衡**：Metallic 工作流贴图占用内存小且能彻底防止艺术家因误配 Specular 数值破坏能量守恒定律；Specular 工作流则允许自由打破物理限制自定义非标准 $F_0$。
+   * **优缺点权衡**：Metallic 工作流贴图占用内存小且能防止艺术家误配 Specular 数值破坏能量守恒定律；Specular 工作流则允许自由打破物理限制自定义非标准 $F_0$。
 3. **通用辅助贴图规范**：
    * **Ambient Occlusion（AO，Linear 灰度）**：
-     * **物理约束**：AO 仅代表环境漫反射光线被几何褶皱遮蔽的比例，**仅能且只能影响漫反射环境光（Diffuse Contribution），绝对不能遮挡镜面高光反射（Specular Contribution）**。
-     * **贴图分离**：严禁将 AO 直接乘入 Base Color 贴图，必须作为独立通道提供给着色器。
+     * **物理约束**：AO 仅代表环境漫反射光线被几何褶皱遮蔽的比例，**仅影响漫反射环境光（Diffuse Contribution），不得遮挡镜面高光反射（Specular Contribution）**。
+     * **贴图分离**：不应将 AO 直接乘入 Base Color 贴图，推荐作为独立通道提供给着色器。
    * **Tangent Space Normal（切线空间法线贴图）**：RGB 对应表面切线空间 XYZ 扰动向量，用于低模呈现高精度光影凹凸。
 4. **Substance PBR 验证工具（PBR Validation Utilities）**：
-   * 在 Designer/Painter 中挂载 `PBR Validate` 滤镜，根据金属度与反照率阈值实时标红/标黄违规像素（如过暗的非金属反照率、金属度错误的中间灰阶），强制执行工业合规。
+   * 在 Designer/Painter 中挂载 `PBR Validate` 滤镜，根据金属度与反照率阈值实时标红/标黄违规像素（如过暗的非金属反照率、超出物理安全范围的数值），用于指导贴图规范检验。
 
 ---
 
@@ -562,20 +575,19 @@
 
 ---
 
-## 两本教材在 8 周本科课程中的知识结构对照与边界沉淀
+## 3. Source Complementarity and Coverage Boundaries
 
-通过对 Shah (2022) 与 McDermott (2018) 的自下而上一手对齐，课程大纲的理论与实操分工界限得以彻底明确：
+本节仅基于两本教材正文事实记录其各自的覆盖范围（Source Covers）、未覆盖盲区（Source Does Not Cover / Limitation）与内容互补性（Source Complementarity），不包含任何周数分配（Week Scheduling）或课程教学法裁定。
 
-| 教学知识维度 | Wes McDermott (The PBR Guide 2018) | Zeeshan Jawed Shah (2022) | 8周课程分工与集成裁定 |
+| 知识维度 | Wes McDermott (*The PBR Guide* 2018) | Zeeshan Jawed Shah (*Realistic Asset Creation* 2022) | 互补性与边界事实说明 (Complementarity & Boundaries) |
 | :--- | :--- | :--- | :--- |
-| **物理光学基础** | **深度专精**（微表面、BRDF、能量守恒、Fresnel $F_0$） | ❌ **未讲授**（直接选取 PBR 模板） | **第 1 周理论奠基**：强制以 *The PBR Guide Part 1* 为唯一定量标准。 |
-| **色彩空间与数值安全** | **深度专精**（线性空间、sRGB/Linear 规则、PBR Validate） | ❌ **未展开**（仅在导入导出中默认操作） | **第 1–2 周规范**：必须贯彻 *The PBR Guide* 的反照率安全范围与线性通道定义。 |
-| **Painter 软件操作与烘焙** | 仅概述 Substance 工具管线定位 | **深度专精**（烘焙7张网格图、Texel Density、顶点色ID） | **第 2–3 周实操重心**：以 Shah Ch 1–3 建立工程资产标准与烘焙流。 |
-| **高级手绘与图层遮罩** | 仅给出材质层级概念原则 | **深度专精**（Stencil、投影、Clone、Smudge、Planar Mask） | **第 4–5 周技法拔高**：以 Shah Ch 4–5 驱动高精度细节风化实操。 |
-| **智能材质与多集落灰** | 阐明材质复用价值 | **深度专精**（`.spsm`、Position Map 全局落灰、Anchor Point） | **第 5–6 周核心实战**：以 Shah Ch 6 手把手打通工业级 LookDev。 |
-| **Designer 节点化材质** | 介绍 Substance 节点逻辑 | **系统初阶教学**（原子节点、12种混合模式数学、红砖墙/电视架） | **第 7 周模块拓展**：以 Shah Ch 7–10 培养程序化节点思维（明确不超纲至数学函数）。 |
-| **参数暴露与工业封装** | 提及发布 `.sbsar` 与暴露参数 | ❌ **未讲授参数暴露**（Ch 10 电视架实战完全未暴露参数） | **教学法裁定**：由于 Shah 未教参数暴露，8 周课中 Designer 模块仅作为“纹理生成与非破坏性逻辑训练”，不强求学生掌握复杂函数暴露。 |
-| **材质采集 (Sampler)** | 提及扫描材质理念 | **系统概览**（Ch 11 Image-to-Material、无缝平铺、石板路实战） | **第 7–8 周辅助拓展**：作为 AI 辅助工作流快速概览。 |
+| **物理光学基础与着色机制** | **Source Covers**：微表面理论、BRDF、能量守恒定律、Fresnel $F_0$ 反射率、导体与绝缘体微观反射差异。 | **Source Does Not Cover**：仅以 PBR 为默认软件着色器模板，未解释微表面、Fresnel 反射率与物理光能守恒原理。 | **Complementarity**：McDermott 提供底层光学与数学理论，弥补 Shah 缺乏物理光学原理推导的边界。 |
+| **色彩空间与数据安全** | **Source Covers**：线性空间渲染（Linear Space）、sRGB 与 Linear 通道分配原则、反照率安全范围、PBR Validate 校验。 | **Source Limitation**：仅在各软件导入导出与视口中作为既有设置操作，未系统阐述 Gamma 与色彩空间管理理论。 | **Complementarity**：McDermott 提供数据通道定义与安全取值范围，规范数字贴图制作。 |
+| **Painter 软件操作与模型烘焙** | **Source Limitation**：仅概述 Substance 软件在流程中的工具定位，无具体操作步骤。 | **Source Covers**：7 种核心网格贴图烘焙流程、Texel Density 计算、顶点色 ID 映射、图层堆栈与投影机制。 | **Complementarity**：Shah 提供手把手软件界面操作与模型烘焙实战，弥补 McDermott 缺乏实操步骤教学的边界。 |
+| **高级手绘贴图与遮罩技术** | **Source Does Not Cover**：无具体软件手绘与遮罩步骤。 | **Source Covers**：Black Mask、Planar Mask（含深度与背面剔除）、Stencil 视口模板、Clone/Smudge 工具；**Limitation**：未覆盖 Symmetry 对称绘制与 Geometry Mask。 | **Complementarity**：Shah 详尽展示 Painter 手绘细节与位图遮罩技法，但存在工具覆盖盲区。 |
+| **智能材质与多纹理集工作流** | **Source Does Not Cover**：仅概念性提及材质复用。 | **Source Covers**：Smart Material（`.spsm`）图层封装、Anchor Point（锚点非破坏性联动）、Position Map 驱动多纹理集统一沉降效果。 | **Complementarity**：Shah 提供了复杂资产材质重用与跨纹理集协调方案。 |
+| **Designer 节点化程序材质** | **Source Does Not Cover**：仅介绍节点化思想与 PBR 滤镜。 | **Source Covers**：原子节点 vs 复合库节点、12 种混合模式行为、Tile Generator/Flood Fill/Curve 综合案例（红砖墙、电视架）；**Limitation**：未覆盖参数暴露（Expose Parameters）与自定义数学函数。 | **Complementarity**：Shah 覆盖基础程序化纹理图表搭建，但局限于固定参数图表，未覆盖高级参数暴露。 |
+| **材质扫描采集 (Sampler)** | **Source Does Not Cover**：未涉及照片转材质与扫描流程。 | **Source Covers**：Image-to-Material 单图材质解析、Tiling 无缝平铺滤镜、图层滤镜混合破旧路面实战。 | **Complementarity**：Shah 覆盖了从自然照片快速生成 PBR 贴图的轻量级工作流。 |
 
 ---
-*本文档为 Gate 2.5A 独立成果，作为后续 Gate 2.5B（Provenance Audit & Page Reference Update）与 Gate 3（Teaching Value Matrix 修正）的唯一直接事实依据。*
+*本文档为 Gate 2.5A 独立成果，作为后续 Gate 2.5B（Provenance Audit & Page Reference Update）与 Gate 3（Teaching Value Matrix 修正）的直接事实依据。*
