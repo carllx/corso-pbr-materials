@@ -586,12 +586,13 @@
 
 ## Source 3: Eran Dinur (2026)
 
-* **书名**：*The Complete Guide to Photorealism: Understanding the Principles of Photorealistic CG and VFX* (Second Edition)
+* **书名**：*The Complete Guide to Photorealism for Visual Effects, Visualization, and Games*
+* **版本**：2nd Edition
 * **作者**：Eran Dinur
-* **出版年份**：2026 (Routledge / Taylor & Francis Group)
-* **Paperback ISBN-13**：`9781032966557`
-* **Hardback ISBN-13**：`9781032966564`
-* **eBook ISBN-13**：`9781003590514`
+* **出版年份与机构**：2026 (Routledge / Taylor & Francis)
+* **Paperback ISBN**：`9781032966557`
+* **Hardback ISBN**：`9781032966564`
+* **eBook ISBN**：`9781040688663`
 * **出版商官方产品元数据总页数 (Publisher product metadata)**：`246 pages`
 * **一手 Notebook EPUB 源观测页码 (Notebook EPUB source)**：内嵌实体印刷页码标识观测至第 230 页（`Inline Print Page Markers observed through p. 230`，Index 索引项至 p. 230）
 * **全书结构**：4 Parts, 19 chapters
