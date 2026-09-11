@@ -1,11 +1,11 @@
-# Source-Native Knowledge Index: Shah (2022), The PBR Guide (2018) & Dinur (2026)
+# Source-Native Knowledge Index: Shah (2022), The PBR Guide (2018), Dinur (2026) & RTR4 (2018)
 
 > **审计状态声明（Gate 2.5A Deliverable）**：
 > 本文档是严格遵循 **Gate 2.5A** 要求自下而上建立的“教材一手知识索引”（Source-First Artifact）。
 > 
-> * **绝对遵循准则**：仅基于 Course Knowledge Notebook (`e29f9644-03b2-4e1b-bcb0-b954b5bf08be`) 内真实教材源（Shah 2022 `6a26e0ee-71de-43cf-be7f-c39d2ad2da43`、The PBR Guide `7b3dde6d-a06c-42b1-9814-3bed5617c315` 与 Dinur 2026 `72abf6ec-8c3d-4c9d-83f7-9e5a80f79e43`）的 Direct Retrieval 与提取文本。
+> * **绝对遵循准则**：仅基于 Course Knowledge Notebook (`e29f9644-03b2-4e1b-bcb0-b954b5bf08be`) 内真实教材源（Shah 2022 `6a26e0ee-71de-43cf-be7f-c39d2ad2da43`、The PBR Guide `7b3dde6d-a06c-42b1-9814-3bed5617c315`、Dinur 2026 `72abf6ec-8c3d-4c9d-83f7-9e5a80f79e43` 与 RTR4 English EPUB `e3bc8e81-2fda-4d66-b4bd-4ffefb1448dd` / Chinese EPUB `447efad6-aad8-4f44-bf86-e60f54d7c57f`）的 Direct Retrieval 与提取文本。
 > * **不采用任何二手证据**：绝不引用旧 transcript、旧 task log、`curriculum-coverage-matrix.md`、`textbook-source-map.md` 或现有 draft 作为事实证据。
-> * **严禁凭空拟造页码**：所有章节名称、层级标题与页码均来自于教材正文目录（TOC）与正文检索。针对 EPUB 源（Dinur 2026），已严格验证正文内嵌的实体印刷页码标识（Inline Print Page Markers, pp. 1–230），并附注 NotebookLM source pointer。
+> * **严禁凭空拟造页码**：所有章节名称、层级标题与页码均来自于教材正文目录（TOC）与正文检索。针对 EPUB 源无内嵌稳定印刷页码处（如 RTR4），严格使用 Chapter + Section + Notebook source pointer 标记定位，严禁臆测页码。
 > * **严格区分一手事实与归纳总结（Source Interpretation Discipline）**：每项条目严格归入以下四类之一，严禁将归纳措辞、代数推演或工具总结伪装为作者原生术语：
 >   1. `EXPLICITLY TAUGHT`：教材正文明确给出概念定义、公式、参数原理或系统性讲授的内容；
 >   2. `PRACTICALLY DEMONSTRATED`：教材未提供形式化理论定义，而是通过具体软件操作步骤与案例进行示范的实践技能；
@@ -45,7 +45,16 @@
    - [Chapter 13: Texturing (pp. 143–156)](#ch-13-texturing-pp-143156)
    - [Chapter 19: Photorealism with Generative AI (pp. 207–227)](#ch-19-photorealism-with-generative-ai-pp-207227)
    - [Dinur (2026) 教学范围与未教授盲区总结](#dinur-2026-教学范围与未教授盲区总结)
-4. [Source Complementarity and Coverage Boundaries](#source-complementarity-and-coverage-boundaries)
+4. [Source 4: Tomas Akenine-Möller et al. - Real-Time Rendering, 4th Edition (Teacher Graphics Reference)](#source-4-real-time-rendering-4th-edition)
+   - [文献版本、角色定位与范围界定说明](#文献版本角色定位与范围界定说明)
+   - [Chapter 5: Shading Basics](#ch-5-shading-basics)
+   - [Chapter 6: Texturing](#ch-6-texturing)
+   - [Chapter 8: Light and Color](#ch-8-light-and-color)
+   - [Chapter 9: Physically Based Shading](#ch-9-physically-based-shading)
+   - [Chapter 10: Local Illumination (Material & Shading Evaluation Focus)](#ch-10-local-illumination)
+   - [Chapter 11: Global Illumination (Material & Reflection Focus)](#ch-11-global-illumination)
+   - [RTR4 教学参考价值、理论深度与未覆盖范围总结](#rtr4-教学参考价值理论深度与未覆盖范围总结)
+5. [Source Complementarity and Coverage Boundaries](#source-complementarity-and-coverage-boundaries)
 
 ---
 
@@ -962,22 +971,374 @@
 
 ---
 
-## 4. Source Complementarity and Coverage Boundaries
+---
 
-本节基于当前已完成一手索引的三本权威教材（Shah 2022、The PBR Guide 2018 与 Dinur 2026）的正文事实，客观梳理其覆盖范围（Source Covers）、未覆盖盲区（Source Limitations）与内容互补关系（Source Complementarity）。严格遵循不包含任何周数安排（Week Scheduling）、软件课时配比或教学行动裁定的原则。
+## Source 4: Tomas Akenine-Möller et al. - Real-Time Rendering, 4th Edition (2018)
 
-| 知识与能力维度 | Wes McDermott (*The PBR Guide* 2018) | Zeeshan Jawed Shah (*Realistic Asset Creation* 2022) | Eran Dinur (*Guide to Photorealism* 2026) | 三者互补性与边界事实说明 (Source Complementarity & Boundaries) |
-| :--- | :--- | :--- | :--- | :--- |
-| **物理光学基础与着色机制** | **Source Covers**：微表面理论、BRDF、能量守恒定律、Fresnel $F_0$ 绝缘体/金属微观反射推导。 | **Source Limitation**：仅套用默认 PBR 材质球模板，未解释微表面光学与能量守恒原理。 | **Source Covers**：系统阐释光能吸收、散射、透射折射、次表面散射（SSS）、能量守恒定律以及绝缘体 vs 金属的微观物理二元性。 | **Complementarity**：McDermott 与 Dinur 共同构筑坚实的物理光学理论基石；Dinur 进一步扩展了 SSS、透射折射与微表面漫反射的光学细节，弥补了 Shah 缺乏物理底层原理的短板。 |
-| **真实感观察与质感审视 (LookDev Judgment)** | **Source Limitation**：偏向于贴图规范与数值表，较少探讨宏观审美认知与现实观察法则。 | **Source Limitation**：偏向于软件功能实现，缺乏“如何判断真实感是否达标”的审视训练。 | **Source Covers**：系统讲授现实观察方法论、“细节困境”微细节累积效应、解构场景色彩的“六层模型”、边缘倒角（高光磁铁）以及对抗 CG“塑料感/太完美”的核心法则。 | **Complementarity**：Dinur 专注于材质制作的审美认知与质感审视方法（LookDev Judgment），填补了 Shah 和 McDermott 偏向纯软件操作与规范定义时的观察方法论空白。 |
-| **打光支持与材质评估环境** | **Source Limitation**：仅提及在不同光照环境下测试贴图，未展开物理打光实战。 | **Source Limitation**：主要在 Painter/Stager 预置 HDR 环境中预览，未讲授物理灯具衰减与色温。 | **Source Covers**：深入讲解物理面光源半影生成、光强平方反比衰减定律、真实世界尺寸比例尺、色温（Kelvin）标准以及多光源照明下的材质表现评估。 | **Complementarity**：Dinur 提供了评估材质真实感所需的光照物理机制分析，有助于学生在科学的照明环境下审视材质，弥补单纯依赖预置 HDR 预览的局限。 |
-| **着色器参数体系 (Shading Controls)** | **Source Covers**：Metallic/Roughness 与 Specular/Glossiness 基础双管线参数映射。 | **Source Covers**：Painter 图层通道与 Designer 节点输出槽配置。 | **Source Covers**：全面覆盖现代 BRDF 着色器参数体系，包含 Diffuse Roughness、双层清漆（Coat）、透射吸收深度、次表面散射半径、各向异性（Anisotropy）、薄膜干涉与阿贝数色散。 | **Complementarity**：Dinur 建立了现代高级着色器的全功能参数认知图谱，极大拓宽了 McDermott 基础 PBR 参数的边界。 |
-| **贴图规范与色彩空间安全** | **Source Covers**：线性空间渲染（Linear Space）、sRGB vs Linear 通道定义、Albedo 安全范围（30–240 sRGB）、PBR Validate 校验。 | **Source Limitation**：直接使用软件既有配置，未系统阐述 Gamma 矫正与色彩安全范围。 | **Source Covers**：系统强调线性管线、数据图读入 Raw/Linear 模式、Albedo 物理安全界限（避免过黑过亮干扰 GI 平衡与真实感）。 | **Complementarity**：McDermott 与 Dinur 交叉印证了贴图制作的数据安全标准，指导数字贴图规范化生产。 |
-| **软件实操与资产烘焙管线** | **Source Limitation**：仅概述 Substance 软件定位，无具体操作步骤。 | **Source Covers**：手把手讲授 7 种核心网格贴图烘焙、Texel Density 计算、顶点色 ID 映射、图层堆栈与 6 大投影模式。 | **Source Limitation**：属于原理与法则指南，无具体软件菜单点击或手把手软件界面练习。 | **Complementarity**：Shah 提供了工业级软件手把手实操教学，将 McDermott 和 Dinur 的物理理论落实为生产力工具动作。 |
-| **手绘贴图、智能材质与资产复用** | **Source Limitation**：无手绘与智能材质封装实操。 | **Source Covers**：详细示范 Black Mask、Planar Mask、Stencil、Clone/Smudge 工具、Smart Material 封装与 Anchor Point 联动。 | **Source Covers**（概念层面）：强调手工绘制与模型拓扑强相关的微瑕疵（把手油污、缝隙积灰、水渍），但无具体软件操作。 | **Complementarity**：Dinur 强调“在模型关键接触与风化部位手工绘制微瑕疵”的方法论，由 Shah 具体的 Painter 画笔、遮罩与锚点工具加以实现。 |
-| **程序化纹理设计 (Procedural Texturing)** | **Source Limitation**：仅介绍节点化思想。 | **Source Covers**：原子节点 vs 复合节点、12 种混合模式、砖墙与电视架综合图表实战；但未覆盖参数暴露。 | **Source Covers**（方法论层面）：透彻对比程序化纹理的无缝随机优势与“冰冷机械感”陷阱，演示 Substance Designer 随机种子迭代。 | **Complementarity**：Shah 提供了 Designer 节点连接实操，Dinur 则提示了程序化纹理的审美陷阱并给出了破除机械感的方法论思路。 |
-| **纹理摄影采集与处理** | **Source Limitation**：未涉及摄影采集。 | **Source Covers**：Sampler 中利用 Image-to-Material 快速解析单张照片为 PBR 贴图。 | **Source Covers**：系统讲授纹理摄影规范（阴天散射光或全阴影拍摄、避免直射光高光与投影、去色调透视调平与无缝平铺）。 | **Complementarity**：Dinur 补齐了前端纹理摄影采集的物理规范，与 Shah 的 Sampler 照片后处理形成完整闭环。 |
-| **生成式 AI 在真实感工作流中的应用** | **Source Limitation**：出版时间较早，未覆盖生成式 AI。 | **Source Limitation**：2022 年出版，未涉及生成式 AI 辅助功能。 | **Source Covers**：详细讲授扩散模型逆向去噪机制、Latent 空间、CFG 引导、局部重绘（Inpainting）以及利用 Depth/Normal ControlNet 引入几何与表面法线条件线索的视效合成实战。 | **Complementarity**：Dinur 提供了生成式 AI 技术的权威一手教学依据，明确了以 Depth/Normal 空间图作为几何先验约束条件的控制方法，并清醒指出了 AI 的非确定性与物理逻辑缺陷。 |
+* **书名**：*Real-Time Rendering* (Fourth Edition)
+* **作者**：Tomas Akenine-Möller, Eric Haines, Naty Hoffman, Angelo Pesce, Michał Iwanicki, Sébastien Hillaire
+* **出版年份与机构**：2018 (A K Peters / CRC Press, Taylor & Francis Group)
+* **Hardback ISBN-13**：`9781138627000`
+* **eBook ISBN-13**：`9780429505430`
+* **官方资源网站出版总页数 (Publisher authoritative product metadata)**：`1198 pages`
+* **一手 Notebook EPUB 源观测定位说明 (Notebook EPUB source)**：
+  * English EPUB (`e3bc8e81-2fda-4d66-b4bd-4ffefb1448dd`) 正文采用章节 DOI 与节号标题编排（无连续内嵌印刷单页锚点）；
+  * 全书在 Index 索引中对应印刷版 1198 页；
+  * 本索引严格以 `Chapter.Section` 层级结合 NotebookLM source pointer 进行精确事实定位，严禁臆测散在正文页码；
+  * Chinese EPUB (`447efad6-aad8-4f44-bf86-e60f54d7c57f`) 用于专业中文术语对照核验，事实依据完全以 English EPUB 为唯一准绳。
+* **全书结构**：24 main chapters (plus web-only Chapter 25: Collision Detection)
+* **文献角色定位声明（Teacher Graphics Reference Boundary）**：
+  * **权威定位**：本书在本课程建设中严格界定为**“教师图形学底层原理参考书”（Teacher Graphics Reference）**；
+  * **非教学行动声明**：本书绝对不是学生初学的主教材，不构成课程的基础教学大纲（Syllabus），亦不可将本课程异化为一门完整的“实时渲染引擎图形编程课”；
+  * **双层知识区分体系**：
+    * **Teacher Reference Depth**：记录严密的微表面物理光学积分推导、辐射度学度量、GGX/Smith 遮挡阴影函数、环境光照 Split-Integral 近似、滤波走样数学本质与 GPU 采样机制，为教师提供深厚的底层理论支撑；
+    * **Potential Student-Facing Conceptual Support**：仅提取能直观解释“为什么材质如此反光、为什么 Roughness 改变高光扩散形态、Normal 贴图本质扰动了什么、纹理采样为什么导致走样模糊、Fresnel 为什么决定掠射角反光、光照环境为什么剧烈改变材质判断”的直观几何与物理图景。
 
 ---
-*本文档为 Gate 2.5A 阶段成果，汇总了 Shah (2022)、The PBR Guide (2018) 与 Dinur (2026) 的一手源知识索引，作为后续 Gate 2.5B（Provenance Audit & Page Reference Update）与 Gate 3（Teaching Value Matrix 修正）的权威事实凭据。*
+
+### Ch 5: Shading Basics
+
+#### 原生章节结构与定位
+* 5.1 Shading Models
+* 5.2 Light Sources
+* 5.3 Implementing Shading Models
+  * 5.3.1 Frequency of Evaluation
+  * 5.3.2 Implementation Example
+  * 5.3.3 Material Systems
+* 5.4 Aliasing and Antialiasing
+  * 5.4.1 Sampling and Filtering Theory
+* 5.5 Transparency, Alpha, and Compositing
+  * 5.5.1 Blending Order
+  * 5.5.2 Order-Independent Transparency
+* 5.6 Display Encoding
+
+#### 知识分类解析
+1. **EXPLICITLY TAUGHT（显式讲授）**：
+   * **着色模型本质与经验模型演进（Section 5.1）**：
+     * 着色模型定义：计算物体表面在特定光照与观察方向下出射光辐射度（Radiance）的数学函数；
+     * 传统经验模型缺陷剖析：Lambert 纯漫反射、Phong 与 Blinn-Phong 高光模型。明确指出经验模型缺乏微表面能量守恒（导致高光在粗糙表面过曝）且无法表达菲涅尔随观察角度的物理渐变。
+   * **光源抽象分类（Section 5.2）**：
+     * 定向光（Directional Light）、点光源（Point Light）、聚光灯（Spot Light）；明确指出传统光源均属“无几何体积的数学奇点”（Point singularity），导致镜面高光仅为经验计算的点斑而非物理光源反射。
+   * **着色计算频率与着色系统（Section 5.3）**：
+     * 逐顶点着色（Gouraud）vs 逐像素着色（Pixel/Fragment Shading）在法线插值与镜面高光捕捉上的本质差异；
+     * 工业界三维材质系统架构：着色器图表（Shader Graphs）与参数化材质系统（Material Systems）的参数组织管线。
+   * **走样与反走样理论（Section 5.4 & 5.4.1）**：
+     * 奈奎斯特采样定理（Nyquist-Shannon Sampling Theorem）：着色高频信号超过像素采样频率一半时引发空间走样（锯齿 Jaggies）与时间走样（闪烁 Shimmering）；
+     * 点采样（Point sampling）、面积采样（Area sampling）与超采样/多重采样（SSAA / MSAA）的本质抗锯齿机制。
+   * **半透明、Alpha 与显示编码（Sections 5.5 & 5.6）**：
+     * Over 混合算子与渲染排序（从后向前绘制透明物体）；
+     * 显示编码（Display Encoding）：CRT 显示器非线性响应与标准 sRGB / Gamma 2.2 传递函数，奠定了线性着色（Linear Shading）计算的必要性。
+2. **PRACTICALLY DEMONSTRATED**：
+   * 犹他茶壶与球体在 Flat 面着色、Gouraud 顶点插值与逐像素 Phong 着色下的几何剪影与高光平滑对比；
+   * 着色器 HLSL/GLSL 代码示例：展示包含漫反射与高光向量计算的现代片元着色器编写结构。
+3. **TEACHER REFERENCE DEPTH vs. POTENTIAL STUDENT-FACING SUPPORT**：
+   * *Teacher Reference Depth*：着色信号采样的傅里叶频域分析、顺序无关透明度（OIT）链表架构、ACEScg / EOTF 数学转换方程；
+   * *Potential Student-Facing Conceptual Support*：直观理解为什么材质渲染必须在“线性空间”计算、为什么逐像素计算高光比顶点着色平滑、为什么材质边缘会出现锯齿走样。
+
+---
+
+### Ch 6: Texturing
+
+#### 原生章节结构与定位
+* 6.1 The Texturing Pipeline
+  * 6.1.1 The Projector Function
+  * 6.1.2 The Corresponder Function
+  * 6.1.3 Texture Values
+* 6.2 Image Texturing
+  * 6.2.1 Magnification
+  * 6.2.2 Minification
+  * 6.2.3 Volume Textures
+  * 6.2.4 Cube Maps
+  * 6.2.5 Texture Representation
+  * 6.2.6 Texture Compression
+* 6.3 Procedural Texturing
+* 6.4 Texture Animation
+* 6.5 Material Mapping
+* 6.6 Alpha Mapping
+* 6.7 Bump Mapping
+  * 6.7.1 Blinn’s Methods
+  * 6.7.2 Normal Mapping
+* 6.8 Parallax Mapping
+  * 6.8.1 Parallax Occlusion Mapping
+* 6.9 Textured Lights
+
+#### 知识分类解析
+1. **EXPLICITLY TAUGHT**：
+   * **纹理流水线三阶段架构（Section 6.1）**：
+     1. **投影函数（Projector Function）**：三维表面坐标 $(x,y,z) \to$ 参数化纹理坐标 $(u,v)$；
+     2. **对应函数（Corresponder Function）**：处理超出 $[0,1]$ 范围的纹理寻址寻址模式（Wrap, Clamp, Mirror, Border）；
+     3. **值变换函数（Texture Values）**：贴图采样值经无偏浮点解包（如切线空间法线 $[0,1] \to [-1,1]$）。
+   * **图像采样与滤波机制（Section 6.2）**：
+     * **放大（Magnification, Section 6.2.1）**：单 Texel 覆盖多 Screen Pixel。最近邻滤波（Nearest Neighbor，导致马赛克像素块）vs 双线性插值（Bilinear Interpolation，4 采样点加权平均，平滑防边缘断裂）；
+     * **缩小与 Mipmap 链（Minification & Mipmapping, Section 6.2.2）**：多 Texel 挤压在单 Pixel 内。直接采样导致严重莫尔条纹与高频闪烁。Mipmapping 预计算金字塔结构（逐级 $2\times 2$ 均值降采样），依据屏幕空间导数（$\frac{\partial u}{\partial x}, \frac{\partial v}{\partial y}$）动态选择 LoD 等级，三线性过滤（Trilinear Interpolation）在两级 Mipmap 之间平滑过渡；
+     * **各向异性过滤（Anisotropic Filtering, Section 6.2.2）**：当视线斜视平面时，圆形像素投影变为拉长的各向异性梯形，标准 Mipmap 会沿短轴过度模糊。各向异性过滤沿视线长轴取多个探测采样点进行加权平均，极大保留斜视地面的纹理清晰度；
+     * **GPU 纹理压缩（Texture Compression, Section 6.2.6）**：硬件级定长分块解压（BC1/DXT1 用于 RGB，BC3/DXT5 用于 RGBA，BC5 用于双通道切线法线贴图）。
+   * **微观与中尺度几何表现技术对照（Sections 6.7 & 6.8）**：
+     * **凹凸贴图（Bump Mapping / Blinn's Method）**：基于高度场斜率虚构着色法线，几何完全平坦；
+     * **法线贴图（Normal Mapping, Section 6.7.2）**：
+       * **切线空间（Tangent Space）**：由表面几何法线 $\mathbf{n}$、切线 $\mathbf{t}$ 与副切线 $\mathbf{b}$ 构成局部正交基底（TBN 矩阵）；贴图仅记录相对于表面切平面的法线偏转，贴图呈现标志性浅蓝色（$Z$ 轴主导）；
+       * **模型空间（Object Space）**：法线贴图直接存储相对于物体全局坐标的绝对朝向，呈现五颜六色；无法应用于骨骼蒙皮动画或重复平铺 UV；
+       * **解包公式（Unpacking）**：从纹理存储的 RGB 转换回数学法线向量：$\mathbf{n} = 2 \times \text{tex} - 1$；
+     * **视差映射（Parallax Mapping, Section 6.8）**：根据视线切线方向偏移 UV 坐标，使凹凸具有随视角运动的视差感；引入 Offset Limiting 防止掠射角贴图撕裂；
+     * **视差遮蔽映射（Parallax Occlusion Mapping / POM, Section 6.8.1）**：在片元着色器内沿视线方向对高度图进行**光线步进（Ray Marching）**求交，实现真实的表面自遮挡（Self-occlusion）与自阴影（Self-shadowing），但物体外轮廓仍为多边形原状；
+     * **置换贴图（Displacement Mapping, Section 6.8）**：在几何细分或曲面细分阶段真正顶起三维顶点，产生真实的剪影与物理碰撞。
+2. **PRACTICALLY DEMONSTRATED**：
+   * 棋盘格平面在 Point Sampling、Bilinear、Trilinear Mipmap 与 16x Anisotropic 滤波下的全景渲染对比；
+   * 石砖墙与浮雕模型在 Normal Map、Parallax Mapping、POM 与 True Displacement 下的侧向视差与边缘凹凸实测对照。
+3. **TEACHER REFERENCE DEPTH vs. POTENTIAL STUDENT-FACING SUPPORT**：
+   * *Teacher Reference Depth*：TBN 矩阵手性判定（Gram-Schmidt 正交化与副切线符号）、POM 割线搜索/根查找插值算法、BC5 压缩算法原理；
+   * *Potential Student-Facing Conceptual Support*：
+     * 为什么在斜视地板时贴图会变模糊（Mipmap 原理）以及为什么需要开启各向异性过滤；
+     * 为什么切线法线贴图是蓝色的、Normal Map 为什么在模型剪影边缘“露馅”；
+     * Bump vs Normal vs POM vs Displacement 各种“凹凸”技术的层级分工与开销权衡。
+
+---
+
+### Ch 8: Light and Color
+
+#### 原生章节结构与定位
+* 8.1 Light Quantities
+  * 8.1.1 Radiometry
+  * 8.1.2 Photometry
+  * 8.1.3 Colorimetry
+  * 8.1.4 Rendering with RGB Colors
+* 8.2 Scene to Screen
+  * 8.2.1 High Dynamic Range Display Encoding
+  * 8.2.2 Tone Mapping
+  * 8.2.3 Color Grading
+
+#### 知识分类解析
+1. **EXPLICITLY TAUGHT**：
+   * **辐射度学四大度量系统（Radiometry, Section 8.1.1）**：
+     * **辐射通量（Radiant Flux $\Phi$, 单位瓦特 W）**：单位时间内通过的光辐射总能量；
+     * **辐照度（Irradiance $E$, 单位 $\text{W}/\text{m}^2$）**：单位受光面积上接收的辐射通量；
+     * **辐射强度（Radiant Intensity $I$, 单位 $\text{W}/\text{sr}$）**：点光源沿单位立体角发出的辐射通量；
+     * **辐射度/辐射率（Radiance $L$, 单位 $\text{W}/(\text{m}^2 \cdot \text{sr})$）**：沿特定射线方向、单位投影面积、单位立体角的光能量。**Radiance 是基于物理渲染、光学相机与人眼传感器测量的根本物理量**，出射辐射度 $L_o$ 是所有着色方程求解的唯一目标。
+   * **光度学度量系统（Photometry, Section 8.1.2）**：
+     * 在辐射度学基础上引入人眼视见函数（CIE Photopic Curve, 555 nm 敏感峰值），导出：光通量（流明 Lumen lm）、照度（勒克斯 Lux lx）、发光强度（坎德拉 Candela cd）与亮度（尼特 Nit 或 $\text{cd}/\text{m}^2$）。
+   * **色度学与 RGB 渲染假设（Colorimetry & RGB Rendering, Sections 8.1.3 & 8.1.4）**：
+     * **同色异谱现象（Metamers）**：不同光谱功率分布（SPD）因人眼三色感光细胞的积分效应产生完全相同的颜色知觉；
+     * **“类别谬误”（Category Error）警示**：严格物理光照是波长连续函数；计算机图形学中直接将“RGB 光照颜色”与“RGB 材质反照率”进行相乘运算在物理学上属于类别谬误；但自然材质光谱连续平滑，RGB 乘法在绝大多数实时渲染下表现出极高且足够逼真的工程近似。
+   * **色彩空间与动态范围（Sections 8.1.3 & 8.2.1）**：
+     * 色域标准：sRGB / Rec. 709（狭窄色域）、DCI-P3、Rec. 2020 与工业制作工作色域 **ACEScg**（在宽色域中进行渲染乘法运算可大幅减少饱和色彩截断）；
+     * SDR（峰值约 100 nits）vs HDR（支持至 1,000–10,000 nits，采用 PQ / HLG 曲线）。
+   * **色调映射与图像状态（Tone Mapping & Image States, Section 8.2.2）**：
+     * **场景线性参考（Scene-Referred）**：渲染器内部未截断、无上限的物理线性辐射度数值；
+     * **显示参考（Display-Referred）**：适配特定显示设备有限动态范围与编码曲线的输出像素；
+     * **色调映射（Tone Mapping）**：将高动态范围场景线性数据映射至显示设备的艺术再现映射，旨在唤起与真实场景相同的人眼感知印象，而非机械式裁切数值。
+2. **PRACTICALLY DEMONSTRATED**：
+   * 同一线性 HDR 场景在无色调映射（过曝爆白）、Reinhard 简单映射与电影工业级 ACES 胶片曲线映射下的动态范围与对比度对照；
+   * CIE 1931 xy 色度图与各 RGB 色域三角形边界投影。
+3. **TEACHER REFERENCE DEPTH vs. POTENTIAL STUDENT-FACING SUPPORT**：
+   * *Teacher Reference Depth*：CIE XYZ 匹配函数积分公式、光谱再现与同色异谱失效条件、Perceptual Quantizer (PQ) 曲线数学定义；
+   * *Potential Student-Facing Conceptual Support*：
+     * 为什么材质制作必须在物理线性空间中调配，而不能在经过 Tone Mapping 后的显示器预览图上取色；
+     * 理解 Base Color 贴图只表达物体的表面反照率（Albedo），而不是最终在显示屏上看到的带亮度和阴影的颜色。
+
+---
+
+### Ch 9: Physically Based Shading
+
+#### 原生章节结构与定位
+* 9.1 Physics of Light
+  * 9.1.1 Particles and Waves
+  * 9.1.2 Absorption
+  * 9.1.3 Scattering
+  * 9.1.4 Surface Reflection and Subsurface Scattering
+  * 9.1.5 Geometric Optics
+  * 9.1.6 Wave Optics
+* 9.2 The Camera
+* 9.3 The BRDF
+* 9.4 Illumination
+* 9.5 Fresnel Reflectance
+  * 9.5.1 Fresnel Equations
+  * 9.5.2 External Reflection
+  * 9.5.3 Typical Fresnel Reflectance Values
+  * 9.5.4 Parameterizing Fresnel Values
+* 9.6 Microgeometry
+* 9.7 Microfacet Theory
+* 9.8 BRDF Models for Surface Reflection
+  * 9.8.1 Normal Distribution Functions
+  * 9.8.2 Multiple-Microfacet Shadowing and Masking
+  * 9.8.3 Microfacet BRDF
+* 9.9 BRDF Models for Subsurface Scattering
+  * 9.9.1 Subsurface Albedo
+  * 9.9.2 Smooth-Surface Subsurface Models
+  * 9.9.3 Rough-Surface Subsurface Models
+* 9.10 BRDF Models for Cloth
+* 9.11 Wave Optics BRDF Models
+* 9.12 Layered Materials
+* 9.13 Blending and Filtering Materials
+
+#### 知识分类解析
+1. **EXPLICITLY TAUGHT**：
+   * **BRDF 数学定义与物理约束（Sections 9.3 & 9.4）**：
+     * **双向反射分布函数（BRDF）** $f(\mathbf{l}, \mathbf{v})$：定义为出射辐射度增量 $dL_o(\mathbf{v})$ 与入射辐照度 $dE(\mathbf{l})$ 的比值，单位 $\text{sr}^{-1}$；
+     * **物理法则约束 1：亥姆霍兹互易性（Helmholtz Reciprocity）**：交换入射光方向 $\mathbf{l}$ 与视线方向 $\mathbf{v}$，函数值保持不变：$f(\mathbf{l}, \mathbf{v}) = f(\mathbf{v}, \mathbf{l})$；
+     * **物理法则约束 2：能量守恒定律（Conservation of Energy）**：沿半球所有出射方向积分的方向-半球反射率 $R(\mathbf{l}) \le 1$。
+   * **菲涅尔反射定律与 Schlick 近似（Section 9.5）**：
+     * **垂直入射特征反射率 $F_0$**：
+       * 绝缘体（非金属）：$F_0$ 极低且无色（通常在 0.02 至 0.05 之间，标准默认 0.04），光线折射透入物体内部产生漫反射色彩；
+       * 金属（导体）：$F_0$ 极高（0.5 至 1.0）且带有饱和色彩，自由电子使内部透射光在纳米级距离内被 100% 吸收，**金属没有漫反射**，一切色彩来自于 $F_0$；
+     * **Schlick 经验近似公式**：
+       $$F(\mathbf{n}, \mathbf{l}) \approx F_0 + (1 - F_0)(1 - (\mathbf{n} \cdot \mathbf{l})_+)^5$$
+       在微表面理论中，用微表面法线（半角向量 $\mathbf{h} = \frac{\mathbf{l} + \mathbf{v}}{\|\mathbf{l} + \mathbf{v}\|}$）替换宏观法线 $\mathbf{n}$。
+   * **微表面理论与微观几何（Microfacet Theory, Sections 9.6 & 9.7）**：
+     * 宏观平坦表面在微观上被建模为无数微小的理想菲涅尔镜面微表面（Microfacets）；
+     * 只有法线恰好与半角向量重合（$\mathbf{m} = \mathbf{h}$）的微表面，才能将入射光线反射进观察者视线。
+   * **标准 Cook-Torrance 镜面反射 BRDF 模型（Section 9.8）**：
+     $$f_{\text{spec}}(\mathbf{l}, \mathbf{v}) = \frac{D(\mathbf{h}) \, G_2(\mathbf{l}, \mathbf{v}, \mathbf{h}) \, F(\mathbf{h}, \mathbf{l})}{4 \, |\mathbf{n} \cdot \mathbf{l}| \, |\mathbf{n} \cdot \mathbf{v}|}$$
+     * **法线分布函数 $D(\mathbf{h})$（NDF）**：统计微表面法线朝向半角向量的概率密度。现代主流标准为 **GGX / Trowbridge-Reitz 分布**：
+       $$D(\mathbf{m}) = \frac{\chi^+(\mathbf{n} \cdot \mathbf{m}) \, \alpha^2}{\pi \left(1 + (\mathbf{n} \cdot \mathbf{m})^2 (\alpha^2 - 1)\right)^2}$$
+       *特征*：具有狭窄的高光中心峰值与宽广平缓的**长尾光晕（Long-tailed falloff）**，极其符合真实世界材质的高光散射质感；
+     * **遮挡-阴影函数 $G_2(\mathbf{l}, \mathbf{v}, \mathbf{h})$**：统计微表面之间的相互遮挡（Masking，微表面被视线遮挡）与自阴影（Shadowing，微表面被光线遮蔽）。推荐采用**高度相关型 Smith 函数（Height-correlated Smith $G_2$）**，严密防止掠射角光能非物理激增；
+     * **分母 $4 |\mathbf{n} \cdot \mathbf{l}| |\mathbf{n} \cdot \mathbf{v}|$**：微观表面积与宏观投影表面积转换的微积分推导因数。
+   * **次表面漫反射 BRDF 模型（Section 9.9）**：
+     * **Lambertian**：$f_{\text{diff}} = \frac{\rho_{ss}}{\pi}$，完全各向同性，不考虑粗糙度；
+     * **Oren-Nayar**：基于微表面漫反射理论，准确还原混凝土、石膏与月球尘埃的**后向逆反射（Retroreflection）**和边缘发亮现象；
+     * **Disney Diffuse**：Burley 经验漫反射模型，在粗糙表面边缘引入逆反射光晕，使漫反射与粗糙度参数形成平滑联动。
+   * **高级分层与织物材质（Sections 9.10 & 9.12）**：
+     * **清漆层（Clear Coat）**：在粗糙底层基质上附加第二层平滑的高光镜面层，遵循比尔-朗伯定律（Beer-Lambert law）的光能吸收衰减；
+     * **Sheen（微纤维边缘光泽）**：专为织物布料设计，模拟天鹅绒和衣物边缘微纤维引起的边缘高光散射；
+     * **薄膜干涉（Thin-Film）**：光的波动干涉相位差引起肥皂泡与金属烧蓝彩虹效应。
+   * **材质滤波与法线抗走样（Section 9.13）**：
+     * **法线滤波引起的镜面走样问题**：当高精细法线贴图远离相机进入高层 Mipmap 时，法线向量被线性平均导致长度变短（$\|\bar{\mathbf{n}}\| < 1$），但粗糙度未能相应增加，引发极严重的**高光闪烁（Specular Aliasing）**；
+     * **Toksvig 映射与 LEAN 映射**：将缩小的法线长度反向转化为几何粗糙度方差（Variance），动态增加粗糙度值，从数学底层彻底消除法线高频闪烁。
+2. **PRACTICALLY DEMONSTRATED**：
+   * 犹他茶壶与多材质测试球在 Beckmann、Phong 与 GGX NDF 下的高光长尾衰减对比图解；
+   * 粗糙木质表面在无清漆 vs 叠加 Clear Coat 涂层后的双层高光对比实测；
+   * 细密法线贴图在远距离下无滤波（高光严重闪烁）vs 启用 Toksvig / LEAN 滤波（高光平滑过渡为漫反射粗糙度）的对照测试。
+3. **TEACHER REFERENCE DEPTH vs. POTENTIAL STUDENT-FACING SUPPORT**：
+   * *Teacher Reference Depth*：
+     * GGX NDF 积分推导、Smith $G_2$ 微表面高度自相关方程推导；
+     * 比尔-朗伯光吸收指数衰减积分；
+     * LEAN 映射协方差张量矩阵（Covariance Matrix）在着色器中的数学求解；
+   * *Potential Student-Facing Conceptual Support*：
+     * 为什么在 PBR 材质中 Roughness 调大时，高光不仅变模糊，而且整体高光亮度会自动变暗（微表面能量守恒）；
+     * 为什么汽车漆会有底层闪粉和表层清澈镜像两个高光（Clear Coat 双层高光机制）；
+     * 为什么远距离处法线贴图会产生噪点闪烁（法线平均与粗糙度失衡），以及引擎是如何通过 Mipmap 粗糙度补偿解决的。
+
+---
+
+### Ch 10: Local Illumination
+
+#### 原生章节结构与定位（Material & Shading Evaluation Focus）
+* 10.1 Area Light Sources
+  * 10.1.1 Glossy Materials
+  * 10.1.2 General Light Shapes
+* 10.2 Environment Lighting
+* 10.4 Environment Mapping
+* 10.5 Specular Image-Based Lighting
+  * 10.5.1 Prefiltered Environment Mapping
+  * 10.5.2 Split-Integral Approximation for Microfacet BRDFs
+  * 10.5.3 Asymmetric and Anisotropic Lobes
+* 10.6 Irradiance Environment Mapping
+  * 10.6.1 Spherical Harmonics Irradiance
+* 10.7 Sources of Error
+
+#### 知识分类解析
+1. **EXPLICITLY TAUGHT**：
+   * **基于图像的光照（Image-Based Lighting / IBL）与环境贴图（Sections 10.2 & 10.4）**：
+     * 将远景全景辐射度环境视为包围物体的无穷远光源天球；
+     * 材质在环境中的真实光照表现必须在半球积分求解：
+       $$L_o(\mathbf{v}) = \int_{\Omega} f(\mathbf{l}, \mathbf{v}) \, L_i(\mathbf{l}) \, (\mathbf{n} \cdot \mathbf{l}) \, d\mathbf{l}$$
+   * **微表面高光 IBL 的“拆分求和/拆分积分”近似（Split-Integral Approximation, Section 10.5.2）**：
+     * 实时渲染无法进行昂贵的蒙特卡洛全球积分，Karis / Epic Games 与 Lazarov 提出将积分拆分为两个独立预计算项：
+       $$\int_{\Omega} f_{\text{spec}} L_i (\mathbf{n} \cdot \mathbf{l}) \, d\mathbf{l} \approx \left( \int_{\Omega} D(r) L_i (\mathbf{n} \cdot \mathbf{l}) \, d\mathbf{l} \right) \left( \int_{\Omega} f_{\text{spec}} (\mathbf{n} \cdot \mathbf{l}) \, d\mathbf{l} \right)$$
+     * **第一项：预滤波环境贴图（Prefiltered Environment Map）**：将环境 HDR 图按不同粗糙度与 NDF 进行卷积，存储在 Cube Map 的各级 Mipmap 中；粗糙度越高采样越高层模糊的 Mip 级；
+     * **第二项：环境 BRDF 查找表（Environment BRDF 2D LUT）**：将菲涅尔 $F_0$ 提出后，由 $(\mathbf{n} \cdot \mathbf{v})$ 和粗糙度 $\alpha$ 索引一张预先积分好的二维红绿贴图（Scale 与 Bias 双通道 LUT）。
+   * **辐照度环境贴图与球谐函数（Irradiance Environment Mapping, Section 10.6 & 10.6.1）**：
+     * 漫反射受光仅取决于表面法线 $\mathbf{n}$；
+     * **9 系数球谐函数（Spherical Harmonics, SH）**：Ramamoorthi & Hanrahan 证明，漫反射辐照度可以通过仅 9 个三阶球谐标量系数达到 **99% 以上的绝对精度**；
+     * 运行时着色器无需贴图采样，仅计算一个关于法线向量的二次多项式（Quadratic Polynomial）即可在几纳秒内获得精准的环境漫反射照明。
+2. **PRACTICALLY DEMONSTRATED**：
+   * 粗糙度从 0.0 到 1.0 的金属球在预滤波 HDR 环境贴图各 Mipmap 级别上的反射清晰度演变实测；
+   * Karis 2D BRDF LUT 纹理贴图（Red/Green 通道）图解与解包查表逻辑展示。
+3. **TEACHER REFERENCE DEPTH vs. POTENTIAL STUDENT-FACING SUPPORT**：
+   * *Teacher Reference Depth*：球谐函数勒让德多项式投影积分、Split-Integral 近似在非恒定环境下的误差分析；
+   * *Potential Student-Facing Conceptual Support*：
+     * 直观理解三维软件（如 Substance Painter 视口或游戏引擎）是如何在不开启光线追踪的情况下瞬间显示出粗糙金属球的环境倒影的（通过预先模糊的 HDR Mipmap 与 2D LUT 贴图拼接实现的数学技巧）。
+
+---
+
+### Ch 11: Global Illumination
+
+#### 原生章节结构与定位（Material & Reflection Focus）
+* 11.1 The Rendering Equation
+* 11.2 General Global Illumination
+* 11.3 Ambient Occlusion
+  * 11.3.1 Ambient Occlusion Theory
+  * 11.3.2 Visibility and Obscurance
+  * 11.3.7 Shading with Ambient Occlusion
+* 11.4 Directional Occlusion
+* 11.6 Specular Global Illumination
+  * 11.6.1 Localized Environment Maps / Reflection Probes
+  * 11.6.2 Planar Reflections
+  * 11.6.5 Screen-Space Reflections (SSR)
+
+#### 知识分类解析
+1. **EXPLICITLY TAUGHT**：
+   * **经典渲染方程（The Rendering Equation, Kajiya 1986, Section 11.1）**：
+     $$L_o(\mathbf{p}, \mathbf{v}) = L_e(\mathbf{p}, \mathbf{v}) + \int_{\Omega} f(\mathbf{p}, \mathbf{l}, \mathbf{v}) \, L_i(\mathbf{p}, \mathbf{l}) \, (\mathbf{n} \cdot \mathbf{l}) \, d\mathbf{l}$$
+     建立了材质表面自发光（Emission）、BRDF 反射与全场景全局入射光递归弹射的终极平衡模型。
+   * **环境光遮蔽本质与着色约束（Ambient Occlusion, Section 11.3）**：
+     * **数学本质**：衡量表面点 $\mathbf{p}$ 上半球被局部几何体遮挡的余弦加权积分比例（$0.0$ 全遮挡， $1.0$ 全开阔）；
+     * **着色物理边界**：**AO 仅对漫反射环境光（Diffuse Ambient Irradiance）起遮挡衰减作用，绝对不得直接乘以镜面高光反射（Specular Contribution）**；
+     * **弯曲法线（Bent Normal）**：平均未遮挡视线方向向量，用于无额外运行时开销地纠正环境光照方向。
+   * **定向遮蔽（Directional Occlusion / DO, Section 11.4）**：
+     * 解决传统标量 AO 无法区分“来自红光方向遮挡还是蓝光方向遮挡”的缺陷，利用锥形孔径或球谐可见性实现带方向的环境遮蔽。
+   * **高光全局光照与反射探针（Specular GI, Section 11.6）**：
+     * **视差校正反射探针（Parallax-Corrected Reflection Probes, Section 11.6.1）**：无穷远环境立方体贴图在室内空间会发生严重反射错位；通过将反射光线与室内包围盒几何代理体（Proxy Box/Sphere）求交，计算校正后的视差向量，使金属表面准确倒映室内墙角与家具；
+     * **屏幕空间反射（Screen-Space Reflections / SSR, Section 11.6.5）**：利用摄像机深度缓冲与颜色缓冲在片元着色器中步进求交，获得极高精度的实时近景高光倒影；明确其致命缺陷（屏外物体与被遮挡背面无法被反射，需与反射探针进行降级混合兜底）。
+2. **PRACTICALLY DEMONSTRATED**：
+   * 复杂雕像在仅有漫反射天光 vs 叠加 AO 遮蔽贴图后的褶皱体积感渲染对比；
+   * 室内光滑瓷砖地面在使用普通无限远反射贴图（倒影浮空错位）vs 启用视差校正探针（倒影贴合地面）的对照图解。
+3. **TEACHER REFERENCE DEPTH vs. POTENTIAL STUDENT-FACING SUPPORT**：
+   * *Teacher Reference Depth*：Kajiya 算子半球 Fredholm 积分方程求解、SSR 分层 Z-Buffer（Min-Max Depth Pyramid）跳步遍历算法；
+   * *Potential Student-Facing Conceptual Support*：
+     * 为什么贴图制作中的 AO 贴图只能用来给暗部增加几何自遮挡阴影，而不能画在 Base Color 里，也不能让高光消失；
+     * 为什么在游戏或实时视口中移动物体时，光滑金属地面的倒影会出现拉伸错位（没有视差校正探针）或视角边缘消失（SSR 屏外失效）。
+
+---
+
+### RTR4 教学参考价值、理论深度与未覆盖范围总结
+
+1. **RTR4 为教师提供的独家图形学理论深度（Teacher Reference Depth）**：
+   * **严密的微表面物理数学体系**：给出了现代 PBR 核心公式（Cook-Torrance、GGX NDF、Smith $G_2$）的完整数学定义与量纲推导，彻底超越了商业软件说明书中的参数泛泛之谈；
+   * **辐射度学与光度学度量底座**：严格理清了 Flux、Irradiance、Intensity 与 Radiance 的物理意义，为解释为什么材质反照率（Albedo）属于无量纲比例系数提供了坚实依据；
+   * **贴图滤波与多尺度微观几何**：从信号采样定理出发，阐明了 Mipmapping、各向异性过滤、切线 TBN 矩阵手性判定以及法线贴图在高频缩小处产生高光走样的数学机理；
+   * **实时 IBL 积分近似解构**：深度揭示了 Substance Painter、Blender 及实时引擎中环境高光与漫反射天光如何在几毫秒内被近似求解的底层架构（Split-Integral 与球谐函数）。
+2. **潜在支撑学生认知直觉的直观要点（Potential Student-Facing Support）**：
+   * 解释 Roughness 变大时高光变暗变散的物理守恒直觉；
+   * 解释 Normal、Bump、POM 与真正 Displacement 之间的空间深度机制；
+   * 解释为什么 Base Color 不能包含光影以及为什么极端纯黑/纯白会破坏渲染；
+   * 解释 AO 贴图仅能影响漫反射不能破坏高光的物理底线；
+   * 解释各向异性高光（拉丝金属）、清漆层（Clear Coat）与布料边缘光泽（Sheen）的表面结构。
+3. **RTR4 明确未教授的盲区与局限（Source Limitations & Does Not Cover）**：
+   * **无美术资产制作流（No Asset Authoring Workflow）**：完全不讲授美术师如何在 Substance Painter 中分层、刷遮罩、配置通道或烘焙贴图；
+   * **无 Substance Designer 程序化节点图表搭建**：不讲授原子节点、形态生成、图案拼贴或 SBSAR 制作；
+   * **无实物摄影材质扫描采集管线**：未涉及单图转材质（Image-to-Material）或硬件偏振扫描；
+   * **无生成式 AI 在材质中的落地方法**：出版于 2018 年，未收录任何扩散模型与 ControlNet 等生成式 AI 材质工作流。
+
+---
+
+## 5. Source Complementarity and Coverage Boundaries
+
+本节系统汇总已完成一手索引的四本权威文献（Shah 2022、The PBR Guide 2018、Dinur 2026 与 RTR4 2018）的正文事实，客观界定各自的覆盖范围（Source Covers）、未覆盖盲区（Source Limitations）与内容互补关系（Source Complementarity）。严格遵守不包含任何周数安排（Week Scheduling）、软件课时配比或教学行动裁定的原则。
+
+| 知识与能力维度 | Wes McDermott (*The PBR Guide* 2018) | Zeeshan Jawed Shah (*Realistic Asset Creation* 2022) | Eran Dinur (*Guide to Photorealism* 2026) | Tomas Akenine-Möller et al. (*RTR4* 2018) [Teacher Graphics Reference] | 四者互补性与边界事实说明 (Source Complementarity & Boundaries) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **物理光学理论与微表面数学** | **Source Covers**：微表面基本概念、能量守恒与 Fresnel $F_0$ 绝缘体/金属基础分类。 | **Source Limitation**：仅套用默认 PBR 材质球模板，无物理理论推导。 | **Source Covers**：吸收、散射、SSS 与透射物理原理，深入解析材质物理二元性。 | **Source Covers (Teacher Depth)**：严密的微表面微积分推导、完整 Cook-Torrance BRDF、GGX NDF、Smith $G_2$ 掩膜阴影函数、辐射度量学（Radiance）。 | **Complementarity**：RTR4 为教师提供了无懈可击的现代图形学数学推导底座，McDermott 和 Dinur 负责向学生传递定性物理直觉，Shah 则提供软件参数映射。 |
+| **真实感审视与 LookDev 观察方法** | **Source Limitation**：偏向于技术规范与数值表，较少探讨宏观审美认知。 | **Source Limitation**：偏向于软件功能实现，缺乏质感审视训练。 | **Source Covers**：独家系统讲授现实观察方法论、“细节困境”微细节累积、场景六层解构、边缘倒角（高光磁铁）与对抗 CG 默认完美塑料感法则。 | **Source Limitation**：纯粹从渲染算法与方程角度讨论光照，无美术观察与审美解构教学。 | **Complementarity**：Dinur 专注于材质制作的审美认知与质感审视方法（LookDev Judgment），填补了 Shah、McDermott 和 RTR4 偏向技术/算法时的观察方法论空白。 |
+| **打光支持与环境光线评估** | **Source Limitation**：仅提及在不同环境下测试贴图。 | **Source Limitation**：主要在 Painter 预置 HDR 中预览。 | **Source Covers**：物理面光源半影、光强平方反比衰减、色温与多光源打光评估环境。 | **Source Covers (Teacher Depth)**：深入阐述环境光照半球积分、Split-Integral IBL 近似推导、预滤波 HDR 贴图与 9 系数球谐函数（SH）漫反射重建。 | **Complementarity**：Dinur 提供美术层面的打光评估准则，RTR4 则在算法底层彻底揭示了三维软件实时预览环境贴图的数学运行机制。 |
+| **着色器参数体系与分层扩展** | **Source Covers**：Metallic/Roughness 与 Specular/Glossiness 基础双管线映射。 | **Source Covers**：Painter 图层通道与 Designer 节点输出槽配置。 | **Source Covers**：覆盖 Diffuse Roughness、Clear Coat、透射折射、SSS、各向异性与色散。 | **Source Covers (Teacher Depth)**：深入分析 Disney Diffuse、Oren-Nayar 逆反射、Clear Coat 双层高光法线与布料 Sheen 的微观表面结构。 | **Complementarity**：Dinur 建立了高级着色器全功能参数认知，RTR4 则补充了各高级参数对应的微观表面物理成因（如 Sheen 的微纤维散射与 Coat 的比尔-朗伯吸收）。 |
+| **贴图采样、滤波与空间几何** | **Source Limitation**：仅强调线性色彩空间与反照率安全范围。 | **Source Limitation**：仅作为软件导出既有设置，未解释数学原理。 | **Source Covers**：强调线性管线、Raw/Linear 数据图保护与反照率安全范围。 | **Source Covers (Teacher Depth)**：奈奎斯特采样定理、Bilinear/Trilinear Mipmapping、各向异性过滤（AF）、切线 TBN 矩阵手性判定、法线贴图滤波引发的高光闪烁与 Toksvig/LEAN 消除机制。 | **Complementarity**：RTR4 补全了贴图在图形硬件中如何被采样、过滤与寻址的底层机制，为教师解释“为什么贴图斜视会糊、为什么法线远看会闪烁”提供了权威物理与算法答案。 |
+| **中尺度凹凸表现技术层级** | **Source Limitation**：简述 Normal 与 Height。 | **Source Covers**：演示 Height 笔刷压印与 Normal 细节烘焙。 | **Source Covers**：对比 Normal 与 Displacement 适用边界，警示过度法线伪影。 | **Source Covers (Teacher Depth)**：系统对比 Bump（斜率）、Normal（TBN 扰动）、Parallax Mapping（视差偏移）、POM（片元光线步进自遮挡）与 True Displacement（细分顶点位移）的数学差异与开销。 | **Complementarity**：RTR4 建立了工业级“微观-中尺度-宏观表面表现”完整技术梯队，使教师能够精准指导学生在不同项目精度要求下选择合适的贴图技术。 |
+| **软件实操与资产烘焙管线** | **Source Limitation**：无软件界面与具体操作步骤。 | **Source Covers**：手把手讲授 7 种核心网格贴图烘焙、Texel Density 计算、顶点色 ID 映射、图层堆栈与 6 大投影模式。 | **Source Limitation**：跨工具法则指南，无特定软件点击步骤。 | **Source Does Not Cover**：无任何美术软件界面操作。 | **Complementarity**：Shah 依然是不可替代的工业级软件手把手实操教学支柱，将所有光学理论与技术标准落实为具体的工具生产力动作。 |
+| **手绘贴图、智能材质与资产复用** | **Source Limitation**：无手绘与智能材质封装实操。 | **Source Covers**：示范遮罩工具、Stencil、Clone/Smudge、Smart Material 封装与 Anchor Point 联动。 | **Source Covers**（概念层面）：强调手工绘制与模型拓扑强相关的微瑕疵（磨损、积灰）。 | **Source Does Not Cover**：完全不涉及手绘与美术材质封装。 | **Complementarity**：Dinur 提出审美需求，Shah 提供具体画笔与遮罩实现，RTR4 和 McDermott 则守住物理底线。 |
+| **程序化纹理与扫描采集** | **Source Limitation**：仅介绍节点化思想。 | **Source Covers**：Designer 节点综合案例；Sampler 单图材质解析与无缝平铺滤镜。 | **Source Covers**：对比程序化优缺点并警示机械感；系统讲授纹理摄影采集规范。 | **Source Limitation**：仅在概念上提及程序化噪波与纹理合成，无美术制作流。 | **Complementarity**：Dinur 提供前端摄影规范，Shah 提供 Designer 和 Sampler 的实战操作，RTR4 提供底层算法印证。 |
+| **生成式 AI 在真实感工作流中的应用** | **Source Limitation**：未覆盖。 | **Source Limitation**：未覆盖。 | **Source Covers**：系统讲授扩散模型逆向去噪、Latent、CFG、局部重绘与 Depth/Normal ControlNet 空间结构引导的视效实战。 | **Source Does Not Cover**：出版于 2018 年，未收录扩散模型生成式 AI。 | **Complementarity**：Dinur 是当前唯一提供生成式 AI 在真实感视觉工作流中控制依据的一手权威教材。 |
+
+---
+*本文档为 Gate 2.5A 阶段成果，汇总了 Shah (2022)、The PBR Guide (2018)、Dinur (2026) 与 Real-Time Rendering 4th Edition (2018) 的一手源知识索引，作为后续 Gate 2.5B（Provenance Audit & Page Reference Update）与 Gate 3（Teaching Value Matrix 修正）的权威事实凭据。*
+
