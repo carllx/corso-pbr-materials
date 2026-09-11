@@ -592,7 +592,8 @@
 * **Paperback ISBN-13**：`9781032966557`
 * **Hardback ISBN-13**：`9781032966564`
 * **eBook ISBN-13**：`9781003590514`
-* **总页数**：230 pages (内嵌实体印刷页码标识 pp. 1–230)
+* **出版商官方产品元数据总页数 (Publisher product metadata)**：`246 pages`
+* **一手 Notebook EPUB 源观测页码 (Notebook EPUB source)**：内嵌实体印刷页码标识观测至第 230 页（`Inline Print Page Markers observed through p. 230`，Index 索引项至 p. 230）
 * **全书结构**：4 Parts, 19 chapters
 * **提取范围说明**：`Material-relevant source-native extraction: 8 Chapters of 19`。
   * **纳入章节与理由**：
@@ -769,16 +770,17 @@
      * 太阳光作为平行直射光，在地表尺度上衰减可忽略不计。
    * **色温（Color Temperature in Kelvin, pp. 125–126）**：
      * 建立从烛光（1800K）、暖白钨丝灯（2800K）、日光（5500K）到阴天/蓝天（6500K–10000K）的绝对物理色温标准，在材质打光评估中必须结合 Lumen/Lux 照度单位使用。
-   * **材质真实感评估打光策略（Essential Strategies for PBR Lighting, pp. 126–130）**：
+   * **多光源环境下的材质表现评估策略（Strategies for Evaluating Materials under Lighting, pp. 126–130）**：
      * 强调材质外观无法脱离光照环境孤立存在；
-     * 在 LookDev 评估中，必须保证真实世界比例尺（Real-World Scale），否则物理衰减与 GI 计算将完全失真；
-     * 必须构建包含主光（Key）、辅助光（Fill）、轮廓光（Rim）与环境天光的多角度测试场，以全方位检验材质在不同入射角下的 Roughness 渐变、边缘倒角高光与金属反照。
+     * 在渲染评估中，必须保证真实世界比例尺（Real-World Scale），否则物理衰减与 GI 计算将完全失真；
+     * 结合主光（Key）、辅助光（Fill）、轮廓光（Rim）与环境天光构建多角度照明，以检验材质在不同入射角下的 Roughness 渐变、边缘倒角高光与金属反照。
 2. **PRACTICALLY DEMONSTRATED**：
-   * 音频调音台资产在单一环境光 vs 结合面光源、聚光灯与窗边冷光的多光源环境下的真实感质感渲染对比（pp. 128–130）；
+   * 音频调音台资产在单一环境光 vs 结合面光源、聚光灯与窗边冷光的多光源环境下的质感渲染对比（pp. 128–130）；
    * 点光源生硬阴影 vs 矩形面光源平滑柔和半影对比图解（pp. 118–120）。
 3. **LIMITATION & BOUNDARIES（边界与局限性）**：
-   * **Lighting ≠ Material Curriculum Automatically**：本章系统性阐述了灯光与渲染机制，但其核心价值在于作为“材质真实感评估与 LookDev 检验的技术支撑平台”；绝不能因本章包含打光与合成技巧，就将整个三维灯光与视效合成课程喧宾夺主地塞入数字材质制作课中。
    * **IBL 的几何局限**：书里明确指出普通 2D/3D HDRI 仅为一个无限远天壳（eggshell），缺乏深度信息，无法替代室内或局部空间具有物理遮挡的真实灯具。
+4. **INTERPRETIVE SUMMARY / Project Scope Boundary（项目教学边界裁定）**：
+   * *Lighting ≠ Material Curriculum Automatically*：Dinur 在本章系统阐述了灯光与渲染机制，但其在材质课程中的定位应为“材质真实感评估与 LookDev 检验的技术支撑”，而非以此为据将完整的三维灯光与摄影视效课程全盘纳入数字材质制作课。
 
 ---
 
@@ -803,7 +805,7 @@
      * **Metallic/Dielectric 二元切换机制**：非金属使用漫反射颜色与无色小比例高光；金属无漫反射，高光直接继承 Base Color。
    * **BRDF 核心参数体系详解**：
      * **Diffuse**：漫反射颜色与 Oren-Nayar 粗糙漫反射（表现粉末、织物与黏土的平缓漫反射衰减）；
-     * **Specular & Roughness**：强调现代 PBR 中不应随意调整高光权重（保持 100%），而是由 **Roughness（粗糙度）** 贴图主导高光扩散范围；包含各向异性（Anisotropy，拉丝金属与毛刷纹理的高光拉伸）；
+     * **Specular & Roughness（高光与粗糙度控制）**：Dinur 明确指出，由于 BRDF 镜面反射遵循能量守恒定律，反射粗糙度越高、其反射光线越分散、高光自然越暗；仅通过调节粗糙度即可完整覆盖从极光滑到最暗哑表面的全范围，因此**高光强度/权重控制在通常情况下是多余的，应保持在 100%（"The specular intensity/weight control is therefore redundant and should normally be kept fixed at 100%"）**；包含各向异性（Anisotropy，拉丝金属与毛刷纹理的高光拉伸）；
      * **Coat（清漆/涂层）**：在材质表面附加独立的第二层光滑透明反射高光层（用于汽车漆表面罩光、打蜡木地板、塑料或雨水潮湿表面）；
      * **Transmission（透射）**：用于清澈/浑浊玻璃、透明树脂与液体，受透射粗糙度、基于厚度的吸收颜色深度（Depth-dependent color）与体积散射控制；
      * **Subsurface Scattering（次表面散射）**：通过散射半径（Scatter Radius）控制光在半透明介质内的渗透扩散范围；
@@ -849,22 +851,24 @@
 1. **EXPLICITLY TAUGHT**：
    * **PBR 核心贴图通道体系与线性管线**（pp. 143–149）：
      * **Linear Workflow**：色彩类贴图（Base Color）存储在 sRGB 空间，读取时必须线性化；数据类贴图（Roughness, Metallic, Normal, Displacement）必须在 Raw/Linear 模式下读取以保护数学精度；
-     * **Base Color（反照率）**：非金属表达纯固有色，金属表达镜面高光颜色；严格遵守 **PBR Safe Range**（绝缘体通常在 30–240 sRGB 之间，纯白雪花不高于 240，纯黑煤炭不低于 30；金属通常在 180–255 sRGB 之间）；严禁在 Base Color 中画入定向投射阴影或强高光点；
+     * **Base Color（反照率安全范围与渲染问题）**：非金属表达纯固有色，金属表达镜面高光颜色；Dinur 强调 Base Color 决定了反照率（Albedo），虽然没有绝对精准的色彩范围定义，但推荐漫反射安全范围通常在 30–240 sRGB 之间，金属色彩在 180–255 sRGB 之间。**若使用极端的纯黑（0 sRGB）或纯白（255 sRGB），表面会因吸收或反射过多光能而违背能量守恒定律，导致在光照变化下产生不自然的视觉反应，并严重干扰全局光照（GI）的弹射计算平衡**，因此确保数值处于安全范围可避免后续环节出现光照与渲染问题；
      * **Roughness Map**：黑（0.0 镜面）白（1.0 漫散）灰度图，是表现微观手印、水渍、油脂擦痕与尘土的核心载体；
-     * **Metallic Map**：严格二值化（0 或 1），仅在边缘抗锯齿与渐变污垢处产生过渡灰阶；
+     * **Metallic Map（金属贴图特征与制作建议）**：Dinur 明确指出金属贴图是灰度贴图，但在物理上表面要么是绝缘体要么是金属（不存在半金属）。作者明确建议：无论采用何种方法制作金属贴图，**都应大幅拉高对比度（crank the contrast and values）使其数值尽可能接近 0 或 1，避免过多的渐变灰阶；金属与绝缘体之间的过渡应当是相对清晰锐利的（"the transition should be fairly sharp"）**；中间过渡灰阶主要保留在两种材质状态的边缘分界线以处理抗锯齿和像素过渡；
      * **Normal vs Displacement**：Normal 贴图通过 RGB 向量扰动表面光影法线，不改动网格轮廓；Displacement 贴图在渲染时细分并真正顶起几何多边形；
      * **Transparency vs Opacity**：Transparency 产生真实的物理透射与折射（表面高光反射保留）；Opacity 则是几何镂空遮罩（彻底切除多边形）。
    * **三类纹理生成工作流的优缺点剖析**（pp. 149–156）：
      * **实拍照片纹理（Image Textures）**：真实感细节无可比拟，但致命缺陷是存在 UV 拉伸、平铺接缝、以及照片中不可消除的“烘焙光照”（Baked-in Lighting）；
-     * **纹理摄影采集规范（Shooting & Prepping Photos）**：必须在阴天散射光（Overcast sky）下拍摄，避免任何强烈直射阳光与刺眼高光投影；必须进行正交透视矫正与去色调平铺处理；
+     * **纹理摄影采集规范（Shooting & Prepping Photos）**：作者提出核心规则是“避免直射光（avoid direct light）”。**室外照片与三维扫描应始终在阴天散射光下或完全阴影中拍摄（"Outdoor photos and 3D scans should always be captured under overcast sky or in full shadow"）**；室内拍摄应尽量做到平坦漫射光照，避免明显的直射光源或强烈的投射阴影；必须进行正交透视矫正与去色调平铺处理；
      * **程序化纹理（Procedural Textures / Substance Designer）**：分辨率无关、无缝平铺、非破坏性且支持随机种子（Random Seed）批量迭代；但致命缺陷是容易产生冰冷机械的“程序化特征感”（generic procedural look）；
-     * **综合混合工作流（Combining Workflows）**：推荐将照片真实感（作为 Base Color 底色）与程序化噪波（生成高度、法线与粗糙度）相结合，并必须通过手动绘制（Hand-painting）添加与具体几何拓扑强相关的定制微瑕疵（例如把手处的手印磨损、角落缝隙的灰尘沉降、曲面边缘的水流冲刷痕迹）。
+     * **综合混合工作流建议（Combining Workflows）**：推荐将照片真实感（作为 Base Color 底色）与程序化噪波（生成高度、法线与粗糙度）相结合，并通过手动绘制（Hand-painting）添加与具体几何拓扑强相关的定制微瑕疵（例如把手处的手印磨损、角落缝隙的灰尘沉降、曲面边缘的水流冲刷痕迹）。
 2. **PRACTICALLY DEMONSTRATED**：
    * 复古电子合成器（Vintage Synthesizer）资产完整的 PBR 贴图流程拆解（从白模、底色、粗糙度、法线到最终微瑕疵的逐层演进，pp. 144–147）；
    * 潮湿地面材质的全套 PBR 贴图对应拆解（Base Color, Roughness, Normal, AO, Displacement，pp. 148–152）；
    * Substance Designer 节点图表与石头墙壁材质的 6 组随机种子（Seed）变换生成展示（p. 155）。
 3. **LIMITATION & BOUNDARIES**：
-   * **贴图滥用陷阱**：法线贴图过度用力（Over-cranked）会在剪影边缘露馅且产生刺眼噪点；置换贴图滥用于微观织物会白白浪费显存与渲染时间；纯黑或纯白的 Base Color 会导致全局光照计算崩溃。
+   * **贴图使用陷阱**：法线贴图过度用力（Over-cranked）会在剪影边缘露馅且产生刺眼噪点；置换贴图滥用于微观织物会白白浪费显存与渲染时间；超出 PBR 安全范围的 Base Color 会破坏真实感并引发环境光照失衡。
+4. **INTERPRETIVE SUMMARY / Project Synthesis（项目归纳）**：
+   * *纹理制作整合方法论*：Dinur 提出“底色借照片、高度靠程序、瑕疵依拓扑手绘”的混合工作流思路，为数字材质制作中平衡生产效率与真实感细节提供了极佳的方法论指导。
 
 ---
 
@@ -917,15 +921,15 @@
    * **局部重绘（Inpainting）与去噪幅度**（pp. 220–222）：
      * 配合羽化遮罩实现局部画面重构；
      * Denoising Strength 决定对原图光照与几何的保留程度。
-   * **ControlNet 空间结构精准控制套件**（pp. 222–225）：
-     * **Depth ControlNet**：利用深度图（或 CG Z-depth 通道）精准锁定构图与透视比例；
-     * **Normal ControlNet**：利用表面法线图严格约束几何受光方向与表面起伏细节；
+   * **ControlNet 结构条件引导套件**（pp. 222–225）：
+     * **Depth ControlNet**：利用深度图（或 CG Z-depth 通道）引导画面的宏观空间布局、透视与物体比例；
+     * **Normal ControlNet（法线条件控制）**：利用表面法线表征（surface-normal representation）指示几何表面朝向（direction of surfaces），作为光照方向与表面起伏细节的条件线索（surface-orientation / lighting-direction cue），与 Depth ControlNet 形成互补；
      * **Canny / OpenPose / IP Adapters / Segmentation**：分别提供硬轮廓、人体骨骼、视觉参考风格注入与语义区域隔离。
 2. **PRACTICALLY DEMONSTRATED**：
    * **电影镜头季节变换实战案例（Case Study: Season Changes with ComfyUI and Nuke, pp. 225–227）**：
      * 艺术家 Kevin Samar 演示电影实拍长镜头秋季变冬季/春季的工作流；
      * 在 Nuke 中擦除演员并输出首尾关键帧干净背景板；
-     * 将背景板与 CG 深度图送入 ComfyUI，借助 **Depth ControlNet** 与 SDXL 大模型，施加季节关键词重新生成逼真雪景与春季植被；
+     * 将背景板与 CG 深度图送入 ComfyUI，借助 **Depth ControlNet** 与 SDXL 大模型，施加季节关键词重新生成雪景与春季植被；
      * 将生成结果带回 Nuke 投影到三维卡片模型上，重新合成摄像机运动、演员与粒子飘雪。
 3. **LIMITATION & BOUNDARIES（明确的工具局限与证据边界）**：
    * **生成式 AI 的根本局限性（Why AI is Not Deterministic 3D）**：
@@ -933,7 +937,7 @@
      * **“知其形而不知其理”（Form without Physics）**：AI 只在统计学上知道“照片长什么样”，完全不理解三维空间、物理光学、光线追踪、能量守恒与透视法则；
      * **空间与解剖逻辑错误**：极易产生手指畸变、镜面反射错位（无法生成空间对应的镜中倒影）、标牌文字乱码等致命逻辑破绽；
      * **视频连续性崩溃**：视频生成在时间轴上算力开销暴增，且难以维持帧间连续性与物体几何恒常性。
-   * **【特别证据纪律声明】Material Curriculum Deployment Boundary**：
+   * **【特别证据纪律声明】Material Curriculum Deployment Boundary（材质课程部署证据边界）**：
      * Dinur 在 Ch 19 讲授的内容属于**通用视效/环境镜头生成（General Photoreal / Generative Scene Workflow）**的实战控制方案（如 ComfyUI + Nuke 视效镜头修图）；
      * **严禁将此处的生成式 AI 内容直接等同于“可直接部署于三维数字材质生产（Substance PBR Material Production）的一手证据”**。其在材质生产中的应用仅作为概念参考，不可替代标准 PBR 贴图的制作。
 
@@ -945,10 +949,10 @@
    * **真实感观察与微瑕疵美学哲学**：系统论证了 CG 为何天生具有“完美塑料感”，奠定了通过边缘倒角（高光磁铁）、微观粗糙度扰动与自然侵蚀对抗纯数学完美的观察方法论；
    * **色彩与材质的六层解构模型**：提供了从 Base Color、微瑕疵、直射与弹射光、镜面反射、大气透视到相机光学的一整套自下而上逆向分析真实感的框架；
    * **物理光线交互与材质二元性**：深入阐释了绝缘体（固有色+无色高光+低正视角反射）与金属（无漫反射+彩色高光+高反射）的本质区别与能量守恒定律；
-   * **材质 LookDev 打光检验准则**：详述了面光源阴影半影、IBL 天光标定、平方反比衰减与多光源材质评估环境搭建标准；
+   * **多光源光照与物理渲染策略**：详述了面光源阴影半影、IBL 天光标定、平方反比衰减与多光源光照环境下的材质表现审视；
    * **PBR 着色器高级参数矩阵**：覆盖微表面粗糙度、各向异性、双层清漆（Coat）、透射折射、次表面散射、薄膜干涉与色散；
-   * **PBR 贴图制作的三大流派**：透彻对比了实拍采样、程序化生成与手动绘制的优缺点，提出底色取实拍、高度取程序、瑕疵取手绘的黄金组合法则；
-   * **生成式 AI 的真实感控制边界**：在 ComfyUI / Stable Diffusion 环境下讲授了 Latent、VAE、CFG、局部重绘以及利用 Depth/Normal ControlNet 锚定几何透视的实战工作流。
+   * **PBR 贴图制作的三大流派**：透彻对比了实拍采样、程序化生成与手动绘制的优缺点，提出底色取实拍、高度取程序、瑕疵取手绘的综合思路；
+   * **生成式 AI 的真实感控制边界**：在 ComfyUI / Stable Diffusion 环境下讲授了 Latent、VAE、CFG、局部重绘以及利用 Depth/Normal ControlNet 引入空间结构条件的实战工作流。
 2. **DINUR (2026) 明确未教授的盲区与局限（Source Limitations & Does Not Cover）**：
    * **无特定软件手把手菜单操作**：本书属于跨软件的“原理与法则指南”（Principles Guide），不提供特定三维软件（如 Maya、Blender、Substance 3D Painter）的具体菜单点击操作步骤；
    * **无 Substance Designer 节点网络深度编写**：虽肯定了 Designer 的程序化价值并展示了成品节点图与石墙随机效果，但未讲授原子节点公式编写、空间数学映射或自定义函数；
@@ -964,15 +968,15 @@
 | 知识与能力维度 | Wes McDermott (*The PBR Guide* 2018) | Zeeshan Jawed Shah (*Realistic Asset Creation* 2022) | Eran Dinur (*Guide to Photorealism* 2026) | 三者互补性与边界事实说明 (Source Complementarity & Boundaries) |
 | :--- | :--- | :--- | :--- | :--- |
 | **物理光学基础与着色机制** | **Source Covers**：微表面理论、BRDF、能量守恒定律、Fresnel $F_0$ 绝缘体/金属微观反射推导。 | **Source Limitation**：仅套用默认 PBR 材质球模板，未解释微表面光学与能量守恒原理。 | **Source Covers**：系统阐释光能吸收、散射、透射折射、次表面散射（SSS）、能量守恒定律以及绝缘体 vs 金属的微观物理二元性。 | **Complementarity**：McDermott 与 Dinur 共同构筑坚实的物理光学理论基石；Dinur 进一步扩展了 SSS、透射折射与微表面漫反射的光学细节，弥补了 Shah 缺乏物理底层原理的短板。 |
-| **真实感观察与质感审视 (LookDev)** | **Source Limitation**：偏向于贴图规范与数值表，较少探讨宏观审美认知与现实观察法则。 | **Source Limitation**：偏向于软件功能实现，缺乏“如何判断真实感是否达标”的审视训练。 | **Source Covers**：独家系统讲授现实观察方法论、“细节困境”微细节累积效应、解构场景色彩的“六层模型”、边缘倒角（高光磁铁）以及对抗 CG“塑料感/太完美”的核心法则。 | **Complementarity**：**Dinur 独家提供了材质制作的审美与审视眼光（LookDev Judgment）**，填补了 Shah 和 McDermott 均未系统建立的“观察现实、发现微瑕疵、逆向解构真实感”的认知空白。 |
-| **打光支持与材质评估环境** | **Source Limitation**：仅提及在不同光照环境下测试贴图，未展开物理打光实战。 | **Source Limitation**：主要在 Painter/Stager 预置 HDR 环境中预览，未讲授物理灯具衰减与色温。 | **Source Covers**：深入讲解物理面光源半影生成、光强平方反比衰减定律、真实世界尺寸比例尺、色温（Kelvin）标准以及多光源资产检验测试场的搭建。 | **Complementarity**：**Dinur 提供了评估材质真实感不可或缺的物理照明环境规范**，使学生能够摆脱“离开预设 HDR 就不会看材质”的局限，科学搭建 LookDev 评估场景。 |
+| **真实感观察与质感审视 (LookDev Judgment)** | **Source Limitation**：偏向于贴图规范与数值表，较少探讨宏观审美认知与现实观察法则。 | **Source Limitation**：偏向于软件功能实现，缺乏“如何判断真实感是否达标”的审视训练。 | **Source Covers**：系统讲授现实观察方法论、“细节困境”微细节累积效应、解构场景色彩的“六层模型”、边缘倒角（高光磁铁）以及对抗 CG“塑料感/太完美”的核心法则。 | **Complementarity**：Dinur 专注于材质制作的审美认知与质感审视方法（LookDev Judgment），填补了 Shah 和 McDermott 偏向纯软件操作与规范定义时的观察方法论空白。 |
+| **打光支持与材质评估环境** | **Source Limitation**：仅提及在不同光照环境下测试贴图，未展开物理打光实战。 | **Source Limitation**：主要在 Painter/Stager 预置 HDR 环境中预览，未讲授物理灯具衰减与色温。 | **Source Covers**：深入讲解物理面光源半影生成、光强平方反比衰减定律、真实世界尺寸比例尺、色温（Kelvin）标准以及多光源照明下的材质表现评估。 | **Complementarity**：Dinur 提供了评估材质真实感所需的光照物理机制分析，有助于学生在科学的照明环境下审视材质，弥补单纯依赖预置 HDR 预览的局限。 |
 | **着色器参数体系 (Shading Controls)** | **Source Covers**：Metallic/Roughness 与 Specular/Glossiness 基础双管线参数映射。 | **Source Covers**：Painter 图层通道与 Designer 节点输出槽配置。 | **Source Covers**：全面覆盖现代 BRDF 着色器参数体系，包含 Diffuse Roughness、双层清漆（Coat）、透射吸收深度、次表面散射半径、各向异性（Anisotropy）、薄膜干涉与阿贝数色散。 | **Complementarity**：Dinur 建立了现代高级着色器的全功能参数认知图谱，极大拓宽了 McDermott 基础 PBR 参数的边界。 |
-| **贴图规范与色彩空间安全** | **Source Covers**：线性空间渲染（Linear Space）、sRGB vs Linear 通道定义、Albedo 安全范围（30–240 sRGB）、PBR Validate 校验。 | **Source Limitation**：直接使用软件既有配置，未系统阐述 Gamma 矫正与色彩安全范围。 | **Source Covers**：系统强调线性管线、数据图读入 Raw/Linear 模式、Albedo 物理安全界限（严禁纯黑/纯白破坏 GI）。 | **Complementarity**：McDermott 与 Dinur 交叉印证了贴图制作的数据安全标准，指导数字贴图规范化生产。 |
-| **软件实操与资产烘焙管线** | **Source Limitation**：仅概述 Substance 软件定位，无具体操作步骤。 | **Source Covers**：手把手讲授 7 种核心网格贴图烘焙、Texel Density 计算、顶点色 ID 映射、图层堆栈与 6 大投影模式。 | **Source Limitation**：属于原理与法则指南，无具体软件菜单点击或手把手软件界面练习。 | **Complementarity**：**Shah 独家提供了不可替代的工业级软件手把手实操教学**，将 McDermott 和 Dinur 的物理理论落实为生产力工具动作。 |
-| **手绘贴图、智能材质与资产复用** | **Source Limitation**：无手绘与智能材质封装实操。 | **Source Covers**：详细示范 Black Mask、Planar Mask、Stencil、Clone/Smudge 工具、Smart Material 封装与 Anchor Point 联动。 | **Source Covers**（概念层面）：强调手工绘制与模型拓扑强相关的微瑕疵（把手油污、缝隙积灰、水渍），但无具体软件操作。 | **Complementarity**：Dinur 提出“在模型关键受力/接触部位手工绘制微瑕疵”的审美要求，由 Shah 具体的 Painter 画笔、遮罩与锚点工具加以实现。 |
-| **程序化纹理设计 (Procedural Texturing)** | **Source Limitation**：仅介绍节点化思想。 | **Source Covers**：原子节点 vs 复合节点、12 种混合模式、砖墙与电视架综合图表实战；但未覆盖参数暴露。 | **Source Covers**（方法论层面）：透彻对比程序化纹理的无缝随机优势与“冰冷机械感”陷阱，演示 Substance Designer 随机种子迭代。 | **Complementarity**：Shah 提供了 Designer 节点连接实操，Dinur 则警示了程序化纹理的审美陷阱并给出了破除机械感的方法论。 |
-| **纹理摄影采集与处理** | **Source Limitation**：未涉及摄影采集。 | **Source Covers**：Sampler 中利用 Image-to-Material 快速解析单张照片为 PBR 贴图。 | **Source Covers**：系统讲授纹理摄影规范（阴天散射光拍摄、消除直射高光与投影、去色调透视调平与无缝平铺）。 | **Complementarity**：Dinur 补齐了前端纹理摄影采集的物理规范，与 Shah 的 Sampler 照片后处理形成完整闭环。 |
-| **生成式 AI 在真实感工作流中的应用** | **Source Limitation**：出版时间较早，未覆盖生成式 AI。 | **Source Limitation**：2022 年出版，未涉及生成式 AI 辅助功能。 | **Source Covers**：详细讲授扩散模型逆向去噪机制、Latent 空间、CFG 引导、局部重绘（Inpainting）以及利用 Depth/Normal ControlNet 进行几何与法线结构精准控制的视效合成实战。 | **Complementarity**：**Dinur 独家提供了生成式 AI 技术的权威一手教学依据**，明确了以 Depth/Normal 空间图作为几何物理约束的控制方法，并清醒指出了 AI 的非确定性与物理逻辑缺陷。 |
+| **贴图规范与色彩空间安全** | **Source Covers**：线性空间渲染（Linear Space）、sRGB vs Linear 通道定义、Albedo 安全范围（30–240 sRGB）、PBR Validate 校验。 | **Source Limitation**：直接使用软件既有配置，未系统阐述 Gamma 矫正与色彩安全范围。 | **Source Covers**：系统强调线性管线、数据图读入 Raw/Linear 模式、Albedo 物理安全界限（避免过黑过亮干扰 GI 平衡与真实感）。 | **Complementarity**：McDermott 与 Dinur 交叉印证了贴图制作的数据安全标准，指导数字贴图规范化生产。 |
+| **软件实操与资产烘焙管线** | **Source Limitation**：仅概述 Substance 软件定位，无具体操作步骤。 | **Source Covers**：手把手讲授 7 种核心网格贴图烘焙、Texel Density 计算、顶点色 ID 映射、图层堆栈与 6 大投影模式。 | **Source Limitation**：属于原理与法则指南，无具体软件菜单点击或手把手软件界面练习。 | **Complementarity**：Shah 提供了工业级软件手把手实操教学，将 McDermott 和 Dinur 的物理理论落实为生产力工具动作。 |
+| **手绘贴图、智能材质与资产复用** | **Source Limitation**：无手绘与智能材质封装实操。 | **Source Covers**：详细示范 Black Mask、Planar Mask、Stencil、Clone/Smudge 工具、Smart Material 封装与 Anchor Point 联动。 | **Source Covers**（概念层面）：强调手工绘制与模型拓扑强相关的微瑕疵（把手油污、缝隙积灰、水渍），但无具体软件操作。 | **Complementarity**：Dinur 强调“在模型关键接触与风化部位手工绘制微瑕疵”的方法论，由 Shah 具体的 Painter 画笔、遮罩与锚点工具加以实现。 |
+| **程序化纹理设计 (Procedural Texturing)** | **Source Limitation**：仅介绍节点化思想。 | **Source Covers**：原子节点 vs 复合节点、12 种混合模式、砖墙与电视架综合图表实战；但未覆盖参数暴露。 | **Source Covers**（方法论层面）：透彻对比程序化纹理的无缝随机优势与“冰冷机械感”陷阱，演示 Substance Designer 随机种子迭代。 | **Complementarity**：Shah 提供了 Designer 节点连接实操，Dinur 则提示了程序化纹理的审美陷阱并给出了破除机械感的方法论思路。 |
+| **纹理摄影采集与处理** | **Source Limitation**：未涉及摄影采集。 | **Source Covers**：Sampler 中利用 Image-to-Material 快速解析单张照片为 PBR 贴图。 | **Source Covers**：系统讲授纹理摄影规范（阴天散射光或全阴影拍摄、避免直射光高光与投影、去色调透视调平与无缝平铺）。 | **Complementarity**：Dinur 补齐了前端纹理摄影采集的物理规范，与 Shah 的 Sampler 照片后处理形成完整闭环。 |
+| **生成式 AI 在真实感工作流中的应用** | **Source Limitation**：出版时间较早，未覆盖生成式 AI。 | **Source Limitation**：2022 年出版，未涉及生成式 AI 辅助功能。 | **Source Covers**：详细讲授扩散模型逆向去噪机制、Latent 空间、CFG 引导、局部重绘（Inpainting）以及利用 Depth/Normal ControlNet 引入几何与表面法线条件线索的视效合成实战。 | **Complementarity**：Dinur 提供了生成式 AI 技术的权威一手教学依据，明确了以 Depth/Normal 空间图作为几何先验约束条件的控制方法，并清醒指出了 AI 的非确定性与物理逻辑缺陷。 |
 
 ---
 *本文档为 Gate 2.5A 阶段成果，汇总了 Shah (2022)、The PBR Guide (2018) 与 Dinur (2026) 的一手源知识索引，作为后续 Gate 2.5B（Provenance Audit & Page Reference Update）与 Gate 3（Teaching Value Matrix 修正）的权威事实凭据。*
