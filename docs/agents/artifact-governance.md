@@ -1,88 +1,83 @@
-# Artifact Boundary & Growth Governance
+# Artifact Structure Guidance & Current Repository Placement Decisions
 
-This document establishes the repository-local policy for artifact growth, file boundaries, and context guards across human-maintained code, research Markdown, and Agent-facing documents.
+This document establishes repository-local guidance for artifact structure, file boundaries, and context guards across human-maintained code, research Markdown, and Agent-facing documents, alongside accepted placement decisions for current work units.
 
-## Core Principle: Guardrails vs Architecture
+## Core Principle: Signals vs Architecture
 
-**Size is a guardrail, not architecture.**
+**Size is a heuristic signal, not architecture.**
 
-Physical line count serves as an objective structural-review trigger. However, structural decisions are driven by architectural qualities, not line-count optimization:
-- **Responsibility**: Does the artifact maintain a single, cohesive responsibility, or is it accumulating disjoint concepts?
-- **Lifecycle**: Do different sections change at different times and for different reasons?
-- **Authority / SSOT Role**: Does the artifact serve as a canonical source of truth where splitting would create ambiguity or synchronization hazards?
-- **Review Boundary**: Can human reviewers and Agent tools effectively inspect, reason about, and verify diffs?
-- **Change Locality**: Does a typical edit touch localized sections, or does it require holding the entire document in immediate working context?
+Physical line count serves as an informative signal rather than an architecture driver. Structural decisions are driven by contextual qualities rather than line-count targets:
+- Agents must never perform mechanical splits or create shallow fragmentation solely to satisfy an arbitrary line count.
+- When real growth or maintenance friction suggests a potential boundary problem, structural boundaries should follow natural modular seams.
 
-Agents must never perform mechanical splits or create shallow fragmentation solely to satisfy an arbitrary line-count target.
+## The ~600-Line Structural-Risk Signal
 
-## The ~600-Line Structural Review Trigger
+Across human-maintained code, research Markdown, and Agent-facing documents:
+- **~600 physical lines** is a **soft, low-cost structural-risk signal**, not a hard limit or mandatory architecture/review gate.
+- It may justify extra attention when the current task also encounters real friction (e.g., navigation overhead, review difficulty, or synchronization hazards).
+- Line count alone does **not** require splitting, architecture review, or an extra refactoring work unit.
 
-For human-maintained code, research Markdown, and Agent-facing documents:
-- **~600 physical lines** is a **mandatory structural-review trigger**, not an absolute hard limit.
-- **Trigger Conditions**:
-  1. A proposed change causes a previously under-threshold file to cross ~600 lines.
-  2. A proposed change materially expands an existing file that is already over ~600 lines.
+### Optional Diagnostic Lenses
 
-When the trigger is reached, the Agent must conduct a structural assessment before expanding the file.
+When real task friction indicates that an artifact boundary might need rethinking, Agents may select from relevant diagnostic lenses suited to the live task (not a mandatory checklist):
 
-### Permitted Structural Evaluation Outcomes
+- **Responsibility & Cohesion**: Does the artifact maintain a single cohesive purpose, or is it accumulating disjoint concepts?
+- **Lifecycle & Change Propagation**: Do different sections change at different cadences and for different reasons?
+- **Provenance & Authority / SSOT**: Does the artifact serve as a canonical source of truth where splitting would create synchronization hazards or ambiguity?
+- **Interfaces & Natural Seams**: Are there clean boundaries and natural seams for partitioning, or would splitting produce tightly-coupled, shallow fragments?
+- **Locality & Navigation**: Does a typical edit touch localized sections, or does it require holding sprawling unrelated context in working memory?
+- **Review Boundary & Validation**: Can human reviewers and Agent tools effectively inspect, reason about, and verify diffs?
 
-When evaluating an artifact at or above the ~600-line trigger, the Agent must explicitly determine one of three outcomes:
-
-1. **`CONTINUE COHESIVE`**:
-   The content remains tightly coupled to a single responsibility or authoritative lifecycle. Splitting would introduce artificial boundaries, harm readability, or disperse a single coherent reference. Expansion is permitted within that responsibility.
-2. **`SPLIT REQUIRED`**:
-   Natural, independent boundaries exist (distinct sub-domains, independent lifecycles, clear module seams). The artifact should be partitioned along these natural boundaries.
-3. **`EXCEPTION OR DEFERRED REFACTOR`**:
-   The artifact qualifies as a recognized exception (see below) or is an existing monolithic asset where refactoring is explicitly out of scope for the current work unit.
+Decisions naturally align with common-sense patterns (such as continuing a cohesive file where unity is valuable, splitting along natural boundaries when seams are distinct, or deferring refactoring when out of scope), without requiring formal classification states.
 
 ## Legacy Over-Threshold Policy (Grandfathering)
 
-Existing artifacts that already exceed the ~600-line threshold prior to the adoption of this policy are grandfathered.
-- Grandfathered artifacts do not require emergency splitting or preemptive re-architecting.
-- **Factual corrections, maintenance, and narrow localized edits** within grandfathered artifacts do **not** automatically trigger a large refactor.
-- However, Agents **must not** unilaterally append substantial new independent responsibilities or unrelated topics to grandfathered files without explicit structural review and deliberate planning.
+Existing artifacts that already exceed ~600 lines are grandfathered:
+- They do not require emergency splitting or preemptive re-architecting.
+- Factual corrections, maintenance, and task-required localized edits proceed normally.
+- Avoid default continued accumulation of substantial new, unrelated responsibilities onto existing large files.
 
 ## Code vs. Prose & Research Markdown
 
-- **Source Code**: Adheres to strict modularity, high cohesion, loose coupling, and testability boundaries. Deep modules with narrow interfaces are preferred over sprawling files.
-- **Prose & Research Markdown**: Research syntheses, native knowledge indices, and comprehensive curricula often benefit from contiguous reading and unified cross-referencing. Review triggers for Markdown must prioritize topical cohesion and indexing integrity over arbitrary segmenting.
+Boundary considerations differ fundamentally between executable code and explanatory prose:
+
+- **Source Code**: Focus on cohesion, clear interfaces, low coupling, locality, testability, natural seams, and feedback loops. Deep modules with well-defined interfaces are preferred over sprawling files, without breaking apart naturally cohesive logic.
+- **Prose & Research Markdown**: Focus on provenance, clear separation of source evidence vs. interpretation, lifecycle differences, navigation, reviewability, reuse, argument continuity, and clear boundaries between teaching/curriculum and research synthesis.
+- **LOC is a weak signal for Markdown**: Syntheses, specification mappings, and reference indices frequently benefit from contiguous reading and unbroken internal links. Arbitrary segmentation based solely on line count harms context and readability.
 
 ## Recognized Exceptions
 
-The 600-line trigger does not mechanically apply to:
+The 600-line heuristic signal does not mechanically apply to:
 - Auto-generated artifacts, schemas, or compilation targets
 - Vendor libraries and third-party imports
 - Lockfiles (`package-lock.json`, etc.)
 - Test fixtures, test matrices, and raw dataset files
 - Self-contained narrative specifications or monolithic source transcripts where external slicing harms provenance
 
----
+## Temporary Mitigation Discipline
 
-## Known Repository Hotspots (Registered Architecture Reviews)
-
-### `docs/research/source-native-knowledge-index.md` (~1,356 lines)
-
-- **Status**: Existing Over-Threshold Artifact / Architecture Review Required.
-- **Description**: Contains Browser-reviewed source-native index/evidence for Shah, The PBR Guide, Dinur, and RTR4.
-- **Temporary Governance Directive (Maintenance-Only / No-Material-Growth)**:
-  - Until a dedicated artifact-placement / architecture decision is completed and Browser-reviewed, this file is strictly **maintenance-only / no-material-growth**.
-  - Factual corrections and narrow maintenance of already reviewed Shah / PBR Guide / Dinur / RTR4 material remain permitted.
-  - Substantial new Batch 5+ source-native content must **not** be appended to this file by default.
-  - The general policy's `CONTINUE COHESIVE` outcome does **not** override this temporary hotspot-specific restriction (an Agent may not treat new source batches as a cohesive continuation to justify expanding this monolith).
-  - This restriction does **not** itself decide the eventual split/migration architecture, nor does it authorize performing the architecture migration within localized work units.
+When temporary mitigations are introduced (such as a temporary freeze, no-growth policy, or migration hold on an artifact):
+- They should concisely state why they exist and what specific fact, event, or phase milestone triggers their reevaluation or retirement.
+- They must not silently harden into permanent restrictions once their triggering condition has been resolved.
+- Do not create a state machine or new tracker for temporary rules.
 
 ---
 
-## Gate 2.5A Source-Native Evidence Placement Policy
+## Legacy Aggregate: `docs/research/source-native-knowledge-index.md` (~1,356 lines)
 
-Starting with Batch 5, new source-native evidence must use independent leaf artifacts under `docs/research/source-native/`.
+- **Status & Nature**: Legacy aggregate containing source-native evidence for Shah, The PBR Guide, Dinur, and RTR4 (Batches 1–4) with recognized structural risk due to size and multi-source accumulation.
+- **Placement & Evolution Guidance**:
+  - Factual corrections, maintenance, and task-required local changes are allowed normally.
+  - Avoid default continued accumulation of new independent source batches into this file.
+  - The previous temporary restriction ("until a dedicated artifact-placement decision was completed and Browser-reviewed") has been satisfied by the accepted Gate 2.5A placement decision at `2c141474167b3053abb5277680443a994ca491a5`. The strict temporary freeze is retired in favor of directing new source-native batches to independent leaf artifacts.
+  - If future significant expansion or reorganization is actually needed, choose placement pragmatically based on the live task and current repository topology.
+  - **No migration of Batches 1–4** is authorized by this Work Unit; historical content remains in place.
 
-### Core Principle
+---
 
-**One independently reviewable source batch = one source-native leaf artifact.**
+## Current Gate 2.5A Placement Decision / Default Layout
 
-Each source batch owns its own Browser Review anchor, establishing a localized diff and review boundary that prevents unbounded context growth.
+Starting with Batch 5, the accepted default layout places new source-native evidence into independent leaf artifacts under `docs/research/source-native/`.
 
 ### Default Mapping for Upcoming Source Batches
 
@@ -92,10 +87,12 @@ Each source batch owns its own Browser Review anchor, establishing a localized d
 - **Batch 8 Blender**: `docs/research/source-native/blender-official.md`
 - **Batch 9 OpenPBR**: `docs/research/source-native/openpbr-specification.md`
 
-*(Note: This is a placement rule and architectural destination schema, not authorization to start future batches early.)*
+*(Note: This specifies the default placement schema for upcoming batches; it does not authorize starting future batches early.)*
 
-### Governance Directives for Evidence Artifacts
+### Pragmatic Boundaries vs. Invariants
 
-- **No historical migration in current units**: Existing Shah, The PBR Guide, Dinur, and RTR4 evidence remains in the grandfathered aggregate (`docs/research/source-native-knowledge-index.md`). Historical content must not be migrated or split in localized research units.
-- **Old aggregate status**: The existing aggregate remains strictly maintenance-only / no-material-growth until a dedicated, separately reviewed migration decision is reached.
-- **Minimal overhead**: No new root `README.md`, manifest, YAML metadata database, or generated aggregate file is required at this stage. Keep file organization direct, transparent, and lightweight.
+- This default layout does **not** establish a universal invariant that "one source batch = one file".
+- A small or closely related source may share an artifact in future work, whereas a large or complex source may later warrant multiple artifacts if live evidence and reviewability support it.
+- The current mapping remains the accepted default for present Gate 2.5A work, keeping review boundaries localized and preventing context bloat.
+- **No historical migration**: Existing Shah, The PBR Guide, Dinur, and RTR4 evidence remains in `docs/research/source-native-knowledge-index.md`.
+- **Minimal overhead**: No root manifest, YAML registry, or synthetic aggregate generation is required.
