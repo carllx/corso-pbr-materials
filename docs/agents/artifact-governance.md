@@ -61,6 +61,13 @@ The 600-line trigger does not mechanically apply to:
 
 ## Known Repository Hotspots (Registered Architecture Reviews)
 
-| Artifact Path | Current Lines | Status | Governance Directive |
-| :--- | :--- | :--- | :--- |
-| `docs/research/source-native-knowledge-index.md` | ~1,356 | **Existing Over-Threshold Artifact** / *Architecture Review Required* | Grandfathered monolith. Contains browser-verified synthesis (Shah, PBR Guide, Dinur, RTR4). **Do not split, migrate, or restructure** during localized research or narrow maintenance. Refactoring requires a dedicated, deliberate architectural work unit. |
+### `docs/research/source-native-knowledge-index.md` (~1,356 lines)
+
+- **Status**: Existing Over-Threshold Artifact / Architecture Review Required.
+- **Description**: Contains Browser-reviewed source-native index/evidence for Shah, The PBR Guide, Dinur, and RTR4.
+- **Temporary Governance Directive (Maintenance-Only / No-Material-Growth)**:
+  - Until a dedicated artifact-placement / architecture decision is completed and Browser-reviewed, this file is strictly **maintenance-only / no-material-growth**.
+  - Factual corrections and narrow maintenance of already reviewed Shah / PBR Guide / Dinur / RTR4 material remain permitted.
+  - Substantial new Batch 5+ source-native content must **not** be appended to this file by default.
+  - The general policy's `CONTINUE COHESIVE` outcome does **not** override this temporary hotspot-specific restriction (an Agent may not treat new source batches as a cohesive continuation to justify expanding this monolith).
+  - This restriction does **not** itself decide the eventual split/migration architecture, nor does it authorize performing the architecture migration within localized work units.
