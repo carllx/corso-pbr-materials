@@ -71,3 +71,31 @@ The 600-line trigger does not mechanically apply to:
   - Substantial new Batch 5+ source-native content must **not** be appended to this file by default.
   - The general policy's `CONTINUE COHESIVE` outcome does **not** override this temporary hotspot-specific restriction (an Agent may not treat new source batches as a cohesive continuation to justify expanding this monolith).
   - This restriction does **not** itself decide the eventual split/migration architecture, nor does it authorize performing the architecture migration within localized work units.
+
+---
+
+## Gate 2.5A Source-Native Evidence Placement Policy
+
+Starting with Batch 5, new source-native evidence must use independent leaf artifacts under `docs/research/source-native/`.
+
+### Core Principle
+
+**One independently reviewable source batch = one source-native leaf artifact.**
+
+Each source batch owns its own Browser Review anchor, establishing a localized diff and review boundary that prevents unbounded context growth.
+
+### Default Mapping for Upcoming Source Batches
+
+- **Batch 5 Painter**: `docs/research/source-native/adobe-painter-official.md`
+- **Batch 6 Designer**: `docs/research/source-native/adobe-designer-official.md`
+- **Batch 7 Sampler**: `docs/research/source-native/adobe-sampler-official.md`
+- **Batch 8 Blender**: `docs/research/source-native/blender-official.md`
+- **Batch 9 OpenPBR**: `docs/research/source-native/openpbr-specification.md`
+
+*(Note: This is a placement rule and architectural destination schema, not authorization to start future batches early.)*
+
+### Governance Directives for Evidence Artifacts
+
+- **No historical migration in current units**: Existing Shah, The PBR Guide, Dinur, and RTR4 evidence remains in the grandfathered aggregate (`docs/research/source-native-knowledge-index.md`). Historical content must not be migrated or split in localized research units.
+- **Old aggregate status**: The existing aggregate remains strictly maintenance-only / no-material-growth until a dedicated, separately reviewed migration decision is reached.
+- **Minimal overhead**: No new root `README.md`, manifest, YAML metadata database, or generated aggregate file is required at this stage. Keep file organization direct, transparent, and lightweight.
