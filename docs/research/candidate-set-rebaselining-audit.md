@@ -153,7 +153,7 @@ Every audit decision is tested against 10 core dimensions:
 | **AI-U09** | 材质母版提示词驱动调参 *(Prompt-to-Parameter Control)* | `RETIRE_OR_DEFER` | *(退役/仅保留为概念推导)* | Node To Talk Docs (`C`/`D`); 见 AI Impact Report §6.3 (`Synthesis Pointer`) | **RETIRE_OR_DEFER**：属于实验性原型插件（Node To Talk）的临时功能。核心在于母材质参数暴露（**V02-C28**）与 Agent 接口（**V02-C45**），自然语言调参只是外壳包装。 |
 | **AI-U10** | 资产血统与商用合规判断 *(Asset Provenance & Licensing Judgment)* | `RETIRE_OR_DEFER` | *(独立候选退役；其中与材质获取直接相关的商用合规决策吸收进 V02-C47)* | Adobe Firefly Licensing Docs (`C`); 见 AI Impact Report §6.3 (`Synthesis Pointer`) | **RETIRE_OR_DEFER（吸收与分流）**：作为独立技术候选退役。超出材质专业边界的广泛法务与伦理通识予以延后退役；其中涉及材质资产获取选型（如生成资产商用许可、模型合规风险）的具体决策条件，作为输入准则有机并入 **V02-C47**，消除无源孤岛冲突。 |
 | **AI-U11** | 智能体节点图编排 *(Agentic Graph Orchestration)* | `CANDIDATE_REFRAME` | **V02-C45: 机器可读材质图表拓扑、序列化协议与智能体可操作性** *(Machine-readable Material Graph Topology, Serialization Protocols & Agent Operability)* | MaterialX Spec (`C`); Blender Python API (`C`); Designer Python API (`C`); DD3M (2024/2025) (`D`); Node To Talk Docs (`C`/`D`) | 历史表述偏向高深的多智能体编排。重构为底层的“理解结构化材质图表的拓扑表示、掌握 JSON/XML/代码序列化规范，使材质系统具备可被外部脚本与 AI Agent 安全解析、修改与验证的结构化特征”。 |
-| **AI-U12** | 跨平台物理材质标准化映射 *(Standardized MaterialX/OpenPBR Translation)* | `SPLIT` | **拆分为 V02-C44 与 V02-C46** | OpenPBR Spec (`C`); MaterialX Spec (`C`); UE 5.8 Interchange Docs (`C`) | **SPLIT 核心原因**：原单元混合了“开放标准材质语义表达与跨平台交换（MaterialX/OpenPBR）”与“从标准格式到目标游戏引擎的转换损失认知与管线适配交付”。这两者在工程实践中分属表达层与交付层。 |
+| **AI-U12** | 跨平台物理材质标准化映射 *(Standardized MaterialX/OpenPBR Translation)* | `SPLIT` | **拆分为 V02-C44 与 V02-C46** | OpenPBR Spec (`C`); MaterialX Spec (`C`); OpenUSD UsdShade Spec (`C`); UE 5.8 Docs (`C`) | **SPLIT 核心原因**：原单元混合了“开放标准材质语义与中立结构化表达（MaterialX/OpenPBR）”与“面向影视动画（USD/渲染上下文绑定）和实时游戏（引擎原生转换/性能约束）的双出口目标交付与损失适配”。表达层与交付层在工程实践中分属不同层级。 |
 | **AI-U13** | 视觉特征约束规范制定 *(Visual Constraint Specification)* | `MERGE` | **合并入 V02-C40 与 V02-C42** | Dinur (2026) Ch 19 (`B`); 见 AI Impact Report §6.3 (`Synthesis Pointer`) | 设定反射率范围、粗糙度极值等约束指标，实质就是执行物理一致性验证与质检清单。与 **V02-C40** 及 **V02-C42** 重复。 |
 
 ---
@@ -181,7 +181,7 @@ Every audit decision is tested against 10 core dimensions:
 - **Evidence Pointer**:
   - `source-native-knowledge-index.md` Dinur Ch 19; `adobe-sampler-official.md` §2.4, §3.1; `ai-impact-on-material-workflows.md` §5.
 - **Why It Materially Affects Gate 3**:
-  - 历史 57 项受工具中心主义影响，预设“每次遇到材质任务都必须从零手工制作或单张图片生成”。
+  - 历史 57 项受工具中心主义影响，预设“每次遇到材质任务均从零手工制作或单张图片生成”。
   - 在现代多工具/多模态生产环境中，盲目使用 AI 生成可能导致拓扑混乱、无法局部修订，反而成倍增加修复成本；而盲目从零手工制作又效率低下。掌握“何时生成、何时复用参数化母板、何时直接检索高质量资产库”的战略权衡能力，是面向 Gate 3 教学结构评估不可或缺的决策层候选能力。
 
 ---
@@ -225,12 +225,12 @@ Every audit decision is tested against 10 core dimensions:
      - `M05-U03 (Part A) -> V02-C32` (**单张图像/照片多通道 PBR 属性算法推导与置信度评估**)
      - `M05-U03 (Part B) + AI-U05 -> V02-C33` (**漫反射光照残留诊断与反照率手工/算法去光照精修**)
    - *Rationale*: 单张图预测通道与 Albedo 中的阴影死黑剥离属于完全不同的算法逻辑与实操排错技能。
-2. **Split 2: 开放标准材质表达 vs. 目标引擎交付损失**
+2. **Split 2: 开放标准材质表达 vs. 双出口目标交付与转换损失适配**
    - *Original*: `AI-U12` (跨平台物理材质标准化映射)
    - *Lineage*:
      - `AI-U12 (Part A) -> V02-C44` (**开放标准材质语义与结构化表示: OpenPBR 材质语义 + MaterialX 图元模式**)
-     - `AI-U12 (Part B) -> V02-C46` (**跨格式表示转换损失认知与目标交付适配**)
-   - *Rationale*: 标准描述（数据层）与引擎落地（执行/优化层）存在巨大的技术鸿沟，混在一起会产生“标准等于落地”的严重认知偏差。
+     - `AI-U12 (Part B) -> V02-C46` (**双出口表示转换损失认知与目标交付适配: 影视 USD/渲染上下文绑定 + 实时引擎原生约束**)
+   - *Rationale*: 标准语义描述（数据中立层）与下游具体生产交付（影视 UsdShade 材质绑定/多渲染器终端 vs. 游戏实时引擎原生转换/通道打包/Shader Permutations 优化层）存在显著的技术断层，拆分以明确表达层与双出口交付层的独立职责。
 
 ### 4.3 Retirements / Defers (退役与延后谱系 — 6 项)
 1. **`M05-U02: Substance 3D Sampler 工具链工作流`**
@@ -318,7 +318,13 @@ Proposed Candidate Set v2 包含 **47 项高聚合、去软件中心化、面向
 - **`V02-C44`**: 开放标准材质语义与结构化表示: OpenPBR 材质语义 + MaterialX 图元模式 *(Open Material Semantics & Structured Representation: OpenPBR Semantics + MaterialX Graph/Schema)*
   - *精确概念界定*：明确区分两层职责——**OpenPBR** 定义标准表面着色物理语义（Surface Shading Model / Parameter Semantics）；**MaterialX** 提供中立的强类型节点图数据结构、XML 内容模式与跨平台交换规范（Graph/Content Schema）。两者协同构成现代开放材质表达。
 - **`V02-C45`**: 机器可读材质图表拓扑、序列化协议与智能体可操作性 *(Machine-readable Material Graph Topology, Serialization Protocols & Agent Operability)*
-- **`V02-C46`**: 跨格式表示转换损失认知与目标交付适配 *(Representation Conversion Loss Awareness & Target Delivery Adaptation)*
+- **`V02-C46`**: 双出口表示转换损失认知与目标交付适配 (影视动画 USD/渲染上下文绑定 + 实时游戏原生转换约束) *(Dual-target Representation Conversion Loss Awareness & Delivery Adaptation: Animation/VFX USD Binding + Realtime Engine Constraints)*
+  - *能力范围完整覆盖*：
+    - **影视动画 / VFX 出口**：掌握基于 OpenUSD / `UsdShade` 的材质资产绑定架构（`UsdShadeMaterialBindingAPI`、直接绑定、集合与面子集 `GeomSubsets` 绑定），理解多渲染上下文终端机制（`outputs:surface`、`outputs:arnold:surface`、`outputs:mtlx:surface`）与跨 DCC/渲染器着色外观对齐。
+    - **实时游戏 / Realtime 出口**：深刻理解外部标准表达（MaterialX/OpenPBR）导入游戏引擎（如 UE 5.8）时的转换损失边界，识别 BSDF 节点透传（Pass-through/inputs not connected）与退化，排查静态参数开关引发的着色器变体（Permutations）编译开销，满足目标管线的 ORM 打包、材质实例化（Material Instances）与显存/Draw Call 预算约束。
+  - *核心认知模型*：$$	ext{Valid Representation} \quad 
+eq \quad 	ext{Visual Equivalence} \quad 
+eq \quad 	ext{Production Deliverable}$$
 
 ---
 
@@ -358,14 +364,14 @@ Proposed Candidate Set v2 包含 **47 项高聚合、去软件中心化、面向
 | 维度代号 | 核心维度名称 (Audit Dimension) | 对应覆盖的 v2 候选能力 (Covered v2 Candidates) | 覆盖状态 (Status) | 权威证据指针 (Evidence Pointer) | 覆盖分析与结论 |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Dim A** | **Material / Appearance Causality**<br>*(物理与外观因果分析)* | `V02-C01`, `V02-C02`, `V02-C04`, `V02-C05`, `V02-C15`, `V02-C16` | **FULLY COVERED** | Dinur (2026) Ch 1, 3, 5 (`B`); RTR4 Ch 9 (`B`); OpenPBR Spec §1.1 (`C`) | 全面覆盖光照、几何、尺度与表面微观交互的因果物理模型，防止黑盒生成幻觉。 |
-| **Dim B** | **Representation Choice**<br>*(材质表示范式选择)* | `V02-C22`, `V02-C28`, `V02-C29`, `V02-C44`, `V02-C47` | **FULLY COVERED** | MaterialX Spec §2 (`C`); OpenPBR Spec §Metadata (`C`); Designer Docs (`C`); Dinur Ch 19 (`B`) | 覆盖“何时用位图、何时用着色器参数、何时用程序化图表、何时用 MaterialX 结构化表示、何时用引擎原生资产”的辨析与选择。 |
+| **Dim B** | **Representation Choice**<br>*(材质表示范式选择)* | `V02-C22`, `V02-C28`, `V02-C29`, `V02-C44`, `V02-C47` | **CROSS-CUTTING COVERAGE / PROJECT SYNTHESIS** | MaterialX Spec §2 (`C`); OpenPBR Spec §Metadata (`C`); Designer Docs (`C`); Dinur Ch 19 (`B`) | **横切综合判定**：官方标准未提供单一现成的范式选择决策树，而是由节点图架构（C22）、参数暴露（C28）、SBSAR 运行时包（C29）、MaterialX 结构化表示（C44）以及获取范式权衡（C47）联合支撑“在位图贴图、程序化图表、开放标准描述与引擎原生材质间权衡选择”的项目综合心智模型。 |
 | **Dim C** | **Representation Loss Awareness**<br>*(表示转换损失认知)* | `V02-C30`, `V02-C39`, `V02-C46` | **FULLY COVERED** | UE 5.8 MaterialX Matrix (`C`); MaterialX ShaderGen Guide (`C`); OpenPBR Spec §Flexibility (`C`) | 深入贯彻三层模型（$\text{Valid Representation} \neq \text{Visual Equivalence} \neq \text{Production Deliverable}$），覆盖烘焙位深损失、节点透传及跨渲染器差异。 |
 | **Dim D** | **Controlled Revision / Edit Locality**<br>*(局部受控修订与编辑局部性)* | `V02-C12`, `V02-C13`, `V02-C28`, `V02-C43` | **FULLY COVERED** | Shah (2022) Ch 3–5 (`A`); Painter Layer/Mask Docs (`C`); Meshy Docs (`C`) | 确立“只修改磨损而不破坏底材”、“只调局部遮罩而不重跑全局生成”的局部非破坏性受控修订体系。 |
 | **Dim E** | **Maintainability / Parameterization**<br>*(可维护性、复用与参数暴露)* | `V02-C14`, `V02-C27`, `V02-C28`, `V02-C29`, `V02-C36` | **FULLY COVERED** | Designer Values Docs (`C`); UE 5.8 Material Instances Docs (`C`); Shah Ch 6, 7 (`A`) | 覆盖参数暴露设计、黑盒模块化封装、动态材质实例以及随机种子重现性。 |
 | **Dim F** | **Agent Operability**<br>*(智能体可读性与自动化操作)* | `V02-C22`, `V02-C44`, `V02-C45` | **FULLY COVERED** | MaterialX Spec (`C`); Blender Python API (`C`); Designer Python API (`C`); DD3M (`D`) | 覆盖结构化 DAG 拓扑、机器可读 XML/JSON 序列化与公开 API，使 Agent 能够安全读取、构建与验证材质。 |
 | **Dim G** | **Generative vs. Retrieval vs. Reuse**<br>*(生成、检索与复用权衡)* | `V02-C14`, `V02-C29`, `V02-C41`, `V02-C47` | **FULLY COVERED** | Dinur (2026) Ch 19 (`B`); 80 Level Tripo Interview (`D`); Sampler Generative Docs (`C`) | 建立在面对具体制作需求时，科学权衡 AI 生成、资产库检索、参数化派生与实拍采集的战略决策能力。 |
 | **Dim H** | **Validation / Diagnosis / Visual QA**<br>*(严苛验证、因果排错与质检)* | `V02-C03`, `V02-C21`, `V02-C33`, `V02-C35`, `V02-C40`, `V02-C42` | **FULLY COVERED** | McDermott (2018) pp. 80–92 (`B`); OpenPBR White Furnace (`C`); IntrinsiX (`D`); LumiTex (`D`) | 覆盖反射率安全直方图、去光照暗斑排查、烘焙法线黑边排错、跨通道自洽性诊断及多环境 IBL 旋转压力测试。 |
-| **Dim I** | **Target Delivery / Lifecycle**<br>*(目标交付与下游运行时生命周期)* | `V02-C17`, `V02-C36`, `V02-C37`, `V02-C46` | **FULLY COVERED** | UE 5.8 Texture Compression & Material Instances (`C`); Karis (2013) (`D`); McDermott (`B`) | 涵盖影视动画（着色对齐）与实时游戏（ORM 打包、BC7 压缩、Shader Permutations、显存带宽预算）双出口交付。 |
+| **Dim I** | **Target Delivery / Lifecycle**<br>*(目标交付与下游运行时生命周期)* | `V02-C17`, `V02-C36`, `V02-C37`, `V02-C46` | **FULLY COVERED (DUAL-TARGET)** | **Animation/VFX**: `materialx-usdshade.md` §3.1–§3.2 (`C`) (UsdShadeMaterialBindingAPI, GeomSubsets, Render Contexts `outputs:arnold` / `outputs:mtlx`);<br>**Game/Realtime**: `unreal-substrate-target-sample.md` §2.1–§2.4 (`C`) (Pass-through BSDF, Shader Permutations, ORM BC7 Packing, Instances); Karis (2013) (`D`); McDermott (`B`) | **双出口真实覆盖**：<br>1. **Animation/VFX 出口**：通过 `V02-C46` 结合 `V02-C17`，覆盖 UsdShade 材质绑定、多渲染上下文（Render Context）多后端终端管理与离线渲染着色一致性；<br>2. **Game/Realtime 出口**：通过 `V02-C36`（母材质与实例体系）、`V02-C37`（ORM/BC7 通道打包压缩）与 `V02-C46`（引擎原生转换退化与变体开销），覆盖实时游戏交付刚性技术约束。 |
 | **Dim J** | **Human Art Direction & Judgment**<br>*(人类艺术指导、审美意图与验收准则)* | `V02-C01`, `V02-C09`, `V02-C15`, `V02-C16`, `V02-C40`, `V02-C47` | **FULLY COVERED (CROSS-CUTTING)** | Dinur (2026) Ch 1, 3, 5 (`B`); Shah (2022) Ch 4–6 (`A`) | **横切整合处理**：未机械增设孤立的“审美课”，而是将艺术意图（叙事风化、多级频率解构、现实质感对照、最终质量验收）紧密锚定在观察、分层因果与验证全流程中。 |
 
 ---
@@ -391,20 +397,25 @@ Proposed Candidate Set v2 包含 **47 项高聚合、去软件中心化、面向
 
 ---
 
-## Part 9 — Critical Anti-Inertia Review
+## Part 9 — Critical Anti-Inertia Review & Gate 3 Hypotheses
 
-### The 2030 Counterfactual Test
-> *"如果历史 57 项今天完全不存在，我们面对一个与强能力 AI Agent 协同的 2030 学生，还会主动创建这些能力吗？"*
+### The 2030 Counterfactual Test (Structural Audit Perspective)
+> *"如果历史 57 项今天完全不存在，我们面对一个与强能力 AI Agent 协同的 2030 学生，在能力地图中还会设立这些候选单元吗？"*
 
-1. **是否彻底剔除了软件与 GUI 惯性？**
-   - **是**。退役了 `Substance 3D Sampler 工具链工作流` (M05-U02) 这一纯软件外壳；合并了 `M02-U04` 与 `M02-U05`，不再把智能材质与生成器按软件菜单拆分；合并了 `M03-U04` 与 `M03-U05`，不再孤立讲授高低模准备；重写了 17 项以具体工具操作命名的单元。
-2. **是否排除了泛化自然语言提示词技巧的干扰？**
-   - **是**。退役了 `材质语义提示词工程` (AI-U01)、`AI 材质变体策展与筛选` (AI-U06) 与 `材质母版提示词驱动调参` (AI-U09)。自然语言提示技巧会随模型迭代而迅速贬值，而对物理因果的理解 (**V02-C01/C15**) 和参数暴露接口 (**V02-C28**) 才是长期有效的底层资产。
-3. **保留并强化的能力经受住了什么考验？**
-   - **物理光学与因果法则**：能量守恒、反射率区间与微表面理论必须保留，因为这是诊断 AI 幻觉和物理失真的唯一准绳。
-   - **结构化表示与 Agent 可操作性**：MaterialX 节点图、OpenPBR 语义与 DAG 拓扑得以强化，因为它们构成了人类与 AI Agent 协作的安全数据基底。
-   - **受控修订与编辑局部性**：扁平贴图反向分层重构与局部通道遮罩得以突出，这是业余生成与工业级可交付资产的关键分水岭。
-   - **交付损失认知与生产就绪度**：坚持“文件语法合法 $\neq$ 外观一致 $\neq$ 生产可交付”，确保学生不会因自动化工具的繁荣而丧失对真实引擎性能开销与硬件压缩的掌控力。
+1. **针对软件与 GUI 惯性的结构性清理假说**：
+   - 审计确认已无任何候选单元单纯定义为特定软件的工作流外壳（如纯软件操作向导 `M05-U02` 已退役）；
+   - 避免将软件菜单项直接映射为独立能力（如智能材质与生成器合并为 `V02-C14` 自适应封装，高低模准备合并入 `V02-C21` 烘焙细节映射）；
+   - 17 项带有工具操作倾向的历史单元已被重写为跨平台通用的能力表述，为 Gate 3 教学评估提供了去厂商绑定的中立候选底座。
+2. **针对泛化自然语言提示技巧的边界划分假说**：
+   - 退役了 `材质语义提示词工程` (AI-U01)、`AI 材质变体策展与筛选` (AI-U06) 与 `材质母版提示词驱动调参` (AI-U09) 等易随模型更新而波动的操作技巧；
+   - 将对材料物理工艺的理解 (**V02-C01/C15**) 与参数接口设计 (**V02-C28**) 作为结构性能力保留在候选池中，作为待在 Gate 3 验证持久性的教学假说。
+3. **保留与重构候选单元在 Gate 3 审议中的差异化价值假说**：
+   - **物理光学与因果法则**：能量守恒、反射率安全区间与微表面理论（C01–C05）在 v2 中保持结构性表达，为 Gate 3 提供检验算法生成贴图物理自洽性的诊断依据。
+   - **结构化表示与 Agent 可操作性**：MaterialX 节点图、OpenPBR 语义与 DAG 拓扑（C22, C44, C45）在候选池中获得明确表达，作为人机协同与外部脚本安全操作的潜在数据接口。
+   - **受控修订与编辑局部性**：扁平贴图反向分层重构与局部通道遮罩（C12, C13, C43）作为区别于一次性黑盒生成的候选能力，提交 Gate 3 评估其实操训练深度。
+   - **交付损失认知与双出口生产就绪度**：坚持“文件语法合法 $
+eq$ 外观一致 $
+eq$ 生产可交付”（C46），为影视 USD 绑定与游戏实时性能约束提供双出口交付的教学审议对象。
 
 ---
 
