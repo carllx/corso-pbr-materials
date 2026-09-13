@@ -4,7 +4,7 @@
 > **Primary Sources**:
 > 1. Adobe Substance 3D Sampler Official Documentation (`substance3d.adobe.com/documentation/sadoc/`, Updated 2026-04-07)
 > 2. Adobe Substance 3D Sampler Image-to-Material & Generative Features Guides (`helpx.adobe.com/substance-3d-sampler/`)
-> 3. Adobe Creative Cloud Generative Credits FAQ (`helpx.adobe.com/creative-cloud/apps/generative-ai/generative-credits-faq.html`)
+> 3. Adobe Creative Cloud Generative Credits Central Policy / FAQ (`helpx.adobe.com/creative-cloud/apps/generative-ai/generative-credits-faq.html`)
 > 4. Zeeshan Jawed Shah (2022) Chapter 11 (Verified hands-on execution baseline in `source-native-knowledge-index.md`)
 > **Artifact Placement**: `docs/research/source-native/adobe-sampler-official.md`  
 
@@ -15,8 +15,8 @@
 本研究针对 **Lane E: Substance 3D Sampler** 进行技术解构，重点回答：
 1. 图像转材质（Image-to-Material）与无缝平铺（Tiling）算法架构；
 2. 材质采集（Material Acquisition）与生成式工作流（Generative Workflows）的官方现状；
-3. 严格区分**一手官方事实（SOURCE FACT）**与**教学研判假说（INTERPRETIVE SUMMARY / GATE 3 HYPOTHESIS — NOT A DECISION）**；
-4. 明确审慎建立针对“真实测量”、“采集”、“算法估算”与“AI生成”的分类学边界，防止将推断贴图误导为实验室物理真值。
+3. 记录官方文档关于生成式功能计费与积分豁免的**时间敏感性与文档间差异（VERSION-SENSITIVE OFFICIAL POLICY / OFFICIAL-DOCUMENTATION DISCREPANCY）**；
+4. 严格区分**一手官方事实（SOURCE FACT）**与**教学研判假说（INTERPRETIVE SUMMARY / GATE 3 HYPOTHESIS — NOT A DECISION）**。
 
 ---
 
@@ -25,14 +25,13 @@
 Substance 3D Sampler 是 Adobe 针对现实资产数字化与材质转换的工具：
 
 ### 2.1 Image-to-Material 官方记录的两套算法分支
-根据官方滤镜文档，Image-to-Material 提供了截然不同的技术方案：
-1. **AI Powered (机器学习分支)**：
-   - 基于深度学习模型，专门用于从单张照片中剥离直射与环境光照（De-lighting），生成漫反射反照率（Base Color），并估算生成 **Normal、Height、Roughness** 贴图；
-   - 官方文档说明该算法专注于表面去光照和法线/高度推断，对于金属度（Metallic）通常需人工介入或补充指定。
-2. **Bitmap to Material (B2M - 传统程序化分支)**：
-   - 采用 Substance 经典图像处理算子与程序化技术（Procedural / photometric filter techniques）；
-   - 从位图明暗与色彩阈值中估算生成 Base Color、Normal、Metallic、Roughness、Ambient Occlusion 等通道；
-   - 属于基于图像规则的确定性处理，但容易受原始照片中的硬高光反光干扰。
+根据官方滤镜文档，Image-to-Material 提供了两套不同技术路径：
+1. **AI Powered (机器学习分支 - Machine Learning)**：
+   - 官方文档明确使用 `Machine Learning`（机器学习）表述，专用于从单张照片中剥离光照（De-lighting），生成漫反射反照率（Base Color），并估算生成 **Normal、Height、Roughness** 贴图；
+   - 官方文档说明该算法聚焦于表面去光照与微表面起伏/粗糙度的机器学习推断。
+2. **Bitmap to Material (B2M - 经典程序化分支)**：
+   - 官方文档记录其基于 Substance 经典图像处理与程序化滤镜技术（Procedural / photometric techniques）；
+   - 从位图明暗与对比度中估算生成 Base Color、Normal、Metallic、Roughness、Ambient Occlusion 等通道。
 
 ### 2.2 无缝平铺与图像处理 (Seamless Tiling & Utilities)
 - **Tiling 滤镜**：提供边缘交叉混合（Edge Blending）与偏移拼合（Offset Wrap），消除大面积重复平铺时的明显接缝；
@@ -44,11 +43,13 @@ Substance 3D Sampler 是 Adobe 针对现实资产数字化与材质转换的工�
   - 软件将贴图像素分辨率与公制单位（Centimeters / Meters）进行关联，并将物理尺寸作为元数据记录在导出的材质资产中。
   - **边界说明**：此功能提供的是尺寸元数据与参考对齐工具，实际在第三方引擎或视口中仍需着色器或三平面投影参数进行相应配合。
 
-### 2.4 生成式 AI 特性与 Beta 计费政策 (Generative Features & Credit Status)
-- **Beta 状态**：Sampler 内集成的 Firefly 驱动功能（如 `Text to Texture`、`Text to Pattern`）在官方界面与文档中明确标为 **`Generative (Beta)`**；
-- **计费与账户政策 (Generative Credits Policy)**：
-  - 根据 Adobe 官方 Generative Credits FAQ，**生成式 AI 特性在处于 Beta 测试期间不消耗商业 Generative Credits（生成式积分）**（"Generative AI features do not consume credits while in Beta"）；
-  - 但使用此类功能仍须登录具备有效授权的 Adobe 账户并需要云端网络连接。
+### 2.4 生成式 AI 特性、Beta 状态与计费政策差异 (VERSION-SENSITIVE OFFICIAL POLICY / DISCREPANCY)
+官方来源在描述生成式功能积分消耗时存在时间敏感性与文档差异：
+1. **产品端功能状态**：Sampler 内集成的 Firefly 驱动功能（如 `Text to Texture`、`Text to Pattern`）在官方界面中明确标为 **`Generative (Beta)`**，且使用时需要登录具备有效授权的 Adobe 账户并需要云端网络连接；
+2. **官方文档政策差异 (Documentation Discrepancy)**：
+   - *早期/Sampler 专题文档*（Sampler Generative Workflows 页面）：曾笼统描述 Sampler 的 Beta 生成式功能不消耗积分；
+   - *最新/中央账户政策*（Adobe Creative Cloud Generative Credits Central FAQ）：目前官方权威清单中明确列出豁免（"currently not consuming credits"）的仅为 Substance Sampler 的 **Text to Material** 与 **Text to Pattern** 功能，而未对所有生成式功能进行无条件永久豁免承诺；
+   - **事实核定**：在涉及账户资产与生产计费事实时，优先以 Adobe 最新中央计费政策为准，记录该时间敏感差异。
 
 ---
 
@@ -76,7 +77,7 @@ Substance 3D Sampler 是 Adobe 针对现实资产数字化与材质转换的工�
 ```
 
 > **教学防错要点**：  
-> 在课程设计中，应引导学生理解 AI 估算生成的 Roughness / Normal / Metallic 贴图属于推断结果，不能当作物理实验测量真值，必须通过标准打光环境（LookDev）进行物理合法性检验。
+> 在课程设计中，应引导学生理解机器学习估算生成的贴图属于推断结果，不能当作物理实验测量真值，必须通过标准打光环境（LookDev）进行物理合法性检验。
 
 ---
 
@@ -99,8 +100,8 @@ Substance 3D Sampler 是 Adobe 针对现实资产数字化与材质转换的工�
 
 | 证据条目 | 原始权威来源 | 证据类型 | 支撑事实 (SOURCE FACT) | 边界限定 (SOURCE FACT) |
 | :--- | :--- | :--- | :--- | :--- |
-| **Sampler Image-to-Material Docs** | Substance 3D Sampler Official User Guide (2026-04) | `Vendor Documentation` | 证实明确存在 AI Powered 与 B2M 两种算法，分别用于单目去光照与传统程序化算子估算 | 单张照片提取属于估算推断，不等于实验室物理测量 |
-| **Generative Beta & Credits Policy** | Adobe Sampler Docs & Generative Credits FAQ | `Vendor Documentation` | 证实生成式功能处于 Beta 状态；官方明确在 Beta 期间不消耗生成式积分，但需登录账户与云端连接 | 属于实验性辅助特性，不可断言为固定不变的成熟基石 |
+| **Sampler Image-to-Material Docs** | Substance 3D Sampler Official User Guide (2026-04) | `Vendor Documentation` | 证实明确存在 Machine Learning 与经典 B2M 程序化滤镜两种技术路径 | 单张照片提取属于估算推断，不等于实验室物理测量 |
+| **Generative Policy Discrepancy** | Adobe Sampler Docs & Central Generative Credits FAQ | `Vendor Documentation` | 证实功能标为 Beta；最新中央政策明确 Text to Material 与 Text to Pattern 暂不消耗积分，存在文档间时间敏感差异 | 属于实验性辅助特性，需关注最新官方中央计费政策变动 |
 | **Physical Size Workflow** | Sampler Docs `end-to-end-physical-size-workflow` | `Vendor Documentation` | 证实软件提供标尺工具将贴图像素与公制厘米单位关联并存入元数据 | 属于尺寸标定与元数据记录，下游引擎落地仍需着色器配合 |
 
 ---

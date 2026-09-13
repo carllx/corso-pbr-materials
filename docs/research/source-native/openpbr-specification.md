@@ -65,16 +65,55 @@ OpenPBR 采用物理介质平板（Slabs）及在其上定义的相互作用算�
 6. $M_\textrm{surface} = \mathbf{layer}(M_\textrm{coated-base}, S_\textrm{fuzz}, \mathtt{fuzz\_weight})$
 7. $M_\textrm{PBR} = \mathbf{mix}(S_\textrm{ambient-medium}, M_\textrm{surface}, \mathtt{geometry\_opacity})$
 
-### 2.4 各物理层参数语义 (Parameter Semantics)
-- **Base (底基)**：`base_weight`（权重），`base_color`（RGB 反照率），`base_roughness`（漫反射粗糙度），`base_metalness`（金属度 $[0, 1]$）。
-- **Specular (镜面高光)**：`specular_weight`，`specular_color`（高光染色），`specular_roughness`（GGX 微表面粗糙度），`specular_ior`（折射率，默认 $1.5$），`specular_roughness_anisotropy`（高光各向异性）。
-- **Transmission (透射)**：`transmission_weight`（透射权重），`transmission_color`，`transmission_depth` / `transmission_scatter`（体积衰减与散射）。
-- **Subsurface (次表面散射)**：`subsurface_weight`，`subsurface_color`，`subsurface_radius`（均值自由程 MFP），`subsurface_scatter_anisotropy`（散射相位函数各向异性）。
-- **Coat (清漆涂层)**：`coat_weight`，`coat_color`，`coat_roughness`，`coat_ior`（默认 $1.6$）。
-- **Fuzz (织物绒毛)**：`fuzz_weight`，`fuzz_color`，`fuzz_roughness`（基于微薄片理论 Microflake Theory）。
-- **Thin Film (薄膜干涉)**：`thin_film_weight`，`thin_film_thickness` ($[0, 2000]\,\text{nm}$)，`thin_film_ior`。
-- **Emission (自发光)**：`emission_luminance`，`emission_color`。
-- **Geometry (几何控制)**：`geometry_opacity`，`geometry_normal`，`geometry_coat_normal`，`geometry_thin_walled`。
+### 2.4 各物理层参数语义 (Verified Parameter Semantics vs. MaterialX v1.39.5 NodeDef)
+对照 OpenPBR v1.1.1 规范与 MaterialX v1.39.5 官方标准库节点定义（`ND_open_pbr_surface_surfaceshader`），参数名称与取值规范严格核定如下：
+- **Base (底基)**：
+  - `base_weight`：基础漫反射分量权重，类型 `float`，默认 $1.0$。
+  - `base_color`：漫反射反照率，类型 `color3`，默认 $(0.8, 0.8, 0.8)$。
+  - `base_diffuse_roughness`：漫反射微表面粗糙度（Oren-Nayar 散射），类型 `float`，范围 $[0, 1]$，默认 $0.0$（*注意：规范原名精确为 `base_diffuse_roughness`，非 `base_roughness`*）。
+  - `base_metalness`：金属度，类型 `float`，范围 $[0, 1]$，默认 $0.0$。
+- **Specular (镜面高光反射)**：
+  - `specular_weight`：高光权重，类型 `float`，默认 $1.0$。
+  - `specular_color`：高光染色，类型 `color3`，默认 $(1, 1, 1)$。
+  - `specular_roughness`：微表面高光粗糙度（GGX NDF），类型 `float`，范围 $[0, 1]$，默认 $0.3$。
+  - `specular_ior`：折射率，类型 `float`，范围 $[0, \infty)$，默认 $1.5$。
+  - `specular_roughness_anisotropy`：各向异性程度，类型 `float`，范围 $[0, 1]$，默认 $0.0$。
+- **Transmission (透射与折射)**：
+  - `transmission_weight`：透射权重，类型 `float`，范围 $[0, 1]$，默认 $0.0$。
+  - `transmission_color`：透射色彩，类型 `color3`，默认 $(1, 1, 1)$。
+  - `transmission_depth`：体积衰减深度，类型 `float`，默认 $0.0$。
+  - `transmission_scatter`：体积散射系数，类型 `color3`，默认 $(0, 0, 0)$。
+  - `transmission_scatter_anisotropy`：散射相位各向异性，类型 `float`，默认 $0.0$。
+  - `transmission_dispersion_scale` / `transmission_dispersion_abbe_number`：色散控制参数。
+- **Subsurface (次表面散射)**：
+  - `subsurface_weight`：次表面散射权重，类型 `float`，范围 $[0, 1]$，默认 $0.0$。
+  - `subsurface_color`：次表面散射颜色，类型 `color3`，默认 $(0.8, 0.8, 0.8)$。
+  - `subsurface_radius`：均值自由程标量距离，类型 `float`，默认 $1.0$。
+  - `subsurface_radius_scale`：三色通道散射距离缩放，类型 `color3`，默认 $(1.0, 0.5, 0.25)$。
+  - `subsurface_scatter_anisotropy`：次表面散射相位各向异性，类型 `float`，默认 $0.0$。
+- **Coat (清漆涂层)**：
+  - `coat_weight`：涂层权重，类型 `float`，范围 $[0, 1]$，默认 $0.0$。
+  - `coat_color`：涂层比尔-朗伯吸收染色，类型 `color3`，默认 $(1, 1, 1)$。
+  - `coat_roughness`：涂层独立微表面粗糙度，类型 `float`，范围 $[0, 1]$，默认 $0.0$。
+  - `coat_roughness_anisotropy`：涂层各向异性，类型 `float`，默认 $0.0$。
+  - `coat_ior`：涂层折射率，类型 `float`，默认 $1.6$。
+  - `coat_darkening`：底层吸收加深因子，类型 `float`，默认 $1.0$。
+- **Fuzz (织物绒毛层)**：
+  - `fuzz_weight`：绒毛层权重，类型 `float`，范围 $[0, 1]$，默认 $0.0$。
+  - `fuzz_color`：微纤维散射反照率，类型 `color3`，默认 $(1, 1, 1)$。
+  - `fuzz_roughness`：基于微薄片理论（Microflake Theory）的纤维朝向发散度，类型 `float`，默认 $0.5$。
+- **Thin Film (薄膜干涉)**：
+  - `thin_film_weight`：薄膜干涉权重，类型 `float`，范围 $[0, 1]$，默认 $0.0$。
+  - `thin_film_thickness`：**薄膜物理厚度，物理单位为微米（$\mu\text{m}$），未归一化范围为 $[0, \infty)$，归一化范围为 $[0, 1]$，规范默认值为 $0.5\,\mu\text{m}$**。
+  - `thin_film_ior`：薄膜层折射率，类型 `float`，默认 $1.4$。
+- **Emission (自发光)**：
+  - `emission_luminance`：发光亮度辐射通量，类型 `float`，默认 $0.0$。
+  - `emission_color`：发光色彩，类型 `color3`，默认 $(1, 1, 1)$。
+- **Geometry (几何与法线控制)**：
+  - `geometry_opacity`：裁切透空度，类型 `float`，范围 $[0, 1]$，默认 $1.0$。
+  - `geometry_thin_walled`：薄壁模式开关，类型 `boolean`，默认 `false`。
+  - `geometry_normal` / `geometry_coat_normal`：底基与涂层的独立法线向量输入。
+  - `geometry_tangent` / `geometry_coat_tangent`：底基与涂层的独立切线向量输入。
 
 ---
 
@@ -108,7 +147,7 @@ OpenPBR Specification v1.1.1 正文在 "Historical background and objectives"、
   - 微薄片理论（Microflake Theory）：解释 Fuzz 绒毛层为何脱离标准微表面法线分布（NDF）。
 - **面向学生的核心概念价值假说 (Student-Facing Conceptual Hypothesis)**：
   - **通用材质解构心智模型**：学生可借此建立分层分析习惯（底基金属/电介质 $\to$ 透射/次表面 $\to$ 粗糙高光 $\to$ 透明涂层 $\to$ 表面绒毛/薄膜）。
-  - **跨 DCC 语义映射参考**：OpenPBR 的参数命名与物理概念为理解现代着色器（如 Blender Principled BSDF、Arnold Standard Surface、Substance ASM 及 Unreal Substrate）提供了标准化的概念对照框架。但由于各引擎实现细节、近似策略与专用扩展不同，**不宜断言所有 DCC 间均能实现绝对无缝的通用理解**。
+  - **跨 DCC 语义映射参考**：OpenPBR 的参数命名与物理概念为理解现代着色器（如 Blender Principled BSDF、Arnold Standard Surface、Substance ASM 及 Unreal Substrate）提供了标准化的概念对照框架。但由于各引擎实现细节、近似策略与专用扩展不同，不宜断言所有 DCC 间均能实现绝对无缝的通用理解。
   - **无需学生手写底层着色代码**：由于规范定位为外观与参数模型，教学价值应聚焦于参数物理机理与诊断直觉，而非编写底层着色器算法。
 
 ---
@@ -117,7 +156,7 @@ OpenPBR Specification v1.1.1 正文在 "Historical background and objectives"、
 
 | 证据条目 | 原始权威来源 | 证据类型 | 支撑事实 (SOURCE FACT) | 边界限定 (SOURCE FACT) |
 | :--- | :--- | :--- | :--- | :--- |
-| **OpenPBR Specification v1.1.1** | ASWF GitHub `OpenPBR` (Release Tag: `v1.1.1`, 2026-04-17) | `Technical Specification` | 确立基于 Slab 与 layer/mix 算子的现代标准材质语义，定义 base, coat, fuzz, thin-film, transmission, subsurface 参数层级 | 仅定义外观标准与物理参考方程，不包含节点图实现或资产打包 |
+| **OpenPBR Specification v1.1.1** | ASWF GitHub `OpenPBR` (Release Tag: `v1.1.1`, 2026-04-17) | `Technical Specification` | 确立基于 Slab 与 layer/mix 算子的材质语义，定义 `base_diffuse_roughness` 与物理单位为 $\mu\text{m}$ 的 `thin_film_thickness` 等 41 项输入参数 | 仅定义外观标准与物理参考方程，不包含节点图实现或资产打包 |
 | **Flexibility of Implementation** | OpenPBR Spec Section "Flexibility of implementation" | `Technical Specification` | 证实规范允许不同引擎采用不同精度近似（如 LOD 理念），最终实现选择与权衡完全留给实现者 | 规范不强制单一固定底层代码实现 |
 | **Metadata & Scope Boundary** | OpenPBR Spec Section "Metadata" | `Technical Specification` | 确认元数据与资产存储超出规范范围，实践中通过外部数据交换框架（如 MaterialX 与 USD）集成 | 证明 OpenPBR $\neq$ Graph Language $\neq$ Asset Format |
 

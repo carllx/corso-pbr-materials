@@ -3,7 +3,7 @@
 > **Artifact Status**: Official Documentation Direct Extraction & Technical Index  
 > **Primary Sources**:
 > 1. Adobe Substance 3D Designer User Guide (`substance3d.adobe.com/documentation/sddoc/`, Updated 2026-09-11)
-> 2. Adobe Substance 3D Designer Python API Reference (`sd.api` / Substance Automation Toolkit documentation)
+> 2. Adobe Substance 3D Designer Python Scripting API Documentation (`sd.api` official documentation)
 > 3. Zeeshan Jawed Shah (2022) Chapters 7–10 (Verified hands-on execution baseline in `source-native-knowledge-index.md`)
 > **Artifact Placement**: `docs/research/source-native/adobe-designer-official.md`  
 
@@ -15,7 +15,7 @@
 1. 程序化节点图架构（Procedural Graph）与参数化系统（Parametric Systems）；
 2. 有意义的参数暴露（Meaningful Exposed Controls）与资产复用机制；
 3. SBS（源工程文件）与 SBSAR（分发资产包）的工业界限及宿主集成方式；
-4. Python 脚本与 Substance Automation Toolkit (SAT) 的自动化覆盖范围；
+4. Python 脚本（使用官方已核验符号）与 Substance Automation Toolkit (SAT) 的自动化覆盖范围；
 5. 严格区分**一手官方事实（SOURCE FACT）**与**教学研判假说（INTERPRETIVE SUMMARY / GATE 3 HYPOTHESIS — NOT A DECISION）**。
 
 ---
@@ -56,21 +56,26 @@ Substance 3D Designer 是基于数学函数与图像算子的程序化纹理合�
   - **编译分发包**：通过 Substance 编译器生成的只读归档文件，封装了优化后的算法指令与暴露的参数接口，不直接暴露原始编辑图表拓扑。
   - **宿主集成方式 (Host Integration Boundary)**：
     - SBSAR 文件可在 Substance 原生软件（如 Painter, Sampler）中直接加载；
-    - 在第三方外部软件（如 Unreal Engine, Unity, Blender, Maya, 3ds Max）中，SBSAR 是**通过专用的 Substance 插件或官方集成的运行时引擎（Substance Engine Plugin / Runtime）进行解析和参数交互**，而非所有第三方工具的底层完全原生原生内置支持。
+    - 在第三方外部软件（如 Unreal Engine, Unity, Blender, Maya, 3ds Max）中，SBSAR 是**通过专用的 Substance 插件或官方集成的运行时引擎（Substance Engine Plugin / Runtime）进行解析和参数交互**，而非所有第三方工具的底层完全原生内置支持。
 
 ---
 
 ## 3. 自动化与 API 覆盖边界 (SOURCE FACT)
 
-### 3.1 Python API (`sd.api`) 与 Substance Automation Toolkit (SAT)
-- **内嵌 Python API (`sd.api`)**：
-  - 支持程序化创建图表（`createGraph()`）；
-  - 支持程序化实例化节点与属性赋值（`createNode()`, `setInputPropertyValue()`）；
-  - 支持程序化连线（`connect()`）与节点自动排版。
-- **Substance Automation Toolkit (SAT 命令行工具集)**：
-  - `sbscooker`：在无 GUI 环境下将 `.sbs` 工程文件批处理编译为 `.sbsar`；
-  - `sbsrender`：在命令行或后台利用 `.sbsar` 渲染并导出指定参数组合的位图贴图；
-  - `sbsmutator`：在脱机状态下程序化批量替换图表内的输入贴图或调整参数默认值。
+### 3.1 官方核验的 Python API 符号与能力描述
+依据 Adobe Substance 3D Designer 官方脚本文档，核心面向对象接口包含以下已核验的原生类与方法：
+- **复合图表创建 (Graph Creation)**：
+  - `SDSBSCompGraph.sNew(sdPackage)`：在指定的 Substance Package 资源包中创建新的合成图表。
+- **节点实例化 (Node Instantiation)**：
+  - `SDGraph.newNode(nodeDefinitionId)`：根据节点定义标识符在图表中实例化新的原子节点；
+  - `SDGraph.newInstanceNode(sdResource)`：从指定资源或子图创建实例节点。
+- **节点连接与属性控制能力 (Connection & Property Operations)**：
+  - 官方 API 支持通过图表接口获取节点的属性（Properties）与连接器（Connectors），执行程序化连线（通过连线相关接口连接输出与输入属性），以及对暴露参数与输入值进行程序化赋值更新。*(注：具体属性值修改与连接方法因数据类型重载较多，在此以官方支持的能力级描述为准，不假设未经核实的统一缩写函数名)*。
+
+### 3.2 Substance Automation Toolkit (SAT 命令行工具集)
+- `sbscooker`：在无 GUI 环境下将 `.sbs` 工程文件批处理编译为 `.sbsar`；
+- `sbsrender`：在命令行或后台利用 `.sbsar` 渲染并导出指定参数组合的位图贴图；
+- `sbsmutator`：在脱机状态下程序化批量替换图表内的输入贴图或调整参数默认值。
 
 ---
 
@@ -95,7 +100,7 @@ Substance 3D Designer 是基于数学函数与图像算子的程序化纹理合�
 | :--- | :--- | :--- | :--- | :--- |
 | **Designer Graph & Format Docs** | Substance 3D Designer User Guide (2026-09-11) | `Vendor Documentation` | 证实 Relative to Parent 分辨率机制，区分开发态 XML 工程（SBS）与编译分发态归档（SBSAR） | 明确 SBSAR 在第三方 DCC/引擎中依赖专用插件或运行时引擎集成 |
 | **Parameter Exposure Mechanics** | Designer Docs `values-in-substance-compositing-graphs` | `Vendor Documentation` | 证实参数暴露（Expose Parameters）与函数图驱动机制，构建面向宿主软件的调参接口 | 属于资产接口设计层级，不改变底层原子节点公式 |
-| **Substance Automation Toolkit** | Adobe SAT & `sd.api` Official Reference | `Vendor Developer Docs` | 证实通过 Python 与 CLI 工具（sbscooker, sbsrender, sbsmutator）可实现完整的脱机批处理图表创建、编译与贴图烘焙 | 证明其具备一流的 Pipeline 嵌入度，但面向管线开发而非单纯手绘创作 |
+| **Substance Scripting & SAT** | Adobe SAT & `sd.api` Official Reference | `Vendor Developer Docs` | 证实具备 `SDSBSCompGraph.sNew()`、`SDGraph.newNode()` 及 CLI 工具（sbscooker, sbsrender, sbsmutator）的脱机批处理图表操作与编译能力 | 具备工业管线脚本化操作接口，主要面向技术管线开发而非普通手绘创作 |
 
 ---
 *Lane D Source-Native 提取校准完成，归档于 `docs/research/source-native/adobe-designer-official.md`。*
