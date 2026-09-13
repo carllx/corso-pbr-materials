@@ -1,12 +1,13 @@
 # Lane G: Unreal Material & Substrate — Realtime Target Constraint Sample — Source-Native Research & Technical Index
 
 > **Artifact Status**: Official Developer Documentation Direct Extraction & Bounded Target Sample  
+> **Source Rule**: Strictly limited to first-party official sources per Issue #4 contract.  
 > **Primary Sources**:
 > 1. Epic Games Unreal Engine 5.8 Official Documentation (`dev.epicgames.com/documentation/en-us/unreal-engine/`)
 >    - `physically-based-materials-in-unreal-engine`
 >    - `substrate-materials-in-unreal-engine`
 >    - `material-instances-in-unreal-engine`
-> 2. Brian Karis (Epic Games), "Real Shading in Unreal Engine 4" (SIGGRAPH 2013 Course Notes)
+>    - `interchange-framework-in-unreal-engine` & MaterialX Integration Notes
 > **Artifact Placement**: `docs/research/source-native/unreal-substrate-target-sample.md`  
 
 ---
@@ -14,95 +15,73 @@
 ## 1. Executive Summary & Purpose
 
 本研究针对 **Lane G: Unreal / Substrate** 进行严格受限的目标交付约束样本（Bounded Target Sample）提取，只回答一个核心问题：
-$$\text{MaterialX / OpenPBR 表达进入游戏实时引擎（Realtime Engine）后，还缺少什么？}$$
+$$\text{MaterialX / OpenPBR 标准表达进入实时游戏引擎后，还缺少什么？}$$
 重点调查：
-1. 材质导入与标准支持边界（Import/Support Boundary）；
-2. 材质实例化（Material Instances）架构；
-3. 运行时材质行为与性能开销（Runtime Material Behavior & Performance）；
-4. 平台硬件与渲染管线约束（Platform & Pipeline Constraints）；
-5. 引擎原生着色器图表行为（Engine-native Graph Behavior）。
-
-**核心防错目的**：坚决防止学生和课程团队形成“能够用 MaterialX 描述 / 能够在 DCC 中导入 = 能够直接用于游戏实时生产”的严重错误推论。
+1. 实时引擎支持边界：UE 5.8 下对 MaterialX 1.39.4 与 Substrate OpenPBR 的支持现状与未支持/透传节点限制（Pass-through limitations）；
+2. 材质实例化（Material Instances）架构与着色器编译变体（Permutations）；
+3. 运行时动态材质行为（Dynamic Material Instances）与性能成本；
+4. 目标管线优化模式（如 ORM 通道打包与纹理压缩）；
+5. 严格区分**一手官方事实（SOURCE FACT）**与**教学研判假说（INTERPRETIVE SUMMARY / GATE 3 HYPOTHESIS — NOT A DECISION）**。
 
 ---
 
-## 2. 实时交付约束与标准格式的鸿沟 (The Delivery Gap)
+## 2. 实时交付约束与引擎支持边界 (SOURCE FACT)
 
-标准材质描述（MaterialX / OpenPBR）与工业级实时游戏引擎（Unreal Engine）之间存在以下 5 大核心现实鸿沟：
+### 2.1 UE 5.8 当前 MaterialX 与 OpenPBR 支持现状及限制
+- **MaterialX 1.39.4 支持与版本断层**：
+  - UE 5.8 的通用数据交换框架（Interchange Framework）中集成了对 MaterialX 的导入支持，其官方文档锁定的支持基线为 **MaterialX 1.39.4**（落后于开源最新稳定版 1.39.5）；
+- **Substrate 下的 OpenPBR 支持与测试状态**：
+  - 虚幻引擎在 Substrate 模块化材质框架下提供了对 OpenPBR 着色模型的实验性导入映射；
+  - 官方文档对 Substrate 明确标注警告：“**Learn to use this Beta feature, but use caution when shipping with it.**”（学习该测试特性，但在商业发布出货时需保持谨慎）。
+- **未支持/透传节点限制 (Unsupported / Pass-Through Limitations)**：
+  - 官方技术文档与导入管线明确指出：MaterialX 网络中的某些高级程序化节点（如复杂自定义噪波、高阶数学函数或特定三向投射）在转译为虚幻原生材质图表（Unreal Material Graph）时，存在未被完全支持的情况；
+  - 部分未支持节点会被自动回退为默认透传（Pass-through）或常量输出，导致跨平台导入后的材质在实时视口中出现外观丢失或局部失效。
 
-### 2.1 材质实例化与参数继承 (Material Instances vs. Source Graphs)
-- **游戏引擎的渲染批处理瓶颈**：
-  - 在实时渲染中，如果每个物体都使用一个独立的 Material Graph（母材质），每个材质都会被单独编译为一个独立的 Shader 变体，引发剧烈的 **Draw Call 激增、着色器编译膨胀（Shader Permutation Explosion）与 GPU 状态切换开销**。
-- **Unreal 的生产标准工作流**：
-  - 游戏管线强制要求使用 **Master Material（母材质）$\to$ Material Instance Constant (MIC / 材质实例)** 继承架构。
-  - 母材质预先编写好通用的着色计算逻辑，并将贴图采样槽（Texture Parameters）与调参滑块（Scalar / Vector Parameters）暴露为参数；
-  - 运行时成百上千个场景道具仅仅是母材质的实例（Instances），共享同一个编译好的 GPU 着色器代码段，仅在常量缓冲（Constant Buffer）中更新贴图指针与参数，从而实现高效的 GPU 实例化合批（Instanced Draw Calls）。
-- **与 MaterialX 的鸿沟**：
-  - MaterialX 描述的是平铺展开的单一材质网络，不包含 Unreal 专有的母材质/子实例继承层次树与编译优化管线。
+### 2.2 材质实例化机制与着色器编译控制 (Material Instances Architecture)
+- **母材质 (Master Material) 与实例化架构**：
+  - 虚幻引擎官方文档（`material-instances-in-unreal-engine`）指出，材质系统的核心优化模式是将着色网络封装为包含参数（Scalar, Vector, Texture Parameters）的母材质，并在场景中广泛使用材质实例（Material Instance Constant, MIC）。
+  - **核心技术原因**：
+    1. **避免重复编译与着色器变体膨胀 (Shader Permutations)**：若为每个场景道具创建独立 Material Graph，将引发巨大的着色器编译开销并占用运行时着色器缓存；
+    2. **轻量化参数调整**：材质实例共享同一个母材质编译好的 GPU 字节码，仅在常量数据上发生变更，从而大幅降低编辑与运行时的开销。
+  - **边界说明**：使用材质实例有助于减少 GPU 状态切换和管线负担；但合批渲染（如 Instanced Static Mesh）还受到网格几何、光照状态及顶点格式等多种条件的严格限制，**并非单纯赋予材质实例就能自动无条件合并 Draw Calls**。
 
-### 2.2 纹理通道打包与显存带宽约束 (Texture Channel Packing / ORM & BC7)
-- **显存带宽（Bandwidth）是实时渲染的第一生命线**：
-  - 离线渲染或 DCC（Arnold / Cycles）习惯使用散装贴图（单独的 Roughness.png, Metallic.png, AO.png 散装文件）。
-  - 在实时游戏引擎中，散装贴图会导致多倍的显卡纹理采样器（Texture Sampler）占用与显存带宽浪费。
-- **工业刚性规范：ORM 打包**：
-  - 将三个独立的单通道数据合并为单张 8-bit RGB 贴图：
-    - **R 通道**：Ambient Occlusion (AO)
-    - **G 通道**：Roughness (粗糙度)
-    - **B 通道**：Metallic (金属度)
-  - 配合 GPU 硬件级定长分块压缩格式（DirectX 平台采用 **BC7** 针对复杂颜色，采用 **BC5** 针对双通道法线 RG，**BC1/BC3** 针对线性数据）；
-  - 这种硬件级内存与通道约束在标准 OpenPBR / MaterialX XML 语法中并不直接体现。
+### 2.3 纹理通道打包与硬件压缩优化模式 (Texture Packing & Compression)
+- **目标管线优化模式**：
+  - 游戏实时渲染中广泛采用通道合并（Channel Packing）模式，最典型的为 **ORM 贴图**（将 Ambient Occlusion 放入 R 通道、Roughness 放入 G 通道、Metallic 放入 B 通道），用于减少纹理采样器占用与显存带宽消耗；
+  - 配合 GPU 定长硬件压缩格式（如 DirectX 下的 BC7 针对带微变彩色的贴图、BC5 针对双通道法线 RG、BC1 针对基础 RGB）；
+  - **性质归定**：这是游戏实时管线中经官方文档与工业实践证明的有效优化模式，属于目标交付端的管线工程规范，而非所有 3D 软件共同的强制性基础定义。
 
-### 2.3 运行时动态材质行为 (Runtime Behavior & Dynamic Material Instances)
-- **游戏特有的动态交互**：
-  - 角色受击发红、物体表面动态雨水浸湿（动态调整 Roughness）、积雪融化、溶解特效（Dissolve Masking）、受光照驱动的顶点风力摆动（World Position Offset, WPO）。
-- **动态控制机制**：
-  - 游戏逻辑（C++ / Blueprints）需要在每一帧动态更新材质参数（`CreateDynamicMaterialInstance`, `SetScalarParameterValue`）；
-  - 这些运行时时间轴逻辑、物理交互接口和粒子系统碰撞数据，完全超出静态外观描述格式的范畴。
-
-### 2.4 Substrate 现代框架带来的演进与边界 (Substrate Overview & Constraints)
-Unreal Engine 5 推出了 **Substrate**（下一代模块化材质框架，旨在取代旧有的固定 Default Lit / Clear Coat 着色模型模式）：
-- **Substrate 架构演进**：
-  - 引入类似于 OpenPBR 的模块化 BSDF Slab 概念；
-  - 支持复杂的多层介质混合（Substrate Slab, Substrate Add, Substrate Horizontal/Vertical Layer）；
-  - 具备更精确的光学参数支持（F0 / F90、Mean Free Path、薄膜干涉、Fuzz）。
-- **官方技术警示与工业约束**：
-  - **性能成本极其敏感**：Substrate 是通过更复杂的 GBuffer 格式（Multi-layer GBuffer）和按需着色代码分支实现的。层级越复杂（如在一个材质上叠加 3 层 Slab），其片元着色器执行时间（PS Cost）成倍增加，极易在移动端或低配主机上发生性能崩溃；
-  - 官方文档明确注明：“**Learn to use this Beta feature, but use caution when shipping with it.**”（学习该测试特性，但在商业发布出货时需保持谨慎）。
+### 2.4 运行时动态材质实例 (Dynamic Material Instances)
+- **游戏运行时的动态交互**：
+  - 虚幻引擎支持通过蓝图（Blueprints）或 C++ 在游戏运行期间创建动态材质实例（`CreateDynamicMaterialInstance`）并动态改变参数（`SetScalarParameterValue`、`SetVectorParameterValue`）；
+  - 用于实现角色受击变色、渐进式溶解、雨水潮湿等交互效果；
+  - **特性说明**：动态材质参数可在需要时随游戏事件按需更新，或在特定动画插值下平滑变化，**不要求且通常并不在每一帧无条件强制更新**。
 
 ---
 
-## 3. 教学价值研判支撑：拒绝“能导入 = 能出货”的推论
+## 3. 解释性总结与教学研判假说 (INTERPRETIVE SUMMARY / GATE 3 HYPOTHESIS — NOT A DECISION)
 
-通过对 Unreal / Substrate 官方约束的提取，为后续 Gate 3 提供了极其关键的教学边界：
+> [!NOTE]
+> 本节内容为基于一手文档形成的教学设计假说，用于为后续 Gate 3 决策提供讨论基础，**不构成当前阶段的最终教学裁决**。
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────┐
-│                   实时目标引擎交付约束对照模型                                   │
-├───────────────────────────────┬──────────────────────────────────────────────────┤
-│ 1. 错误认知                   │ “在 DCC 里连好 MaterialX / OpenPBR，导进虚幻     │
-│    (Naive Assumption)         │  引擎就能直接用来做游戏。”                       │
-├───────────────────────────────┼──────────────────────────────────────────────────┤
-│ 2. 工业事实                   │ - 引擎支持导入 MaterialX 仅解决了初始网络转译；   │
-│    (Production Reality)       │ - 生产中必须重构为 Master Material + Instance； │
-│                               │ - 必须执行 ORM 通道合并与 GPU 压缩格式匹配；     │
-│                               │ - 必须严格管控 Substrate Slab 层数以防掉帧；     │
-│                               │ - 必须保留运行时蓝图交互与动态材质参数接口。     │
-├───────────────────────────────┼──────────────────────────────────────────────────┤
-│ 3. 课程边界结论               │ 本课程绝不办成“虚幻引擎材质综合教程”，仅将虚幻   │
-│    (Curriculum Bounded Scope) │ 引擎作为**【实时目标交付约束与性能红线】的验证   │
-│                               │ 样本**，用于闭环检验贴图在游戏环境下的落地合规性│
-└───────────────────────────────┴──────────────────────────────────────────────────┘
-```
+### 3.1 目标交付约束与防错教学假说
+- **防错教学目标假说**：
+  - 课程应坚决防止学生形成“在外部软件连好 MaterialX 或画好 PBR 贴图，导进游戏引擎就能直接用于商业出货”的简单化理解；
+  - 引导学生认识到标准外观文件（MaterialX / OpenPBR）是**跨平台交换的起点**，进入实时游戏生产环境后，必须经过母材质适配、参数暴露、通道打包与性能调优等目标交付约束；
+- **课程范围边界假说**：
+  - 本课程的核心是 PBR 材质原理与多通道创作，不应偏离轨道扩展为深入的“虚幻引擎关卡制作与蓝图开发课程”；
+  - 虚幻引擎在课程中应定位于**“实时目标交付约束与性能规范验证的典型样本（Bounded Realtime Sample）”**。
 
 ---
 
 ## 4. Evidence Register (Lane G)
 
-| 证据条目 | 原始权威来源 | 证据类型 | 支撑事实 | 边界限定 |
+| 证据条目 | 原始权威来源 | 证据类型 | 支撑事实 (SOURCE FACT) | 边界限定 (SOURCE FACT) |
 | :--- | :--- | :--- | :--- | :--- |
-| **UE Physically Based Materials** | Unreal Engine 5.8 Official Documentation | `Platform Documentation` | 确立 Base Color, Roughness, Metallic 的实时物理法则，电介质 Specular 0.5 对应 4% 反射率 | 仅定义标准 PBR 输入语义，不证明外部贴图免适配 |
-| **Substrate Materials Framework** | Unreal Engine 5.8 Docs `substrate-materials-in-unreal-engine` | `Platform Documentation` | 证实 Substrate 引入模块化 Slab 与多层架构，但官方明确标为 Beta 并警示商用发布性能开销 | 证明实时多层材质有严苛的 GPU 运行时性能代价 |
-| **Material Instances Architecture** | Unreal Engine 5.8 Docs `material-instances-in-unreal-engine` | `Platform Documentation` | 证实游戏生产强制要求母材质与参数化实例体系以避免着色器编译膨胀与 Draw Call 激增 | 证明 MaterialX 等扁平表达不可直接替代引擎原生层级 |
+| **UE Physically Based Materials** | Unreal Engine 5.8 Official Documentation | `Platform Documentation` | 确立 Base Color, Roughness, Metallic 的实时物理法则，定义电介质默认 Specular 0.5 对应 4% 反射率 | 仅定义引擎内 PBR 输入参数语义，不代表外部贴图免转译适配 |
+| **Substrate Framework & Beta Status** | Unreal Engine 5.8 Docs `substrate-materials-in-unreal-engine` | `Platform Documentation` | 证实 Substrate 引入模块化 Slab 架构并实验性支持 OpenPBR，但官方明确注明为 Beta 且警示商业发布性能风险 | 证明实时多层物理材质在游戏运行时具有严苛的性能开销 |
+| **Material Instances & Permutations** | Unreal Engine 5.8 Docs `material-instances-in-unreal-engine` | `Platform Documentation` | 证实使用母材质与材质实例架构可避免着色器编译变体膨胀并实现轻量调参 | 降低编译与状态切换成本，不代表能无条件合并 Draw Calls |
+| **MaterialX 1.39.4 Integration Boundary** | UE 5.8 Documentation & Interchange Pipeline | `Platform Documentation` | 证实 UE 5.8 Interchange 框架集成支持的是 MaterialX 1.39.4，且部分未支持节点存在透传回退限制 | 证明开源最新标准与商用引擎之间存在版本兼容滞后与未支持节点断层 |
 
 ---
-*Lane G Source-Native 提取完成，归档于 `docs/research/source-native/unreal-substrate-target-sample.md`。*
+*Lane G Source-Native 提取校准完成，归档于 `docs/research/source-native/unreal-substrate-target-sample.md`。*
