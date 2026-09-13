@@ -79,7 +79,7 @@
 | **V02-C04** | 微表面粗糙度理论与微观几何法线分布 *(Microfacet Theory & Roughness NDF)* | `B`, `C` | McDermott (2018); RTR4; OpenPBR 1.1.1; Blender Manual | McDermott (2018) Part 1 (pp. 22–27), Part 2 (pp. 56–57); RTR4 Ch 9.6–9.8; OpenPBR Spec §3.2; Blender 5.2 Manual ("Principled BSDF - Roughness") | `DIRECT MATCH` | 微表面法线分布函数（GGX / Cook-Torrance NDF）；微观几何遮蔽-阴影因子（Smith G 项）；粗糙度灰度值对高光斑扩散与反射模糊度的感知/线性映射。 | 明确微观粗糙度（控制高光雾化与微表面散射）与宏观法线/高度贴图（控制结构凹凸）在图层栈与着色网络中的结构分工。 |
 | **V02-C05** | 金属导体与电介质光学分类与金属度边界准则 *(Conductor vs. Dielectric Optical Classification & Metallic Boundary Rules)* | `B`, `C` | McDermott (2018); RTR4; OpenPBR 1.1.1; UE 5.8 Docs | McDermott (2018) Part 1 (pp. 33–37), Part 2 (pp. 53–55); RTR4 Ch 9.5; OpenPBR Spec §3.1; UE 5.8 Docs ("Physically Based Materials") | `DIRECT MATCH` | 纯物质常温下非导体即绝缘体，金属度贴图在物理意义上接近二值（0 或 1）；中间过渡灰阶仅在化学腐蚀氧化、极薄表面尘土混合物及 UV 抗锯齿插值像素中合法。 | 建立“金属度伪中间值灰度警报”教学检测表，专门排查 AI 生成模型与非标准采集贴图中的伪金属噪点。 |
 | **V02-C06** | 切线空间法线几何扰动原理与跨坐标系对齐 *(Tangent Space Normal Principles & Coordinate Alignment)* | `A`, `B`, `C` | Shah (2022); McDermott (2018); Blender Manual; Painter Docs | Shah (2022) Ch 2 (pp. 53–54); McDermott (2018) Part 2 (pp. 78–79); Blender 5.2 Manual ("Normal Map Node"); Painter Docs ("Baking & Project Normal Format") | `DIRECT MATCH` | 切线空间（TBN 矩阵）下利用 RGB 扰动表面几何法线向量；DirectX (Y- 绿通道反转) 与 OpenGL (Y+ 绿通道基准) 格式差异及其跨 DCC/引擎转换。 | 针对 Blender、Painter 与 Unreal Engine 之间资产互导最常出现的法线凹凸颠倒、裂缝与接缝发黑建立排错清单。 |
-| **V02-C07** | 视差映射与几何置换原理 *(Parallax Occlusion & Geometric Displacement Mapping)* | `A`, `B`, `C` | Shah (2022); McDermott (2018); Sampler Docs | Shah (2022) Ch 8 (pp. 273–276); McDermott (2018) Part 2 (pp. 78–79); Sampler Official Docs ("Physical Size & Height") | `DIRECT MATCH` | 灰度高度图（Height Map）；基于着色器的视差遮蔽映射（POM）伪立体效果与微多边形曲面细分真实置换（Displacement）的几何形变差异；中点基准设置。 | 明确区分着色视差技巧（实时性能开销低、无模型轮廓改变）与几何细分置换（高显存算力、改变几何剪影）的生产适用场景。 |
+| **V02-C07** | 视差映射与几何置换原理 *(Parallax Occlusion & Geometric Displacement Mapping)* | `B`, `C` | RTR4; Sampler Docs | RTR4 Ch 6.8 ("Parallax Mapping"), Ch 6.8.1 ("Parallax Occlusion Mapping"), Ch 6 (Comparison Context: Displacement Mapping), Ch 13.7, Ch 17.5.4; Sampler Official Docs ("Physical Size & Height") | `DIRECT MATCH` | 灰度高度图（Height Map）；基于着色器的视差遮蔽映射（POM）利用光线步进产生表面自遮挡与自阴影但完全不改变模型网格剪影轮廓（Silhouette）；几何曲面细分真实置换（Displacement Mapping）真正改变三角形网格与外部轮廓剪影；中点基准设置。 | 明确区分着色视差技巧（实时性能开销低、无模型轮廓改变）与几何细分置换（高显存算力、改变几何剪影）的生产适用场景。 |
 | **V02-C08** | 环境光遮蔽物理意义与漫反射解耦 *(Ambient Occlusion Role & Diffuse Decoupling)* | `B`, `C` | McDermott (2018); Painter Baking Docs | McDermott (2018) Part 2 (pp. 74–77); Painter Official Docs ("Baking - Ambient Occlusion") | `DIRECT MATCH` | 模拟微观几何缝隙/接触面对半球间接漫反射环境光的几何遮挡；AO 仅用于调制漫反射环境光，绝不可直接烘死在 Base Color 贴图中。 | 提炼教学诊断标准：排查“新手及自动化工具将环境遮挡与直接阴影错误乘入固有色贴图”的穿帮现象。 |
 | **V02-C09** | 表面细节多级频率与空间尺度解构 *(Multi-frequency Surface Detail Decomposition: Macro/Medium/Micro)* | `A`, `B` | Shah (2022); Dinur (2026) | Dinur (2026) Ch 1 (pp. 13–18), Ch 3 (pp. 33–36); Shah (2022) Ch 3–6 (Multi-frequency Layering) | `DIRECT MATCH` | 表面细节分为 Macro（体量与宏观分件）、Medium（转折边角磨损、裂痕、装配缝隙）、Micro（微观粗糙、气孔颗粒、拉丝）三级频域认知模型。 | 将三级频域尺度直接映射到图层栈分层（底材-过渡-高频噪波）与程序化噪波频率阶数（Octaves/Scale）的设计与评估量表。 |
 | **V02-C10** | 色彩管理与线性管线规范 *(Color Management & Linear Workflow Specification: sRGB vs. Linear/Data)* | `B`, `C` | McDermott (2018); RTR4; OpenPBR 1.1.1; Painter Docs | McDermott (2018) Part 1 (pp. 38–39); RTR4 Ch 5.6; OpenPBR Spec §1.2; Painter 12.1 Docs ("Color Management / OCIO") | `DIRECT MATCH` | 人眼非线性感知 Gamma 2.2 矫正与计算机线性物理光照空间转换；色彩贴图（Base Color）采用 sRGB/ACES 色彩管理，数值数据贴图（Normal, Roughness, Metallic, Height, AO）强制使用 Linear / Non-Color / Raw。 | 总结跨软件流转中贴图被误标为 sRGB 导致粗糙度变白、金属度失效的一键排错操作规范。 |
@@ -104,8 +104,8 @@
 
 | Candidate ID | Candidate Capability | Source Class | Owning Source | Exact Evidence Pointer | Match Status | Source Actually Supports | Project Synthesis / Boundary |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **V02-C18** | UV 参数化质量评估、接缝布局与拉伸诊断 *(UV Parameterization Quality Assessment, Seam Layout & Distortion Diagnosis)* | `A`, `B`, `C` | Shah (2022); McDermott (2018); Painter Docs | Shah (2022) Ch 1 (pp. 3–6); McDermott (2018) Part 2 (pp. 62–63); Painter Official Docs ("Auto Unwrap", "UV Tiles / UDIM") | `DIRECT MATCH` | UV 坐标展开与空间参数化对纹理贴图采样的几何映射影响；接缝（Seams）隐蔽放置于视觉盲区或自然分件接缝；棋盘格/网格拉伸诊断与重叠排查；自动算法展开与装箱的质量评估。 | 严格界定“非建模课”教学边界：核心在于诊断、评估与指导自动/外部展开质量，而非从零手撕复杂拓扑展开。 |
-| **V02-C19** | 模型光滑组硬边与 UV 接缝拓扑协同准则 *(Hard Edges vs. UV Seams Topological Alignment & Artifact Prevention)* | `B` | McDermott (2018); RTR4 | McDermott (2018) Part 2 (pp. 62–63, 78–79); RTR4 Ch 6.7.2 | `DIRECT MATCH` | 多边形网格平滑组/硬边（Hard Edges / Smoothing Group Splits）处必须切开 UV 接缝；若硬边未切开 UV 接缝，光线投射烘焙时在顶点法线非连续插值处必出现严重黑线伪影与渐变穿帮。 | 建立“烘焙法线边缘黑斑的拓扑协同诊断法则”，用于快速排查低模法线硬边未切开接缝的几何拓扑错误。 |
+| **V02-C18** | UV 参数化质量评估、接缝布局与拉伸诊断 *(UV Parameterization Quality Assessment, Seam Layout & Distortion Diagnosis)* | `C` | Painter Official Docs | Painter Official Docs ("Automatic UV Unwrapping", "UV Checker") | `OFFICIAL-DOC ONLY` | 自动算法 UV 展开与接缝生成（Seam generation）、UV 岛划分与装箱排列（Packing & Island orientation）、细长 UV 岛处理；非均匀纹素比例/拉伸诊断与重叠排查；利用 UV Checker 检验网格拉伸与形变。 | 严格界定“非建模课”教学边界：核心在于诊断、评估与指导自动/外部展开质量，而非从零手撕复杂拓扑展开。 |
+| **V02-C19** | 模型光滑组硬边与 UV 接缝拓扑协同准则 *(Hard Edges vs. UV Seams Topological Alignment & Artifact Prevention)* | `C` | Painter Official Docs | Painter Official Docs ("Baking visualization settings - UV seams - Missing seams on hard edges") | `OFFICIAL-DOC ONLY` | 多边形网格硬边/顶点法线分割（Hard Edges / Split Vertex Normals）处必须切开 UV 接缝；若硬边未切开 UV 接缝，在光线投射烘焙时顶点法线非连续插值处会被烘焙可视化工具标出，并导致严重黑线渐变伪影与烘焙瑕疵（Missing seams on hard edges）。 | 建立“烘焙法线边缘黑斑的拓扑协同诊断法则”，用于快速排查低模法线硬边未切开接缝的几何拓扑错误。 |
 | **V02-C20** | 纹素密度规划、一致性分配与跨资产对齐 *(Texel Density Planning, Consistency Budgeting & Asset Alignment)* | `A`, `B` | Shah (2022); McDermott (2018) | Shah (2022) Ch 1 (pp. 3–6); McDermott (2018) Part 2 (pp. 62–63) | `DIRECT MATCH` | 纹素密度（Texel Density，像素/厘米）的定义与度量；单资产各 UV 岛以及同场景多资产间纹素密度必须保持一致，防止局部清晰、局部模糊的精度失配。 | 制定资产交付标准中的纹素密度预算量化检验规程与分辨率分配准则。 |
 | **V02-C21** | 几何细节投影烘焙、网格贴图派生与烘焙伪影诊断 *(Geometric Detail Baking, Mesh Map Derivation & Artifact Diagnosis)* | `A`, `C` | Shah (2022); Painter Official Docs | Shah (2022) Ch 1 (pp. 26–33); Painter Official Docs ("Baking", "Baking Mode F8", "Baking Parameters & Cage", "Paint Skew") | `DIRECT MATCH` | 高低模（High-to-Low Poly）映射关系与包裹笼（Cage）射线投射原理；烘焙派生网格贴图（Normal, Curvature, Position, AO, Thickness）；利用 Paint Skew 修正法线射线偏斜，排查投射穿插、漏射黑边与法线反转。 | 将高低模拓扑匹配（原 M03-U04）与网格贴图烘焙及排错（原 M03-U05）合并为一个完整的几何投影工程闭环。 |
 
@@ -175,9 +175,9 @@
 
 | 来源类别 (Source Class) | 支撑项数 (Count) | 占比 (47 项基准) | 主要集中分布模块 |
 | :--- | :--- | :--- | :--- |
-| **Class A — Primary Textbook** (Shah 2022) | **23 项** | 48.9% | 模块二 (贴图绘制 7 项)、模块三 (烘焙支撑 3 项)、模块四 (程序化 7 项)、模块五 (采集 2 项)、模块一 (光学 3 项)、模块七 (1 项) |
-| **Class B — Supporting Texts** (McDermott / Dinur / RTR4) | **23 项** | 48.9% | 模块一 (物理光学基础 10 项全部覆盖)、模块三 (3 项)、模块六 (LookDev 4 项)、模块七 (2 项)、模块二 (2 项)、模块五 (2 项) |
-| **Class C — Living Official Sources** (官方文档与开放规范) | **39 项** | 83.0% | 模块四 (程序化 8 项)、模块一 (8 项)、模块二 (5 项)、模块五 (5 项)、模块六 (6 项)、模块七 (4 项)、模块三 (2 项)、决策项 (1 项) |
+| **Class A — Primary Textbook** (Shah 2022) | **21 项** | 44.7% | 模块二 (贴图绘制 7 项)、模块三 (烘焙支撑 2 项: C20, C21)、模块四 (程序化 7 项)、模块五 (采集 2 项)、模块一 (光学 2 项: C06, C09)、模块七 (1 项) |
+| **Class B — Supporting Texts** (McDermott / Dinur / RTR4) | **21 项** | 44.7% | 模块一 (物理光学基础 10 项全部覆盖)、模块三 (1 项: C20)、模块六 (LookDev 4 项)、模块七 (2 项)、模块二 (2 项)、模块五 (2 项) |
+| **Class C — Living Official Sources** (官方文档与开放规范) | **40 项** | 85.1% | 模块四 (程序化 8 项)、模块一 (8 项)、模块二 (5 项)、模块五 (5 项)、模块六 (6 项)、模块七 (4 项)、模块三 (3 项: C18, C19, C21)、决策项 (1 项) |
 | **Class D — Research / Industry Evidence** (顶会论文/行业访谈) | **8 项** | 17.0% | 模块五 (去光照 2 项: C32, C33)、模块六 (实时性能 2 项: C36, C37)、模块七 (生成/Agent/双出口 3 项: C41, C45, C46)、模块五决策项 (1 项: C47) |
 | **Class E — Project Inference Only** (含项目综合推导边界) | **6 项** | 12.8% | `V02-C32` (通道置信度层级), `V02-C33` (去光照手工精修), `V02-C42` (跨通道体检表), `V02-C43` (扁平图层重构), `V02-C45` (Agent 闭环边界), `V02-C47` (范式决策树) |
 
@@ -186,13 +186,13 @@
 
 | 匹配状态 (Match Status) | 项数 (Count) | 对应 Candidate 列表 |
 | :--- | :--- | :--- |
-| **`DIRECT MATCH`** | **38 项** | `V02-C01`–`V02-C26`, `V02-C28`–`V02-C31`, `V02-C34`, `V02-C36`–`V02-C41`, `V02-C46` |
+| **`DIRECT MATCH`** | **36 项** | `V02-C01`–`V02-C17`, `V02-C20`–`V02-C26`, `V02-C28`–`V02-C31`, `V02-C34`, `V02-C36`–`V02-C41`, `V02-C46` |
 | **`PARTIAL MATCH`** | **5 项** | `V02-C32` (单图通道估算置信度), `V02-C33` (去光照手工精修), `V02-C42` (跨通道体检表), `V02-C43` (扁平贴图分层重构), `V02-C45` (机器可读图与 Agent 边界) |
-| **`OFFICIAL-DOC ONLY`** | **3 项** | `V02-C27` (对象随机变体), `V02-C35` (交互视口着色), `V02-C44` (开放标准材质语义) |
+| **`OFFICIAL-DOC ONLY`** | **5 项** | `V02-C18` (UV 参数化与拉伸诊断), `V02-C19` (硬边与 UV 接缝协同), `V02-C27` (对象随机变体), `V02-C35` (交互视口着色), `V02-C44` (开放标准材质语义) |
 | **`RESEARCH ONLY`** | **0 项** | *(无；所有涉 D 研究项均已与 B 类教材或 C 类官方规范形成协同支撑)* |
 | **`PROJECT INFERENCE`** | **1 项** | `V02-C47` (材质获取范式权衡决策树) |
 | **`NOT FOUND`** | **0 项** | *(无；全量 47 项均拥有可核验的一手文献与规范条款支撑，无凭空捏造项)* |
-| **数学核算校验** | **47 项** | $$38 (\text{DIRECT}) + 5 (\text{PARTIAL}) + 3 (\text{OFFICIAL}) + 0 + 1 (\text{INFERENCE}) + 0 = 47$$ |
+| **数学核算校验** | **47 项** | $$36 (\text{DIRECT}) + 5 (\text{PARTIAL}) + 5 (\text{OFFICIAL}) + 0 + 1 (\text{INFERENCE}) + 0 = 47$$ |
 
 ---
 
@@ -221,10 +221,12 @@
    - *项目推导边界 (E)*：将离散事实提炼为统一的“多范式权衡决策树”属于项目综合推导。
 
 ### 4.2 仅依赖官方文档 (OFFICIAL-DOC ONLY) 单元说明
-以下 3 项单元在传统纸质出版教材（Shah / McDermott / Dinur / RTR4）中缺乏专章阐述，其权威性完全由 **Class C (Living Official Sources)** 支撑：
-1. **`V02-C27: 对象随机变体、种子控制与重复感消除`**：直接依托 Blender 5.2 官方手册（Object Info Random）与 Designer 官方文档（Tile Sampler Random Seed）。
-2. **`V02-C35: 交互式视口物理着色检验与快速环境响应验证`**：直接依托 Blender 5.2 官方手册（Viewport Shading / EEVEE Next）与 Painter 官方文档（Viewport Shading）。
-3. **`V02-C44: 开放标准材质语义与结构化表示: OpenPBR 材质语义 + MaterialX 图元模式`**：直接依托 ASWF OpenPBR 1.1.1 规范全文与 ASWF MaterialX 1.39 规范全文。
+以下 5 项单元在传统出版教材（Shah / McDermott / Dinur / RTR4）中缺乏直接的专章实操支持，其权威性由 **Class C (Living Official Sources)** 直接支撑：
+1. **`V02-C18: UV 参数化质量评估、接缝布局与拉伸诊断`**：直接依托 Painter 官方技术文档（"Automatic UV Unwrapping", "UV Checker"），覆盖自动展开算法接缝生成、UV 岛装箱与非均匀纹素拉伸诊断。
+2. **`V02-C19: 模型光滑组硬边与 UV 接缝拓扑协同准则`**：直接依托 Painter 官方烘焙可视化文档（"Baking visualization settings - UV seams - Missing seams on hard edges"），明确未切开 UV 接缝的硬边将在烘焙中直接标红报警并产生法线插值渐变黑斑。
+3. **`V02-C27: 对象随机变体、种子控制与重复感消除`**：直接依托 Blender 5.2 官方手册（Object Info Random）与 Designer 官方文档（Tile Sampler Random Seed）。
+4. **`V02-C35: 交互式视口物理着色检验与快速环境响应验证`**：直接依托 Blender 5.2 官方手册（Viewport Shading / EEVEE Next）与 Painter 官方文档（Viewport Shading）。
+5. **`V02-C44: 开放标准材质语义与结构化表示: OpenPBR 材质语义 + MaterialX 图元模式`**：直接依托 ASWF OpenPBR 1.1.1 规范全文与 ASWF MaterialX 1.39 规范全文。
 
 ### 4.3 时间敏感性官方证据 (Version-Sensitive Evidence) 记录
 在本次审计过程中，核实并记录以下具有明确版本锁定与时间演进特征的官方技术事实：
