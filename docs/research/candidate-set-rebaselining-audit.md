@@ -3,7 +3,7 @@
 > **Gate**: Gate 2.5A.5 — Candidate Set Re-baselining Audit  
 > **Repository**: `carllx/corso-pbr-materials`  
 > **Anchor Commit**: `275dc4db88b417a688ef20d628efd49fbbcb1f84` (Gate 2.5A Source Research Consolidated PASS)  
-> **Governance Context**: Governed by Issue #3 (Stage 2 Strategy Clarification) and Issue #4 (Gate 2.5 Execution Tracker).  
+> **Governance Context**: Governed by Issue #3 (Stage 2 Strategy Clarification) and Issue #4 (Gate 2.5 Execution Tracker, Browser Review Comment `5652034537`).  
 > **Primary Purpose**: Re-evaluate the historical 57-candidate capability baseline formed in Phase 1 / early Phase 2 against first-party source-native research (OpenPBR, MaterialX/UsdShade, Painter, Designer, Sampler, Blender, Unreal/Substrate) and AI impact evidence, testing whether the capability map describes the durable competencies students truly need in an era of AI Agents, structured material representations, controlled revision, visual validation, and target delivery.
 
 ---
@@ -43,6 +43,8 @@ Every audit decision is tested against 10 core dimensions:
 
 ### 1.4 Evidence Threshold & Lineage Rule
 - Every change (`CANDIDATE_REFRAME`, `MERGE`, `SPLIT`, `RETIRE_OR_DEFER`, `ADD`) cites evidence classes ($A, B, C, D$) and authoritative documents.
+- Supporting texts including Real-Time Rendering 4th Edition (RTR4) are categorized as Class `B` per Issue #3 governance authority.
+- Project research reports (`ai-impact-on-material-workflows.md`) are cited as project synthesis pointers (`Synthesis Pointer`), with evidence classes assigned to their underlying academic/industry source documents.
 - If an idea is only supported by $E$ (Project Inference Only), it is isolated as an `UNRESOLVED STRUCTURAL HYPOTHESIS` and cannot reshape Candidate Set v2.
 - Full lineage from v1 ID to v2 ID is maintained with zero orphaned items.
 
@@ -52,31 +54,31 @@ Every audit decision is tested against 10 core dimensions:
 
 ### Module 1: Material Literacy (Physical Optics & Theoretical Foundations) — Historical 10 Units
 
-| v1 ID | Historical Capability (v1) | Disposition | Proposed v2 Capability / Target | Owning Evidence & Class | Rationale & Gate 3 Impact |
+| v1 ID | Historical Capability (v1) | Disposition | Proposed v2 Capability / Target | Owning Evidence & Class | Rationale & Gate 3 Relevance Hypothesis |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **M01-U01** | 现实材质观察与参考分析 *(Material Observation & Reference Analysis)* | `KEEP_AS_IS` | **V02-C01: 现实材质物理属性观察与多维参考解构** *(Physical Material Observation & Multi-attribute Reference Decomposition)* | Dinur (2026) Ch 1, 3 (`B`); RTR4 Ch 9.1 (`D`) | 核心人类审美与因果分析基石。AI 自动生成无法替代人眼对真实物理世界多尺度瑕疵与色彩层次的解构能力。直接决定 Gate 3 核心素养地位。 |
-| **M01-U02** | PBR 物理可信性与能量守恒 *(PBR Plausibility & Energy Conservation)* | `KEEP_AS_IS` | **V02-C02: PBR 物理可信性与辐射度能量守恒** *(PBR Physical Plausibility & Radiometric Energy Conservation)* | McDermott (2018) pp. 29–30 (`B`); RTR4 Ch 9.2–9.3 (`D`); OpenPBR Spec §1.1 (`C`) | 跨光照环境不失真的不可动摇物理铁律。生成模型生成的贴图频繁违背能量守恒，必须由学生进行因果诊断与能量校验。 |
-| **M01-U03** | Base Color 反射率与安全色阶 *(Base Color Reflectance & Safe Values)* | `CANDIDATE_REFRAME` | **V02-C03: 漫反射/镜面反射率安全区间与去光照纯度判定** *(Reflectance Safe Ranges & Albedo Delighting Purity)* | McDermott (2018) pp. 48–52 (`B`); OpenPBR Spec §3.1 (`C`); Dinur (2026) Ch 3 (`B`) | 历史表述侧重 sRGB 绝对数值死记硬背。重构为“电介质反射率安全阈值判定与 Base Color 中阴影/高光污染的物理诊断”，直接指导 AI 生成贴图的质量验收。 |
-| **M01-U04** | Roughness 微表面粗糙度模型 *(Roughness & Microfacet Theory)* | `KEEP_AS_IS` | **V02-C04: 微表面粗糙度理论与微观几何法线分布** *(Microfacet Theory & Roughness NDF)* | McDermott (2018) pp. 22–27 (`B`); RTR4 Ch 9.2 (`D`); OpenPBR Spec §3.2 (`C`) | GGX 微表面法线分布（NDF）与高光衰减的核心理论。决定高光斑锐利度、模糊过渡与光照反应，为材质真实感的决定性维度。 |
-| **M01-U05** | Metallic 金属度二值准则 *(Metallic Classification & Boundary Rules)* | `KEEP_AS_IS` | **V02-C05: 金属导体与电介质光学分类与金属度边界准则** *(Conductor vs. Dielectric Optical Classification & Metallic Boundary Rules)* | McDermott (2018) pp. 33–37, 53–55 (`B`); RTR4 Ch 9.4 (`D`); OpenPBR Spec §3.1 (`C`) | 纯物质非金即绝缘的光学本质。控制 F0 反射率来源；中间过渡灰阶的物理合法性（氧化锈蚀、极薄灰尘、抗锯齿像素）诊断是防止 AI 生成产生伪金属噪点的核心。 |
+| **M01-U01** | 现实材质观察与参考分析 *(Material Observation & Reference Analysis)* | `KEEP_AS_IS` | **V02-C01: 现实材质物理属性观察与多维参考解构** *(Physical Material Observation & Multi-attribute Reference Decomposition)* | Dinur (2026) Ch 1, 3 (`B`); RTR4 Ch 9.1 (`B`) | 人类审美与因果分析基石。为 Gate 3 提供不可被纯前向算法黑盒替代的观察基准，具备高教学审议相关性。 |
+| **M01-U02** | PBR 物理可信性与能量守恒 *(PBR Plausibility & Energy Conservation)* | `KEEP_AS_IS` | **V02-C02: PBR 物理可信性与辐射度能量守恒** *(PBR Physical Plausibility & Radiometric Energy Conservation)* | McDermott (2018) pp. 29–30 (`B`); RTR4 Ch 9.2–9.3 (`B`); OpenPBR Spec §1.1 (`C`) | 跨光照环境不失真的物理规律。提供检验生成式贴图能量过曝与漫反射反弹异常的评估依据。 |
+| **M01-U03** | Base Color 反射率与安全色阶 *(Base Color Reflectance & Safe Values)* | `CANDIDATE_REFRAME` | **V02-C03: 漫反射/镜面反射率安全区间与去光照纯度判定** *(Reflectance Safe Ranges & Albedo Delighting Purity)* | McDermott (2018) pp. 48–52 (`B`); OpenPBR Spec §3.1 (`C`); Dinur (2026) Ch 3 (`B`) | 历史表述侧重 sRGB 绝对数值死记硬背。重构为“电介质反射率安全阈值判定与 Base Color 中阴影/高光污染的物理诊断”，直接指导贴图质量验收。 |
+| **M01-U04** | Roughness 微表面粗糙度模型 *(Roughness & Microfacet Theory)* | `KEEP_AS_IS` | **V02-C04: 微表面粗糙度理论与微观几何法线分布** *(Microfacet Theory & Roughness NDF)* | McDermott (2018) pp. 22–27 (`B`); RTR4 Ch 9.2 (`B`); OpenPBR Spec §3.2 (`C`) | GGX 微表面法线分布（NDF）与高光衰减理论。调控高光斑锐利度、模糊过渡与光照反应的核心维度。 |
+| **M01-U05** | Metallic 金属度二值准则 *(Metallic Classification & Boundary Rules)* | `KEEP_AS_IS` | **V02-C05: 金属导体与电介质光学分类与金属度边界准则** *(Conductor vs. Dielectric Optical Classification & Metallic Boundary Rules)* | McDermott (2018) pp. 33–37, 53–55 (`B`); RTR4 Ch 9.4 (`B`); OpenPBR Spec §3.1 (`C`) | 纯物质非金即绝缘的光学本质。控制 F0 反射率来源；中间过渡灰阶的物理合法性（氧化锈蚀、极薄灰尘、抗锯齿像素）诊断是排查伪金属噪点的核心。 |
 | **M01-U06** | Normal 切线空间法线原理 *(Tangent Space Normal Principles)* | `KEEP_AS_IS` | **V02-C06: 切线空间法线几何扰动原理与跨坐标系对齐** *(Tangent Space Normal Principles & Coordinate Alignment)* | Shah (2022) pp. 45–48 (`A`); McDermott (2018) pp. 76–79 (`B`); Blender Manual (`C`) | 宏观几何与微观着色扰动的桥梁。DirectX (Y-) 与 OpenGL (Y+) 绿通道及切线空间基底对齐是跨工具/引擎交付中最频繁的失效点。 |
 | **M01-U07** | Height / Displacement 几何置换 *(Height & Displacement Mapping)* | `KEEP_AS_IS` | **V02-C07: 视差映射与几何置换原理** *(Parallax Occlusion & Geometric Displacement Mapping)* | Shah (2022) Ch 9–10 (`A`); McDermott (2018) p. 75 (`B`); Sampler Docs (`C`) | 从微观着色法线跨越到真实网格形变（POM/Displacement）的关键。驱动程序化雕刻、物理破损与轮廓级几何变化。 |
-| **M01-U08** | Ambient Occlusion 环境遮挡作用 *(Ambient Occlusion Role & Limits)* | `KEEP_AS_IS` | **V02-C08: 环境光遮蔽物理意义与漫反射解耦** *(Ambient Occlusion Role & Diffuse Decoupling)* | McDermott (2018) p. 74 (`B`); Painter Baking Docs (`C`) | 模拟微观缝隙接触阴影，严格与直接光照和 Base Color 固有色解耦，杜绝传统把 AO 烘死在固有色里的非物理错误。 |
-| **M01-U09** | 表面细节尺度与频率认知 *(Detail Scales: Macro, Medium, Micro)* | `KEEP_AS_IS` | **V02-C09: 表面细节多级频率与空间尺度解构** *(Multi-frequency Surface Detail Decomposition: Macro/Medium/Micro)* | Dinur (2026) Ch 1, 3 (`B`); Shah (2022) Ch 3–6 (`A`) | 跨软件图层堆栈、节点网络与风化破损组织的结构性思维基石。宏观结构、中频磨损与微观噪波必须分层控制。 |
-| **M01-U010** | sRGB 与 Linear 色彩空间规范 *(Color Space: sRGB vs. Linear/Non-Color)* | `KEEP_AS_IS` | **V02-C10: 色彩管理与线性管线规范** *(Color Management & Linear Workflow Specification: sRGB vs. Linear/Data)* | McDermott (2018) pp. 38–39 (`B`); OpenPBR Spec §1.2 (`C`); RTR4 Ch 5.6 (`D`) | 数据贴图（Linear/Non-Color）与色彩贴图（sRGB/ACEScg）的数学处理差异。材质资产跨 DCC/引擎导入导出时最基础但最易破坏物理正确性的防线。 |
+| **M01-U08** | Ambient Occlusion 环境遮挡作用 *(Ambient Occlusion Role & Limits)* | `KEEP_AS_IS` | **V02-C08: 环境光遮蔽物理意义与漫反射解耦** *(Ambient Occlusion Role & Diffuse Decoupling)* | McDermott (2018) p. 74 (`B`); Painter Baking Docs (`C`) | 模拟微观缝隙接触阴影，严格与直接光照和 Base Color 固有色解耦，提供排查“AO 烘死在固有色里”的依据。 |
+| **M01-U09** | 表面细节尺度与频率认知 *(Detail Scales: Macro, Medium, Micro)* | `KEEP_AS_IS` | **V02-C09: 表面细节多级频率与空间尺度解构** *(Multi-frequency Surface Detail Decomposition: Macro/Medium/Micro)* | Dinur (2026) Ch 1, 3 (`B`); Shah (2022) Ch 3–6 (`A`) | 跨软件图层堆栈、节点网络与风化破损组织的结构性思维基石。宏观结构、中频磨损与微观噪波分层控制的必要理论支撑。 |
+| **M01-U10** | sRGB 与 Linear 色彩空间规范 *(Color Space: sRGB vs. Linear/Non-Color)* | `KEEP_AS_IS` | **V02-C10: 色彩管理与线性管线规范** *(Color Management & Linear Workflow Specification: sRGB vs. Linear/Data)* | McDermott (2018) pp. 38–39 (`B`); OpenPBR Spec §1.2 (`C`); RTR4 Ch 5.6 (`B`) | 数据贴图（Linear/Non-Color）与色彩贴图（sRGB/ACEScg）的数学处理差异。材质资产跨 DCC/引擎导入导出时防止物理错误的基础规范。 |
 
 ---
 
 ### Module 2: Texture-based Authoring (Asset-level Multi-channel Craft) — Historical 8 Units
 
-| v1 ID | Historical Capability (v1) | Disposition | Proposed v2 Capability / Target | Owning Evidence & Class | Rationale & Gate 3 Impact |
+| v1 ID | Historical Capability (v1) | Disposition | Proposed v2 Capability / Target | Owning Evidence & Class | Rationale & Gate 3 Relevance Hypothesis |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **M02-U01** | Painter 工程设置与色彩管理 *(Painter Project Setup & OCIO/ACES)* | `CANDIDATE_REFRAME` | **V02-C11: 贴图工程架构、通道配置与色彩管理绑定** *(Texture Project Architecture, Channel Setup & Color Management Binding)* | Shah (2022) Ch 1 (`A`); Painter Official Docs (`C`) | 历史表述将能力绑定于 Painter 单一软件的初次向导点击。重构为跨工具通用的资产贴图工程初始化、材质集（Texture Sets）多网格管理及 OCIO/ACES 色彩管理管线绑定。 |
-| **M02-U02** | 图层结构与多通道同步管理 *(Layer Stack & Multi-channel Sync)* | `KEEP_AS_IS` | **V02-C12: 非破坏性图层系统与多物理通道同步求值** *(Non-destructive Layer Stacking & Synchronized Multi-channel Evaluation)* | Shah (2022) Ch 3 (`A`); Painter Layer Docs (`C`) | 资产级材质创作的组织核心。Fill Layer / Paint Layer 的多通道独立混合模式（Color, Rough, Metal, Normal, Height 同步运算）是实现非破坏性编辑的前提。 |
-| **M02-U03** | 遮罩体系与手绘特征细节 *(Mask Hierarchy & Feature Hand-painting)* | `CANDIDATE_REFRAME` | **V02-C13: 空间局部遮罩体系、投影绘制与特征细节修饰** *(Spatial Mask Hierarchy, Viewport Projection Painting & Feature Detailing)* | Shah (2022) Ch 4–5 (`A`); Painter Official Docs (`C`) | 历史表述偏向“纯手工画画”。重构为“三维视口投影、几何多边形填充、黑白通道遮罩与局部特征修补”。即使底层被 AI 生成，局部接缝与特定划痕依然需要空间遮罩精确控制。 |
+| **M02-U02** | 图层结构与多通道同步管理 *(Layer Stack & Multi-channel Sync)* | `KEEP_AS_IS` | **V02-C12: 非破坏性图层系统与多物理通道同步求值** *(Non-destructive Layer Stacking & Synchronized Multi-channel Evaluation)* | Shah (2022) Ch 3 (`A`); Painter Layer Docs (`C`) | 资产级材质创作的组织支柱。Fill Layer / Paint Layer 的多通道独立混合模式（Color, Rough, Metal, Normal, Height 同步运算）是非破坏性局部微调的基础。 |
+| **M02-U03** | 遮罩体系与手绘特征细节 *(Mask Hierarchy & Feature Hand-painting)* | `CANDIDATE_REFRAME` | **V02-C13: 空间局部遮罩体系、投影绘制与特征细节修饰** *(Spatial Mask Hierarchy, Viewport Projection Painting & Feature Detailing)* | Shah (2022) Ch 4–5 (`A`); Painter Official Docs (`C`) | 历史表述偏向“纯手工画画”。重构为“三维视口投影、几何多边形填充、黑白通道遮罩与局部特征修补”。提供空间精确定位与局部可控修订手段。 |
 | **M02-U04** | 智能材质 (Smart Materials) 组织 *(Smart Materials System & Encapsulation)* | `MERGE` | **合并入 V02-C14** | Shah (2022) Ch 6 (`A`); Painter Docs (`C`) | 智能材质与智能生成器在底层皆属于“基于几何烘焙贴图驱动的自适应图层模板与封装系统”。合并为一个高层模块，避免人为拆分成琐碎的 GUI 面板操作。 |
 | **M02-U05** | 智能生成器 (Generators) 驱动逻辑 *(Generators Driven by Mesh Maps)* | `MERGE` | **合并入 V02-C14** | Shah (2022) Ch 4, 6 (`A`); Painter Docs (`C`) | 见 M02-U04。共同合并为 **V02-C14: 几何特征驱动的自适应材质分层封装与模板复用**。 |
-| **M02-U06** | 材质分层逻辑 (Base $\rightarrow$ Detail) *(Material Stratification: Substrate to Wear)* | `KEEP_AS_IS` | **V02-C15: 材质物理工艺分层与底材-涂层-风化因果演变** *(Material Stratification & Substrate-to-Wear Physical Chronology)* | Shah (2022) Ch 4–6 (`A`); Dinur (2026) Ch 5, 13 (`B`) | 工业工艺学在数字材质中的映射：底材（裸金属/塑料）$\to$ 涂层底漆 $\to$ 表面面漆 $\to$ 机械划伤剥落 $\to$ 环境侵蚀氧化 $\to$ 表层积灰。决定材质真实感与叙事厚度。 |
+| **M02-U06** | 材质分层逻辑 (Base $\rightarrow$ Detail) *(Material Stratification: Substrate to Wear)* | `KEEP_AS_IS` | **V02-C15: 材质物理工艺分层与底材-涂层-风化因果演变** *(Material Stratification & Substrate-to-Wear Physical Chronology)* | Shah (2022) Ch 4–6 (`A`); Dinur (2026) Ch 5, 13 (`B`) | 工业工艺学在数字材质中的映射：底材（裸金属/塑料）$\to$ 涂层底漆 $\to$ 表面面漆 $\to$ 机械划伤剥落 $\to$ 环境侵蚀氧化 $\to$ 表层积灰。为 Gate 3 提供物理因果分层假说。 |
 | **M02-U07** | 风化与磨损物理逻辑 (Weathering) *(Weathering, Aging & Contact Logic)* | `CANDIDATE_REFRAME` | **V02-C16: 环境风化、接触磨损与空间位置因果模拟** *(Environmental Weathering, Contact Abrasion & Spatial Position Causality)* | Shah (2022) Ch 6 (`A`); Dinur (2026) Ch 5 (`B`) | 历史表述偏软件做旧滤镜。重构为“依据力学接触点（外露凸起边角磨损）、重力沉积（Position Y 积尘积水）、流体冲刷与环境交互等因果逻辑进行材质老化推演”。 |
 | **M02-U08** | 贴图导出模板与通道配置 *(Export Presets & Channel Packing)* | `CANDIDATE_REFRAME` | **V02-C17: 目标引擎贴图格式转译与通道映射配置** *(Target Engine Texture Export Translation & Channel Mapping Configuration)* | Shah (2022) Ch 6 (`A`); Painter Docs (`C`) | 历史表述局限于 Painter 点击 Export 预设。重构为“根据下游渲染器/游戏引擎（Arnold/Unreal/glTF）的物理接口规范，执行通道重组、位深度匹配与色彩空间元数据标记”。 |
 
@@ -84,10 +86,10 @@ Every audit decision is tested against 10 core dimensions:
 
 ### Module 3: Supporting Pipeline Knowledge (Prerequisites & Baking) — Historical 5 Units
 
-| v1 ID | Historical Capability (v1) | Disposition | Proposed v2 Capability / Target | Owning Evidence & Class | Rationale & Gate 3 Impact |
+| v1 ID | Historical Capability (v1) | Disposition | Proposed v2 Capability / Target | Owning Evidence & Class | Rationale & Gate 3 Relevance Hypothesis |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **M03-U01** | UV 参数化展开与接缝切分 *(UV Parameterization & Seam Layout)* | `CANDIDATE_REFRAME` | **V02-C18: UV 参数化质量评估、接缝布局与拉伸诊断** *(UV Parameterization Quality Assessment, Seam Layout & Distortion Diagnosis)* | Shah (2022) Ch 1 (`A`); Painter Docs Auto Unwrap (`C`); McDermott (2018) pp. 60–63 (`B`) | 本课程非建模拓扑课。重构为“UV 参数化质量评估、视口接缝（Seam）合理性检查与纹理形变拉伸诊断”，重点在于评估与指导自动/外部展开质量，而非从零手撕 UV。 |
-| **M03-U02** | 接缝与硬边对应原则 *(UV Seams vs. Hard Edges Matching)* | `KEEP_AS_IS` | **V02-C19: 模型光滑组硬边与 UV 接缝拓扑协同准则** *(Hard Edges vs. UV Seams Topological Alignment & Artifact Prevention)* | McDermott (2018) pp. 60–63 (`B`); RTR4 Ch 6 (`D`) | 刚性几何拓扑与烘焙数学法则。硬边处必须切开 UV 接缝以防止顶点法线插值计算出黑边/渐变穿帮。极高排错与排险价值。 |
+| **M03-U02** | 接缝与硬边对应原则 *(UV Seams vs. Hard Edges Matching)* | `KEEP_AS_IS` | **V02-C19: 模型光滑组硬边与 UV 接缝拓扑协同准则** *(Hard Edges vs. UV Seams Topological Alignment & Artifact Prevention)* | McDermott (2018) pp. 60–63 (`B`); RTR4 Ch 6 (`B`) | 几何拓扑与烘焙数学法则。硬边处切开 UV 接缝以防止顶点法线插值计算出黑边/渐变穿帮，具有明确的工程排错价值。 |
 | **M03-U03** | 像素密度规划 (Texel Density) *(Texel Density Planning & Scaling)* | `KEEP_AS_IS` | **V02-C20: 纹素密度规划、一致性分配与跨资产对齐** *(Texel Density Planning, Consistency Budgeting & Asset Alignment)* | Shah (2022) Ch 1 (`A`); McDermott (2018) pp. 58–60 (`B`) | 资产级乃至场景级视觉品质均一的决定性指标。防止同一个道具上出现局部模糊、局部极度锐利的纹素失配。 |
 | **M03-U04** | 高低模映射关系与拓扑准备 *(High-to-Low Poly Mapping & Topology)* | `MERGE` | **合并入 V02-C21** | Shah (2022) Ch 1 (`A`); Painter Baking Docs (`C`) | 高低模拓扑准备本身是贴图烘焙的前提环节，将其与贴图烘焙及失配排错合并为一个完整的“几何细节投射与烘焙”能力单元。 |
 | **M03-U05** | 关键贴图烘焙 *(Mesh Maps Baking: Normal/AO/Curvature)* | `MERGE` | **合并入 V02-C21** | Shah (2022) Ch 1 (`A`); Painter Baking Docs (`C`) | 与 M03-U04 合并为 **V02-C21: 几何细节投影烘焙、网格贴图派生与烘焙伪影诊断** *(Geometric Detail Baking, Mesh Map Derivation & Artifact Diagnosis)*。包含高低模包裹笼（Cage）、射线投射、Paint Skew 斜切修复与法线反转排错。 |
@@ -96,15 +98,15 @@ Every audit decision is tested against 10 core dimensions:
 
 ### Module 4: Procedural / Parametric Materials (Procedural Nodes & Systems) — Historical 10 Units
 
-| v1 ID | Historical Capability (v1) | Disposition | Proposed v2 Capability / Target | Owning Evidence & Class | Rationale & Gate 3 Impact |
+| v1 ID | Historical Capability (v1) | Disposition | Proposed v2 Capability / Target | Owning Evidence & Class | Rationale & Gate 3 Relevance Hypothesis |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **M04-U01** | 节点着色器架构 (Shader Nodes) *(Node-based Shader Graph Architecture)* | `CANDIDATE_REFRAME` | **V02-C22: 结构化节点图架构与数据流拓扑原理** *(Structured Shader Graph Architecture & Directed Dataflow Topology)* | Shah (2022) Ch 7 (`A`); Blender Manual Shader Nodes (`C`); Designer Docs (`C`); MaterialX Spec (`C`) | 历史表述偏向具体软件界面的连线基础。重构为通用的“有向无环图（DAG）数据流、强类型系统（标量、向量、色彩、表面接口）与复合子图拓扑”，直接为程序化合成、MaterialX 及 Agent 机器读写奠定心智模型。 |
-| **M04-U02** | 纹理坐标系 *(Texture Coordinates: Generated, Object, UV)* | `KEEP_AS_IS` | **V02-C23: 多维空间纹理坐标系转换与映射逻辑** *(Texture Coordinate Systems & Spatial Mapping: UV, Object, World, Triplanar)* | Blender Manual (`C`); Shah (2022) Ch 7–8 (`A`); Designer Docs (`C`) | 区分 UV 平面、包围盒 Generated、三维 Object 空间与三平面投影（Triplanar）。摆脱模型 UV 依赖、实现无拉伸自然程序化铺底的核心。 |
-| **M04-U03** | 算法纹理与噪声 *(Procedural Noise & Patterns: Perlin/Voronoi)* | `KEEP_AS_IS` | **V02-C24: 程序化算法噪波与自然图案合成** *(Procedural Noise Generators & Mathematical Pattern Synthesis)* | Shah (2022) Ch 8 (`A`); Blender Manual (`C`); Designer Docs (`C`) | 利用 Perlin/Simplex/Voronoi 等数学函数生成连续有机质感、开裂裂纹与高频细节。是参数化材质自洽无限分辨率的源泉。 |
+| **M04-U01** | 节点着色器架构 (Shader Nodes) *(Node-based Shader Graph Architecture)* | `CANDIDATE_REFRAME` | **V02-C22: 结构化节点图架构与数据流拓扑原理** *(Structured Shader Graph Architecture & Directed Dataflow Topology)* | Shah (2022) Ch 7 (`A`); Blender Manual Shader Nodes (`C`); Designer Docs (`C`); MaterialX Spec (`C`) | 历史表述偏向具体软件界面的连线基础。重构为通用的“有向无环图（DAG）数据流、强类型系统（标量、向量、色彩、表面接口）与复合子图拓扑”，为程序化合成、MaterialX 及 Agent 机器读写奠定心智模型。 |
+| **M04-U02** | 纹理坐标系 *(Texture Coordinates: Generated, Object, UV)* | `KEEP_AS_IS` | **V02-C23: 多维空间纹理坐标系转换与映射逻辑** *(Texture Coordinate Systems & Spatial Mapping: UV, Object, World, Triplanar)* | Blender Manual (`C`); Shah (2022) Ch 7–8 (`A`); Designer Docs (`C`) | 区分 UV 平面、包围盒 Generated、三维 Object 空间与三平面投影（Triplanar）。摆脱模型 UV 依赖、实现无拉伸自然程序化铺底的重要手段。 |
+| **M04-U03** | 算法纹理与噪声 *(Procedural Noise & Patterns: Perlin/Voronoi)* | `KEEP_AS_IS` | **V02-C24: 程序化算法噪波与自然图案合成** *(Procedural Noise Generators & Mathematical Pattern Synthesis)* | Shah (2022) Ch 8 (`A`); Blender Manual (`C`); Designer Docs (`C`) | 利用 Perlin/Simplex/Voronoi 等数学函数生成连续有机质感、开裂裂纹与高频细节。参数化材质无限分辨率特性的基础。 |
 | **M04-U04** | 数学运算与混合遮罩 *(Math Operations & Mix Masks)* | `MERGE` | **合并入 V02-C25** | Shah (2022) Ch 9 (`A`); Blender Manual Math/Mix Nodes (`C`) | 算术运算（Add, Multiply, Min/Max）与色彩/区间重映射在节点网络中是紧密一体的数据调理过程。分开导致微观连线碎片化。 |
 | **M04-U05** | 色彩映射与区间重映射 *(ColorRamp & Range Remapping)* | `MERGE` | **合并入 V02-C25** | Shah (2022) Ch 9 (`A`); Blender Manual ColorRamp/MapRange (`C`) | 与 M04-U04 合并为 **V02-C25: 节点数学运算、通道混合与数值区间重映射** *(Node Mathematics, Channel Blending & Range Remapping)*。 |
 | **M04-U06** | 映射缩放与平铺控制 *(Mapping, Scale & Tiling Control)* | `KEEP_AS_IS` | **V02-C26: 纹理空间变换、真实物理尺度对齐与平铺控制** *(Texture Spatial Transformation, Metric Scale Calibration & Tiling Control)* | Shah (2022) Ch 8 (`A`); Sampler Docs Physical Size (`C`); Blender Manual (`C`) | 将虚拟贴图坐标映射与现实世界公制物理尺寸（Real-world Metric Scale）对齐，消除平铺接缝与比例失真的关键能力。 |
-| **M04-U07** | 随机化与多变异质感 *(Randomization & Multi-variation)* | `KEEP_AS_IS` | **V02-C27: 对象随机变体、种子控制与重复感消除** *(Object-level Variation, Seed Randomization & Tiling Pattern Breaking)* | Blender Manual Object Info (`C`); Designer Tile Sampler Docs (`C`) | 大规模资产复用时打破“瓷砖感/贴图重复痕迹”的不可或缺技能。通过随机种子（Seed）与位置扰动实现一套材质生成多样外观。 |
+| **M04-U07** | 随机化与多变异质感 *(Randomization & Multi-variation)* | `KEEP_AS_IS` | **V02-C27: 对象随机变体、种子控制与重复感消除** *(Object-level Variation, Seed Randomization & Tiling Pattern Breaking)* | Blender Manual Object Info (`C`); Designer Tile Sampler Docs (`C`) | 大规模资产复用时打破“瓷砖感/贴图重复痕迹”的有效技能。通过随机种子（Seed）与位置扰动实现一套材质生成多样外观。 |
 | **M04-U08** | 节点组封装与参数暴露 *(Node Group Encapsulation & Interface)* | `CANDIDATE_REFRAME` | **V02-C28: 模块化子图封装与有意义的参数接口暴露** *(Modular Subgraph Encapsulation & Meaningful Parameter Interface Design)* | Shah (2022) Ch 7 (`A`); Designer Values Docs (`C`); Blender Node Groups (`C`) | 历史表述局限于“右键打包节点组”。重构为“黑盒模块化抽象、参数暴露、定义合法数值区间与标签，为下游艺术家或自动化脚本构建易读的母材质控制面板”。 |
 | **M04-U09** | 独立程序化纹理与 `.sbsar` 母版生成 *(Standalone Procedural Texture & `.sbsar`)* | `CANDIDATE_REFRAME` | **V02-C29: 可复用参数化材质资产打包与动态运行时集成** *(Reusable Parametric Material Packaging & Dynamic Runtime Integration)* | Designer User Guide (`C`); Shah (2022) Ch 10 (`A`) | 历史表述绑定于 Designer 专属 `.sbsar`。重构为“参数化材质包的编译、跨软件分发机制以及在宿主引擎运行时通过插件/API 动态调参的系统原理”。 |
 | **M04-U10** | 程序化结果烘焙为 PBR 贴图包 *(Baking Procedural to PBR Texture Set)* | `CANDIDATE_REFRAME` | **V02-C30: 程序化节点网络向标准位图集的静态烘焙与精度控制** *(Procedural Graph Baking to Static Bitmap Sets & Bit-depth Precision Control)* | Shah (2022) Ch 10 (`A`); Blender Render Baking Docs (`C`); SAT Docs (`C`) | 解决程序化着色网络进入实时引擎或轻量管线时的算力开销问题。包含烘焙位深度（Normal/Height 16-bit 防阶梯断层）与性能权衡。 |
@@ -113,11 +115,11 @@ Every audit decision is tested against 10 core dimensions:
 
 ### Module 5: Material Acquisition & Conversion (Image-to-Material & Scanning) — Historical 5 Units
 
-| v1 ID | Historical Capability (v1) | Disposition | Proposed v2 Capability / Target | Owning Evidence & Class | Rationale & Gate 3 Impact |
+| v1 ID | Historical Capability (v1) | Disposition | Proposed v2 Capability / Target | Owning Evidence & Class | Rationale & Gate 3 Relevance Hypothesis |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **M05-U01** | 照片/扫描参考转 PBR 材质原理 *(Photometric / Scan Reference to PBR)* | `KEEP_AS_IS` | **V02-C31: 真实世界材质采集光学原理与数字化反向推导** *(Photometric Capture Principles & Reverse Material Estimation)* | Dinur (2026) Ch 13 (`B`); Sampler Docs (`C`); IntrinsiX (2025) (`D`) | 理解真实世界光影与材质本征属性的解耦机制（偏振去反光、漫射光环境拍照、法线坡度推导），是连接现实与虚拟材质的认知桥梁。 |
-| **M05-U02** | Substance 3D Sampler 工具链工作流 *(Substance 3D Sampler Workflow)* | `RETIRE_OR_DEFER` | *(退役/合并为实现载体)* | Sampler Official Docs (`C`); Shah (2022) Ch 11 (`A`) | **RETIRE_OR_DEFER**：这是纯软件 GUI 工作流外壳。其底层技术能力已被“图像反算通道”、“无缝平铺”与“物理尺寸标定”完全分解吸收。作为独立 Candidate 纯属历史软件中心主义惯性。 |
-| **M05-U03** | Image-to-Material 智能通道提取 *(Image-to-Material AI/B2M Extraction)* | `SPLIT` | **拆分为 V02-C32 与 V02-C33** | Sampler Docs (`C`); IntrinsiX (2025) (`D`); LumiTex (2026) (`D`) | **SPLIT 核心原因**：原单元混淆了“图像到通道的估算生成”与“自动化去光照缺陷的物理诊断与二次修正”。在现代工作流中，生成是算法前向推断，而诊断修正是艺术家必修的品控防线。 |
+| **M05-U02** | Substance 3D Sampler 工具链工作流 *(Substance 3D Sampler Workflow)* | `RETIRE_OR_DEFER` | *(退役/合并为实现载体)* | Sampler Official Docs (`C`); Shah (2022) Ch 11 (`A`) | **RETIRE_OR_DEFER**：纯软件 GUI 工作流外壳。其底层技术能力已被“图像反算通道”、“无缝平铺”与“物理尺寸标定”完全分解吸收。作为独立 Candidate 属于历史软件中心主义惯性。 |
+| **M05-U03** | Image-to-Material 智能通道提取 *(Image-to-Material AI/B2M Extraction)* | `SPLIT` | **拆分为 V02-C32 与 V02-C33** | Sampler Docs (`C`); IntrinsiX (2025) (`D`); LumiTex (2026) (`D`) | **SPLIT 核心原因**：原单元混淆了“图像到通道的估算生成”与“自动化去光照缺陷的物理诊断与二次修正”。生成是算法前向推断，而诊断修正是艺术家品控防线。 |
 | **M05-U04** | 图像无缝平铺处理 (Seamless Tiling) *(Seamless Tiling & AI Outpainting)* | `KEEP_AS_IS` | **V02-C34: 纹理图像无缝平铺处理与宏观大色块重复消除** *(Seamless Texture Tiling & Macro Clumping Elimination)* | Shah (2022) Ch 11 (`A`); Sampler Docs Tiling (`C`) | 平铺滤镜边缘混合、接缝消除与大面积重复纹样的人工打散。贴图复用不可或缺的通用技能。 |
 | **M05-U05** | 真实物理尺寸校准 (Scale Calibration) *(Real-world Physical Scale Calibration)* | `MERGE` | **合并入 V02-C26** | Sampler Docs Physical Size (`C`); Shah (2022) Ch 11 (`A`) | 真实物理尺寸标定在物理原理与工作流上直接服务于纹理空间映射、缩放与平铺控制，与 M04-U06 存在高度逻辑重叠。合并入 **V02-C26**。 |
 
@@ -125,86 +127,69 @@ Every audit decision is tested against 10 core dimensions:
 
 ### Module 6: LookDev & Multi-environment Validation (Validation & Delivery) — Historical 6 Units
 
-| v1 ID | Historical Capability (v1) | Disposition | Proposed v2 Capability / Target | Owning Evidence & Class | Rationale & Gate 3 Impact |
+| v1 ID | Historical Capability (v1) | Disposition | Proposed v2 Capability / Target | Owning Evidence & Class | Rationale & Gate 3 Relevance Hypothesis |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **M06-U01** | Blender 材质视口与基础着色验证 *(Blender Viewport & Basic Shading Validation)* | `CANDIDATE_REFRAME` | **V02-C35: 交互式视口物理着色检验与快速环境响应验证** *(Interactive Viewport Shading Inspection & Rapid Environmental Response Validation)* | Blender Manual Viewport Shading (`C`); Painter Viewport Docs (`C`) | 历史表述限定在 Blender 视口面板。重构为通用的“在实时光栅化/混合渲染视口中对 Principled/OpenPBR 材质进行光照响应、金属度/粗糙度快速目视检查”。 |
 | **M06-U02** | Unreal Engine 实时材质实例组装 *(Unreal Engine Master & Material Instances)* | `CANDIDATE_REFRAME` | **V02-C36: 实时引擎材质母版架构与参数化材质实例体系** *(Realtime Engine Master Material Architecture & Parameterized Material Instancing)* | UE 5.8 Material Instances Docs (`C`); Karis (2013) (`D`) | 历史表述偏向特定软件操作。重构为实时引擎通用的“母材质（Master Material）静态着色拓扑设计、动态标量/向量/贴图参数暴露、以及实例化（Material Instances）层级管理与性能优化”。 |
-| **M06-U03** | 游戏运行时材质性能与约束 (ORM/BC7) *(Runtime Performance, BC7 & Texture Packing)* | `KEEP_AS_IS` | **V02-C37: 实时游戏运行时材质性能开销、通道打包与硬件压缩** *(Realtime Runtime Material Performance, Channel Packing & Hardware Compression)* | McDermott (2018) pp. 60–63 (`B`); UE 5.8 Texture Compression Docs (`C`); Karis (2013) (`D`) | 游戏交付端的刚性技术约束。ORM 多通道合并、BC7/BC5/BC1 硬件纹理压缩、显存占用计算与材质复杂度开销控制。 |
-| **M06-U04** | 影视/动画高保真着色差异 (SSS/Coat) *(Cinematic High-fidelity Shading: SSS, Coat)* | `CANDIDATE_REFRAME` | **V02-C38: 高保真多层着色模型物理特性与因果表达 (次表面/清漆/薄膜)** *(High-fidelity Multilayer Shading Physics: Subsurface, Clear Coat & Thin Film)* | OpenPBR Spec §3.3, §3.4 (`C`); Dinur (2026) Ch 11–12 (`B`); RTR4 Ch 9.6 (`D`) | 历史表述将 SSS/Coat 仅视为影视特定差异。重构为“基于 OpenPBR 多层介质模型对高阶物理外观（皮肤/玉石次表面散射、车漆清漆双层高光、氧化薄膜干涉）的参数理解与因果调控”。 |
-| **M06-U05** | 跨渲染器着色表现差异对比 *(Cross-renderer Shading Discrepancies)* | `CANDIDATE_REFRAME` | **V02-C39: 跨渲染引擎着色差异分析与视觉一致性调校** *(Cross-renderer Shading Discrepancy Diagnosis & Visual Consistency Alignment)* | McDermott (2018) pp. 80–88 (`B`); RTR4 Ch 9.10 (`D`); OpenPBR Spec §1.1 (`C`) | 历史表述偏向被动比较。重构为“理解不同渲染器在微表面遮蔽（Smith/Kelemen）、环境光积分与色调映射（Tone Mapping）上的算法差异，主动排查并对齐视觉外观”。 |
-| **M06-U06** | 多环境 IBL 与极端光照压力测试 *(Multi-environment IBL & Lighting Stress Testing)* | `KEEP_AS_IS` | **V02-C40: 多环境 IBL 旋转压力测试与严苛物理一致性验证** *(Multi-environment IBL Rotation Stress Testing & Rigorous Physical Consistency QA)* | Dinur (2026) Ch 12 (`B`); McDermott (2018) pp. 38–40 (`B`); OpenPBR White Furnace Test (`C`) | LookDev 质量验收的核心金标准。通过室内暖光、室外高动态烈日、阴天冷光多套 HDR 环境旋转照射，检验材质是否在任何极端光照下均保持物理可信、绝不自发光或突兀死黑。 |
+| **M06-U03** | 游戏运行时材质性能与约束 (ORM/BC7) *(Runtime Performance, BC7 & Texture Packing)* | `KEEP_AS_IS` | **V02-C37: 实时游戏运行时材质性能开销、通道打包与硬件压缩** *(Realtime Runtime Material Performance, Channel Packing & Hardware Compression)* | McDermott (2018) pp. 60–63 (`B`); UE 5.8 Texture Compression Docs (`C`); Karis (2013) (`D`) | 游戏交付端的工程技术约束。ORM 多通道合并、BC7/BC5/BC1 硬件纹理压缩、显存占用计算与材质复杂度开销控制。 |
+| **M06-U04** | 影视/动画高保真着色差异 (SSS/Coat) *(Cinematic High-fidelity Shading: SSS, Coat)* | `CANDIDATE_REFRAME` | **V02-C38: 高保真多层着色模型物理特性与因果表达 (次表面/清漆/薄膜)** *(High-fidelity Multilayer Shading Physics: Subsurface, Clear Coat & Thin Film)* | OpenPBR Spec §3.3, §3.4 (`C`); Dinur (2026) Ch 11–12 (`B`); RTR4 Ch 9.6 (`B`) | 历史表述将 SSS/Coat 仅视为影视特定差异。重构为“基于 OpenPBR 多层介质模型对高阶物理外观（皮肤/玉石次表面散射、车漆清漆双层高光、氧化薄膜干涉）的参数理解与因果调控”。 |
+| **M06-U05** | 跨渲染器着色表现差异对比 *(Cross-renderer Shading Discrepancies)* | `CANDIDATE_REFRAME` | **V02-C39: 跨渲染引擎着色差异分析与视觉一致性调校** *(Cross-renderer Shading Discrepancy Diagnosis & Visual Consistency Alignment)* | McDermott (2018) pp. 80–88 (`B`); RTR4 Ch 9.10 (`B`); OpenPBR Spec §1.1 (`C`) | 历史表述偏向被动比较。重构为“理解不同渲染器在微表面遮蔽（Smith/Kelemen）、环境光积分与色调映射（Tone Mapping）上的算法差异，主动排查并对齐视觉外观”。 |
+| **M06-U06** | 多环境 IBL 与极端光照压力测试 *(Multi-environment IBL & Lighting Stress Testing)* | `KEEP_AS_IS` | **V02-C40: 多环境 IBL 旋转压力测试与严苛物理一致性验证** *(Multi-environment IBL Rotation Stress Testing & Rigorous Physical Consistency QA)* | Dinur (2026) Ch 12 (`B`); McDermott (2018) pp. 38–40 (`B`); OpenPBR White Furnace Test (`C`) | LookDev 质量验收的关键评判手段。通过室内暖光、室外高动态烈日、阴天冷光多套 HDR 环境旋转照射，检验材质是否在任何极端光照下均保持物理可信，不出现自发光或非自然死黑。 |
 
 ---
 
 ### Module 7: AI-Native Candidate Pool — Historical 13 Units
 
-| v1 ID | Historical Candidate (v1) | Disposition | Proposed v2 Capability / Target | Owning Evidence & Class | Rationale & Gate 3 Impact |
+| v1 ID | Historical Candidate (v1) | Disposition | Proposed v2 Capability / Target | Owning Evidence & Class | Rationale & Gate 3 Relevance Hypothesis |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **AI-U01** | 材质语义提示词工程 *(Material Semantic Prompting)* | `RETIRE_OR_DEFER` | *(退役/不作为独立 Candidate)* | AI Impact Report §6.1 (`D`); Sampler Generative Docs (`C`) | **RETIRE_OR_DEFER**：泛化的“提示词工程”属于易逝的操作技巧，不具备长期学科教学厚度。理解材料的物理工艺术语本身已经被 **V02-C01** 与 **V02-C15** 涵盖；纯文本自然语言交互不能作为独立的 3D 材质底层能力。 |
-| **AI-U02** | 参考图像条件约束与风格锚定 *(Reference Conditioning & ControlNet)* | `CANDIDATE_REFRAME` | **V02-C41: 几何条件引导与多模态参考约束的材质生成控制** *(Geometry-conditioned & Multimodal Reference-guided Material Generation)* | Dinur (2026) Ch 19 (`B`); IntrinsiX (2025) (`D`); ControlNet/IP-Adapter literature (`D`) | 历史表述偏向具体的 ComfyUI 插件操作。重构为通用的“利用几何线索（深度/法线/位置）与图像特征嵌入（Feature Embedding）对生成式纹理进行定向空间引导与保形约束”。 |
-| **AI-U03** | 跨通道 PBR 物理诊断 *(Cross-channel PBR Physical Diagnosis)* | `KEEP_AS_IS` | **V02-C42: 跨通道 PBR 物理自洽性诊断与多贴图逻辑矛盾排查** *(Cross-channel PBR Consistency Diagnosis & Inter-map Logical Conflict Auditing)* | McDermott (2018) Appendix (`B`); 80 Level Tripo Interview (`D`); AI Impact Report §6.1 (`D`) | 专门针对 AI 生成与多源贴图的体检诊断技能。排查例如“法线贴图有锐利深凹槽，但粗糙度贴图完全平滑无污垢响应”或“金属度为 1 但固有色极度暗黑”等跨通道逻辑撕裂。 |
-| **AI-U04** | 人机协同分层迭代与局部微调 *(Human-in-the-Loop Layer Structuring)* | `CANDIDATE_REFRAME` | **V02-C43: 扁平生成纹理的非破坏性分层重构与局部受控修订** *(Non-destructive Layer Reconstruction & Localized Controlled Revision from Flat Textures)* | Shah (2022) Ch 3–4 (`A`); Meshy Docs (`C`); AI Impact Report §6.1 (`D`) | 历史表述笼统。重构为现代核心能力：“将生成工具输出的扁平单层贴图，通过空间遮罩提取与通道解耦，逆向重构为可非破坏性微调的图层栈”，实现“只修改磨损而不破坏底色”的局部受控修订（Edit Locality）。 |
-| **AI-U05** | 光照残留剥离与去光照修正 *(De-lighting Inspection & Correction)* | `KEEP_AS_IS` | **V02-C33: 漫反射光照残留诊断与反照率手工/算法去光照精修** *(De-lighting Inspection, Albedo Purity QA & Manual/Algorithmic Correction)* | IntrinsiX (2025) (`D`); LumiTex (2026) (`D`); Sampler Docs (`C`) | 独立成项。当前 AI 与单目采集生成的 Albedo 频繁残留阴影暗斑，导致重打光时穿帮。学生必须掌握检测残留光照、利用反向曲线与修复工具剥离阴影的实操硬核技能。 |
-| **AI-U06** | AI 材质变体策展与筛选 *(AI Material Variation Curation)* | `RETIRE_OR_DEFER` | *(退役/合并为艺术指导通用素养)* | AI Impact Report §6.2 (`D`); Sampler Docs (`C`) | **RETIRE_OR_DEFER**：在大量生成草稿中“挑出好看的”是泛化的人类审美筛选，其核心依据（物理合规、世界观契合、细节尺度）已被 **V02-C01**、**V02-C02** 与 **V02-C09** 覆盖，不值得独立占用 Gate 3 候选坑位。 |
-| **AI-U07** | 版本控制与随机种子管理 *(Seed & Workflow Version Reproducibility)* | `RETIRE_OR_DEFER` | *(退役/合并入参数化管线通用要求)* | Sampler Docs Seed (`C`); AI Impact Report §6.2 (`D`) | **RETIRE_OR_DEFER**：记录 Seed 和版本参数属于任何数字管线的通用工程纪律，已在 **V02-C27**（种子变体）与通用资产管理中体现，不构成独立的材质核心能力。 |
-| **AI-U08** | AI 纹理接缝与伪影修复 *(AI Artifact & Seam Inpainting)* | `MERGE` | **合并入 V02-C13** | 80 Level Tripo Interview (`D`); Painter Docs (`C`) | AI 在 UV 接缝与凹陷处生成的拉伸伪影，其实质修复手段完全依赖三维视口投影绘制、克隆画笔与空间修补遮罩，本质属于 **V02-C13** 的典型实战用例。 |
-| **AI-U09** | 材质母版提示词驱动调参 *(Prompt-to-Parameter Control)* | `RETIRE_OR_DEFER` | *(退役/仅保留为概念推导)* | Node To Talk Docs (`C`/`D`); AI Impact Report §6.3 (`D`) | **RETIRE_OR_DEFER**：属于实验性原型插件（Node To Talk）的临时功能。核心在于母材质参数暴露（**V02-C28**）与 Agent 接口（**V02-C45**），自然语言调参只是外壳包装。 |
-| **AI-U10** | 资产血统与商用合规判断 *(Asset Provenance & Licensing Judgment)* | `RETIRE_OR_DEFER` | *(退役/移出材质技术能力核心)* | Firefly Licensing Docs (`C`); AI Impact Report §6.3 (`D`) | **RETIRE_OR_DEFER**：版权法务通识对于数字媒体专业重要，但属于通识伦理范畴，不属于三维材质创作技术与理论的核心能力地图。 |
-| **AI-U11** | 智能体节点图编排 *(Agentic Graph Orchestration)* | `CANDIDATE_REFRAME` | **V02-C45: 机器可读材质图表拓扑、序列化协议与智能体可操作性** *(Machine-readable Material Graph Topology, Serialization Protocols & Agent Operability)* | DD3M (2024/2025) (`D`); Node To Talk Docs (`C`/`D`); Blender Python API (`C`); Designer Python API (`C`) | 历史表述偏向高深的多智能体编排。重构为底层的“理解结构化材质图表的拓扑表示、掌握 JSON/XML/代码序列化规范，使材质系统具备可被外部脚本与 AI Agent 安全解析、修改与验证的结构化特征”。 |
-| **AI-U12** | 跨平台物理材质标准化映射 *(Standardized MaterialX/OpenPBR Translation)* | `SPLIT` | **拆分为 V02-C44 与 V02-C46** | OpenPBR Spec (`C`); MaterialX Spec (`C`); UE 5.8 Interchange Docs (`C`) | **SPLIT 核心原因**：原单元混合了“标准材质语义表达与跨平台交换（MaterialX/OpenPBR）”与“从标准格式到目标游戏引擎的转换损失认知与管线适配交付”。这两者在工程实践中分属表达层与交付层。 |
-| **AI-U13** | 视觉特征约束规范制定 *(Visual Constraint Specification)* | `MERGE` | **合并入 V02-C40 与 V02-C42** | Dinur (2026) Ch 19 (`B`); AI Impact Report §6.3 (`D`) | 设定反射率范围、粗糙度极值等约束指标，实质就是执行物理一致性验证与质检清单。与 **V02-C40** 及 **V02-C42** 重复。 |
+| **AI-U01** | 材质语义提示词工程 *(Material Semantic Prompting)* | `RETIRE_OR_DEFER` | *(退役/不作为独立 Candidate)* | Sampler Generative Docs (`C`); 见 AI Impact Report §6.1 (`Synthesis Pointer`) | **RETIRE_OR_DEFER**：泛化的“提示词工程”属于易逝的操作技巧，不具备长期学科教学厚度。理解材料的物理工艺术语本身已经被 **V02-C01** 与 **V02-C15** 涵盖；纯文本自然语言交互不作为独立的 3D 材质底层能力。 |
+| **AI-U02** | 参考图像条件约束与风格锚定 *(Reference Conditioning & ControlNet)* | `CANDIDATE_REFRAME` | **V02-C41: 几何条件引导与多模态参考约束的材质生成控制** *(Geometry-conditioned & Multimodal Reference-guided Material Generation)* | Dinur (2026) Ch 19 (`B`); IntrinsiX (2025) (`D`); ControlNet/IP-Adapter 文献 (`D`) | 历史表述偏向具体的 ComfyUI 插件操作。重构为通用的“利用几何线索（深度/法线/位置）与图像特征嵌入（Feature Embedding）对生成式纹理进行定向空间引导与保形约束”。 |
+| **AI-U03** | 跨通道 PBR 物理诊断 *(Cross-channel PBR Physical Diagnosis)* | `KEEP_AS_IS` | **V02-C42: 跨通道 PBR 物理自洽性诊断与多贴图逻辑矛盾排查** *(Cross-channel PBR Consistency Diagnosis & Inter-map Logical Conflict Auditing)* | McDermott (2018) Appendix (`B`); 80 Level Tripo Interview (`D`); 见 AI Impact Report §6.1 (`Synthesis Pointer`) | 专门针对 AI 生成与多源贴图的体检诊断技能。排查例如“法线贴图有锐利深凹槽，但粗糙度贴图完全平滑无污垢响应”或“金属度为 1 但固有色极度暗黑”等跨通道逻辑撕裂。 |
+| **AI-U04** | 人机协同分层迭代与局部微调 *(Human-in-the-Loop Layer Structuring)* | `CANDIDATE_REFRAME` | **V02-C43: 扁平生成纹理的非破坏性分层重构与局部受控修订** *(Non-destructive Layer Reconstruction & Localized Controlled Revision from Flat Textures)* | Shah (2022) Ch 3–4 (`A`); Meshy Docs (`C`); 见 AI Impact Report §6.1 (`Synthesis Pointer`) | 历史表述笼统。重构为现代核心能力：“将生成工具输出的扁平单层贴图，通过空间遮罩提取与通道解耦，逆向重构为可非破坏性微调的图层栈”，提供“只修改磨损而不破坏底色”的局部受控修订（Edit Locality）方案。 |
+| **AI-U05** | 光照残留剥离与去光照修正 *(De-lighting Inspection & Correction)* | `KEEP_AS_IS` | **V02-C33: 漫反射光照残留诊断与反照率手工/算法去光照精修** *(De-lighting Inspection, Albedo Purity QA & Manual/Algorithmic Correction)* | IntrinsiX (2025) (`D`); LumiTex (2026) (`D`); Sampler Docs (`C`) | 独立成项。当前 AI 与单目采集生成的 Albedo 频繁残留阴影暗斑，导致重打光时穿帮。学生掌握检测残留光照、利用反向曲线与修复工具剥离阴影的实操精修技能。 |
+| **AI-U06** | AI 材质变体策展与筛选 *(AI Material Variation Curation)* | `RETIRE_OR_DEFER` | *(退役/合并为艺术指导通用素养)* | Sampler Docs (`C`); 见 AI Impact Report §6.2 (`Synthesis Pointer`) | **RETIRE_OR_DEFER**：在大量生成草稿中进行人类审美筛选，其核心依据（物理合规、世界观契合、细节尺度）已被 **V02-C01**、**V02-C02** 与 **V02-C09** 覆盖，不占用独立 Gate 3 候选坑位。 |
+| **AI-U07** | 版本控制与随机种子管理 *(Seed & Workflow Version Reproducibility)* | `RETIRE_OR_DEFER` | *(退役/合并入参数化管线通用要求)* | Sampler Docs Seed (`C`); 见 AI Impact Report §6.2 (`Synthesis Pointer`) | **RETIRE_OR_DEFER**：记录 Seed 和版本参数属于任何数字管线的通用工程纪律，已在 **V02-C27**（种子变体）与通用资产管理中体现，不构成独立的材质核心能力。 |
+| **AI-U08** | AI 纹理接缝与伪影修复 *(AI Artifact & Seam Inpainting)* | `MERGE` | **合并入 V02-C13** | 80 Level Tripo Interview (`D`); Painter Docs (`C`) | AI 在 UV 接缝与凹陷处生成的拉伸伪影，其实质修复手段依托三维视口投影绘制、克隆画笔与空间修补遮罩，属于 **V02-C13** 的实战用例。 |
+| **AI-U09** | 材质母版提示词驱动调参 *(Prompt-to-Parameter Control)* | `RETIRE_OR_DEFER` | *(退役/仅保留为概念推导)* | Node To Talk Docs (`C`/`D`); 见 AI Impact Report §6.3 (`Synthesis Pointer`) | **RETIRE_OR_DEFER**：属于实验性原型插件（Node To Talk）的临时功能。核心在于母材质参数暴露（**V02-C28**）与 Agent 接口（**V02-C45**），自然语言调参只是外壳包装。 |
+| **AI-U10** | 资产血统与商用合规判断 *(Asset Provenance & Licensing Judgment)* | `RETIRE_OR_DEFER` | *(独立候选退役；其中与材质获取直接相关的商用合规决策吸收进 V02-C47)* | Adobe Firefly Licensing Docs (`C`); 见 AI Impact Report §6.3 (`Synthesis Pointer`) | **RETIRE_OR_DEFER（吸收与分流）**：作为独立技术候选退役。超出材质专业边界的广泛法务与伦理通识予以延后退役；其中涉及材质资产获取选型（如生成资产商用许可、模型合规风险）的具体决策条件，作为输入准则有机并入 **V02-C47**，消除无源孤岛冲突。 |
+| **AI-U11** | 智能体节点图编排 *(Agentic Graph Orchestration)* | `CANDIDATE_REFRAME` | **V02-C45: 机器可读材质图表拓扑、序列化协议与智能体可操作性** *(Machine-readable Material Graph Topology, Serialization Protocols & Agent Operability)* | MaterialX Spec (`C`); Blender Python API (`C`); Designer Python API (`C`); DD3M (2024/2025) (`D`); Node To Talk Docs (`C`/`D`) | 历史表述偏向高深的多智能体编排。重构为底层的“理解结构化材质图表的拓扑表示、掌握 JSON/XML/代码序列化规范，使材质系统具备可被外部脚本与 AI Agent 安全解析、修改与验证的结构化特征”。 |
+| **AI-U12** | 跨平台物理材质标准化映射 *(Standardized MaterialX/OpenPBR Translation)* | `SPLIT` | **拆分为 V02-C44 与 V02-C46** | OpenPBR Spec (`C`); MaterialX Spec (`C`); UE 5.8 Interchange Docs (`C`) | **SPLIT 核心原因**：原单元混合了“开放标准材质语义表达与跨平台交换（MaterialX/OpenPBR）”与“从标准格式到目标游戏引擎的转换损失认知与管线适配交付”。这两者在工程实践中分属表达层与交付层。 |
+| **AI-U13** | 视觉特征约束规范制定 *(Visual Constraint Specification)* | `MERGE` | **合并入 V02-C40 与 V02-C42** | Dinur (2026) Ch 19 (`B`); 见 AI Impact Report §6.3 (`Synthesis Pointer`) | 设定反射率范围、粗糙度极值等约束指标，实质就是执行物理一致性验证与质检清单。与 **V02-C40** 及 **V02-C42** 重复。 |
 
 ---
 
-## Part 3 — New Candidate Proposals (ADD Proposals)
+## Part 3 — Lineage Accounting: Net-New Additions vs. Reframing / Splits
 
-经过 Gate 2.5A 官方一手规范与目标交付样本提取，历史 57 项存在以下 **3 项具有 A/B/C/D 权威证据支撑且未被表达的本质能力缺口**：
+为了消除概念双重计算，明确建立唯一的 Lineage 谱系模型：
 
-### ADD-01: V02-C44 — 开放标准跨平台结构化材质表示 (Open Standards Structured Material Representation: MaterialX & OpenPBR)
-- **Proposed Capability**: 掌握基于开源工业标准（MaterialX 节点图定义、NodeDef、类型系统与 OpenPBR 规范化物理参数体系）描述三维物体外观的结构化方法，理解外观表达与特定宿主 DCC/引擎专有文件格式的解耦原理。
-- **Owning Sources & Classes**:
-  - `ASWF MaterialX Specification v1.39.5` (`C — Technical Specification`)
-  - `ASWF OpenPBR Surface Specification v1.1.1` (`C — Technical Specification`)
-  - `Substance 3D Painter 12.1 Release Notes (Default OpenPBR)` (`C — Living Official Source`)
-  - `Blender 5.2 Manual (Principled BSDF based on OpenPBR)` (`C — Living Official Source`)
-- **Evidence Pointer**:
-  - `materialx-usdshade.md` §2.1–§2.3; `openpbr-specification.md` §2.1–§2.4; `blender-official.md` §2.1.
-- **Why It Materially Affects Gate 3**:
-  - 历史 57 项默认材质只能以“离散位图贴图（Bitmap Maps）”或“特定软件节点图（Blender Shader Nodes / Substance SBS）”存在。
-  - 2026 年工业界已确立 MaterialX 与 OpenPBR 为跨平台材质交换的标准中枢（Painter, Blender, Unreal, USD 均已原生对齐）。若学生缺乏对“开放结构化材质表示”的认知，将永远被锁死在单一厂商的黑盒软件孤岛中，无法理解现代管线资产流转。
+### 3.1 明确唯一身份归属
+- **`V02-C44` 与 `V02-C46` 的身份定位**：
+  - 两者均源自 **`AI-U12 (跨平台物理材质标准化映射)` 的结构化拆分（`SPLIT`）**。
+  - `V02-C44` 继承并特化了 AI-U12 的“标准材质语义与结构化数据表达”职能；
+  - `V02-C46` 继承并特化了 AI-U12 的“向目标引擎交付时的转换损失与管线适配”职能。
+  - **结论：`V02-C44` 与 `V02-C46` 属于 `SPLIT` 产物，不再作为无源的 net-new ADD 重复计算**。
 
-### ADD-02: V02-C46 — 跨格式表示转换损失认知与目标交付适配 (Representation Conversion Loss Awareness & Target Delivery Adaptation)
-- **Proposed Capability**: 深刻理解材质从一种表达形式转换至另一种形式时的技术损失边界，建立核心三层认知模型：
-  $$\text{Valid Representation} \quad \neq \quad \text{Visual Equivalence} \quad \neq \quad \text{Production Deliverable}$$
-  能够排查并处理 MaterialX/OpenPBR 导入特定目标引擎（如 Unreal Engine 5.8 / Substrate）时的节点透传退化、着色器变体编译开销与运行时交付约束。
-- **Owning Sources & Classes**:
-  - `Epic Games Unreal Engine 5.8 MaterialX Support Matrix & Substrate Docs` (`C — Platform Documentation`)
-  - `MaterialX Developer Guide ShaderGeneration.md` (`C — Developer Documentation`)
-  - `OpenPBR Specification §Flexibility of Implementation` (`C — Technical Specification`)
-- **Evidence Pointer**:
-  - `unreal-substrate-target-sample.md` §2.1, §2.2; `materialx-usdshade.md` §4.1.
-- **Why It Materially Affects Gate 3**:
-  - 这是传统教学与真实生产之间最严重的脱节断层。传统学生误以为“在 DCC 里连好材质导出，引擎里导入就能自动一模一样”。
-  - UE 5.8 官方文档证实 MaterialX PBR BSDF 节点在导入时均作为透传节点处理（inputs not connected），Substrate 仍处 Beta，且静态参数开关会触发着色器变体（Permutations）。学生必须掌握“格式转换必有损失”的批判性工程认知，才能完成最终交付。
+### 3.2 唯一真正净新增项 (Net-New ADD: 1 项)
+在全量 47 项 v2 候选单元中，仅有以下 **1 项为历史 57 项完全未表达、纯由 Gate 2.5A 综合实证推导而出的净新增能力（Net-New ADD）**：
 
-### ADD-03: V02-C47 — 材质获取范式权衡决策：生成、检索、参数化复用与实拍转换 (Material Acquisition Paradigm Selection: Generation vs. Retrieval vs. Procedural Reuse vs. Capture)
-- **Proposed Capability**: 面对具体资产与项目需求时，能够基于物理真实度、可控性、编辑自由度、版权风险与时间预算，科学决策并选择最优的材质获取范式（AI 文本/图像生成 vs. 现有标准资产库检索 vs. 参数化母材质派生 vs. 照片扫描采集推导 vs. 全手工绘制）。
+#### ADD-01: V02-C47 — 材质获取范式权衡决策：生成、检索、参数化复用与实拍转换 (Material Acquisition Paradigm Selection: Generation vs. Retrieval vs. Procedural Reuse vs. Capture)
+- **Proposed Capability**: 面对具体资产与项目需求时，能够基于物理真实度、可控性、编辑自由度、资产血统与合规风险（吸收 AI-U10 相关切片）以及制作周期，科学决策并选择最优的材质获取范式（AI 文本/图像生成 vs. 现有标准资产库检索 vs. 参数化母材质派生 vs. 照片扫描采集推导 vs. 全手工绘制）。
 - **Owning Sources & Classes**:
   - `Dinur (2026) Ch 1, 13, 19` (`B — Supporting Text`)
   - `80 Level Tripo Interview on Production Bottlenecks` (`D — Industry Evidence`)
-  - `AI Impact on Material Workflows §3.1, §5` (`D — Research Synthesis`)
+  - `Adobe Firefly Licensing & Generative Policy Docs` (`C — Living Official Source`)
 - **Evidence Pointer**:
-  - `ai-impact-on-material-workflows.md` §5; `source-native-knowledge-index.md` Dinur Ch 19; `adobe-sampler-official.md` §3.1.
+  - `source-native-knowledge-index.md` Dinur Ch 19; `adobe-sampler-official.md` §2.4, §3.1; `ai-impact-on-material-workflows.md` §5.
 - **Why It Materially Affects Gate 3**:
   - 历史 57 项受工具中心主义影响，预设“每次遇到材质任务都必须从零手工制作或单张图片生成”。
-  - 在工业实践中，乱用 AI 生成可能导致拓扑混乱、无法局部修订，反而成倍增加修复成本；而盲目从零手工制作又效率低下。掌握“何时生成、何时复用参数化母板、何时直接检索高质量资产库”的权衡决策能力，是现代材质创作者的核心战略判断力。
+  - 在现代多工具/多模态生产环境中，盲目使用 AI 生成可能导致拓扑混乱、无法局部修订，反而成倍增加修复成本；而盲目从零手工制作又效率低下。掌握“何时生成、何时复用参数化母板、何时直接检索高质量资产库”的战略权衡能力，是面向 Gate 3 教学结构评估不可或缺的决策层候选能力。
 
 ---
 
 ## Part 4 — Lineage Map (Merge, Split, Retire & Add Tracing)
 
-### 4.1 Merges (合并谱系)
-1. **Merge 1: 几何特征驱动的自适应材质分层封装 (V02-C14)**
+### 4.1 Merges (合并谱系 — 9 项 v1 单元合并归入相应 v2 目标)
+1. **Merge 1: 几何特征驱动的自适应材质分层封装与模板复用 (V02-C14)**
    - *Constituents*: `M02-U04` (智能材质系统) + `M02-U05` (智能生成器驱动逻辑)
    - *Lineage*: `M02-U04, M02-U05 -> V02-C14`
    - *Rationale*: 两者本质同为“烘焙几何网格图驱动的图层栈动态参数化封装”，分开会人为放大软件 UI 菜单层级。
@@ -224,12 +209,16 @@ Every audit decision is tested against 10 core dimensions:
    - *Constituents*: `M02-U03` (遮罩体系手绘) + `AI-U08` (AI 纹理接缝与伪影修复)
    - *Lineage*: `M02-U03, AI-U08 -> V02-C13`
    - *Rationale*: 接缝瑕疵与伪影修补完全依托三维投影与空间遮罩绘制技术，合入 V02-C13。
-6. **Merge 6: 多环境 IBL 旋转压力测试与跨通道物理自洽性诊断 (V02-C40, V02-C42)**
+6. **Merge 6: 材质获取范式权衡决策 (V02-C47)**
+   - *Constituents*: `AI-U10` 中与资产获取、商用合规及血统判断直接相关的生产决策切片 $\to$ 合并入 **`V02-C47`**；超出材质专业边界的广泛法务伦理通识予以延后。
+   - *Lineage*: `AI-U10 (Production Slice) -> V02-C47`
+   - *Rationale*: 统一 lineage，解决一边退役一边引用的矛盾。
+7. **Merge 7: 多环境 IBL 旋转压力测试与跨通道物理自洽性诊断 (V02-C40, V02-C42)**
    - *Constituents*: `AI-U13` (视觉特征约束规范制定) 吸收入 `V02-C40` 与 `V02-C42`
    - *Lineage*: `AI-U13 -> V02-C40, V02-C42`
-   - *Rationale*: 设定约束规范实质就是进行质检诊断，无独立存在必要。
+   - *Rationale*: 设定约束规范实质就是执行物理一致性验证与质检清单，无独立存在必要。
 
-### 4.2 Splits (拆分谱系)
+### 4.2 Splits (拆分谱系 — 2 项 v1 单元拆分为 4 项)
 1. **Split 1: 图像转材质通道估算 vs. 去光照物理精修**
    - *Original*: `M05-U03` (Image-to-Material 智能通道提取)
    - *Lineage*:
@@ -239,11 +228,11 @@ Every audit decision is tested against 10 core dimensions:
 2. **Split 2: 开放标准材质表达 vs. 目标引擎交付损失**
    - *Original*: `AI-U12` (跨平台物理材质标准化映射)
    - *Lineage*:
-     - `AI-U12 (Part A) -> V02-C44` (**开放标准跨平台结构化材质表示: MaterialX & OpenPBR**)
+     - `AI-U12 (Part A) -> V02-C44` (**开放标准材质语义与结构化表示: OpenPBR 材质语义 + MaterialX 图元模式**)
      - `AI-U12 (Part B) -> V02-C46` (**跨格式表示转换损失认知与目标交付适配**)
    - *Rationale*: 标准描述（数据层）与引擎落地（执行/优化层）存在巨大的技术鸿沟，混在一起会产生“标准等于落地”的严重认知偏差。
 
-### 4.3 Retirements / Defers (退役与延后谱系)
+### 4.3 Retirements / Defers (退役与延后谱系 — 6 项)
 1. **`M05-U02: Substance 3D Sampler 工具链工作流`**
    - *Lineage*: `M05-U02 -> RETIRED`
    - *Rationale*: 纯软件操作外壳，能力已被 V02-C31, V02-C32, V02-C34 吸收。
@@ -260,8 +249,8 @@ Every audit decision is tested against 10 core dimensions:
    - *Lineage*: `AI-U09 -> RETIRED`
    - *Rationale*: 实验性插件外壳，底层为参数暴露（V02-C28）与 Agent 接口（V02-C45）。
 6. **`AI-U10: 资产血统与商用合规判断`**
-   - *Lineage*: `AI-U10 -> RETIRED`
-   - *Rationale*: 属于专业法律伦理通识，移出材质核心技能候选。
+   - *Lineage*: `AI-U10 -> RETIRED_OR_DEFERRED (Production slice absorbed into V02-C47)`
+   - *Rationale*: 作为独立技术候选单元予以退役。超出材质专业边界的广泛法务与伦理通识移出材质候选池；其中直接关系材质资产选型决策的商用授权与模型合规边界条件，作为输入准则有机吸收进 V02-C47，消除无源孤岛冲突。
 
 ---
 
@@ -326,7 +315,8 @@ Proposed Candidate Set v2 包含 **47 项高聚合、去软件中心化、面向
 - **`V02-C41`**: 几何条件引导与多模态参考约束的材质生成控制 *(Geometry-conditioned & Multimodal Reference-guided Material Generation)*
 - **`V02-C42`**: 跨通道 PBR 物理自洽性诊断与多贴图逻辑矛盾排查 *(Cross-channel PBR Consistency Diagnosis & Inter-map Logical Conflict Auditing)*
 - **`V02-C43`**: 扁平生成纹理的非破坏性分层重构与局部受控修订 *(Non-destructive Layer Reconstruction & Localized Controlled Revision from Flat Textures)*
-- **`V02-C44`**: 开放标准跨平台结构化材质表示 (MaterialX & OpenPBR) *(Open Standards Structured Material Representation: MaterialX & OpenPBR)*
+- **`V02-C44`**: 开放标准材质语义与结构化表示: OpenPBR 材质语义 + MaterialX 图元模式 *(Open Material Semantics & Structured Representation: OpenPBR Semantics + MaterialX Graph/Schema)*
+  - *精确概念界定*：明确区分两层职责——**OpenPBR** 定义标准表面着色物理语义（Surface Shading Model / Parameter Semantics）；**MaterialX** 提供中立的强类型节点图数据结构、XML 内容模式与跨平台交换规范（Graph/Content Schema）。两者协同构成现代开放材质表达。
 - **`V02-C45`**: 机器可读材质图表拓扑、序列化协议与智能体可操作性 *(Machine-readable Material Graph Topology, Serialization Protocols & Agent Operability)*
 - **`V02-C46`**: 跨格式表示转换损失认知与目标交付适配 *(Representation Conversion Loss Awareness & Target Delivery Adaptation)*
 
@@ -338,59 +328,84 @@ Proposed Candidate Set v2 包含 **47 项高聚合、去软件中心化、面向
 - **Historical Candidate Set v1 Total**: **57**
   - Traditional units: 44
   - AI-native candidate pool: 13
-- **Audit Dispositions Applied to v1**:
-  - `KEEP_AS_IS`: **18**
-  - `CANDIDATE_REFRAME`: **17**
-  - `MERGE`: **14** (collapsing into 6 consolidated capabilities)
-  - `SPLIT`: **2** (expanding into 4 capabilities)
-  - `RETIRE_OR_DEFER`: **6** (retired from independent candidate consideration)
-- **New Capabilities Added (`ADD`)**: **3** (`V02-C44`, `V02-C46`, `V02-C47`)
+- **Audit Dispositions Applied to v1 (Accurate Table Count)**:
+  - `KEEP_AS_IS`: **23** (概念健全，定义直接继承)
+  - `CANDIDATE_REFRAME`: **17** (剔除软件中心化描述，提升为可迁移能力)
+  - `MERGE`: **9** (合并入其他能力单元)
+  - `SPLIT`: **2** (`M05-U03` 与 `AI-U12` 各自拆分为 2 项，共派生出 4 项能力)
+  - `RETIRE_OR_DEFER`: **6** (`M05-U02`, `AI-U01`, `AI-U06`, `AI-U07`, `AI-U09`, `AI-U10` 广泛部分)
+- **Mathematical Accounting Verification**:
+  $$\text{Total Dispositions} = 23 + 17 + 9 + 2 + 6 = 57$$
+- **Net-New Additions (`Net-New ADD`)**: **1** (`V02-C47`；注：`V02-C44` 与 `V02-C46` 已归入 `AI-U12` 的 `SPLIT` 谱系，不作重复计算)
 - **Proposed Candidate Set v2 Total**: **47**
+  - 直接保留与改写 (`23 + 17`): 40 项
+  - 拆分生成 (`M05-U03` 派生 `C32, C33`；`AI-U12` 派生 `C44, C46`): 4 项（其中 C33 与原 AI-U05 融合）
+  - 几何与管线合并精炼项 (`C14, C21, C25, C26`): 覆盖原合并项
+  - 唯一净新增项 (`V02-C47`): 1 项
+  - 经 Part 5 逐项核验，全量 proposed v2 列表包含稳定、唯一的 **47 个 Candidate ID** (`V02-C01` 至 `V02-C47`)。
 
 ### 6.2 Structural Health Indicators
-1. **Total Count Rationality**: Count evolved from 57 to **47**. The reduction is driven by eliminating redundant GUI micro-operations (`M02-U04/05`, `M03-U04/05`, `M04-U04/05`, `M04-U06/M05-U05`), retiring software shells (`M05-U02`) and ephemeral prompt/curation skills (`AI-U01, AI-U06, AI-U07, AI-U09, AI-U10`).
-2. **Substantive Additions**: Added 3 vital industry-demanded capabilities: structured standard representations (MaterialX/OpenPBR), representation conversion loss awareness (`Valid Representation ≠ Visual Equivalence ≠ Production Deliverable`), and multi-paradigm acquisition choice.
-3. **No Software Lock-in**: All candidate descriptions are framed as durable, transferable competencies rather than specific tool buttons or menus.
-4. **Zero Orphaned Items**: Every single v1 item has a traceable trajectory in Part 2 and Part 4.
+1. **Total Count Rationality**: 总数由 57 收敛为 **47**。减少来源于消除 GUI 微操作碎片、退役纯软件操作外壳与易逝的文本提示词工程。
+2. **Lineage Completeness**: 原 57 项历史候选单元每一项均拥有明确的去向记录，零孤岛、零隐式遗失。
+3. **Concept Decoupling**: 明确拆分了生成估算与去光照精修，以及标准材质语义（OpenPBR）与结构化图模式（MaterialX）。
 
 ---
 
-## Part 7 — Unresolved Structural Hypotheses (Isolated E-Class Items)
+## Part 7 — Mandatory 10-Dimension Coverage Crosswalk (A–J)
 
-The following structural hypotheses emerged during the audit but are strictly isolated because they currently rely only on project extrapolation ($E$) and lack direct $A/B/C/D$ authoritative evidence:
+为了确保 Candidate Set v2 完整覆盖工业界与未来技术需求，逐项核验 Part 1 声明的 10 个审计维度：
+
+| 维度代号 | 核心维度名称 (Audit Dimension) | 对应覆盖的 v2 候选能力 (Covered v2 Candidates) | 覆盖状态 (Status) | 权威证据指针 (Evidence Pointer) | 覆盖分析与结论 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Dim A** | **Material / Appearance Causality**<br>*(物理与外观因果分析)* | `V02-C01`, `V02-C02`, `V02-C04`, `V02-C05`, `V02-C15`, `V02-C16` | **FULLY COVERED** | Dinur (2026) Ch 1, 3, 5 (`B`); RTR4 Ch 9 (`B`); OpenPBR Spec §1.1 (`C`) | 全面覆盖光照、几何、尺度与表面微观交互的因果物理模型，防止黑盒生成幻觉。 |
+| **Dim B** | **Representation Choice**<br>*(材质表示范式选择)* | `V02-C22`, `V02-C28`, `V02-C29`, `V02-C44`, `V02-C47` | **FULLY COVERED** | MaterialX Spec §2 (`C`); OpenPBR Spec §Metadata (`C`); Designer Docs (`C`); Dinur Ch 19 (`B`) | 覆盖“何时用位图、何时用着色器参数、何时用程序化图表、何时用 MaterialX 结构化表示、何时用引擎原生资产”的辨析与选择。 |
+| **Dim C** | **Representation Loss Awareness**<br>*(表示转换损失认知)* | `V02-C30`, `V02-C39`, `V02-C46` | **FULLY COVERED** | UE 5.8 MaterialX Matrix (`C`); MaterialX ShaderGen Guide (`C`); OpenPBR Spec §Flexibility (`C`) | 深入贯彻三层模型（$\text{Valid Representation} \neq \text{Visual Equivalence} \neq \text{Production Deliverable}$），覆盖烘焙位深损失、节点透传及跨渲染器差异。 |
+| **Dim D** | **Controlled Revision / Edit Locality**<br>*(局部受控修订与编辑局部性)* | `V02-C12`, `V02-C13`, `V02-C28`, `V02-C43` | **FULLY COVERED** | Shah (2022) Ch 3–5 (`A`); Painter Layer/Mask Docs (`C`); Meshy Docs (`C`) | 确立“只修改磨损而不破坏底材”、“只调局部遮罩而不重跑全局生成”的局部非破坏性受控修订体系。 |
+| **Dim E** | **Maintainability / Parameterization**<br>*(可维护性、复用与参数暴露)* | `V02-C14`, `V02-C27`, `V02-C28`, `V02-C29`, `V02-C36` | **FULLY COVERED** | Designer Values Docs (`C`); UE 5.8 Material Instances Docs (`C`); Shah Ch 6, 7 (`A`) | 覆盖参数暴露设计、黑盒模块化封装、动态材质实例以及随机种子重现性。 |
+| **Dim F** | **Agent Operability**<br>*(智能体可读性与自动化操作)* | `V02-C22`, `V02-C44`, `V02-C45` | **FULLY COVERED** | MaterialX Spec (`C`); Blender Python API (`C`); Designer Python API (`C`); DD3M (`D`) | 覆盖结构化 DAG 拓扑、机器可读 XML/JSON 序列化与公开 API，使 Agent 能够安全读取、构建与验证材质。 |
+| **Dim G** | **Generative vs. Retrieval vs. Reuse**<br>*(生成、检索与复用权衡)* | `V02-C14`, `V02-C29`, `V02-C41`, `V02-C47` | **FULLY COVERED** | Dinur (2026) Ch 19 (`B`); 80 Level Tripo Interview (`D`); Sampler Generative Docs (`C`) | 建立在面对具体制作需求时，科学权衡 AI 生成、资产库检索、参数化派生与实拍采集的战略决策能力。 |
+| **Dim H** | **Validation / Diagnosis / Visual QA**<br>*(严苛验证、因果排错与质检)* | `V02-C03`, `V02-C21`, `V02-C33`, `V02-C35`, `V02-C40`, `V02-C42` | **FULLY COVERED** | McDermott (2018) pp. 80–92 (`B`); OpenPBR White Furnace (`C`); IntrinsiX (`D`); LumiTex (`D`) | 覆盖反射率安全直方图、去光照暗斑排查、烘焙法线黑边排错、跨通道自洽性诊断及多环境 IBL 旋转压力测试。 |
+| **Dim I** | **Target Delivery / Lifecycle**<br>*(目标交付与下游运行时生命周期)* | `V02-C17`, `V02-C36`, `V02-C37`, `V02-C46` | **FULLY COVERED** | UE 5.8 Texture Compression & Material Instances (`C`); Karis (2013) (`D`); McDermott (`B`) | 涵盖影视动画（着色对齐）与实时游戏（ORM 打包、BC7 压缩、Shader Permutations、显存带宽预算）双出口交付。 |
+| **Dim J** | **Human Art Direction & Judgment**<br>*(人类艺术指导、审美意图与验收准则)* | `V02-C01`, `V02-C09`, `V02-C15`, `V02-C16`, `V02-C40`, `V02-C47` | **FULLY COVERED (CROSS-CUTTING)** | Dinur (2026) Ch 1, 3, 5 (`B`); Shah (2022) Ch 4–6 (`A`) | **横切整合处理**：未机械增设孤立的“审美课”，而是将艺术意图（叙事风化、多级频率解构、现实质感对照、最终质量验收）紧密锚定在观察、分层因果与验证全流程中。 |
+
+---
+
+## Part 8 — Unresolved Structural Hypotheses (Isolated E-Class Items)
+
+以下前沿假说在审计中被讨论，但因当前仅依赖项目外推推理（Class $E$），缺乏权威的 $A/B/C/D$ 证据支持，严格隔离于 Candidate Set v2 之外：
 
 ### HYPO-01: AI Video Temporal Material Grounding & Consistency
-- *Hypothesis*: In workflows integrating 3D materials with AI video generative models, students may need a specific competency in "3D-grounded material consistency under dynamic relighting".
-- *Evidence Status*: While Dinur Ch 19 and general industry discourse touch on video generation, no standard textbook or platform specification defines a stable, taught curriculum unit for 3D-to-video material grounding.
-- *Disposition*: `UNRESOLVED STRUCTURAL HYPOTHESIS`. Does not enter Candidate Set v2.
+- *Hypothesis*: 在 3D 材质与 AI 视频生成模型融合的工作流中，学生需要掌握“在动态重打光与连续帧下保持 3D 材质时序一致性”的专门能力。
+- *Evidence Status*: 尽管 Dinur Ch 19 提及视频模型，但目前主流教材与行业规范均未将 3D-to-video 材质绑定形式化为稳定教学单元。
+- *Disposition*: `UNRESOLVED STRUCTURAL HYPOTHESIS`。不进入 Candidate Set v2。
 
 ### HYPO-02: Universal Automated Multi-engine LookDev Pipeline
-- *Hypothesis*: Students could be required to build a fully automated, headless multi-engine test runner (executing Cycles, EEVEE, and Unreal rendering simultaneously via Python CLI) for every assignment.
-- *Evidence Status*: Blender headless execution is verified in Lane F (`C`), but mandating multi-engine automated testing in an 8-week undergraduate course exceeds verified curricular precedent ($E$).
-- *Disposition*: `UNRESOLVED STRUCTURAL HYPOTHESIS`. Kept as a teacher-demonstration hypothesis for Gate 3, not a student candidate.
+- *Hypothesis*: 要求本科学生手写完整的跨引擎（Cycles, EEVEE, Unreal）无头自动化测试流水线脚本执行作业批处理。
+- *Evidence Status*: Blender 命令行无头运行虽在 Lane F 证实，但强制本科综合课程编写多引擎自动化测试管线超出合理教学范畴 ($E$)。
+- *Disposition*: `UNRESOLVED STRUCTURAL HYPOTHESIS`。保留为 Gate 3 教师演示假说，不作为学生必修候选能力。
 
 ### HYPO-03: Real-time Neural BSDF / NeRF-to-PBR Material Inversion
-- *Hypothesis*: Real-time neural representation shaders (Neural BSDFs) replacing standard PBR parameters in game engines.
-- *Evidence Status*: Active academic research (CVPR/SIGGRAPH), but Epic Games UE 5.8 documentation and official standards show traditional GGX/Substrate PBR remains the production delivery baseline.
-- *Disposition*: `UNRESOLVED STRUCTURAL HYPOTHESIS`. Excluded from Candidate Set v2.
+- *Hypothesis*: 实时神经着色模型（Neural BSDFs）全面替代游戏引擎中的传统参数化 PBR 材质。
+- *Evidence Status*: 属于前沿学术原型（SIGGRAPH/CVPR），但 Epic Games UE 5.8 官方文档表明基于 GGX/Substrate 的传统 PBR 仍是绝对的工业交付基线。
+- *Disposition*: `UNRESOLVED STRUCTURAL HYPOTHESIS`。不进入 Candidate Set v2。
 
 ---
 
-## Part 8 — Critical Anti-Inertia Review
+## Part 9 — Critical Anti-Inertia Review
 
 ### The 2030 Counterfactual Test
-> *"If the historical 57 units did not exist today, and we designed a curriculum for a 2030 student working alongside powerful AI Agents, would we actively create these candidates?"*
+> *"如果历史 57 项今天完全不存在，我们面对一个与强能力 AI Agent 协同的 2030 学生，还会主动创建这些能力吗？"*
 
-1. **Did we eliminate manual software inertia?**
-   - **Yes**. We retired `Substance 3D Sampler 工具链工作流` (M05-U02) because it was merely a software shell. We merged `M02-U04` and `M02-U05` because separating smart materials from generators was an artifact of Substance GUI layout. We merged `M03-U04` into `M03-U05` because low-poly preparation is inseparable from baking calculation.
-2. **Did we eliminate prompt-engineering illusions?**
-   - **Yes**. We retired `材质语义提示词工程` (AI-U01), `AI 材质变体策展与筛选` (AI-U06), and `材质母版提示词驱动调参` (AI-U09) because prompt tricks evaporate as models evolve, whereas understanding physical causality (**V02-C01/C15**) and parameter exposure (**V02-C28**) are durable.
-3. **What survived and why?**
-   - **Physical Causality & Optical Laws**: Optics, energy conservation, reflectance ranges, and microfacet theory remain mandatory because AI frequently hallucinates non-physical values.
-   - **Structured Representations & Agent Operability**: MaterialX, OpenPBR, and DAG topology survived and were strengthened because they provide the deterministic, machine-readable substrate that both humans and AI Agents need to collaborate safely.
-   - **Controlled Revision & Edit Locality**: The ability to modify a single channel or localized mask without destroying the rest of the asset survived as a primary differentiator between amateur generation and professional production.
-   - **Loss Awareness & Production Deliverability**: Knowing that a "valid file" does not mean "visual equivalence" or "production deliverable" survived because target runtime constraints (memory, draw calls, shader permutations) cannot be bypassed by automated generation.
+1. **是否彻底剔除了软件与 GUI 惯性？**
+   - **是**。退役了 `Substance 3D Sampler 工具链工作流` (M05-U02) 这一纯软件外壳；合并了 `M02-U04` 与 `M02-U05`，不再把智能材质与生成器按软件菜单拆分；合并了 `M03-U04` 与 `M03-U05`，不再孤立讲授高低模准备；重写了 17 项以具体工具操作命名的单元。
+2. **是否排除了泛化自然语言提示词技巧的干扰？**
+   - **是**。退役了 `材质语义提示词工程` (AI-U01)、`AI 材质变体策展与筛选` (AI-U06) 与 `材质母版提示词驱动调参` (AI-U09)。自然语言提示技巧会随模型迭代而迅速贬值，而对物理因果的理解 (**V02-C01/C15**) 和参数暴露接口 (**V02-C28**) 才是长期有效的底层资产。
+3. **保留并强化的能力经受住了什么考验？**
+   - **物理光学与因果法则**：能量守恒、反射率区间与微表面理论必须保留，因为这是诊断 AI 幻觉和物理失真的唯一准绳。
+   - **结构化表示与 Agent 可操作性**：MaterialX 节点图、OpenPBR 语义与 DAG 拓扑得以强化，因为它们构成了人类与 AI Agent 协作的安全数据基底。
+   - **受控修订与编辑局部性**：扁平贴图反向分层重构与局部通道遮罩得以突出，这是业余生成与工业级可交付资产的关键分水岭。
+   - **交付损失认知与生产就绪度**：坚持“文件语法合法 $\neq$ 外观一致 $\neq$ 生产可交付”，确保学生不会因自动化工具的繁荣而丧失对真实引擎性能开销与硬件压缩的掌控力。
 
 ---
 
-*Artifact created at `docs/research/candidate-set-rebaselining-audit.md` for Gate 2.5A.5 review.*
+*Artifact updated and hardened at `docs/research/candidate-set-rebaselining-audit.md` for Gate 2.5A.5 review.*
