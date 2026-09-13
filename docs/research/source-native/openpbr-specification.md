@@ -68,9 +68,9 @@ OpenPBR 采用物理介质平板（Slabs）及在其上定义的相互作用算�
 ### 2.4 各物理层参数语义 (Verified Parameter Semantics vs. MaterialX v1.39.5 NodeDef)
 对照 OpenPBR v1.1.1 规范与 MaterialX v1.39.5 官方标准库节点定义（`ND_open_pbr_surface_surfaceshader`），参数名称与取值规范严格核定如下：
 - **Base (底基)**：
-  - `base_weight`：基础漫反射分量权重，类型 `float`，默认 $1.0$。
-  - `base_color`：漫反射反照率，类型 `color3`，默认 $(0.8, 0.8, 0.8)$。
-  - `base_diffuse_roughness`：漫反射微表面粗糙度（Oren-Nayar 散射），类型 `float`，范围 $[0, 1]$，默认 $0.0$（*注意：规范原名精确为 `base_diffuse_roughness`，非 `base_roughness`*）。
+  - `base_weight`：基础层反射权重（base reflection weight，调控基础层整体反射能力），类型 `float`，默认 $1.0$。
+  - `base_color`：基础层反射颜色（base color；其具体物理含义随 dielectric / metallic 模式而变化），类型 `color3`，默认 $(0.8, 0.8, 0.8)$。
+  - `base_diffuse_roughness`：漫反射粗糙度（EON / Oren–Nayar roughness parameter），类型 `float`，范围 $[0, 1]$，默认 $0.0$。
   - `base_metalness`：金属度，类型 `float`，范围 $[0, 1]$，默认 $0.0$。
 - **Specular (镜面高光反射)**：
   - `specular_weight`：高光权重，类型 `float`，默认 $1.0$。
@@ -82,7 +82,7 @@ OpenPBR 采用物理介质平板（Slabs）及在其上定义的相互作用算�
   - `transmission_weight`：透射权重，类型 `float`，范围 $[0, 1]$，默认 $0.0$。
   - `transmission_color`：透射色彩，类型 `color3`，默认 $(1, 1, 1)$。
   - `transmission_depth`：体积衰减深度，类型 `float`，默认 $0.0$。
-  - `transmission_scatter`：体积散射系数，类型 `color3`，默认 $(0, 0, 0)$。
+  - `transmission_scatter`：体积散射颜色（volumetric scattering color），类型 `color3`，默认 $(0, 0, 0)$。
   - `transmission_scatter_anisotropy`：散射相位各向异性，类型 `float`，默认 $0.0$。
   - `transmission_dispersion_scale` / `transmission_dispersion_abbe_number`：色散控制参数。
 - **Subsurface (次表面散射)**：
@@ -107,10 +107,10 @@ OpenPBR 采用物理介质平板（Slabs）及在其上定义的相互作用算�
   - `thin_film_thickness`：**薄膜物理厚度，物理单位为微米（$\mu\text{m}$），未归一化范围为 $[0, \infty)$，归一化范围为 $[0, 1]$，规范默认值为 $0.5\,\mu\text{m}$**。
   - `thin_film_ior`：薄膜层折射率，类型 `float`，默认 $1.4$。
 - **Emission (自发光)**：
-  - `emission_luminance`：发光亮度辐射通量，类型 `float`，默认 $0.0$。
+  - `emission_luminance`：发光亮度（luminance，单位 nits），类型 `float`，默认 $0.0$。
   - `emission_color`：发光色彩，类型 `color3`，默认 $(1, 1, 1)$。
 - **Geometry (几何与法线控制)**：
-  - `geometry_opacity`：裁切透空度，类型 `float`，范围 $[0, 1]$，默认 $1.0$。
+  - `geometry_opacity`：材质整体不透明度（opacity），类型 `float`，范围 $[0, 1]$，默认 $1.0$。
   - `geometry_thin_walled`：薄壁模式开关，类型 `boolean`，默认 `false`。
   - `geometry_normal` / `geometry_coat_normal`：底基与涂层的独立法线向量输入。
   - `geometry_tangent` / `geometry_coat_tangent`：底基与涂层的独立切线向量输入。
