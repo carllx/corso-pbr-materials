@@ -1,6 +1,9 @@
 # 《三维数字材质制作》教学单元来源实证审计 (Teaching Source Provenance Audit)
 
-> **研究阶段**：Stage 2 Gate 2.5 — Textbook / Source Alignment Audit  
+> [!WARNING]
+> **SUPERSEDED FOR CURRENT GATE**: 本文件记录的是历史 57 单元候选集（Candidate Set v1）的来源实证审计与旧谱系，保留作为历史演进与可追溯性参考。当前经过 Gate 2.5A.5 冻结的 **Candidate Set v2 (47 项: `V02-C01`–`V02-C47`)** 权威来源对齐已由全新规范文档取代：[`docs/research/candidate-set-v2-provenance.md`](file:///Users/yamlam/Documents/GitHub/corso-pbr-materials/docs/research/candidate-set-v2-provenance.md)。
+
+> **研究阶段**：Stage 2 Gate 2.5 — Textbook / Source Alignment Audit (Historical Baseline v1)  
 > **前置依赖**：`docs/research/teaching-value-matrix.md` (Review Anchor: `aa8ec69e24c8f31229f720da929c602d287555e0`)  
 > **语料基准库**：Course Knowledge Notebook (`e29f9644-03b2-4e1b-bcb0-b954b5bf08be`) 全文语料库  
 > **门禁约束**：Gate 3 明确处于 `BLOCKED / PENDING GATE 3` 状态；严禁填写任何教学动作（KEEP / COMPRESS / REFRAME 等），严禁基于模型通识凭空捏造教材章节或页码。未在核定文献中找到明确对应时，统一如实标定为 `NOT FOUND IN AUDITED TEXTS`。
