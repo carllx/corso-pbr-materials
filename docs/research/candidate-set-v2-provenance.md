@@ -1,9 +1,9 @@
 # Candidate Set v2 来源归属与实证对齐审计 (Candidate Set v2 Provenance Alignment Audit)
 
-> **研究阶段**：Stage 2 Gate 2.5B — Candidate Provenance Alignment  
-> **审查锚点 (Freeze Anchor)**：`07e60e0a821c5a70ebd88a52194b8b567b7685c8` (Gate 2.5A.5 Browser PASS / Candidate Set v2 Frozen)  
-> **权威候选集依据**：`docs/research/candidate-set-rebaselining-audit.md` (全量 47 项：`V02-C01`–`V02-C47`)  
-> **治理约束**：Governed by Issue #3 (Stage 2 Strategy Clarification) 与 Issue #4 (Comment ID: `5652192340`)。本 Gate 职责仅为“逐项建立来源归属与证据充分性”，回答“各项能力由哪些教材、官方规范、研究证据或项目推论支撑”；**严禁包含任何 Gate 3 教学动作裁决（KEEP / COMPRESS / REFRAME / REPLACE / ADD_NEW_SKILL 等），严禁设计 Week 1–8 排课或软件课时分配，严禁修改候选集分类结构（ADD/REMOVE/MERGE/SPLIT/REDEFINE）**。
+> **研究阶段**：Stage 2 Gate 2.5B — Candidate Provenance Alignment (Evidence-Hardened Revision)  
+> **审查锚点 (Review Anchor)**：`ce814f76ac2cea97c140a073b8279b3416ee7e47` (Gate 2.5B Initial Delivery) $\to$ 本轮修订锚点  
+> **权威候选集依据**：`docs/research/candidate-set-rebaselining-audit.md` (全量 47 项：`V02-C01`–`V02-C47`，保持严格冻结)  
+> **治理约束**：Governed by Issue #3 (Stage 2 Strategy Clarification) 与 Issue #4 (Comment ID: `5652269980`)。本 Gate 职责仅为“逐项建立来源归属与证据充分性”，回答“各项能力由哪些教材、官方规范、研究证据或项目推论支撑”；**严禁包含任何 Gate 3 教学动作裁决（KEEP / COMPRESS / REFRAME / REPLACE / ADD_NEW_SKILL 等），严禁设计 Week 1–8 排课或软件课时分配，严禁修改候选集分类结构（ADD/REMOVE/MERGE/SPLIT/REDEFINE）**。
 
 ---
 
@@ -51,7 +51,7 @@
   * **覆盖范围**：ASWF OpenPBR Surface Specification v1.1.1、ASWF MaterialX Specification v1.39、Pixar OpenUSD / UsdShade 规范、Adobe Substance 3D Painter 官方文档、Adobe Substance 3D Designer 官方文档、Adobe Substance 3D Sampler 官方文档、Blender 5.2/4.5 LTS 官方手册及 Python API、Epic Games Unreal Engine 5.8 官方技术文档。
 * **`D — Research / Industry Evidence`**：
   已审核登记的真实一手学术顶会论文（NeurIPS/CVPR/ICLR）、技术演讲规范（如 Brian Karis SIGGRAPH 2013）或一手行业深度访谈（如 80 Level Tripo 访谈）。
-  * **纪律要求**：不得将综合报告 `ai-impact-on-material-workflows.md` 本身标为 D 类 authority，必须解析回溯到其中登记的真实学术论文与行业证据。
+  * **纪律要求**：不得将综合报告 `ai-impact-on-material-workflows.md` 本身标为 D 类 authority，必须解析回溯到其中登记的真实一手学术论文与行业证据。
 * **`E — Project Inference Only`**：
   由本项目根据教学法延伸、跨系统集成或流程组织进行综合推导设立的概念、作业规范或决策模型，在现有审核文献中无点对点直接支持。必须显式隔离。
 
@@ -131,9 +131,9 @@
 | Candidate ID | Candidate Capability | Source Class | Owning Source | Exact Evidence Pointer | Match Status | Source Actually Supports | Project Synthesis / Boundary |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **V02-C30** | 程序化节点网络向标准位图集的静态烘焙与精度控制 *(Procedural Graph Baking to Static Bitmap Sets & Bit-depth Precision Control)* | `A`, `C` | Shah (2022); Blender Manual; Designer / SAT Docs | Shah (2022) Ch 10 (pp. 275–280); Blender 5.2 Manual ("Render - Baking"); Designer Docs ("Baking Nodes", "SAT commandline baking") | `DIRECT MATCH` | 将高计算开销的动态程序化节点图解算烘焙为静态标准 PBR 贴图集（Albedo, Normal, Roughness 等）；控制烘焙分辨率与位深度（Normal / Height 强制 16-bit/32-bit 以防阶梯状量化断层，数据贴图保持非色彩色彩管理）。 | 建立程序化动态算力开销与静态位图交付之间的性能折衷权衡模型。 |
-| **V02-C31** | 真实世界材质采集光学原理与数字化反向推导 *(Photometric Capture Principles & Reverse Material Estimation)* | `B`, `C`, `D` | Dinur (2026); Sampler Docs; IntrinsiX (NeurIPS 2025) | Dinur (2026) Ch 13 (pp. 210–225); Sampler Official Docs ("Material Acquisition", "Image to Material Overview"); IntrinsiX (NeurIPS 2025, arXiv:2410.22378) | `DIRECT MATCH` | 真实世界多角度光度立体法（Photometric Stereo）与单目照片反向估算 PBR 原理：偏振镜消除直射高光、阴天均匀漫射光下拍摄以最大程度解耦环境阴影，反向求解表面法线梯度与微观粗糙度。 | 制定手机/单反实地材质参考拍摄的“漫射光照与标定球辅助采集指南”。 |
-| **V02-C32** | 单张图像/照片多通道 PBR 属性算法推导与置信度评估 *(Single-image Multi-channel PBR Estimation & Confidence Evaluation)* | `C`, `D` | Sampler Docs; IntrinsiX (NeurIPS 2025); LumiTex (ICLR 2026) | Sampler Official Docs ("Image to Material: AI-Powered vs. B2M Filters"); IntrinsiX (NeurIPS 2025, arXiv:2410.22378); LumiTex (ICLR 2026, arXiv:2501.03875) | `DIRECT MATCH` | 基于深度学习前向推断网络（如 Sampler AI-Powered、IntrinsiX、LumiTex）从单张未受控 RGB 图像预测生成 Base Color, Normal, Roughness, Height 贴图；理解不同通道推断的物理置信度（法线/粗糙度估算相对合理，而金属度与深层凹凸极易误判）。 | 建立对算法生成通道的置信度分级评估认知，避免盲目信赖算法前向输出。 |
-| **V02-C33** | 漫反射光照残留诊断与反照率手工/算法去光照精修 *(De-lighting Inspection, Albedo Purity QA & Manual/Algorithmic Correction)* | `C`, `D`, `E` | Sampler Docs; IntrinsiX (NeurIPS 2025); LumiTex (ICLR 2026); Painter Docs | Sampler Docs ("Delighting Filter"); IntrinsiX (NeurIPS 2025); LumiTex (ICLR 2026 §4.2); Painter Docs ("Clone Tool", "Curves") | `PARTIAL MATCH` | 算法去光照在深阴影、几何自遮挡与复杂间接光照下的失效事实（漫反射贴图中残留暗斑死黑导致重新打光穿帮）；官方提供的自动去光照滤镜工具（Delighting）。 | 来源指出去光照缺陷并提供基础滤镜，但“利用高反差保留、通道曲线反向补偿与 Painter 空间画笔手工剥离阴影死黑”的完整精修实操规程属于项目综合推导（含 E）。 |
+| **V02-C31** | 真实世界材质采集光学原理与数字化反向推导 *(Photometric Capture Principles & Reverse Material Estimation)* | `B`, `C` | Dinur (2026); Sampler Official Docs | Dinur (2026) Ch 13 (pp. 210–225 "Scan and Reference Processing"); Sampler Official Docs ("Material Acquisition", "Multiangle to Material", "Physical Size") | `DIRECT MATCH` | 真实世界多角度光照采集（Multiangle to Material）实拍反向求解原理；偏振镜消除直射高光与阴天均匀漫射光下拍摄以最大程度解耦环境阴影在 Dinur Ch 13 中作为实拍扫描基准。 | 制定手机/单反实地材质参考拍摄的“漫射光照与标定球辅助采集指南”作业标准。 |
+| **V02-C32** | 单张图像/照片多通道 PBR 属性算法推导与置信度评估 *(Single-image Multi-channel PBR Estimation & Confidence Evaluation)* | `C`, `D`, `E` | Sampler Official Docs; IntrinsiX (NeurIPS 2025); LumiTex (ICLR 2026) | Sampler Official Docs ("Image to Material: AI-Powered vs. B2M Filters"); IntrinsiX (NeurIPS 2025, arXiv:2504.01008); LumiTex (ICLR 2026, arXiv:2511.19437) | `PARTIAL MATCH` | 基于前向神经网络（如 Sampler AI-Powered、IntrinsiX、LumiTex）从单张未受控 RGB 图像预测生成 Base Color, Normal, Roughness, Height 贴图的算法能力与去光照分解机制。 | 来源直接证明了多通道算法前向生成，但“法线/粗糙度估算相对可靠，而金属度与深层凹凸极易误判”的通道级置信度层级判定规则属于项目综合推导（含 E）。 |
+| **V02-C33** | 漫反射光照残留诊断与反照率手工/算法去光照精修 *(De-lighting Inspection, Albedo Purity QA & Manual/Algorithmic Correction)* | `C`, `D`, `E` | Sampler Docs; IntrinsiX (NeurIPS 2025); LumiTex (ICLR 2026); Painter Docs | Sampler Docs ("Delighting Filter"); IntrinsiX (NeurIPS 2025, arXiv:2504.01008); LumiTex (ICLR 2026, arXiv:2511.19437 §4.2); Painter Docs ("Clone Tool", "Curves") | `PARTIAL MATCH` | 算法去光照在深阴影、几何自遮挡与复杂间接光照下的失效事实（漫反射贴图中残留暗斑死黑导致重新打光穿帮）；官方提供的自动去光照滤镜工具（Delighting）。 | 来源指出去光照缺陷并提供基础滤镜，但“利用高反差保留、通道曲线反向补偿与 Painter 空间画笔手工剥离阴影死黑”的完整精修实操规程属于项目综合推导（含 E）。 |
 | **V02-C34** | 纹理图像无缝平铺处理与宏观大色块重复消除 *(Seamless Texture Tiling & Macro Clumping Elimination)* | `A`, `C` | Shah (2022); Sampler Docs | Shah (2022) Ch 11 (pp. 298–302); Sampler Official Docs ("Tiling Filter", "Generative Tiling Beta") | `DIRECT MATCH` | 纹理位图边缘重叠混合与对称淡化以消除贴图 UV 边界缝隙；宏观特征点与显著色斑在周期性平铺时的重复感排查与消除。 | 总结在自动化平铺生成后人工消除宏观大色块集聚（Macro Clumping）的标准质检流程。 |
 | **V02-C47** | 材质获取范式权衡决策：生成、检索、参数化复用与实拍转换 *(Material Acquisition Paradigm Selection: Generation vs. Retrieval vs. Procedural Reuse vs. Capture)* | `B`, `C`, `D`, `E` | Dinur (2026); Tripo 80 Level Interview (2026); Adobe Firefly Licensing Docs; Sampler Docs | Dinur (2026) Ch 1, 13, 19; 80 Level Interview (2026-08-28); Firefly Licensing FAQ; Sampler Docs §2.4, §3.1 | `PROJECT INFERENCE` | 来源分别证明：AI 生成快但难微调且有商用版权合规限制（Firefly Docs / Tripo 访谈）；资产库检索保真度高但难完美匹配特定非标需求；参数化母材质灵活但开发成本高；照片扫描真实但光照解耦难。 | 将分散于商业、版权、拓扑、物理和工期各维度的独立事实，归纳整合为通用的“多范式权衡决策树（何时生成、何时检索、何时参数化、何时实拍）”属于项目综合推导（含 E）。 |
 
@@ -156,11 +156,11 @@
 
 | Candidate ID | Candidate Capability | Source Class | Owning Source | Exact Evidence Pointer | Match Status | Source Actually Supports | Project Synthesis / Boundary |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **V02-C41** | 几何条件引导与多模态参考约束的材质生成控制 *(Geometry-conditioned & Multimodal Reference-guided Material Generation)* | `B`, `D` | Dinur (2026); ControlNet (Zhang & Agrawala 2023); IntrinsiX (2025) | Dinur (2026) Ch 19 (pp. 310–335); Zhang & Agrawala (ICCV 2023, arXiv:2302.05543); IntrinsiX (NeurIPS 2025) | `DIRECT MATCH` | 扩散模型与生成网络利用几何先验条件（深度图 Depth、切线空间法线 Normal、表面位置 Position）与图像嵌入（IP-Adapter / CLIP Image Embedding）对纹理生成进行空间保形与风格特征约束。 | 剔除特定 WebUI 插件临时操作面板，提炼基于空间几何与图像参考双条件约束生成的心智模型。 |
+| **V02-C41** | 几何条件引导与多模态参考约束的材质生成控制 *(Geometry-conditioned & Multimodal Reference-guided Material Generation)* | `B`, `D` | Dinur (2026); Material Anything (CVPR 2025); MatLat (CVPR 2026); ControlNet (2023) | Dinur (2026) Ch 19 (pp. 310–335); Material Anything (CVPR 2025, arXiv:2411.15138); MatLat (CVPR 2026); ControlNet (ICCV 2023, arXiv:2302.05543) | `DIRECT MATCH` | 针对 3D 网格几何特征（深度、法线、表面坐标与专用材质隐空间）生成解耦 PBR 材质贴图的专用生成架构（Material Anything, MatLat）；ControlNet 先验与图像嵌入提供通用空间保形与风格约束；Dinur 论述 ControlNet 条件生成在写实管线中的应用。 | 提炼基于空间几何与图像参考双条件约束生成的心智模型，摆脱对特定单点工具面板的依赖。 |
 | **V02-C42** | 跨通道 PBR 物理自洽性诊断与多贴图逻辑矛盾排查 *(Cross-channel PBR Consistency Diagnosis & Inter-map Logical Conflict Auditing)* | `B`, `D`, `E` | McDermott (2018); Yanpei Cao (Tripo) 80 Level Interview (2026-08-28) | McDermott (2018) Part 2 Appendix (pp. 89–92); 80 Level Interview (2026-08-28) | `PARTIAL MATCH` | PBR 各通道之间的物理对应关系（法线凹凸应伴随粗糙度变化与接触阴影）；工业实测表明当前 AI 生成材质在多通道自洽性上存在断裂（如法线存在深凹槽但粗糙度完全平滑无积垢、金属度为 1 但固有色亮度严重偏低）。 | 来源指出了 PBR 规范和 AI 通道矛盾现象，但将其整理为系统的“跨通道多贴图物理体检排错清单与量化诊断规则”属于项目综合推导（含 E）。 |
 | **V02-C43** | 扁平生成纹理的非破坏性分层重构与局部受控修订 *(Non-destructive Layer Reconstruction & Localized Controlled Revision from Flat Textures)* | `A`, `C`, `E` | Shah (2022); Meshy Docs; Painter Docs | Shah (2022) Ch 3–4 (pp. 65–120); Meshy Texturing Docs (Outputting Flat PBR Textures); Painter Official Docs ("Anchor Points", "Mask from Color") | `PARTIAL MATCH` | 生成式 AI 工具（如 Meshy 等）输出的是扁平无图层信息的烘焙位图，无法提供可修改的参数化图层；Painter 拥有完整的图层栈、遮罩提取与锚点系统。 | 提出“将生成式扁平位图导入 DCC $\to$ 提取色彩/高频遮罩 $\to$ 拆解为底材-涂层-磨损的非破坏性图层堆栈 $\to$ 实现局部受控修订（Edit Locality）”的人机协同分层重构方法论属于项目综合推导（含 E）。 |
 | **V02-C44** | 开放标准材质语义与结构化表示: OpenPBR 材质语义 + MaterialX 图元模式 *(Open Material Semantics & Structured Representation: OpenPBR Semantics + MaterialX Graph/Schema)* | `C` | OpenPBR Spec 1.1.1; MaterialX Spec 1.39 | OpenPBR Surface Specification v1.1.1 (§1.1 Scope, §2 Architecture, §3 Parameters); MaterialX Specification v1.39 (§2 Core Elements, §2.1 NodeGraphs, §2.2 NodeDefs, §2.3 Interfaces) | `OFFICIAL-DOC ONLY` | 明确区分现代开放材质的两大支柱：OpenPBR 定义标准表面着色物理语义（Surface Shading Model、参数名称、数据范围与多层介质混合规则）；MaterialX 提供中立的强类型节点图拓扑、XML 数据序列化模式、NodeDef 规范与跨平台代码生成（ShaderGen）。 | 提炼“标准物理着色语义（OpenPBR）”与“结构化中立图数据模式（MaterialX）”的分层解耦认知框架。 |
-| **V02-C45** | 机器可读材质图表拓扑、序列化协议与智能体可操作性 *(Machine-readable Material Graph Topology, Serialization Protocols & Agent Operability)* | `C`, `D` | MaterialX Spec 1.39; Blender Python API; Designer Python API; DD3M (2024/2025); Node To Talk Docs | MaterialX Spec v1.39 (XML Serialization Schema); Blender Python API (`bpy.data.materials`, `nodes.new`); Designer Python API; DD3M (arXiv:2410.05432, 2024/2025); Node To Talk Docs | `DIRECT MATCH` | 材质节点图可以被序列化为结构化 XML（MaterialX）或 JSON/文本，支持通过 Python 脚本或代码 API 进行无头解析、自动连接、参数修改与格式校验；智能体与外部自动化系统可通过明确定义的拓扑协议程序化读写材质图。 | 提炼面向未来技术美术与 Agent 交互的“机器可读材质接口（Agent-Operable Material Graph）”能力框架。 |
+| **V02-C45** | 机器可读材质图表拓扑、序列化协议与智能体可操作性 *(Machine-readable Material Graph Topology, Serialization Protocols & Agent Operability)* | `C`, `D`, `E` | MaterialX Spec 1.39; Blender Python API; Designer Python API; VLMaterial (ICLR 2025); Node To Talk Docs | MaterialX Spec v1.39 (XML Serialization Schema); Blender Python API (`bpy.data.materials`, `nodes.new`); Designer Python API; VLMaterial (ICLR 2025, arXiv:2501.18623); Node To Talk Docs | `PARTIAL MATCH` | 材质节点图支持结构化 XML（MaterialX）与 Python API 脚本化解析/读写/无头构建；VLMaterial 证实通过大型视觉-语言模型（VLM）直接生成 Blender 程序化材质 Python 代码与节点图；Node To Talk 演示将视口节点树导出为拓扑有序文本供 AI 排错。 | 来源直接证明了节点图的机器可读性与 VLM 代码生成原型，但“自主 Agent 安全读写、修改并校验任意工业级复杂材质图”目前超出直接实证范围，属于未来技术框架推导（含 E）。 |
 | **V02-C46** | 双出口表示转换损失认知与目标交付适配 (影视动画 USD/渲染上下文绑定 + 实时游戏原生转换约束) *(Dual-target Representation Conversion Loss Awareness & Delivery Adaptation: Animation/VFX USD Binding + Realtime Engine Constraints)* | `C`, `D` | OpenUSD UsdShade Spec; UE 5.8 Docs; MaterialX Developer Guide; Karis (2013) | OpenUSD Documentation ("UsdShade Schema", `UsdShadeMaterialBindingAPI`, Render Contexts `outputs:surface` / `outputs:arnold:surface`); UE 5.8 Official Docs ("Interchange Framework - MaterialX Support Matrix", "Material Instances", "Permutations"); Karis (2013) | `DIRECT MATCH` | 影视动画出口：UsdShade 材质绑定规范（直接网格绑定、集合 Collection 绑定与几何子集 GeomSubsets 局部绑定），多渲染器上下文终端机制与外观对齐；实时游戏出口：MaterialX/OpenPBR 导入实时引擎（如 UE 5.8）时的转换损失（未连接/透传节点 Pass-through、Unsupported BSDFs 退化）、着色器变体（Permutations）膨胀开销、ORM 通道打包与性能预算。 | 确立核心认知三位一体判定准则：$$\text{Valid Representation} \neq \text{Visual Equivalence} \neq \text{Production Deliverable}$$。 |
 
 ---
@@ -178,39 +178,45 @@
 | **Class A — Primary Textbook** (Shah 2022) | **23 项** | 48.9% | 模块二 (贴图绘制 7 项)、模块三 (烘焙支撑 3 项)、模块四 (程序化 7 项)、模块五 (采集 2 项)、模块一 (光学 3 项)、模块七 (1 项) |
 | **Class B — Supporting Texts** (McDermott / Dinur / RTR4) | **23 项** | 48.9% | 模块一 (物理光学基础 10 项全部覆盖)、模块三 (3 项)、模块六 (LookDev 4 项)、模块七 (2 项)、模块二 (2 项)、模块五 (2 项) |
 | **Class C — Living Official Sources** (官方文档与开放规范) | **39 项** | 83.0% | 模块四 (程序化 8 项)、模块一 (8 项)、模块二 (5 项)、模块五 (5 项)、模块六 (6 项)、模块七 (4 项)、模块三 (2 项)、决策项 (1 项) |
-| **Class D — Research / Industry Evidence** (顶会论文/行业访谈) | **11 项** | 23.4% | 模块五 (采集/去光照 3 项)、模块七 (生成/Agent/双出口 4 项)、模块六 (实时性能 2 项)、模块二 (接缝修复 1 项)、决策项 (1 项) |
-| **Class E — Project Inference Only** (含项目综合推导边界) | **4 项** | 8.5% | `V02-C33` (去光照手工精修), `V02-C42` (跨通道体检表), `V02-C43` (扁平图层重构), `V02-C47` (范式决策树) |
+| **Class D — Research / Industry Evidence** (顶会论文/行业访谈) | **10 项** | 21.3% | 模块五 (去光照 2 项)、模块七 (生成/Agent/双出口 4 项)、模块六 (实时性能 2 项)、模块二 (接缝修复 1 项)、决策项 (1 项) |
+| **Class E — Project Inference Only** (含项目综合推导边界) | **6 项** | 12.8% | `V02-C32` (通道置信度层级), `V02-C33` (去光照手工精修), `V02-C42` (跨通道体检表), `V02-C43` (扁平图层重构), `V02-C45` (Agent 闭环边界), `V02-C47` (范式决策树) |
 
 ### 3.3 证据匹配状态分布统计 (Match Status Counts)
 *(注：每项根据其主要证据模式严格指定唯一状态，互斥统计)*
 
 | 匹配状态 (Match Status) | 项数 (Count) | 对应 Candidate 列表 |
 | :--- | :--- | :--- |
-| **`DIRECT MATCH`** | **40 项** | `V02-C01`–`V02-C26`, `V02-C28`–`V02-C32`, `V02-C34`, `V02-C36`–`V02-C41`, `V02-C45`–`V02-C46` |
-| **`PARTIAL MATCH`** | **3 项** | `V02-C33` (去光照手工精修), `V02-C42` (跨通道体检表), `V02-C43` (扁平贴图分层重构) |
+| **`DIRECT MATCH`** | **38 项** | `V02-C01`–`V02-C26`, `V02-C28`–`V02-C31`, `V02-C34`, `V02-C36`–`V02-C41`, `V02-C46` |
+| **`PARTIAL MATCH`** | **5 项** | `V02-C32` (单图通道估算置信度), `V02-C33` (去光照手工精修), `V02-C42` (跨通道体检表), `V02-C43` (扁平贴图分层重构), `V02-C45` (机器可读图与 Agent 边界) |
 | **`OFFICIAL-DOC ONLY`** | **3 项** | `V02-C27` (对象随机变体), `V02-C35` (交互视口着色), `V02-C44` (开放标准材质语义) |
 | **`RESEARCH ONLY`** | **0 项** | *(无；所有涉 D 研究项均已与 B 类教材或 C 类官方规范形成协同支撑)* |
 | **`PROJECT INFERENCE`** | **1 项** | `V02-C47` (材质获取范式权衡决策树) |
 | **`NOT FOUND`** | **0 项** | *(无；全量 47 项均拥有可核验的一手文献与规范条款支撑，无凭空捏造项)* |
-| **数学核算校验** | **47 项** | $$40 (\text{DIRECT}) + 3 (\text{PARTIAL}) + 3 (\text{OFFICIAL}) + 0 + 1 (\text{INFERENCE}) + 0 = 47$$ |
+| **数学核算校验** | **47 项** | $$38 (\text{DIRECT}) + 5 (\text{PARTIAL}) + 3 (\text{OFFICIAL}) + 0 + 1 (\text{INFERENCE}) + 0 = 47$$ |
 
 ---
 
 ## 4. 特殊清单与边界隔离声明
 
 ### 4.1 Project Inference (含 E 类推导) 单元隔离说明
-在全量 47 项中，**没有任何一项是纯 E 构成的无源空想单元（E-Only = 0）**。以下 4 项单元含有 E 类项目综合推导，均已显式划定事实与推导的边界：
+在全量 47 项中，**没有任何一项是纯 E 构成的无源空想单元（E-Only = 0）**。以下 6 项单元含有 E 类项目综合推导，均已显式划定事实与推导的边界：
 
-1. **`V02-C33: 漫反射光照残留诊断与反照率手工/算法去光照精修`**
+1. **`V02-C32: 单张图像/照片多通道 PBR 属性算法推导与置信度评估`**
+   - *底层客观事实 (C, D)*：Sampler AI-Powered、IntrinsiX (2025) 与 LumiTex (2026) 证实从单图预测 PBR 多通道及去光照分解算法的存在。
+   - *项目推导边界 (E)*：“法线/粗糙度估算相对可靠，而金属度与深层凹凸极易误判”的通道级置信度层级判定规则属于项目教学法实测归纳。
+2. **`V02-C33: 漫反射光照残留诊断与反照率手工/算法去光照精修`**
    - *底层客观事实 (C, D)*：LumiTex (2026) 与 IntrinsiX (2025) 证实算法去光照在深阴影处仍有残留；官方工具提供 Delighting 基础滤镜。
    - *项目推导边界 (E)*：结合通道反向曲线补偿与 Painter 空间克隆画笔的手工去光照修补操作规程属于项目教学法综合。
-2. **`V02-C42: 跨通道 PBR 物理自洽性诊断与多贴图逻辑矛盾排查`**
+3. **`V02-C42: 跨通道 PBR 物理自洽性诊断与多贴图逻辑矛盾排查`**
    - *底层客观事实 (B, D)*：McDermott (2018) 确立通道对应规则；80 Level Tripo 访谈揭示 AI 生成贴图跨通道撕裂（凹凸无粗糙度响应）。
    - *项目推导边界 (E)*：将上述撕裂现象整理为系统化的“跨通道多贴图物理体检排错清单与量化验收表”属于项目综合推导。
-3. **`V02-C43: 扁平生成纹理的非破坏性分层重构与局部受控修订`**
+4. **`V02-C43: 扁平生成纹理的非破坏性分层重构与局部受控修订`**
    - *底层客观事实 (A, C)*：Meshy 等生成工具输出扁平位图；Shah (2022) 与 Painter 提供图层栈与遮罩提取能力。
    - *项目推导边界 (E)*：“导入扁平贴图 $\to$ 提取色彩/高频遮罩 $\to$ 逆向重构底材-涂层-磨损图层栈”的人机协同局部受控修订方法论属于项目综合推导。
-4. **`V02-C47: 材质获取范式权衡决策：生成、检索、参数化复用与实拍转换`**
+5. **`V02-C45: 机器可读材质图表拓扑、序列化协议与智能体可操作性`**
+   - *底层客观事实 (C, D)*：MaterialX Spec 与 Blender/Designer API 证明节点图支持结构化 XML 序列化与 Python 读写；VLMaterial (2025) 演示 VLM 生成材质代码原型；Node To Talk 演示节点树导出为文本。
+   - *项目推导边界 (E)*：“自主 Agent 安全读写、修改并校验任意工业级复杂生产材质图”超出当前实证，属于前沿架构推导。
+6. **`V02-C47: 材质获取范式权衡决策：生成、检索、参数化复用与实拍转换`**
    - *底层客观事实 (B, C, D)*：Dinur (2026)、Tripo 访谈、Firefly 许可规范分别确立生成、检索、参数化与实拍各自在速度、控制力、拓扑质量与商用合规上的边界。
    - *项目推导边界 (E)*：将离散事实提炼为统一的“多范式权衡决策树”属于项目综合推导。
 
@@ -222,11 +228,14 @@
 
 ### 4.3 时间敏感性官方证据 (Version-Sensitive Evidence) 记录
 在本次审计过程中，核实并记录以下具有明确版本锁定与时间演进特征的官方技术事实：
-1. **OpenPBR 规范与软件绑定**：ASWF OpenPBR Surface Specification 当前稳定锚点为 `v1.1.1` (2026-04-17)；Substance 3D Painter 在 12.1 版本中已将 OpenPBR 1.1 设为默认材质着色模型。
-2. **MaterialX 与游戏引擎集成版本落差**：ASWF MaterialX 当前稳定版本为 `v1.39` (Git Tag `v1.39.5`)；而 Unreal Engine 5.8 官方 Interchange 框架集成的版本为 `1.39.4`，存在微小版本落差，部分新增节点在导入 UE 时会退化为 Pass-through（输入不连接）。
+1. **OpenPBR 规范版本**：ASWF OpenPBR Surface Specification 当前稳定锚点为 `v1.1.1` (2026-04-17)；Substance 3D Painter 在 12.1 版本中已将 OpenPBR 1.1 设为默认材质着色模型。
+2. **MaterialX 与 UE 集成独立事实**：
+   - MaterialX 官方稳定发布版本为 `v1.39.5`；
+   - Unreal Engine 5.8 官方 Interchange 文档集成为 `1.39.4`；
+   - 两者作为独立客观技术事实记录。UE Interchange 支持矩阵中关于部分节点分类为 Pass-through（输入未连接）属于引擎独立的支持度策略，严禁将其表述为“因版本落差而导致的因果关系”。
 3. **Substance 3D Sampler 生成式功能状态**：官方文档（2026-04）将生成式功能（Generative Features）标为 Beta；且 Generative Credits 计费政策与高校订阅免除条款在不同文档页面存在细微口径差异。
 4. **Blender 渲染管线演进**：Blender 5.2 LTS / 4.5 LTS 的 Principled BSDF 持续向 OpenPBR 参数语义靠拢（重构了 Coat、Sheen 与 SSS）；EEVEE-Next 视口管线全面引入屏幕空间光追与实时位移。
-5. **Unreal Engine Substrate 框架状态**：UE 5.8 中 Substrate 材质框架仍被 Epic Games 官方明确标为 Experimental / Beta 特性，传统 PBR Master Material + Material Instances 仍是 3A 实时游戏生产的主力交付标准。
+5. **Unreal Engine Substrate 框架状态**：UE 5.8 中 Substrate 材质框架官方状态明确标为 **Beta**。
 
 ### 4.4 Freeze-Reopen Finding 专项核查
 依据 Gate 2.5B Freeze Rule 严格复核：

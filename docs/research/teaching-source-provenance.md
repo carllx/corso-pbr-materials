@@ -1,7 +1,7 @@
 # 《三维数字材质制作》教学单元来源实证审计 (Teaching Source Provenance Audit)
 
 > [!WARNING]
-> **SUPERSEDED FOR CURRENT GATE**: 本文件记录的是历史 57 单元候选集（Candidate Set v1）的来源实证审计与旧谱系，保留作为历史演进与可追溯性参考。当前经过 Gate 2.5A.5 冻结的 **Candidate Set v2 (47 项: `V02-C01`–`V02-C47`)** 权威来源对齐已由全新规范文档取代：[`docs/research/candidate-set-v2-provenance.md`](file:///Users/yamlam/Documents/GitHub/corso-pbr-materials/docs/research/candidate-set-v2-provenance.md)。
+> **SUPERSEDED FOR CURRENT GATE**: 本文件记录的是历史 57 单元候选集（Candidate Set v1）的来源实证审计与旧谱系，保留作为历史演进与可追溯性参考。当前经过 Gate 2.5A.5 冻结的 **Candidate Set v2 (47 项: `V02-C01`–`V02-C47`)** 权威来源对齐已由全新规范文档取代：[`docs/research/candidate-set-v2-provenance.md`](candidate-set-v2-provenance.md)。
 
 > **研究阶段**：Stage 2 Gate 2.5 — Textbook / Source Alignment Audit (Historical Baseline v1)  
 > **前置依赖**：`docs/research/teaching-value-matrix.md` (Review Anchor: `aa8ec69e24c8f31229f720da929c602d287555e0`)  
@@ -152,7 +152,7 @@
 | **AI 纹理接缝与伪影修复**<br>*(AI Artifact & Seam Inpainting)* | `D`, `E` | Tripo 80 Level Interview; AI Impact Report | 80 Level Interview (2026-08-28); AI Impact Report §6.2 | 工业访谈指出生成模型在 UV 接缝与模型复杂凹陷处常出现拉伸、模糊或色块伪影。 | 教授结合 Painter 投影画笔、克隆工具与修补滤镜消除 AI 贴图接缝瑕疵的标准修复手段。 | `Candidate Only` |
 | **材质母版提示词驱动调参**<br>*(Prompt-to-Parameter Control)* | `D`, `E` | Node To Talk Docs; AI Impact Report | Node To Talk Product Docs; AI Impact Report §6.3 | 独立插件支持通过自然语言调控 Blender 着色器内部参数，属于工具原型。 | 探索未来材质参数自然语言交互的可能性，目前纯属概念拓展。 | `Candidate Only` |
 | **资产血统与商用合规判断**<br>*(Asset Provenance & Licensing Judgment)* | `C`, `E` | Adobe Firefly Licensing Docs; AI Impact Report | Adobe Sampler Generative Docs "Commercial Use & Firefly"; AI Impact Report §6.3 | Adobe 官方文档对其生成式商业安全与版权授权做出明确免责与保证条款。 | 在高校数字媒体专业中普及生成式资产版权、训练集来源与商用合规法律通识。 | `Candidate Only` |
-| **智能体节点图编排**<br>*(Agentic Graph Orchestration)* | `D`, `E` | DD3M (2024/2025); AI Impact Report | DD3M arXiv:2410.05432; AI Impact Report §6.3 | 学术论文演示了多智能体协作解析并编写 Blender 节点脚本的可行性。 | 属于高阶技术美术前沿讲座，在本科实训课程中纯属前瞻视野。 | `Candidate Only` |
+| **智能体节点图编排**<br>*(Agentic Graph Orchestration)* | `D`, `E` | VLMaterial (ICLR 2025); AI Impact Report | VLMaterial arXiv:2501.18623; AI Impact Report §6.3 | 学术论文演示了多模态模型解析参考图并生成 Blender 材质节点代码的可行性。 | 属于高阶技术美术前沿讲座，在本科实训课程中纯属前瞻视野。 | `Candidate Only` |
 | **跨平台物理材质标准化映射**<br>*(Standardized MaterialX/OpenPBR Translation)* | `C`, `D` | ASWF OpenPBR 1.1.1 Spec; Painter 12.1 Docs | OpenPBR v1.1.1 官方规范全文; Painter 12.1 Release Notes | ASWF 开放标准定义了统一物理参数层；Painter 12.1 正式将 OpenPBR 设为默认。 | 探索将 OpenPBR 作为高校跨软件着色通识基准的教学改革方案。 | `Candidate Only` |
 | **视觉特征约束规范制定**<br>*(Visual Constraint Specification)* | `B`, `E` | Dinur (2026); AI Impact Report | Dinur (2026) Ch 19; AI Impact Report §6.3 | 探讨为生成管线设立审美与物理约束边界（如反射率极值、噪点密度阈值）以避免失控。 | 提炼工业项目外包质检标准手册（Checklist）的教学实验设计。 | `Candidate Only` |
 
