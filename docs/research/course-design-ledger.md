@@ -56,7 +56,7 @@
 
 *注：以下工作假设反映前期 Stage 1 探索历史与当前 Gate 3B 实践重定基准动态。前期以 Painter 为中心、Designer 必修、Sampler 必修的推论作为历史推演保留，但在 Gate 3B 期间已转为**非约束待重开事项 (non-binding / reopened / conditional pending Gate 3B evidence)**。*
 
-- **假设 1（实践主线与单宿主充分性，候选 A）**：Blender 5.2 LTS 在 Shader Editor、基础材质分层与受控修订（Controlled Revision）上已具备足够清晰、可解释与可恢复的教学表达力，可作为本科阶段唯一的材质实战宿主。
+- **假设 1（实践主线与单宿主充分性，候选 A）**：Blender 5.2 LTS 已通过脚本自动化技术可行性探针 (scripted technical feasibility probe)；其在真实教学中面对学生/教师的人工 GUI 教学充分性 (human GUI teaching sufficiency) 尚待有界的手工门禁 (bounded manual gate) 检验。Blender-only 继续作为可逆的候选 A。
 - **假设 2（定向辅助宿主，候选 B - 条件触发）**：仅在 Blender 5.2 暴露出学生/教师端无法消除的严重教学摩擦（如严重依赖难以维护的自定义黑箱节点组、破坏性贴图修改摩擦），且该摩擦会实质损害核心学习成效时，Substance 3D Painter 才作为定向补充工具进入评估。
 - **假设 3（Designer 与 Sampler 角色非必修）**：Designer（程序化纹理）与 Sampler（AI/扫描采集转换）当前不作为学生端必修软件；保留为教师演示、概念参考或课外可选扩展，不构成 8 周学生实操依赖。
 - **假设 4（程序化思维入口）**：Blender Shader Nodes 具备轻量、可视与免额外授权门槛的特点，足以独立支撑学生建立“参数化/程序化材质思维”。
