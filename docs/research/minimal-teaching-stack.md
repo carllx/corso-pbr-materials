@@ -1,8 +1,18 @@
 # 《三维数字材质制作》最小教学内容栈 (Minimal Teaching Stack)
 
-> **研究阶段**：Stage 2 Gate 3B — Minimal Content Selection  
+> **研究阶段**：Stage 2 Gate 3B — Minimal Content Selection (Candidate Baseline v1)  
 > **前置门禁基准**：Gate 3A Teaching Layer Architecture PASS (Review Anchor: `cdbeaa1aca0efcc81b0b6e4f26170722d81a32db`)  
 > **治理规范**：依据 GitHub Issue #5 (Gate 3 契约) 与 Issue #3 (Stage 2 总体策略)。  
+> **状态声明 (Status Note)**：  
+> **`Candidate Baseline v1 — retained as historical Gate 3B reasoning, but no longer current decision authority during re-baselining.`**  
+> *依据负责人指令与 Gate 3B 纠偏要求，以下具体主张在当前重定基准证据闭环前明确标记为**非约束性/重新审议事项 (non-binding / reopened / conditional pending Gate 3B evidence)**：*  
+> 1. `14 TP / 10 hands-on` 组合的必然性与固定数量主张；  
+> 2. 将 Substance 3D Painter 预设为 LO3 唯一且不可替代宿主的主张；  
+> 3. Designer 课堂必修演示义务；  
+> 4. Sampler 学生端必修软件要求；  
+> 5. 以 EEVEE ↔ Cycles 内部渲染器切换作为 LO6 下游交付充分证据的主张；  
+> 6. 任何未经当前真实制度事实证实的课时/容量数字。  
+> *本文件作为历史推理依据保留，现行实践主线决策以最新的 Gate 3B 探针实测证据为准。*  
 > **核心使命**：回答唯一核心问题——“为了让学生达到已接受的 LO1–LO6，最少需要哪些 student-facing knowledge / practice / representation / tools？”严格执行“做减法”，剔除工具功能堆砌与不必要的动手冗余，确立紧凑、高迁移性、人机分工明确的最小教学内容组合。
 
 ---

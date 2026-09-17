@@ -10,6 +10,10 @@
   2. 程序化与参数化材质工作流（Procedural / Parametric materials）；
   3. AI 辅助与生成式材质工作流（AI-assisted / Generative material workflows）。
 - **应用出口定位**：实时游戏（Game Realtime）与动画/视觉开发（Animation / LookDev）是材质创作能力的两个下游应用出口，而非割裂的两门独立课程。
+- **参考版本与教学运行版本关系 (Reference Version ≠ Teaching Runtime Version)**：
+  - 教学运行时基准以稳定、现代的 LTS 环境为目标（当前目标为 **Blender 5.2 LTS**）；
+  - 成熟的早期权威教学资料（如 4.2/4.5 时代参考）仍可按需选择性复用；
+  - 仅实际采纳的教学段落需要在目标教学运行时下完成有界的版本差量核实（Version-delta validation），避免因软件小版本迭代而无谓全盘推翻成熟教学沉淀。
 
 ## 领域模型与核心术语 (Glossary)
 

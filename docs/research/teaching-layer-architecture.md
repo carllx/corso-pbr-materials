@@ -41,6 +41,13 @@ $$\text{Observable Student Performance} \longrightarrow \text{Required Depth} \l
 - **禁止重新打开 Gate 2.5 来源研究或修改 47 项分类结构**：Candidate Set v2 保持严格冻结；
 - **不进行 47 项 Teaching Action 回填**：`KEEP / COMPRESS / REFRAME / REPLACE / ADD` 属于 Gate 3D 事项，本 Gate 只做粗粒度映射。
 
+### 1.3 Gate 3A PASS 后的 Gate 3B 实践实现解耦澄清 (Post-PASS Clarification)
+本架构文档在保持 `Gate 3A PASS` 及六大核心学习成效（LO1–LO6）框架不变的前提下，根据 Gate 3B 纠偏指令明确以下“能力目标与具体软件实现形式解耦”的澄清原则（避免先入为主将某种软件特定工作流捆绑为唯一达标标准）：
+- **LO3 (分层与受控修订)**：图层栈（Layer Stack）、锚点（Anchor Points）或特定的多通道表现仅属于特定工具（如 Painter）的具体实现形态，不自动构成学生能力达标的唯一强制表现证据；核心成效在于建立“底漆/表层因果分层、空间局部受控修订且非目标区域保全”的直观心智模型；
+- **LO4 (程序化与变体)**：固定数量的暴露参数（Exposed Parameters）、产品化封装的高级自定义节点组并非强制达标门槛；核心成效在于理解 DAG 节点拓扑驱动逻辑与基本的参数化变体控制；
+- **LO5 (获取与 AI 评估)**：对低质或不合规外部/AI 资产的“有据拒绝、替换或局部采纳”同样属于合格的评估鉴别能力，并非所有坏输入都必须在软件中被完整“修复”。
+*注：最终 LO3–LO5 的具体文字表述调整将严格依据 Gate 3B 运行环境实测探针证据在后续阶段完成，避免在测试前闭门预设。*
+
 ---
 
 ## 2. 学生画像与课时规划情境假定 (Student Profile & Planning Scenario Assumptions)
