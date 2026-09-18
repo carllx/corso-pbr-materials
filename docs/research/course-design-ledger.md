@@ -13,8 +13,12 @@
   - *Gate 3 (Available-Corpus Gap Analysis)*: `PASS` (完成证据修正，确立 Shah 骨架地位并由 2026 Living Sources 修正版本老化)
   - *Step 4A (Corpus Hygiene)*: `PASS` (核实最新 PBR Guide 完整双篇 PDF，完成语料瘦身，清理 6 个重复/低价值源，现存 24 个高纯度源)
   - *Step 4B (Conditional Acquisition Decision)*: `PASS` (完成一手选用证据审核；确立若买样书郑琳优先于伍福军；明确采购为可选验证项，非课程阻塞项)
-  - *Step 5–6 (Final Resource Decision & Closeout)*: `COMPLETED` (固化七层角色化资源体系，方法归档于 `docs/methods/textbook-discovery-method.md`，关闭 Issue #2)
-- **下一研究前沿 (Next Frontier)**：`Stage 2 Gate 3B — Practice Implementation Re-baselining & Controlled Revision Probe (Issue #5)` (确立教学运行时 Blender 5.2 LTS，对实践实现重定基准，验证受控修订充分性)
+- **Stage 2 Gate 3B (Practice Implementation Re-baselining & Delivery Probe / Issue #5)**：`GATE_3B_PRACTICE_BACKBONE_V1_HARDENING_READY_FOR_BROWSER_REVIEW`
+  - 完成单一外部下游交付探针 (Blender 5.2 LTS $\to$ glTF 2.0 $\to$ WebGL PBR Runtime via Chrome，`PASS`)，作为轻量级外部交付示范样本 (lightweight external delivery exemplar)，不排他性冻结最终交付运行时，保留 Game Realtime 与 Animation / LookDev 双出口
+  - 冻结学生实践主线《工业复合硬表面全流程材质实践主线》(Practice Backbone v1: Frozen Candidate)，承载约 70–80% 实践负荷
+  - 映射 LO1–LO6，注入 4 项最小教学补丁（含 Dinur 观察因果、质量型受控修订协议、外部/AI 质检门禁与有界交付契约；移除任意时间阈值；澄清 Albedo/Base Color 允许固有材质污垢色变化但严禁烘死光影）
+  - 固化 Blender 5.2 LTS 为 Primary Authoring Runtime（承担核心操作，非全部认知来源；LO1 依赖观察与艺术判断，LO5 依赖外部/AI 素材质检）；Substance 3D Painter 保持未引入
+- **下一研究前沿 (Next Frontier)**：`Week 1–8 Planning Draft (8 周排课草案，READY PENDING BROWSER PASS)`
 
 ---
 
