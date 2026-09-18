@@ -1,7 +1,7 @@
 # 外部源素材治理与派生视图规范 (Source Material Governance & Traceable View Specification)
 
-> **定位**：本规范定义面向第三方/商业视频教程、配套资产与工程文件包（如 CG Cookie CORE 系列）的通用源治理架构。确保在**绝对不改动原始素材**、**严格遵守版权红线**的前提下，建立对人类教师高度可读、对 AI Agent 毫秒级可追溯、且可无缝对接下游持久化知识库与 NotebookLM 的标准化派生流水线。
-> **参考契约**：GitHub Issue #6，已在 CORE V1 (Blender 4.2) 574 个真实文件与 6 门原型课程中完成验证。
+> **定位**：本规范定义面向第三方/商业视频教程、配套资产与工程文件包（如 CG Cookie CORE 系列）的通用源治理架构。确保在**绝对不改动原始素材**、**严格遵守版权红线**的前提下，建立对人类教师高度可读、对 AI Agent 可通过 Cue 级时码准确回溯、且可无缝对接下游持久化知识库与 NotebookLM 的标准化派生流水线。
+> **参考契约**：GitHub Issue #6，已在 CORE V1 (Blender 4.2) 574 个真实文件与覆盖 2 门课程的 6 个代表性课时原型中完成验证。
 
 ---
 
@@ -15,13 +15,13 @@
 │    原始视频 / SRT / VTT / PDF / .blend / 贴图 / 专有资产    │
 │    • 绝对只读 • 原始路径/大小写/命名即 Provenance • 零原地改动 │
 └──────────────────────────────┬──────────────────────────────┘
-                               │ 忠实无损派生 (Lossless Derivation)
+                               │ 源保真/可追溯派生 (Source-faithful / Traceable Derivation)
                                ▼
 ┌─────────────────────────────────────────────────────────────┐
 │ 2. Traceable Source View (可追溯源视图层)                   │
 │    语义块稀疏时间戳 Markdown + 精确时码侧车 (.cues.jsonl)  │
 │    + 统一课程/案例清单 (Manifest)                          │
-│    • 人类高可读 • 机器毫秒级回溯 • 严禁擅自加入教学结论     │
+│    • 人类高可读 • 机器 Cue 级时码检索 • 严禁擅自加入教学结论  │
 └──────────────────────────────┬──────────────────────────────┘
                                │ 知识提炼与概念综合 (Synthesis)
                                ▼
@@ -34,8 +34,8 @@
                                ▼
 ┌─────────────────────────────────────────────────────────────┐
 │ 4. Consumer Views (消费视图层)                              │
-│    • NotebookLM 宽域研究中心捆绑包 (Coarse Bundles)         │
-│    • CORE 深度研读 Notebook 章节包 (Chapter Bundles)        │
+│    • NotebookLM 宽域研究中心捆绑包 (Coarse Cognitive Bundles)│
+│    • CORE 深度研读 Notebook 专题包 (Finer Reading Bundles)  │
 │    • corso-pbr-materials 选课与大纲映射视图                 │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -43,7 +43,7 @@
 ### 层级职责定义
 
 1. **不可变源层 (Immutable Source)**：原始交付物是法理证据与最终事实来源（Raw Truth）。任何文件系统的重命名、格式转码、目录扁平化均被严格禁止。
-2. **可追溯源视图层 (Traceable Source View)**：将原始难以阅读的 SRT 碎片转换为人类可轻松通读的技术文稿，同时通过侧车文件保障机器毫秒级精准定位。本层必须保持客观忠实，不添加外围教学观点。
+2. **可追溯源视图层 (Traceable Source View)**：将原始难以阅读的 SRT 碎片转换为人类可轻松通读的技术文稿，同时通过侧车文件保障机器可进行 Cue 级时间戳检索 (cue-level timestamp lookup)。本层必须保持客观忠实，不添加外围教学观点。
 3. **持久维基层 (Persistent Wiki)**：从源视图中提炼并结构化的领域知识。**逐字稿（Transcript）不是知识（Wiki）**；Wiki 沉淀的是可复用的三维概念、节点逻辑与版本演进。
 4. **消费视图层 (Consumer Views)**：针对特定工具或受众的下游导出视图。消费层只是临时或衍生的认知投影，不是真实数据源。
 
@@ -77,7 +77,7 @@
 
 > [!IMPORTANT]
 > **身份与定位分离纪律**：
-> - 严禁在规范 ID 中使用模糊缩写（如禁止 `mat`、`tex`）。
+> - 严禁在规范 ID 中使用模糊缩写（如禁止 `mat`、`tex` 作为规范标识符）。
 > - 严禁将 `/Volumes/...`、文件名大小写、文件扩展名编码进 ID。
 > - 物理路径仅作为 Manifest 中的定位器（Locators）。
 
@@ -104,10 +104,10 @@ duration_formatted: "00:10:39"
 duration_seconds: 640.0
 source_video_rel: "Materials-and-Shading-Videos-01/SHADING_C02_L13_PrincipledShaders.mp4"
 source_caption_rel: "Materials-and-Shading-Videos-01/captions/SHADING_C02_L13_PrincipledShaders.mp4 (eng).srt"
-caption_status: "AVAILABLE"  # AVAILABLE | NOT_PROVIDED | DESYNCED
+caption_status: "AVAILABLE"  # 字幕状态域: AVAILABLE | NOT_PROVIDED | DESYNCED
 cue_map_rel: "materials-shading-c02-l13.cues.jsonl"
 related_assets: []
-asset_relation_status: "HIGH_CONFIDENCE_NO_EXTERNAL_ASSET"
+asset_relation_status: "HIGH_CONFIDENCE_NO_EXTERNAL_ASSET"  # 资产关联状态域: DIRECT_MATCH | HIGH_CONFIDENCE_NO_EXTERNAL_ASSET | NOT_PROVIDED | UNRESOLVED
 last_derived_at: "2026-09-18"
 ---
 ```
@@ -146,30 +146,37 @@ last_derived_at: "2026-09-18"
 {"cue": 153, "start_ms": 505240, "end_ms": 508100, "start_time": "00:08:25.240", "end_time": "00:08:28.100", "text": "Cycle will ignore this value because we have set it."}
 ```
 
-### 2. 语义约定
-- **保留原始顺序**：记录严格按照原始字幕 cue 编号自增排列。
-- **绝对时码对齐**：`start_ms` 与 `end_ms` 必须与视频音轨保持毫秒级一致。
+### 2. 语义与证据约定
+- **保留规范化字幕时码**：侧车文件严格保留源字幕中规范化的 cue 序号、起止时码与文本。除非经过专门的音视频对齐测量，不臆断字幕时码与音频轨绝对一致；源字幕本身可能包含厂商制作或封装引入的同步误差。
 - **文本忠实**：保留字幕原始英文词句，仅去除 HTML 换行标签与多余空格。
-- **终极真实来源**：原始 SRT/VTT 始终作为底层 Raw Timing Truth 归档。当出现解析歧义或时码分歧时，以原始 SRT 文件为准。
+- **终极真实来源**：原始 SRT/VTT 始终作为底层权威 Raw Timing 证据归档。当出现解析争议时，以原始字幕文件为准。
 
 ---
 
-## 五、 资产与案例关系规范 (Lesson & Asset Relations)
+## 五、 状态域正交拆分与资产关系规范 (Status Domains & Asset Relations)
 
-教程中的课时与工程文件、材质贴图、参考图的关系复杂且常有缺失。Manifest 中必须显式定义关系状态，**严禁猜测或臆造不存在的资产**。
+为避免状态混淆，规范严格解耦**字幕可用性状态**与**资产关联状态**两个正交域，严禁互相穿插：
 
-### 1. 关系状态枚举 (Relation Statuses)
+### 1. 字幕状态域 (`caption_status`)
+描述源字幕文件的供给与可用性情况：
+- `AVAILABLE`：原厂提供了对应字幕，且完成结构化对齐。
+- `NOT_PROVIDED`：原厂归档中明确未配发字幕（如 <50s 的导言预告或练习片头）。
+- `DESYNCED`：字幕存在但发现严重脱节或时间轴损坏。
+
+### 2. 资产关联状态域 (`asset_relation_status`)
+描述课时与工程文件、材质贴图、参考图之间的客观证据关联，**严禁猜测或臆造不存在的资产**：
+
 | 状态枚举值 | 判定定义 | 典型场景 |
 | :--- | :--- | :--- |
 | `DIRECT_MATCH` | 存在显式对应的工程文件或目录 | Texturing Ch03 L09 明确对应 `autoshop_01_2k.hdr` 所在文件夹 |
-| `HIGH_CONFIDENCE_NO_EXTERNAL_ASSET` | 经审计确认该课时使用默认网格或纯概念讲解，厂商未配发且无需外部资产 | Materials & Shading 全系列使用默认球体/立方体/猴头，厂商 CourseFiles 仅有许可说明 |
-| `NOT_PROVIDED` | 视频展示或需要外部资产，但厂商归档中明确未提供 | 短片头（Exercise bumper）未提供字幕；部分操作使用外购模型但包内未附带 |
-| `UNRESOLVED` | 资产关系模糊、名称不匹配或存在多对多歧义，尚未完全定性 | Texturing Ch04 L19 提供了望远镜的 2 张 PNG 贴图，但望远镜 3D 模型 `.blend` 缺失 |
+| `HIGH_CONFIDENCE_NO_EXTERNAL_ASSET` | 经抽样审计确认该课时使用会话内简单/默认几何体，且厂商归档未配发外部工程文件，无需外部资产 | Materials & Shading 抽样课时在视频中使用简单内建几何体演示，厂商 CourseFiles 仅有许可说明 |
+| `NOT_PROVIDED` | 视频内容明确依赖外部工程资产，但厂商归档中明确缺失 | 视频演示了专用资产，但厂商包未提供对应工程文件 |
+| `UNRESOLVED` | 资产关系模糊、名称不匹配或部分缺失 | Texturing Ch04 L19 提供了望远镜的 2 张 PNG 贴图，但在归档中未发现对应的三维网格/工程文件 |
 
-### 2. 健壮性规则
+### 3. 健壮性规则
 - 缺少字幕的课时是**有效课时**（`caption_status: "NOT_PROVIDED"`）。
 - 无 `.blend` 文件的课时是**有效课时**（`asset_relation_status: "HIGH_CONFIDENCE_NO_EXTERNAL_ASSET"`）。
-- 仅提供部分辅助贴图的课时是**有效课时**（列出实际贴图，将模型标记为 `UNRESOLVED`）。
+- 仅提供部分辅助贴图的课时是**有效课时**（列出实际贴图，缺失资产记入 `unresolved_relations`）。
 
 ---
 
@@ -213,12 +220,12 @@ last_derived_at: "2026-09-18"
    - 映射为 `caption_status: "AVAILABLE"`，正常生成双视图。
 2. **低于 50 秒的导言或练习片头（无官方字幕）**：
    - 映射为 `caption_status: "NOT_PROVIDED"`，Markdown 保留 Frontmatter 与时长，正文标记无字幕，manifest 中正常保留课时节点。
-3. **无外部课程资产（纯 Blender 内置网格演示）**：
+3. **无外部课程资产（使用简单/内建网格演示）**：
    - 映射为 `asset_relation_status: "HIGH_CONFIDENCE_NO_EXTERNAL_ASSET"`，`related_assets: []`，消除对缺失文件的报错。
 4. **显式关联单一外部资产（如独立 HDR）**：
    - 映射为 `asset_relation_status: "DIRECT_MATCH"`，`related_assets` 记录原厂相对路径。
 5. **贴图存在但底层 3D 几何模型缺失（如望远镜着色实操）**：
-   - 贴图记入 `related_assets`，缺失网格记入 `unresolved_relations: ["Binoculars .blend mesh not found in vendor bundle"]`，状态标记为 `UNRESOLVED`。
+   - 贴图记入 `related_assets`，缺失网格记入 `unresolved_relations: ["No corresponding 3D mesh/project file was found in the provided archive"]`，状态标记为 `UNRESOLVED`。
 6. **厂商目录与文件名大小写/标点混乱**：
    - `captions` 与 `Captions`、文件名空格、逗号或特殊符号均被封闭在不可变源层与 Manifest 定位器中；上层逻辑与导出文件名一律采用标准化 `lesson_id`，实现彻底解耦。
 
@@ -228,11 +235,10 @@ last_derived_at: "2026-09-18"
 
 ### 1. NotebookLM 消费接口 (`Source Views → Bundled NotebookLM Export`)
 - **接口定位**：NotebookLM 是认知消费工具与研究交互界面，绝非事实存储库。
-- **颗粒度原则**：
-  - Course Research Hub（宽域课程研究）：消费全课程级粗粒度捆绑包（如整门材质课合并为单个大文档）。
-  - CORE Deep Reading（深度研读）：消费章节级捆绑包（Chapter Bundles）。
-  - 严禁按单课时碎片化上传（单课 ≠ 单 Source）。
-  - 具体的分卷切分策略与上传边界在 Gate D 中冻结。
+- **核心原则**：
+  - NotebookLM 消费的是捆绑认知源（Bundled Cognitive Sources），而非机械镜像文件系统层面的单课时颗粒度。
+  - Course Research Hub 倾向于粗粒度捆绑；CORE Deep Reading 可使用更细致的章节级捆绑；当针对特定技术疑难进行定向调研时，单个代表性课时亦可作为独立源导出。
+  - 具体的捆绑边界与切分方案留待 Gate D 决策。
 
 ### 2. 公共代码仓库安全红线 (Public Repo Copyright Boundary)
 - **绝对禁止提交到公共仓库**：

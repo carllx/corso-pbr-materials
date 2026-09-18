@@ -51,10 +51,11 @@
 - **字幕容量统计**：共 1,465 个 SRT Cues，12,516 个英文单词
 - **视频 ↔ 字幕配对**：22 对实现 1:1 配对
 - **未配对视频 (1 个)**：
-  - `SHADING_C04_E01_IsItGlassOrPorcelain.mp4`：时长 27.90 秒，大小 4.18 MB。经音视频流分析，为练习题先导过渡片头，原厂未配发字幕（判定为 `NOT_PROVIDED`）。
-- **配套资产发现**：
-  - 目录 `Materials-and-Shading-CourseFiles-01` 中仅有 1 个文件：`cgc-license-sourcefile.pdf`（CG Cookie 官方教育许可免责协议）。
-  - **关键事实**：本课程全系列均在 Blender 默认场景下讲解（使用 Suzanne 猴头、默认材质球与默认立方体），**无任何独立 `.blend` 工程文件**。
+  - `SHADING_C04_E01_IsItGlassOrPorcelain.mp4`：时长 27.90 秒，大小 4.18 MB。经音视频流分析，为练习题先导过渡片头，原厂未配发字幕（判定为 `caption_status: "NOT_PROVIDED"`）。
+- **配套资产实测**：
+  - 目录 `Materials-and-Shading-CourseFiles-01` 中仅有 1 个文件：`cgc-license-sourcefile.pdf`（CG Cookie 官方教育许可免责协议），**不包含任何 `.blend` 或贴图等工程资产**。
+  - 在抽样核查的代表性课时中，观察到讲师在视频中主要使用 Blender 默认/简单的会话内几何体（如 Suzanne 猴头、默认材质球、立方体或平面）演示参数。
+  - 因此对于已核查的样本课时，外部工程资产非必需关联（标记为 `HIGH_CONFIDENCE_NO_EXTERNAL_ASSET`）。
 
 ### 2. 纹理绘制 (Texturing)
 - **视频总数**：38 个（全部为 `.mp4`）
@@ -63,13 +64,13 @@
 - **字幕容量统计**：共 3,990 个 SRT Cues，35,478 个英文单词
 - **视频 ↔ 字幕配对**：35 对实现 1:1 配对
 - **未配对视频 (3 个)**：
-  - `TEXTURES_C01L00_IntroToTextures.mp4`：时长 49.17 秒，11.75 MB。整课导言宣传片，原厂无字幕。
-  - `TEXTURES_C05E01_ProceduralRustAndMetal.mp4`：时长 29.85 秒，5.31 MB。练习片头，原厂无字幕。
-  - `TEXTURES_CH07E01_Let’sTextureShadeAndRenderTheRobot!.mp4`：时长 29.31 秒，5.78 MB。综合实战练习片头，原厂无字幕。
-- **配套资产发现**：
-  - `Texturing-Chapter-03-Files/CH03_Lesson09-ManagingTextureData/autoshop_01_2k.hdr`（6.1 MB，直接匹配 Ch03 L09 课时）。
+  - `TEXTURES_C01L00_IntroToTextures.mp4`：时长 49.17 秒，11.75 MB。整课导言宣传片，原厂无字幕（`caption_status: "NOT_PROVIDED"`）。
+  - `TEXTURES_C05E01_ProceduralRustAndMetal.mp4`：时长 29.85 秒，5.31 MB。练习片头，原厂无字幕（`caption_status: "NOT_PROVIDED"`）。
+  - `TEXTURES_CH07E01_Let’sTextureShadeAndRenderTheRobot!.mp4`：时长 29.31 秒，5.78 MB。实战练习片头，原厂无字幕（`caption_status: "NOT_PROVIDED"`）。
+- **配套资产实测**：
+  - `Texturing-Chapter-03-Files/CH03_Lesson09-ManagingTextureData/autoshop_01_2k.hdr`（6.1 MB，直接匹配 Ch03 L09 课时，`DIRECT_MATCH`）。
   - `Texturing-Chapter-04-Files/CH04 Lesson 19-ThePrincipledShader-ShadingBinoculars/Binoculars_Opacity.png`（8.5 KB）与 `Sand_Metallic.png`（4.1 KB）。
-  - **关键事实**：原厂提供了望远镜的 2 张测试贴图，但讲师在视频中演示使用的望远镜三维网格（`Binoculars.blend`）并未包含在 CourseFiles 压缩包内（标记为 `UNRESOLVED`）。
+  - **关键事实**：原厂提供了望远镜的 2 张测试贴图，但在所提供的归档中未发现对应的三维网格/工程文件（标记为 `UNRESOLVED`）。
 
 ---
 
@@ -96,7 +97,7 @@
 
 ## 四、 Gate B 代表性原型样本清单 (Prototype Sample Register)
 
-在 Gate B 原型阶段验证的 6 门样本课时涵盖概念、高密度实操、物理渲染、环境管理与贴图导入：
+在 Gate B 原型阶段验证的 6 个代表性样本课时（覆盖两门核心课程）覆盖了概念、高密度实操、物理渲染、环境管理与贴图导入：
 
 | 规范 Lesson ID | 课程与课时原名 | 视频时长 | Cue 计数 | 英文词量 | 资产关联状态判定 |
 | :--- | :--- | :---: | :---: | :---: | :--- |
@@ -105,7 +106,7 @@
 | `materials-shading-c04-l20` | Rendering Glass: Dispersion and Caustics | 00:07:09 | 109 | 937 | `HIGH_CONFIDENCE_NO_EXTERNAL_ASSET` |
 | `texturing-c02-l01` | Intro to Textures and Texture Coordinates | 00:07:53 | 135 | 1,175 | `HIGH_CONFIDENCE_NO_EXTERNAL_ASSET` |
 | `texturing-c03-l09` | Managing Texture Data | 00:06:29 | 102 | 918 | `DIRECT_MATCH` (`autoshop_01_2k.hdr`) |
-| `texturing-c04-l19` | Principled Shader: Shading Binoculars | 00:03:23 | 51 | 438 | `UNRESOLVED` (贴图存在，3D 模型缺失) |
+| `texturing-c04-l19` | Principled Shader: Shading Binoculars | 00:03:23 | 51 | 438 | `UNRESOLVED` (贴图存在，3D 模型未在归档中发现) |
 
 ---
 
@@ -115,7 +116,7 @@
 
 1. **Materials & Shading 全课规模**：
    - 22 节带字幕课时，共计 **12,516 个英文单词**，视频总长 1.48 小时。
-   - **结论**：全课合并后体量约相当于一篇中长篇学术论文，**极其适合整合成单一 Markdown 文档**作为 Course Research Hub 的独立认知源（Cognitive Source），不宜碎片化拆分。
+   - **实测参考**：全课词量规模约为 1.25 万词。基于所观察到的体量，单文档捆绑是 Gate D 的一个可行候选方案（single-document bundling is a plausible Gate D candidate given the observed size），具体切分方案留待 Gate D 决定。
 2. **Texturing 全课规模**：
    - 35 节带字幕课时，共计 **35,478 个英文单词**，视频总长 4.58 小时。
-   - **结论**：全课约为 3.5 万词。在 Course Research Hub 中可作为 1 份完整源或 2 份阶段性源（UV/基础 vs 绘制/程序化）；在专精的 CORE Deep Reading Notebook 中，按 7 个 Chapter 拆分为 7 个 Sources，既保持章节专注度，又远低于平台的 Source 数量上限。
+   - **实测参考**：全课词量约为 3.5 万词。在 Course Research Hub 中可作为 1 份完整源或 2 份阶段性源候选；在专精的 CORE Deep Reading Notebook 中，可考虑按章节或专题进行更细致的捆绑（如按 Chapter 组织）。具体的认知单元边界留待 Gate D 决定；平台当前的配额或产品限制属于部署层事实，应在导出时动态校验，不作为规范层的刚性证据。
