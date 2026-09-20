@@ -4,7 +4,7 @@
 > **基线分支/提交**：`main @ 9d683f87028faaf243fd4918eb5e5de542e64695`  
 > **工作分支**：`research/issue-7-held-asset-gap-map`  
 > **执行路线**：2026-09-19 Route Correction — Inventory-First Practice Design (`TEACHING_ASSET_INVENTORY_AND_GAP_MAP`)  
-> **当前状态**：Pass A（持有资产核查）、Pass B（角色缺口映射）与 Pass C（外部资源定向采购调研）全部完成；详见配套研究报告 [`teaching-asset-pass-c-sourcing.md`](teaching-asset-pass-c-sourcing.md)。七大必需角色已形成权威采纳与闭环方案。
+> **当前状态**：Pass A（持有资产核查）、Pass B（角色缺口映射）与 Pass C（外部候选定向调研）均已完成；外部候选搜寻达到充分性停止（Sufficiency Stop）。七大必需角色已确定候选资产与权属来源，其中主选外部候选已锁定为试制候选（`ADOPT_WITH_PREP — SELECTED FOR TEACHING PROTOTYPE`），本地制作缺口（Role 5）已明确；下一阶段由独立工单开展教学切片试制与运行时验证。详见配套研究报告 [`teaching-asset-pass-c-sourcing.md`](teaching-asset-pass-c-sourcing.md)。
 
 ---
 
@@ -28,7 +28,7 @@
    - 3.6 [角色 6：稳定 LookDev / HDRI 标定场景 (Stable LookDev / HDRI Scene)](#36-角色-6稳定-lookdev--hdri-标定场景)
    - 3.7 [角色 7：实时 / glTF 交付校验资产 (Realtime / glTF Validation Asset)](#37-角色-7实时--gltf-交付校验资产)
 4. [盘点覆盖度、不可访问区域与权利风险说明](#4-盘点覆盖度不可访问区域与权利风险说明)
-5. [Pass C 下一阶段行动边界与精确采购缺口](#5-pass-c-下一阶段行动边界与精确采购缺口)
+5. [Pass C 外部候选调研成果、七大角色状态矩阵与充分性停止 (Seven-Role Status Matrix & Sufficiency Stop)](#5-pass-c-外部候选调研成果七大角色状态矩阵与充分性停止)
 
 ---
 
@@ -175,12 +175,12 @@
 
 ### 3.1 角色 1：主工业练习资产 (Main Industrial Practice Asset)
 * **角色职能**：贯穿 W1 观察、W2 物理参数因果、W3–W5 贴图制作/材质拆解、W7 实时交付及 W8–W9 LookDev 迭代的核心工业/机械资产载体（需具备明确金属/绝缘体结构分界、工业倒角与典型磨损区域）。
-* **当前状态**：**`RESOLVED VIA PASS C` (`ADOPT`)**
-* **事实证据与采纳结论**（详见配套调研报告 [`teaching-asset-pass-c-sourcing.md`](teaching-asset-pass-c-sourcing.md)）：
-  1. **主选采纳 (`ADOPT`)**：**Poly Haven `Vintage Flashlight` (复古手电筒)**（第一方链接：`https://polyhaven.com/a/vintage_flashlight`，作者：Omar M. El-Safy，**CC0 1.0 Universal**）。约 11K 三角面，单套高质量无重叠 UV；具备极清晰的“红色涂层外壳（绝缘漆面）→ 边缘磕碰露出裸露金属底材 → 黑色高阻尼手柄与滑块（橡胶/工程塑料）→ 高反光镀铬反光碗（高反射镜面金属）→ 纯净玻璃透镜（透光电介质）”完备物理层；官方直供 `.blend`、glTF 与全套 1K–8K PBR 贴图，教师预处理时间 < 1 小时。
-  2. **备选采纳 (`ADOPT_WITH_PREP`)**：**Poly Haven `Retro Multimeter` (复古万用表)**（作者：Elli Moeller，CC0 1.0）。具备胶木机壳、橡胶表笔线、印刷表盘与镀铬表针，适合高阶对比或备选。
-  3. **重大排除**：Khronos `DamagedHelmet` 因协议实为 **CC BY-NC 4.0 (NonCommercial)** 商业限制被一票否决；Smithsonian 3D 原始扫描因照片级死阴影与缺失 PBR 通道被排除。
-* **处理结论**：**已通过 Pass C 确定性解决，采纳 Vintage Flashlight 作为全课程主工业练习资产**。
+* **当前状态**：**`ADOPT_WITH_PREP — SELECTED FOR TEACHING PROTOTYPE`**
+* **事实证据与选定结论**（详见配套调研报告 [`teaching-asset-pass-c-sourcing.md`](teaching-asset-pass-c-sourcing.md)）：
+  1. **主选试制候选 (`ADOPT_WITH_PREP — SELECTED FOR TEACHING PROTOTYPE`)**：**Poly Haven `Vintage Flashlight` (复古手电筒)**（第一方链接：`https://polyhaven.com/a/vintage_flashlight`，作者：Omar M. El-Safy，**CC0 1.0 Universal**）。约 11K 三角面，单套高质量无重叠 UV；教学物理层解读涵盖“红色绝缘漆外壳 → 磕碰露金属底材 → 黑色橡胶/塑料把手 → 镀铬反光碗 → 玻璃透镜”；官方提供 `.blend`、glTF 与全套 PBR 贴图。
+  2. **备选试制候选 (`ADOPT_WITH_PREP`)**：**Poly Haven `Retro Multimeter` (复古万用表)**（作者：Elli Moeller，CC0 1.0）。具备胶木机壳、橡胶表笔线、印刷表盘与镀铬表针，适合高阶对比或备选。
+  3. **明确排除项**：Khronos `DamagedHelmet` 因协议实为 **CC BY-NC 4.0 (NonCommercial)** 商业限制，不符合课程全场景无限制再分发要求而被排除；Smithsonian 3D 原始扫描因带照片死阴影与缺失 PBR 分离通道被排除。
+* **处理结论**：**已通过 Pass C 确定外部素材发现充分性，锁定 Vintage Flashlight 为主工业练习资产的试制候选。待后续独立工单开展 Starter/Reference 套件试制与 Blender 运行时验证**。
 
 ---
 
@@ -199,12 +199,12 @@
 
 ### 3.3 角色 3：W6 异质/非金属未知材质迁移载体 (Unfamiliar Non-Metal Transfer Carrier)
 * **角色职能**：检验学生将 W1–W5 学到的 PBR 物理原理向**未接触过的非金属复杂三维资产**（如木质器具、皮具、陶瓷器皿、石雕）迁移的近迁移（near-transfer）能力。
-* **当前状态**：**`RESOLVED VIA PASS C` (`ADOPT`)**
-* **事实证据与采纳结论**（详见配套调研报告 [`teaching-asset-pass-c-sourcing.md`](teaching-asset-pass-c-sourcing.md)）：
+* **当前状态**：**`ADOPT_WITH_PREP — SELECTED FOR TEACHING PROTOTYPE`**
+* **事实证据与选定结论**（详见配套调研报告 [`teaching-asset-pass-c-sourcing.md`](teaching-asset-pass-c-sourcing.md)）：
   1. **排他前置约束**：严禁复用主工业手电筒（金属主体），严禁复用 R8 石膏雕塑（前期已熟悉失去陌生度）；独立评估 `bathroom_floor_ gltf` 仅为水平地砖单片，缺失三维曲率与体积手工艺细节，无法承载 W6 近迁移任务。
-  2. **主选采纳 (`ADOPT`)**：**Poly Haven `Antique Ceramic Vase 01` (青花开片陶瓷瓶)**（第一方链接：`https://polyhaven.com/a/antique_ceramic_vase_01`，作者：James Ray Cock，**CC0 1.0 Universal**）。约 9K 三角面，饱满回转体双曲率形态，单套无重叠 UV；纯电介质物理特征极具代表性——高反光玻璃质釉面（Dielectric F0 ~0.04）、开片釉微裂纹法线（Crackle Crazing Normal）、青花釉下彩漫散射、底部露胎素烧粗陶（Porous Clay Bisque）与微脏污沉积。官方直供 `.blend`、glTF 与全套贴图+分层遮罩（Mask01/02/03），教师预处理时间 < 45 分钟。
-  3. **木质备选 (`ADOPT_WITH_PREP`)**：**Poly Haven `Wooden Bowl 01` (手作木碗)**（作者：Oliver Harries，CC0 1.0）。原木粗陶碗（~14K 面），具备木质纤维各向异性与年轮微孔。
-* **处理结论**：**已通过 Pass C 确定性解决，采纳 Antique Ceramic Vase 01 作为 W6 材质近迁移测评载体**。
+  2. **主选试制候选 (`ADOPT_WITH_PREP — SELECTED FOR TEACHING PROTOTYPE`)**：**Poly Haven `Antique Ceramic Vase 01` (青花开片陶瓷瓶)**（第一方链接：`https://polyhaven.com/a/antique_ceramic_vase_01`，作者：James Ray Cock，**CC0 1.0 Universal**）。约 9K 三角面，饱满回转体双曲率形态，单套无重叠 UV；纯电介质物理特征极具代表性——高反光玻璃质釉面（Dielectric F0 ~0.04）、开片釉微裂纹法线、青花釉下彩漫散射、底部露胎素烧粗陶与微脏污沉积。官方直供 `.blend`、glTF 与全套贴图+分层遮罩（Mask01/02/03）。
+  3. **木质平行备选 (`ADOPT_WITH_PREP`)**：**Poly Haven `Wooden Bowl 01` (手作木碗)**（作者：Oliver Harries，CC0 1.0）。原木粗陶碗（~14K 面），具备木质纤维各向异性与年轮微孔。
+* **处理结论**：**已通过 Pass C 确定外部素材发现充分性，锁定 Antique Ceramic Vase 01 为 W6 材质近迁移载体的试制候选。待后续工单验证自带遮罩语义并试制分层 Starter 套件**。
 
 ---
 
@@ -273,29 +273,33 @@
 
 ---
 
-## 5. Pass C 外部资源调研成果与七大角色最终决策闭环 (Final Teaching Kit Closure)
+## 5. Pass C 外部候选调研成果、七大角色状态矩阵与充分性停止 (Seven-Role Status Matrix & Sufficiency Stop)
 
-通过 Pass A/B 持有资产实证清查与 Pass C 第一方开放资源库深度穿透调研（详见配套调研报告 [`teaching-asset-pass-c-sourcing.md`](teaching-asset-pass-c-sourcing.md)），课程七大必需角色的最终状态矩阵与闭环落地方案全部确立：
+通过 Pass A/B 持有资产实证清查与 Pass C 第一方开放资源库定向调研（详见配套调研报告 [`teaching-asset-pass-c-sourcing.md`](teaching-asset-pass-c-sourcing.md)），课程七大必需角色的真实状态矩阵如下：
 
-| 必需教学角色 | 最终判定状态 | 核心依托资产 / 证据来源 | 授权许可 | 预处理负担 | 落地实施动作 |
+| 必需教学角色 | 判定状态 | 核心依托资产 / 证据来源 | 授权许可 | 预处理预估 | 后续落地/试制动作 |
 | :--- | :---: | :--- | :---: | :---: | :--- |
-| **1. 主工业练习资产** | **`RESOLVED VIA PASS C`**<br>(`ADOPT`) | Poly Haven: `Vintage Flashlight`<br>(备选: `Retro Multimeter`) | **CC0 1.0** | < 1 小时 | 剥离贴图构建 Starter，保留 2K 相对路径全套贴图构建 Reference |
-| **2. R8 法线烘焙教学对** | **`READY_WITH_PREP`** | Bundle 1: 教师提供石膏胸像扫描 (`hi-poly.obj` 80k + `low-poly-uv.obj` 1.3k + `nor.jpg`) | 教师授权 | ~2 小时 | 将 OBJ 对打包为 `.blend`，预设 Cycles Selected-to-Active 距离 |
-| **3. W6 未知非金属载体** | **`RESOLVED VIA PASS C`**<br>(`ADOPT`) | Poly Haven: `Antique Ceramic Vase 01`<br>(备选: `Wooden Bowl 01`) | **CC0 1.0** | < 45 分钟 | 配置釉面与露胎分层 Shader 框架，提供开片法线与遮罩供实训调用 |
-| **4. PBR 通道正反例组** | **`READY_WITH_PREP`** | Bundle 2: `nor_sRGB` vs `Raw` 对照组 + `bake_normal.md` 排错教案 | 教师自研 | ~1 小时 | 在 Blender 搭建双球并排对比视窗，直观演示 sRGB 断层黑边 |
-| **5. 紧凑程序化节点示例** | **`MISSING — LOCAL AUTHORING`** | 基于 Blender 原生算子 (Noise, Voronoi, Map Range) 自研 8–12 节点 | 教师自研 | ~1 小时 | 教师在本地固化磨损遮罩/粗糙度扰动节点组示范工程（**严禁外部采购**） |
-| **6. 稳定 LookDev 场景** | **`READY_WITH_PREP`** | Bundle 3: `studio_small_09_1k.exr`<br>(Sergej Majboroda, Poly Haven) | **CC0 1.0** | ~1 小时 | 配置中性灰地面阴影捕捉器、三标定球与 72 帧转台相机 |
-| **7. 实时 glTF 校验资产** | **`READY_WITH_PREP`** | Bundle 4: `bathroom_floor_ gltf` (CC-BY-4.0) + R8 低模 glTF 直出 | CC-BY 4.0 | ~30 分钟 | 固化单文件 `.glb` 样本，用于 W7 ORM 绿色/蓝色通道打包验证 |
+| **1. 主工业练习资产** | **`ADOPT_WITH_PREP`**<br>(SELECTED FOR TEACHING PROTOTYPE) | Poly Haven: `Vintage Flashlight`<br>(备选: `Retro Multimeter`) | **CC0 1.0** | 待试制验证 | 待后续工单剥离贴图制作 Starter 与 2K 相对路径 Reference，验证 Blender 运行时稳定性 |
+| **2. R8 法线烘焙教学对** | **`READY_WITH_PREP`** | Bundle 1: 教师提供石膏胸像扫描 (`hi-poly.obj` 80k + `low-poly-uv.obj` 1.3k + `nor.jpg`) | 教师授权 | 待制作组装 (~2h) | 待教师将 OBJ 对组装为 `.blend` 启动工程并配置 Cycles 烘焙节点 |
+| **3. W6 未知非金属载体** | **`ADOPT_WITH_PREP`**<br>(SELECTED FOR TEACHING PROTOTYPE) | Poly Haven: `Antique Ceramic Vase 01`<br>(备选: `Wooden Bowl 01`) | **CC0 1.0** | 待试制验证 | 待后续工单核验自带遮罩与分层 Shader 框架，制作 W6 迁移 Starter |
+| **4. PBR 通道正反例组** | **`READY_WITH_PREP`** | Bundle 2: `nor_sRGB` vs `Raw` 对照组 + `bake_normal.md` 排错教案 | 教师自研 | 待场景配置 (~1h) | 待在 Blender 搭建双球并排对比视窗，直观演示 sRGB 断层黑边 |
+| **5. 紧凑程序化节点示例** | **`MISSING — LOCAL AUTHORING`** | 基于 Blender 原生算子 (Noise, Voronoi, Map Range) 自研 8–12 节点 | 教师自研 | 待本地制作 (~1h) | 本地教学制作缺口，待教师编写示范工程（**明确不属于 Pass C 外部 sourcing**） |
+| **6. 稳定 LookDev 场景** | **`READY_WITH_PREP`** | Bundle 3: `studio_small_09_1k.exr`<br>(Sergej Majboroda, Poly Haven) | **CC0 1.0** | 待场景配置 (~1h) | 待配置中性灰地面阴影捕捉器、三标定球与转台渲染相机工程 |
+| **7. 实时 glTF 校验资产** | **`READY_WITH_PREP`** | Bundle 4: `bathroom_floor_ gltf` (CC-BY-4.0) + R8 低模 glTF 直出 | CC-BY 4.0 | 待打包测试 (~30m) | 待固化单文件 `.glb` 样本，用于 W7 ORM 绿色/蓝色通道打包验证 |
 
-### 5.1 最终实践教学套件特征总结 (Teaching Kit Characteristics)
+### 5.1 外部候选搜寻充分性停止 (Sufficiency Stop)
+1. **外部采购缺口归零**：
+   Pass C 定向调研已明确找到完全满足许可要求（CC0 1.0）、几何拓扑与材质代表性的候选资产（Role 1 Vintage Flashlight 与 Role 3 Antique Ceramic Vase 01）。**外部候选发现已达充分，Issue #7 的外部搜寻工作正式停止，不再展开无休止的候选检索**。
+2. **知识边界与工作切分**：
+   - **已知事实**：外部优质资产候选已确定，权属许可经第一方核查无障碍，文件格式与贴图完备。
+   - **待办事实（不在本工单内）**：Role 1 与 Role 3 的工程剥离与 Starter/Reference 制作，Role 5 的本地节点制作，以及所有资产在目标教学环境中的运行时稳定性实测，属于后续独立工单（如 `MINIMUM_TEACHABLE_SLICE_RUNTIME_VALIDATION`）的任务范围。
+
+### 5.2 实践教学资产选型特征说明
 1. **零商业许可风险 (Zero Licensing Risk)**：
-   除明确采用 CC-BY-4.0 的辅助校验地砖与教师自研成果外，所有核心主资产（手电筒、花瓶、摄影棚 HDRI）均统一在 **CC0 1.0 Universal** 协议下，完全杜绝版权纠纷与学生作品集展示障碍；
-   *特别排除项记要*：Khronos `DamagedHelmet` 因带有 CC BY-NC 4.0 (NonCommercial) 商业限制被一票否决；Smithsonian 3D 原始扫描因带照片死阴影且无 PBR 分离通道被排除。
-2. **极轻教师维护负担 (Low Preparation Burden)**：
-   所有引入资产均为工业级标准拓扑与单套无重叠 UV，免除从零建模、重拓扑与拆 UV 负担，全套 7 个角色教师总预处理时间累计 **< 8 小时**；
-3. **分层物理表现力完备 (Complete Physical Diversity)**：
-   - 涵盖金属（裸钢、镀铬、黄铜）、涂层电介质（红漆、油墨）、橡胶塑料、纯透明玻璃、双层玻璃质釉面、微裂纹开片、多孔粗陶露胎与各向异性木质；
-   - 完整支撑从 W1 观察、W2 因果、W4 程序化、W6 迁移、W7 实时交付到 W8–W9 LookDev 的全部技术链条。
+   除明确采用 CC-BY-4.0 的辅助校验地砖与教师自研成果外，所有选定外部候选资产（手电筒、花瓶、摄影棚 HDRI）均统一在 **CC0 1.0 Universal** 协议下，杜绝版权纠纷；
+   *特别排除项记要*：Khronos `DamagedHelmet` 因带有 CC BY-NC 4.0 (NonCommercial) 商业限制被排除；Smithsonian 3D 原始扫描因带照片死阴影且无 PBR 分离通道被排除。
+2. **分层物理表现力完备 (Complete Physical Diversity)**：
+   涵盖金属（裸钢、镀铬）、涂层电介质（红漆、油墨）、橡胶塑料、纯透明玻璃、双层玻璃质釉面、微裂纹开片、多孔粗陶露胎与木质纤维，具备支撑完整教学主线的潜力。
 
 ---
-*报告归档节点：Pass A/B/C 全部完成，七大教学角色完全闭环，等待 Browser Review 确认。*
+*报告归档节点：Pass A/B/C 全部完成，外部搜寻达到充分性停止（Sufficiency Stop），候选已选定待后续独立工单试制验证。*
