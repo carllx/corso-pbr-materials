@@ -43,7 +43,7 @@
     * *判定依据*：第一方来源确凿，明确 CC0 许可；几何形态适中（~11K 面），提供 `.blend`、glTF、FBX 及标准 PBR 贴图；具备适合做教学材质分层的外观特征。
     * *待验证项*：其 UV 教学可编辑性（是否存在接缝撕裂或局部拉伸）、在 Blender 真实教学流程中的分层修改便利度、依赖完整性，留待后续试制阶段验证。
   * **主要备选 (`ADOPT_WITH_PREP`)**：**Poly Haven `Retro Multimeter`**（作者：Elli Moeller，CC0 1.0）。科学仪器形态，备选备用。
-  * **排除项 (`REJECT`)**：**Khronos `DamagedHelmet`**。经查实包含 NC (NonCommercial) 许可组件，不满足本项目希望核心教学资产具备简单、宽松自由再使用（reuse & student portfolio redistribution）的要求。
+  * **排除项 (`REJECT`)**：**Khronos `DamagedHelmet`**。该资产包含受 CC BY-NC-4.0 约束的许可组件，因此不满足本项目希望核心学生资产具备简单、宽松 reuse / redistribution 边界的要求，故不作为核心练习资产。
 
 * **角色 3：W6 异质/非金属未知材质迁移载体**
   * **选定试制候选 (`ADOPT_WITH_PREP — SELECTED FOR TEACHING PROTOTYPE`)**：**Poly Haven `Antique Ceramic Vase 01`**（作者：James Ray Cock，**CC0 1.0 Universal**）。
@@ -62,7 +62,7 @@
 * **确切授权许可**：**CC0 1.0 Universal (Public Domain Dedication)**。允许商业与非商业使用、自由修改、再分发与教学打包。
 * **技术数据 (第一方核实)**：
   * **面数**：约 11,000 三角面 (11K tris)，单体手持工具尺寸；
-  * **UV 状态**：包含完整 UV 展开（教学适宜性与接缝质量需试制验证）；
+  * **UV 状态**：包含 UV；是否存在重叠以及目标教学区域是否适合局部独立编辑，留待 MINIMUM_TEACHABLE_SLICE_RUNTIME_VALIDATION 实测；
   * **格式支持**：提供 `.blend`、`glTF`（`.gltf` / `.glb`）、`FBX`；
   * **贴图规格**：提供 1K、2K、4K 分辨率（PNG/EXR/JPG），包含 Diffuse/Base Color、Roughness、Metallic、Normal (OpenGL & DirectX)、Ambient Occlusion（注：官方未提供预烘焙 Curvature 贴图，8K 贴图不作承诺亦非教学必要）。
 * **物理材质表现力 (Pedagogical Interpretation，教学解读)**：
@@ -126,8 +126,8 @@
 
 ### 2.7 排除候选 (REJECT)：Khronos glTF DamagedHelmet
 * **官方仓库**：`https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/DamagedHelmet`
-* **原始作者与许可**：theblueturtle_；许可协议明确标注为 **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**。
-* **排除原因**：包含 **NonCommercial (NC)** 限制组件，不满足本项目希望核心教学练习资产具备简单、宽松自由再使用（reuse & student portfolio redistribution）的要求，避免学生将作业成果用于商业求职或作品集时产生纠纷。
+* **原始作者与许可**：theblueturtle_；包含受 **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)** 约束的许可组件。
+* **排除原因**：该资产包含受 CC BY-NC-4.0 约束的许可组件，因此不满足本项目希望核心学生资产具备简单、宽松 reuse / redistribution 边界的要求，故不作为核心练习资产。
 * **判定状态**：**`REJECT`**
 
 ---
@@ -147,6 +147,7 @@
 * **技术数据 (第一方核实)**：
   * **面数**：约 9,000 三角面 (9K tris)，高约 0.4 米；
   * **形态**：饱满的双曲率回转体瓶身；
+  * **UV 状态**：包含 UV；教学区域的 overlap / distortion / local-edit suitability 尚未验证；
   * **格式支持**：提供 `.blend`、`glTF`、`FBX`；
   * **贴图规格**：提供 1K 至 4K 贴图（Diffuse, Roughness, Normal GL/DX, Metalness, AO），并包含官方附加的遮罩文件（`Mask01`, `Mask02`, `Mask03`）。
 * **非金属物理特性 (Pedagogical Interpretation，教学解读)**：
@@ -195,7 +196,7 @@
 | 角色 1: 主工业资产 | AntiqueCamera | Khronos glTF<br>(M. Kamps / UX3D) | CC0 1.0 | ~30K tris<br>glTF 标准 | glTF, GLB | 木质脚架+黄铜构件+皮革折页；无 `.blend` | 需自建工程 | `REFERENCE_ONLY`<br>(交付对照) |
 | 角色 1: 主工业资产 | FlightHelmet | Khronos glTF<br>(Microsoft 捐赠) | CC0 1.0 | 中等实时面数<br>5 套贴图集 | glTF, GLB | 皮革飞行帽+橡胶面罩管+金属扣；贴图分散 | 结构繁琐需重组 | `REFERENCE_ONLY`<br>(行业标杆) |
 | 角色 1: 主工业资产 | SciFiHelmet | Khronos glTF<br>(M. Pavlovich) | CC-BY 4.0 | 约 15K tris<br>单套 PBR | glTF, GLB | 科幻喷漆外壳+护目镜+橡胶密封垫 | 需核验材质槽与署名 | `ADOPT_WITH_PREP`<br>(科幻备选) |
-| 角色 1: 主工业资产 | DamagedHelmet | Khronos glTF<br>(theblueturtle_) | **CC BY-NC 4.0** | 经典实时面数 | glTF, GLB | 经典战损头盔；**因包含 NC 限制排除** | N/A | **`REJECT`<br>(协议要求不符)** |
+| 角色 1: 主工业资产 | DamagedHelmet | Khronos glTF<br>(theblueturtle_) | **包含 CC BY-NC-4.0 组件** | 经典实时面数 | glTF, GLB | 经典战损头盔；**因包含受 NC 约束组件排除** | N/A | **`REJECT`<br>(不满足宽松再分发要求)** |
 | 角色 1: 主工业资产 | Smithsonian 工业扫描 | Smithsonian 3D 馆藏 | CC0 1.0 | 100K–500K<br>原始摄影测量 | OBJ, glTF | 贴图带死阴影，无 PBR 分离通道 | 需重拓扑 (>20h) | `REJECT`<br>(非 PBR 原始扫描) |
 | **角色 3: W6 迁移载体** | **Antique Ceramic Vase 01** | **Poly Haven**<br>(James Ray Cock) | **CC0 1.0** | **~9K tris**<br>包含展开 UV | `.blend`<br>glTF, FBX | 玻璃质光滑釉面+开片微裂纹+青花层+粗陶露胎底圈 | 需核实自带遮罩语义与 Starter 配置 | **`ADOPT_WITH_PREP`<br>(选定试制候选)** |
 | 角色 3: W6 迁移载体 | Wooden Bowl 01 | Poly Haven<br>(Oliver Harries) | CC0 1.0 | ~14K tris<br>包含展开 UV | `.blend`<br>glTF, FBX | 手作原木刀痕+年轮各向异性+表面微磨损 | 需配置木质着色预设 | `ADOPT_WITH_PREP`<br>(木质平行备选) |

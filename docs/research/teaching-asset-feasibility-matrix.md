@@ -177,32 +177,32 @@
 * **角色职能**：贯穿 W1 观察、W2 物理参数因果、W3–W5 贴图制作/材质拆解、W7 实时交付及 W8–W9 LookDev 迭代的核心工业/机械资产载体（需具备明确金属/绝缘体结构分界、工业倒角与典型磨损区域）。
 * **当前状态**：**`ADOPT_WITH_PREP — SELECTED FOR TEACHING PROTOTYPE`**
 * **事实证据与选定结论**（详见配套调研报告 [`teaching-asset-pass-c-sourcing.md`](teaching-asset-pass-c-sourcing.md)）：
-  1. **主选试制候选 (`ADOPT_WITH_PREP — SELECTED FOR TEACHING PROTOTYPE`)**：**Poly Haven `Vintage Flashlight` (复古手电筒)**（第一方链接：`https://polyhaven.com/a/vintage_flashlight`，作者：Omar M. El-Safy，**CC0 1.0 Universal**）。约 11K 三角面，单套高质量无重叠 UV；教学物理层解读涵盖“红色绝缘漆外壳 → 磕碰露金属底材 → 黑色橡胶/塑料把手 → 镀铬反光碗 → 玻璃透镜”；官方提供 `.blend`、glTF 与全套 PBR 贴图。
+  1. **主选试制候选 (`ADOPT_WITH_PREP — SELECTED FOR TEACHING PROTOTYPE`)**：**Poly Haven `Vintage Flashlight` (复古手电筒)**（第一方链接：`https://polyhaven.com/a/vintage_flashlight`，作者：Omar M. El-Safy，**CC0 1.0 Universal**）。约 11K 三角面，包含 UV；是否存在重叠以及目标教学区域是否适合局部独立编辑，留待 MINIMUM_TEACHABLE_SLICE_RUNTIME_VALIDATION 实测。教学物理层解读涵盖“红色绝缘漆外壳 → 磕碰露金属底材 → 黑色橡胶/塑料把手 → 镀铬反光碗 → 玻璃透镜”；官方提供 `.blend`、glTF 与全套 PBR 贴图。
   2. **备选试制候选 (`ADOPT_WITH_PREP`)**：**Poly Haven `Retro Multimeter` (复古万用表)**（作者：Elli Moeller，CC0 1.0）。具备胶木机壳、橡胶表笔线、印刷表盘与镀铬表针，适合高阶对比或备选。
-  3. **明确排除项**：Khronos `DamagedHelmet` 因协议实为 **CC BY-NC 4.0 (NonCommercial)** 商业限制，不符合课程全场景无限制再分发要求而被排除；Smithsonian 3D 原始扫描因带照片死阴影与缺失 PBR 分离通道被排除。
+  3. **明确排除项**：Khronos `DamagedHelmet`，该资产包含受 CC BY-NC-4.0 约束的许可组件，因此不满足本项目希望核心学生资产具备简单、宽松 reuse / redistribution 边界的要求，故不作为核心练习资产；Smithsonian 3D 原始扫描因带照片死阴影与缺失 PBR 分离通道被排除。
 * **处理结论**：**已通过 Pass C 确定外部素材发现充分性，锁定 Vintage Flashlight 为主工业练习资产的试制候选。待后续独立工单开展 Starter/Reference 套件试制与 Blender 运行时验证**。
 
 ---
 
 ### 3.2 角色 2：R8 高模向低模法线烘焙教学对 (High→Low Normal Bake Teaching Pair)
-* **角色职能**：支撑 45 分钟微实验，直观向学生展示“几何细节向切线法线向量编码”的表征替代过程，为 PBR 法线通道提供具象认知。
+* **角色职能**：用于支持 bounded High→Low Normal Bake 表征实验或教师演示；具体学生操作深度、时间预算与 W2/W3 placement 待后续 exercise/runtime validation 决定。
 * **当前状态**：**`READY_WITH_PREP`**
 * **事实证据**：
   1. **实体资产完备**：Bundle 1 的石膏胸像高低模（`hi-poly.obj` 80,002 面 + `low-poly-uv.obj` 1,367 面）已在 Blender 4.5.1 中完成空间对齐与几何验证；
   2. **历史检验充分**：历史烘焙图 `nor.jpg`（1024×1024）与教案 `bake_normal.md` 证明该套件曾成功用于高校真实教学，拓扑接缝、软硬边设置经过验证；
   3. **法律权属明确**：**高模为教师直接提供的石膏雕塑扫描 OBJ，明确授权用于课程课堂教学与学生工程分发；低模与 UV 均为教师原创教学成果**。无需外部版权准入调查；
-  4. **预处理代价极低**：只需教师花费约 2 小时将两个 OBJ 打包为 Blender 启动 `.blend` 工程并预设 Cycles 贴图节点。
+  4. **预处理预估**：需教师将两个 OBJ 打包为 Blender 启动 `.blend` 工程并预设 Cycles 贴图节点。
 * **Blender 5.2 兼容性预估**：Verified in Blender 4.5.1; Blender 5.2 compatibility expected from standard OBJ semantics, but not yet runtime-verified.
-* **处理结论**：**无需外部寻找新资产，直接锁定 Bundle 1 石膏雕塑套件作为 R8 教学载体**。
+* **处理结论**：**无需外部寻找新资产，直接锁定 Bundle 1 石膏雕塑套件作为承担 Normal Bake 表征教学的候选资产对**。
 
 ---
 
 ### 3.3 角色 3：W6 异质/非金属未知材质迁移载体 (Unfamiliar Non-Metal Transfer Carrier)
-* **角色职能**：检验学生将 W1–W5 学到的 PBR 物理原理向**未接触过的非金属复杂三维资产**（如木质器具、皮具、陶瓷器皿、石雕）迁移的近迁移（near-transfer）能力。
+* **角色职能**：检验学生将 W1–W5 学到的 PBR 物理原理向非金属材质表现迁移的近迁移（near-transfer）能力。
 * **当前状态**：**`ADOPT_WITH_PREP — SELECTED FOR TEACHING PROTOTYPE`**
 * **事实证据与选定结论**（详见配套调研报告 [`teaching-asset-pass-c-sourcing.md`](teaching-asset-pass-c-sourcing.md)）：
-  1. **排他前置约束**：严禁复用主工业手电筒（金属主体），严禁复用 R8 石膏雕塑（前期已熟悉失去陌生度）；独立评估 `bathroom_floor_ gltf` 仅为水平地砖单片，缺失三维曲率与体积手工艺细节，无法承载 W6 近迁移任务。
-  2. **主选试制候选 (`ADOPT_WITH_PREP — SELECTED FOR TEACHING PROTOTYPE`)**：**Poly Haven `Antique Ceramic Vase 01` (青花开片陶瓷瓶)**（第一方链接：`https://polyhaven.com/a/antique_ceramic_vase_01`，作者：James Ray Cock，**CC0 1.0 Universal**）。约 9K 三角面，饱满回转体双曲率形态，单套无重叠 UV；纯电介质物理特征极具代表性——高反光玻璃质釉面（Dielectric F0 ~0.04）、开片釉微裂纹法线、青花釉下彩漫散射、底部露胎素烧粗陶与微脏污沉积。官方直供 `.blend`、glTF 与全套贴图+分层遮罩（Mask01/02/03）。
+  1. **选型说明**：当前选定 Antique Ceramic Vase 01 作为独立非金属 near-transfer 试制候选；其是否采用、任务是否需要全新载体，以及实际迁移条件与任务规模，留待后续 exercise design / runtime validation 决定。
+  2. **主选试制候选 (`ADOPT_WITH_PREP — SELECTED FOR TEACHING PROTOTYPE`)**：**Poly Haven `Antique Ceramic Vase 01` (青花开片陶瓷瓶)**（第一方链接：`https://polyhaven.com/a/antique_ceramic_vase_01`，作者：James Ray Cock，**CC0 1.0 Universal**）。约 9K 三角面，包含 UV；教学区域的 overlap / distortion / local-edit suitability 尚未验证。纯电介质物理特征极具代表性——高反光玻璃质釉面（Dielectric F0 ~0.04）、开片釉微裂纹法线、青花釉下彩漫散射、底部露胎素烧粗陶与微脏污沉积。官方直供 `.blend`、glTF 与全套贴图+分层遮罩（Mask01/02/03）。
   3. **木质平行备选 (`ADOPT_WITH_PREP`)**：**Poly Haven `Wooden Bowl 01` (手作木碗)**（作者：Oliver Harries，CC0 1.0）。原木粗陶碗（~14K 面），具备木质纤维各向异性与年轮微孔。
 * **处理结论**：**已通过 Pass C 确定外部素材发现充分性，锁定 Antique Ceramic Vase 01 为 W6 材质近迁移载体的试制候选。待后续工单验证自带遮罩语义并试制分层 Starter 套件**。
 
@@ -297,7 +297,7 @@
 ### 5.2 实践教学资产选型特征说明
 1. **零商业许可风险 (Zero Licensing Risk)**：
    除明确采用 CC-BY-4.0 的辅助校验地砖与教师自研成果外，所有选定外部候选资产（手电筒、花瓶、摄影棚 HDRI）均统一在 **CC0 1.0 Universal** 协议下，杜绝版权纠纷；
-   *特别排除项记要*：Khronos `DamagedHelmet` 因带有 CC BY-NC 4.0 (NonCommercial) 商业限制被排除；Smithsonian 3D 原始扫描因带照片死阴影且无 PBR 分离通道被排除。
+   *特别排除项记要*：Khronos `DamagedHelmet` 因包含受 CC BY-NC-4.0 约束的许可组件，不满足本项目希望核心学生资产具备简单、宽松 reuse / redistribution 边界的要求，故不作为核心练习资产；Smithsonian 3D 原始扫描因带照片死阴影且无 PBR 分离通道被排除。
 2. **分层物理表现力完备 (Complete Physical Diversity)**：
    涵盖金属（裸钢、镀铬）、涂层电介质（红漆、油墨）、橡胶塑料、纯透明玻璃、双层玻璃质釉面、微裂纹开片、多孔粗陶露胎与木质纤维，具备支撑完整教学主线的潜力。
 
