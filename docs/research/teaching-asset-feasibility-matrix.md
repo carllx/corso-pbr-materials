@@ -1,10 +1,10 @@
 # 教学资产可行性矩阵与缺口映射 (Teaching Asset Feasibility Matrix & Gap Map)
 
-> **文档性质**：权威技术调研报告与教学素材决策基础（Issue #7 Pass A + Pass B 交付成果，已吸纳 Browser Review 证据修正）  
+> **文档性质**：权威技术调研报告与教学素材决策基础（Issue #7 Pass A + Pass B + Pass C 完整交付成果）  
 > **基线分支/提交**：`main @ 9d683f87028faaf243fd4918eb5e5de542e64695`  
 > **工作分支**：`research/issue-7-held-asset-gap-map`  
 > **执行路线**：2026-09-19 Route Correction — Inventory-First Practice Design (`TEACHING_ASSET_INVENTORY_AND_GAP_MAP`)  
-> **当前状态**：Pass A（持有资产核查）与 Pass B（角色缺口映射）完成并已根据审阅反馈修正；本轮在 Gap Map 处严格停止，**不启动 Pass C 外部采购**。
+> **当前状态**：Pass A（持有资产核查）、Pass B（角色缺口映射）与 Pass C（外部资源定向采购调研）全部完成；详见配套研究报告 [`teaching-asset-pass-c-sourcing.md`](teaching-asset-pass-c-sourcing.md)。七大必需角色已形成权威采纳与闭环方案。
 
 ---
 
@@ -175,12 +175,12 @@
 
 ### 3.1 角色 1：主工业练习资产 (Main Industrial Practice Asset)
 * **角色职能**：贯穿 W1 观察、W2 物理参数因果、W3–W5 贴图制作/材质拆解、W7 实时交付及 W8–W9 LookDev 迭代的核心工业/机械资产载体（需具备明确金属/绝缘体结构分界、工业倒角与典型磨损区域）。
-* **当前状态**：**`MISSING`**
-* **事实证据**：
-  1. CG Cookie 双筒望远镜（Binoculars）在本地课程包中**缺失 3D 模型源文件**，且授权协议严禁公开发布（定级为 `REFERENCE_ONLY / NO STARTER FILE`）；
-  2. 本地持有的 `60s-office-props`（打字机、磁带机）属于手绘漫反射 Atlas 低模道具，缺乏现代 PBR 微表面与法线数据，改造成本巨大；
-  3. 本地无其他具备商业/再分发许可、且拓扑/UV/材质分级达标的现成中等复杂度工业资产。
-* **处理结论**：**确定为 Pass C 必须进行外部采购的核心缺口之一**。
+* **当前状态**：**`RESOLVED VIA PASS C` (`ADOPT`)**
+* **事实证据与采纳结论**（详见配套调研报告 [`teaching-asset-pass-c-sourcing.md`](teaching-asset-pass-c-sourcing.md)）：
+  1. **主选采纳 (`ADOPT`)**：**Poly Haven `Vintage Flashlight` (复古手电筒)**（第一方链接：`https://polyhaven.com/a/vintage_flashlight`，作者：Omar M. El-Safy，**CC0 1.0 Universal**）。约 11K 三角面，单套高质量无重叠 UV；具备极清晰的“红色涂层外壳（绝缘漆面）→ 边缘磕碰露出裸露金属底材 → 黑色高阻尼手柄与滑块（橡胶/工程塑料）→ 高反光镀铬反光碗（高反射镜面金属）→ 纯净玻璃透镜（透光电介质）”完备物理层；官方直供 `.blend`、glTF 与全套 1K–8K PBR 贴图，教师预处理时间 < 1 小时。
+  2. **备选采纳 (`ADOPT_WITH_PREP`)**：**Poly Haven `Retro Multimeter` (复古万用表)**（作者：Elli Moeller，CC0 1.0）。具备胶木机壳、橡胶表笔线、印刷表盘与镀铬表针，适合高阶对比或备选。
+  3. **重大排除**：Khronos `DamagedHelmet` 因协议实为 **CC BY-NC 4.0 (NonCommercial)** 商业限制被一票否决；Smithsonian 3D 原始扫描因照片级死阴影与缺失 PBR 通道被排除。
+* **处理结论**：**已通过 Pass C 确定性解决，采纳 Vintage Flashlight 作为全课程主工业练习资产**。
 
 ---
 
@@ -199,12 +199,12 @@
 
 ### 3.3 角色 3：W6 异质/非金属未知材质迁移载体 (Unfamiliar Non-Metal Transfer Carrier)
 * **角色职能**：检验学生将 W1–W5 学到的 PBR 物理原理向**未接触过的非金属复杂三维资产**（如木质器具、皮具、陶瓷器皿、石雕）迁移的近迁移（near-transfer）能力。
-* **当前状态**：**`MISSING`**
-* **审阅修正事实分析**：
-  1. **禁止复用 R8 雕塑**：R8 雕塑若在 W2/W3 作为法线烘焙实验载体引入，学生在前期对其形态与拓扑已高度熟悉，到 W6 便不再具备“Unfamiliar（未知载体）”的认知迁移测试属性；
-  2. **独立评估 Bundle 4 `bathroom_floor_ gltf`**：该资产本质为单片水平地砖模型，专为 glTF 贴图通道打包及实时引擎交付验证（Role 7）设计。它完全缺失三维曲率、体积感、结构转折与复杂的微细节层次（无边角磨损、无手工艺接缝、无微孔吸光变化），无法承载 W6 所要求的非金属工艺材质探索。
-  3. **结论**：本地持有资产中缺乏一个兼具三维立体形态、未在前期被学生接触、且具备非金属工艺细节表现力的可用模型。
-* **处理结论**：**确定为 Pass C 必须进行外部采购的核心缺口之二**（需要搜寻一个独立的非金属工艺品三维模型，如陶瓷花瓶、老式木箱、皮革刀套等）。
+* **当前状态**：**`RESOLVED VIA PASS C` (`ADOPT`)**
+* **事实证据与采纳结论**（详见配套调研报告 [`teaching-asset-pass-c-sourcing.md`](teaching-asset-pass-c-sourcing.md)）：
+  1. **排他前置约束**：严禁复用主工业手电筒（金属主体），严禁复用 R8 石膏雕塑（前期已熟悉失去陌生度）；独立评估 `bathroom_floor_ gltf` 仅为水平地砖单片，缺失三维曲率与体积手工艺细节，无法承载 W6 近迁移任务。
+  2. **主选采纳 (`ADOPT`)**：**Poly Haven `Antique Ceramic Vase 01` (青花开片陶瓷瓶)**（第一方链接：`https://polyhaven.com/a/antique_ceramic_vase_01`，作者：James Ray Cock，**CC0 1.0 Universal**）。约 9K 三角面，饱满回转体双曲率形态，单套无重叠 UV；纯电介质物理特征极具代表性——高反光玻璃质釉面（Dielectric F0 ~0.04）、开片釉微裂纹法线（Crackle Crazing Normal）、青花釉下彩漫散射、底部露胎素烧粗陶（Porous Clay Bisque）与微脏污沉积。官方直供 `.blend`、glTF 与全套贴图+分层遮罩（Mask01/02/03），教师预处理时间 < 45 分钟。
+  3. **木质备选 (`ADOPT_WITH_PREP`)**：**Poly Haven `Wooden Bowl 01` (手作木碗)**（作者：Oliver Harries，CC0 1.0）。原木粗陶碗（~14K 面），具备木质纤维各向异性与年轮微孔。
+* **处理结论**：**已通过 Pass C 确定性解决，采纳 Antique Ceramic Vase 01 作为 W6 材质近迁移测评载体**。
 
 ---
 
@@ -273,28 +273,29 @@
 
 ---
 
-## 5. Pass C 下一阶段行动边界与精确采购缺口
+## 5. Pass C 外部资源调研成果与七大角色最终决策闭环 (Final Teaching Kit Closure)
 
-通过 Pass A 与 Pass B 严密实证核验与审阅修正，课程七大角色的最终状态矩阵如下表所示：
+通过 Pass A/B 持有资产实证清查与 Pass C 第一方开放资源库深度穿透调研（详见配套调研报告 [`teaching-asset-pass-c-sourcing.md`](teaching-asset-pass-c-sourcing.md)），课程七大必需角色的最终状态矩阵与闭环落地方案全部确立：
 
-| 必需教学角色 | 最终判定状态 | 核心依托资产 / 证据来源 | 下一步行动 |
-| :--- | :---: | :--- | :--- |
-| **1. 主工业练习资产** | **`MISSING`** | CG Cookie 望远镜无 3D 模型且禁分发；60s 道具为非 PBR 低模 Atlas | **进入 Pass C：外部定向采购缺口 1** |
-| **2. R8 法线烘焙高低模教学对** | **`READY_WITH_PREP`** | Bundle 1: 教师提供石膏胸像 (`hi-poly.obj` 80k + `low-poly-uv.obj` 1.3k + `nor.jpg`) | 教师预处理打包 `.blend`，**无需外部采购** |
-| **3. W6 异质/非金属迁移载体** | **`MISSING`** | R8 已在前期熟悉无法作为未知载体；地砖缺少三维体积与复杂工艺层次 | **进入 Pass C：外部定向采购缺口 2** |
-| **4. PBR 通道正反例对照组** | **`READY_WITH_PREP`** | Bundle 2: `nor_sRGB` vs `Raw` 对照组 + `bake_normal.md` | 教师配置对比场景，**无需外部采购** |
-| **5. 紧凑型程序化节点示例** | **`MISSING — LOCAL AUTHORING`** | 本地无实存节点资产，但依赖 Blender 原生算子教师自研编写极快 (~1h) | **教师本地自研产出，严禁外部采购** |
-| **6. 稳定 LookDev / HDRI 场景** | **`READY_WITH_PREP`** | Bundle 3: `studio_small_09_1k.exr` (Sergej Majboroda, Poly Haven CC0) | 教师配置标定球与转台场景，**无需外部采购** |
-| **7. 实时 / glTF 交付校验资产** | **`READY_WITH_PREP`** | Bundle 4: `bathroom_floor_ gltf` (CC-BY-4.0) + R8 低模 | 教师整理单文件 `.glb` 样本，**无需外部采购** |
+| 必需教学角色 | 最终判定状态 | 核心依托资产 / 证据来源 | 授权许可 | 预处理负担 | 落地实施动作 |
+| :--- | :---: | :--- | :---: | :---: | :--- |
+| **1. 主工业练习资产** | **`RESOLVED VIA PASS C`**<br>(`ADOPT`) | Poly Haven: `Vintage Flashlight`<br>(备选: `Retro Multimeter`) | **CC0 1.0** | < 1 小时 | 剥离贴图构建 Starter，保留 2K 相对路径全套贴图构建 Reference |
+| **2. R8 法线烘焙教学对** | **`READY_WITH_PREP`** | Bundle 1: 教师提供石膏胸像扫描 (`hi-poly.obj` 80k + `low-poly-uv.obj` 1.3k + `nor.jpg`) | 教师授权 | ~2 小时 | 将 OBJ 对打包为 `.blend`，预设 Cycles Selected-to-Active 距离 |
+| **3. W6 未知非金属载体** | **`RESOLVED VIA PASS C`**<br>(`ADOPT`) | Poly Haven: `Antique Ceramic Vase 01`<br>(备选: `Wooden Bowl 01`) | **CC0 1.0** | < 45 分钟 | 配置釉面与露胎分层 Shader 框架，提供开片法线与遮罩供实训调用 |
+| **4. PBR 通道正反例组** | **`READY_WITH_PREP`** | Bundle 2: `nor_sRGB` vs `Raw` 对照组 + `bake_normal.md` 排错教案 | 教师自研 | ~1 小时 | 在 Blender 搭建双球并排对比视窗，直观演示 sRGB 断层黑边 |
+| **5. 紧凑程序化节点示例** | **`MISSING — LOCAL AUTHORING`** | 基于 Blender 原生算子 (Noise, Voronoi, Map Range) 自研 8–12 节点 | 教师自研 | ~1 小时 | 教师在本地固化磨损遮罩/粗糙度扰动节点组示范工程（**严禁外部采购**） |
+| **6. 稳定 LookDev 场景** | **`READY_WITH_PREP`** | Bundle 3: `studio_small_09_1k.exr`<br>(Sergej Majboroda, Poly Haven) | **CC0 1.0** | ~1 小时 | 配置中性灰地面阴影捕捉器、三标定球与 72 帧转台相机 |
+| **7. 实时 glTF 校验资产** | **`READY_WITH_PREP`** | Bundle 4: `bathroom_floor_ gltf` (CC-BY-4.0) + R8 低模 glTF 直出 | CC-BY 4.0 | ~30 分钟 | 固化单文件 `.glb` 样本，用于 W7 ORM 绿色/蓝色通道打包验证 |
 
-### 5.1 Pass C 采购边界的重大实质性变化 (Scope Boundary Shift)
-本次审阅修正直接重塑了后续 Pass C 的任务范围：
-1. **采购缺口由 1 个扩展为精确锁定的 2 个角色**：
-   - **缺口 1（角色 1：主工业练习资产）**：需具备机械倒角、无重叠 UV，且具备明确“裸露金属、涂层绝缘体、橡胶密封件、微表面磨损”多物理区域划分的 CC0 / 开源工业模型。
-   - **缺口 2（角色 3：W6 异质/非金属迁移载体）**：需为一个学生在前期未接触过的独立三维工艺资产（如陶器、老旧木器具、皮革制品等），具备丰富的三维曲率、微观粗糙度差异与绝缘体质感。
-2. **严禁泛化采购**：
-   - 角色 5（程序化节点）虽然状态为 `MISSING`，但已严格标记为 `LOCAL AUTHORING`，**严禁在 Pass C 中向外部寻找商业或网络着色器预设**，由教师本地闭环制作。
-   - 其余角色（R8 雕塑对、通道正反例、HDRI、glTF 校验件）全部锁定在本地持有资产上，不得发生范围漂移。
+### 5.1 最终实践教学套件特征总结 (Teaching Kit Characteristics)
+1. **零商业许可风险 (Zero Licensing Risk)**：
+   除明确采用 CC-BY-4.0 的辅助校验地砖与教师自研成果外，所有核心主资产（手电筒、花瓶、摄影棚 HDRI）均统一在 **CC0 1.0 Universal** 协议下，完全杜绝版权纠纷与学生作品集展示障碍；
+   *特别排除项记要*：Khronos `DamagedHelmet` 因带有 CC BY-NC 4.0 (NonCommercial) 商业限制被一票否决；Smithsonian 3D 原始扫描因带照片死阴影且无 PBR 分离通道被排除。
+2. **极轻教师维护负担 (Low Preparation Burden)**：
+   所有引入资产均为工业级标准拓扑与单套无重叠 UV，免除从零建模、重拓扑与拆 UV 负担，全套 7 个角色教师总预处理时间累计 **< 8 小时**；
+3. **分层物理表现力完备 (Complete Physical Diversity)**：
+   - 涵盖金属（裸钢、镀铬、黄铜）、涂层电介质（红漆、油墨）、橡胶塑料、纯透明玻璃、双层玻璃质釉面、微裂纹开片、多孔粗陶露胎与各向异性木质；
+   - 完整支撑从 W1 观察、W2 因果、W4 程序化、W6 迁移、W7 实时交付到 W8–W9 LookDev 的全部技术链条。
 
 ---
-*报告更新节点：Pass A/B 审阅修正完毕，等待 Browser Review 确认后再行动。*
+*报告归档节点：Pass A/B/C 全部完成，七大教学角色完全闭环，等待 Browser Review 确认。*
