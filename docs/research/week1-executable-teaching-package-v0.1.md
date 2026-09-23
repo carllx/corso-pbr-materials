@@ -54,7 +54,7 @@ Week 1 是《三维数字材质制作》的第一堂实践课。本周不追求�
 - **固定观察机位**：场景预置 `Cam_Obs`（焦距 75mm，锁定透视观察角）；
 - **光照基准与视觉来源**：
   - **规范基准**：3D 视口统一采用 **Material Preview (材质预览模式)**。该模式依托 Blender 内置的中性 Studio 棚拍环境（Forest/Studio HDRI），提供 360 度柔和中性的漫反射与微弱环境反光，杜绝初学者因误删灯光导致视口全黑；
-  - **参考图与 Recovery C 严格一致**：`reference_render.png` 与 `W1_Recovery_C_Reference_View.png` 均在相同 Material Preview 环境下烘托生成，确保光照基准 100% 统一；
+  - **参考图与 Recovery C 视觉基准**：学生的规范观察环境是固定的 Material Preview 设置。Recovery C / 教师参考图像采用相同的选定环境光照源（Forest/Studio HDRI）提供视觉一致的降级/参考效果，但不作为像素完全等同的 Material Preview 证据；
   - **场景 Sun 光源定位**：场景中内置的 `Light_Obs` 仅作为未来/备用资产保留，**不作为 W1 规范观察基准的一部分**（视口默认不开启 Scene Lights）。
 
 ### 2.4 本地教学包清单与重构规范 (Local Teaching Package Manifest)
@@ -69,7 +69,10 @@ Week 1 是《三维数字材质制作》的第一堂实践课。本周不追求�
 | **`reference/` (教师参考)** | `W1_Reference_Result.blend` | 327 KB，包含反馈修订后的终态参数 | Factor=0.80，颜色纯度与明度经微调优化后的最终工程 |
 | **`textures/` (共享贴图)** | `vintage_flashlight_*.{jpg,exr,png}` | 5 张 1K 贴图，共约 1.9 MB | 官方 Poly Haven 原生贴图，所有 blend 以 `//../textures/` 相对路径引用 |
 
-> **重构指令 (How to Reconstruct)**：在 Blender 5.2.2 环境下，运行 `.scratch/teaching_package_w1/rebuild_from_official.py`，即可在 15 秒内全自动无损重构出上述全部资产与截图。
+> **重构指令 (How to Reconstruct)**：在目标 Blender 5.2 LTS 环境下，运行仓库持久化脚本 [`tools/teaching/build_week1_teaching_package.py`](file:///Users/yamlam/Documents/GitHub/corso-pbr-materials/tools/teaching/build_week1_teaching_package.py)，即可从 Poly Haven 官方原版资产（1K 分辨率）全自动、无损确定性重构出上述全部本地教学工程与参考图像：
+> ```bash
+> "/Applications/Blender 5.2.2 LTS.app/Contents/MacOS/Blender" -b --python tools/teaching/build_week1_teaching_package.py
+> ```
 
 ---
 
