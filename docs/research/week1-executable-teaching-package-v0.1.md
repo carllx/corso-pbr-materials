@@ -1,10 +1,10 @@
 # Week 1 可执行 160 分钟教学包 (Week 1 Executable Teaching Package v0.1)
 
-> **执行工单**：GitHub Issue #11 — WU2: Week 1 Executable 160-Minute Teaching Package  
-> **上游依据**：GitHub Issue #9 (WU1 运行时切片验证通过，`PASS — TEACHING SLICE VIABLE`)  
+> **执行工单**：GitHub Issue #11 (WU2), GitHub Issue #15 (WU2B — Week 1 Scaffolded Shader Editor Entry / Option B Teacher Delta)  
+> **上游依据**：GitHub Issue #9 (WU1 运行时切片验证通过，`PASS — TEACHING SLICE VIABLE`), GitHub Issue #14 (Teacher Review Gate)  
 > **交付物定位**：供单名教师面向 35 人/17 人大班真实执教的 Week 1 完整教学实施方案、本地资产清单、160 分钟排课预算、教师标准答案与恢复兜底规范  
 > **测试运行时**：Blender 5.2.2 LTS (macOS Darwin 24.6.0 Apple Silicon)  
-> **判定结论 (Verdict)**：**PASS WITH CONDITION — EXECUTABLE, LAB/STUDENT TIMING PENDING**
+> **判定结论 (Status)**：**OPTION B BOUNDED CORRECTION IMPLEMENTED — FINAL TEACHER ACCEPTANCE PENDING**
 
 ---
 
@@ -13,10 +13,12 @@
 ### 1.1 教学定位
 Week 1 是《三维数字材质制作》的第一堂实践课。本周不追求复杂的材质制作，而聚焦于**破除初学者将“三维材质”误解为“二维手绘贴图”的固有心智模型**。课程通过实物观察解构、数字观察环境定位，以及在预置资产上完成一次小而可见的材质决策与反馈修订，确立 PBR 材质创作的基本因果律与工程纪律。
 
+依据 Issue #14 / #15 教师评审收敛结论，本方案采用 **Option B (Scaffolded Shader Editor / 预连节点支架式入口)**：学生在预置好的调色链路中执行“检视 $\to$ 调节 $\to$ 反馈 $\to$ 修订”闭环，严禁在第一周要求学生自行建节点与连线（B = DEFER, NOT OMIT）。
+
 ### 1.2 预期可观察成效集合 (Observable Outcomes)
 学完 Week 1 课程后，学生应能独立展现以下四项行为成效：
 1. **[LO1 观察解构] 区分事实与假设**：能审视工业资产参考图，独立填写决策卡，将视觉现象（高光斑、暗角、划痕）解构为物理材质属性（Base Color, Roughness, Metallic），并严格剥离外部光照（如高光光斑）与附着脏污；
-2. **[LO2 材质决策与修订闭环] 单一可见动作与即时改进**：在主资产预置材质槽中，插入调色节点完成一次外壳涂装变体（Base Color Tint）；在课堂反馈后，完成对同一决定的针对性修订，并记录“初次决策 / 接收反馈 / 修订动作”三字段闭环证据；
+2. **[LO2 材质决策与修订闭环] 单一可见动作与即时改进**：在主资产预置材质槽中，检视预置的调色节点链（`Body_Color_Tint`），调节混合强度 Factor 与涂装颜色 Color B 完成一次外壳涂装变体（Base Color Tint）；在课堂反馈后，完成对同一决定的针对性修订，并记录“初次决策 / 接收反馈 / 修订动作”三字段闭环证据；
 3. **[工程/LO3 预备性证据] 局部保护与数据持久化**：在完成外壳修改的同时，确保受保护部件（玻璃镜片、反光碗、机械螺栓）零污染；在课堂内完成工程保存、完全退出 Blender 进程并重新打开，验证修改 100% 完整持久化；
 4. **[轻量化证据交付]**：独立提交 1 份结构化决策卡（含观察表与修订三字段）与 1 张标准机位视口截图，源工程本地保留以备抽查。
 
@@ -47,8 +49,14 @@ Week 1 是《三维数字材质制作》的第一堂实践课。本周不追求�
 - **确定性重建源**：官方原版 `vintage_flashlight_1k.blend` ＋ 官方 1K 贴图（diffuse, rough, metal, nor_gl, alpha）
 
 ### 2.2 教学接缝划分与 Starter 决策 (Teaching Seam)
-- **接缝划分**：将主体外壳（Main Body Shell，由 812 面下底壳与 650 面顶盖组成，共 **1,462 面**）预置为独立材质槽 **Slot 2 (`vintage_flashlight_body`)**；
-- **为什么不让学生在 W1 自己做选面与 Slot Assign**：初学者在第 1 周尚不熟悉 Blender 复杂的编辑模式网格选择（需用 L 键选连通岛屿、排查微观重叠面并 Assign 材质）。若强求在 W1 动手选面，将耗费 30–45 分钟甚至引发大面积选面泄露，直接挤占核心的“观察解构与材质决策”时间。因此，W1 采取“**教师预置接缝、学生检视确认**”的策略，将选面与材质槽分配延后到后续适当时机讲解。
+- **几何与材质接缝划分**：将主体外壳（Main Body Shell，由 812 面下底壳与 650 面顶盖组成，共 **1,462 面**）预置为独立材质槽 **Slot 2 (`vintage_flashlight_body`)**；
+- **Option B 预置节点接缝与实测中性开局**：
+  - 在 Slot 2 中预先串联好 **`Body_Color_Tint`** 节点（`ShaderNodeMix`，数据类型 `RGBA`，模式 `Multiply`，初始 `Factor=0.0`，插槽 `B` 颜色为纯白色 `(1.0, 1.0, 1.0, 1.0)`）；
+  - **实机测定视觉中性保障**：在 Blender 5.2.2 LTS 实机测定，Factor=0.0 结合 Multiply 与纯白色，与官方原版资产像素差严格为 0.0（Max pixel diff = 0.0000），确保学生开局处于预期的无涂层原版真实状态；
+- **为什么不让学生在 W1 自己做选面或建节点连线 (B = DEFER, NOT OMIT)**：
+  - 若强求初学者在 W1 动手选面，将耗费 30–45 分钟甚至引发大面积选面泄露；
+  - 若强求初学者在 W1 从零新建 Mix Color 节点并寻找插槽连线，会导致初学者陷入快捷键盲区、数据类型报错与端口错连调试，严重挤占核心的“观察解构与材质决策”时间；
+  - 因此，W1 采取“**教师预置接缝与连线、学生检视确认并调节**”的支架式策略（`inspect → adjust → feedback → revise`），将网格选面与节点搭建有界延后（Deferred Capability）。
 
 ### 2.3 唯一规范观察环境 (Canonical Observation Setup)
 - **固定观察机位**：场景预置 `Cam_Obs`（焦距 75mm，锁定透视观察角）；
@@ -62,9 +70,9 @@ Week 1 是《三维数字材质制作》的第一堂实践课。本周不追求�
 
 | 目录 / 角色 | 文件名 | 规格与状态 | 来源与构建方式 |
 | :--- | :--- | :--- | :--- |
-| **`starter/` (学生开局)** | `W1_Starter_Vintage_Flashlight.blend` | 326 KB，3 槽完备，预设 Material Preview 视口，默认激活 Slot 2 | 由官方资产经确定性 Python 脚本切分 Slot 2 并重构相对路径生成 |
-| **`recovery/` (恢复 A)** | `W1_Recovery_A_Starter.blend` | 326 KB，纯净开局备份 | 同 Starter，供操作彻底做崩的学生 10 秒复位 |
-| **`recovery/` (恢复 B)** | `W1_Recovery_B_Post_Edit.blend` | 327 KB，已连好 Base Color Tint 节点 | 在 Slot 2 中串联好 `ShaderNodeMix` (Multiply 0.85, 军绿) |
+| **`starter/` (学生开局)** | `W1_Starter_Vintage_Flashlight.blend` | 327 KB，3 槽完备，预连中性 `Body_Color_Tint` 节点，预设 Material Preview 视口，默认激活 Slot 2 | 由官方资产经确定性 Python 脚本切分 Slot 2、预接调色节点并重构相对路径生成 |
+| **`recovery/` (恢复 A)** | `W1_Recovery_A_Starter.blend` | 327 KB，纯净预连中性开局备份 | 同 Starter，供操作彻底做崩的学生 10 秒复位 |
+| **`recovery/` (恢复 B)** | `W1_Recovery_B_Post_Edit.blend` | 327 KB，已完成首次材质决策检查点 | 内置已调好的 `Body_Color_Tint` (Multiply 0.85, 军绿)，供掉队者跳关进入反馈与修订 |
 | **`recovery/` (恢复 C)** | `W1_Recovery_C_Reference_View.png` | 2.2 MB，标准机位渲染图 | 教师参考效果图，**应急部分完成路径**（仅供完成纸面解构） |
 | **`reference/` (教师参考)** | `W1_Reference_Result.blend` | 327 KB，包含反馈修订后的终态参数 | Factor=0.80，颜色纯度与明度经微调优化后的最终工程 |
 | **`textures/` (共享贴图)** | `vintage_flashlight_*.{jpg,exr,png}` | 5 张 1K 贴图，共约 1.9 MB | 官方 Poly Haven 原生贴图，所有 blend 以 `//../textures/` 相对路径引用 |
@@ -83,12 +91,12 @@ Week 1 是《三维数字材质制作》的第一堂实践课。本周不追求�
 
 | 模块序号 | 教学环节与活动 (Block / Activity) | 计划预算 (Plan Budget) | 教师动作 (Teacher Actions) | 学生动作 (Student Actions) | 阶段产出与达成证据 | 超时裁剪规则 (Overrun / Cut Rule) |
 | :---: | :--- | :---: | :--- | :--- | :--- | :--- |
-| **Block 1** | **导入、定向与基线摸底**<br>(Entry & Baseline Diagnostic) | **10 min** | 明确课程总目标与纪律；发布 3 问极简基线测试（视口导航经验、贴图先验概念）。 | 登录机房工作站，打开任务单；手机或纸面快速响应 3 项基线问题。 | 摸排班级三维软件与认知基线，建立纪律意识。 | 若开机缓慢，基线诊断由问答缩减为 1 分钟举手摸底，压缩至 5 分钟内切入。 |
+| **Block 1** | **导入、定向与基线摸底**<br>(Entry & Baseline Diagnostic) | **10 min** | 明确课程总目标与纪律；发布 3 问极简基线测试（之前使用 Blender 经验、Shader Editor/节点系统接触经历、Base Color/Roughness/Metallic 认知度）。强调基线 UNKNOWN，摸底仅为证据收集与授课语速调节，非评分。 | 登录机房工作站，打开任务单；手机或纸面快速响应 3 项基线问题。 | 摸排班级三维软件与认知基线，建立纪律意识。 | 若开机缓慢，基线诊断由问答缩减为 1 分钟举手摸底，压缩至 5 分钟内切入。 |
 | **Block 2** | **概念讲解与物理-视觉解构示范**<br>(Concept & Decomposition Demo) | **20 min** | 投屏实物参考图，剖析四大通道；示范“如何区分材质固有属性 vs 环境光影/表面污渍”。 | 聆听并记录核心概念；对照投屏辨识手电筒表面的高光与固有色。 | 建立光影剥离意识（LO1 雏形）。 | 若互动过长，裁剪次要细节解释，仅聚焦 Base Color 与光源光斑的剥离，严格在 20 分钟内结束。 |
 | **Block 3** | **学生动手：参考观察与解构填表**<br>(Student Observation & Decomposition) | **20 min** | 巡视指导，观察学生在任务单上的填表情况；重点抽查易混淆项。 | 审视参考图与手电筒部件，独立填写任务单中的《观察与物理解构决策卡》。 | **LO1 核心证据**：完成纯净填空卡（区分 5 项视觉现象的物理因果归属）。 | 若观察拖沓，教师倒计时提示“优先完成主外壳与玻璃两栏”，其余三栏课后补齐，准时进入全班诊断。 |
 | **Block 4** | **全班共性诊断与清单核对**<br>(Whole-class Common Diagnosis) | **15 min** | 收集并投屏 2 份具有代表性偏差的观察卡，开展全班公开诊断；讲解自查标准。 | 对照教师投屏与标准自查清单，订正自己的决策卡。 | 纠偏错误认知，固化“光影/脏污剥离”概念。 | 若诊断展开过深，只点评 1 个最典型高光混淆案例，控制在 10 分钟内切入软件实操。 |
-| **Block 5** | **教师示范：首个有界材质动作**<br>(Material-action Teacher Demo) | **15 min** | 投屏演示打开 Starter，核验 Slot 2，插入 `ShaderNodeMix` 演示外壳军绿色调配与保护区核查。 | 观看教师演示，记录节点添加路径（`Shift+A -> Color -> Mix Color`）与端口连线规则。 | 掌握在受保护框架下实施单一材质调配的操作链路。 | 严禁扩充额外节点知识；仅演示 Mix Multiply 单一连线，坚决在 15 分钟内结束。 |
-| **Block 6** | **学生实操：首个可见材质决策**<br>(Student Practice: First Material Action) | **25 min** | 教室巡回走动，重点关注学生是否误选 Slot 0 或连线断裂；分发 Recovery B 给掉队者。 | 打开 Starter，定位到 Slot 2，添加 Mix 节点调制外壳涂装色，填写字段 1。 | **LO2 阶段证据**：外壳呈现可见颜色变体，并记录初次决策参数。 | **超时即截断**：20 分钟未调出满意色彩者，强制以当前颜色锁定；连线混乱超 5 分钟者直接下发 Recovery B。 |
+| **Block 5** | **教师示范：极简定向与首个有界动作**<br>(Minimum Orientation & Bounded Action Demo) | **15 min** | 投屏演示打开 Starter，核验 Material Preview 与 Slot 2；指认预置节点链路（贴图 $\to$ `Body_Color_Tint` $\to$ Base Color）；解释 Factor 与 Color B 两个有界控制靶点及术语；现场演示一次外壳军绿变体并核查保护区零污染；复位为初始中性态交接给学生。 | 观看演示，在任务单对应指认 Shading 工作区、Shader Editor、预置链路与两处调节靶点，建立数据流与固有色概念。 | 掌握在预置框架下检视节点并实施单一材质调配的操作链路。 | 严禁扩充额外节点搭建知识；仅聚焦预连节点的两项参数调节，坚决在 15 分钟内结束。 |
+| **Block 6** | **学生实操：检视链路与首个可见材质决策**<br>(Student Practice: Inspect & First Material Action) | **25 min** | 教室巡回走动，引导学生检视预置链路，重点关注学生是否误触 Slot 0/1 或误删节点；分发 Recovery B 给试色纠结或进度落后超 5 分钟者。 | 打开 Starter，定位到 Slot 2，检视 `Body_Color_Tint` 节点，将 Factor 调至 0.85，在 Color B 选取涂装色，填写字段 1。 | **LO2 阶段证据**：外壳呈现可见颜色变体，受保护区完好，记录初次决策参数。 | **超时即截断**：20 分钟未调出满意色彩者强制锁定当前色；误操作或卡顿超 5 分钟者直接下发 Recovery B 跳关。 |
 | **Block 7** | **现场分层巡视反馈与抽检**<br>(Roaming Feedback & Mid-point Check) | **10 min** | 快速巡视全班屏幕；抓取 2 个常见错误（色彩荧光过饱和、改错材质槽）进行 3 分钟全班口头广播点拨。 | 停手听取反馈，在决策卡记录所听到的共性反馈要点（填写字段 2）。 | 获取课内即时反馈，识别修改方向。 | 取消个别细致答疑，改为 3 分钟统一广播指导，确保留出完整的学生修订时间。 |
 | **Block 8** | **学生受控修订：优化同个材质决策**<br>(Student Revision on the SAME Decision) | **15 min** | 提示学生聚焦修订当前决策：微调 Factor（如 0.85 $\to$ 0.80）与色彩明度；记录修订动作（字段 3）。 | 针对教师反馈，微调 Mix 节点参数或颜色纯度，完成修订并在决策卡填写字段 3。 | **LO2 终极闭环**：形成初次决策 $\to$ 接收反馈 $\to$ 修订动作完整闭环。 | 若前序超时，本环节缩减为 10 分钟，只要求微调滑块，不推倒重来。 |
 | **Block 9** | **工程保存、退出重启持久化验证**<br>(Save, Quit & Reopen Verification) | **10 min** | 指导学生规范命名保存工程；**监督全班必须执行“完全退出软件并重开”**的持久化核验。 | 执行 `File -> Save As`；完全退出 Blender 进程；重新双击打开，确认节点与参数未丢失。 | **工程/LO3 预备性证据**：保全数据与验证重开完整性。 | **坚决不裁剪此环节**；若时间受压，优先压缩 Block 10 展示/反思与 Block 11 缓冲。 |
@@ -111,7 +119,7 @@ Week 1 是《三维数字材质制作》的第一堂实践课。本周不追求�
 1. **首裁 1 (削减 Block 11)**：完全压缩 10 分钟显式缓冲时间；
 2. **首裁 2 (削减 Block 10)**：完全取消优秀作品大屏展示 (Showcase) 与学生心得反思 (Reflection)，将 Block 10 压缩为纯粹的 2 分钟扫码交卷；
 3. **首裁 3 (削减 Block 6 试色)**：自由试色延误超 20 分钟者，直接由教师统一下发军绿标准色参数完成达标；
-4. **首裁 4 (下发 Recovery B)**：连线受阻超 5 分钟者，强制调用 Recovery B 跳关进入微调；
+4. **首裁 4 (下发 Recovery B)**：试色严重卡顿或操作受阻超 5 分钟者，强制调用 Recovery B 跳关进入微调与反馈修订；
 5. **首裁 5 (缩短互评)**：取消学生之间的同桌互查，改为教师集中 3 分钟广播讲评。
 
 ---
@@ -146,6 +154,18 @@ Week 1 是《三维数字材质制作》的第一堂实践课。本周不追求�
 | **标准机位视口截图** | 单张 PNG 图像 (标准命名) | 教学平台缩略图平铺视图 (Gallery View) 快速浏览 | 5–8 分钟 (35 人全览) | 主筒身呈现明显色彩变体；反光碗仍为金属，玻璃透明，无洋红报错。 |
 | **工程源文件 (`.blend`)** | 学生机房本地留存 | **不作课堂全员打开**；仅抽检 15% 或针对疑问截图调阅 | 抽检每份 1 分钟 | 打开后 Slot 2 包含完整的 Mix 节点，Slot 0 与 Slot 1 面数与节点无篡改。 |
 
+### 5.3 Week 1 有界术语锚定表 (W1 Bounded Terminology Anchors)
+按照“`English canonical term + 中文大白话解释 + visible-effect cue`”规范，仅覆盖 W1 实际必需的 6 项核心术语：
+
+| English Canonical Term | 中文大白话解释 | Visible-effect Cue (视口可见线索) | 教学定位与纪律 |
+| :--- | :--- | :--- | :--- |
+| **Material Preview** | **材质预览模式**：依托 Blender 内置中性影棚环境快速看材质外观 | 3D 视口呈现柔和均匀反射与光照，无需手动打光即可看清模型细节 | W1 唯一规范观察环境，杜绝因无灯光导致的视口全黑 |
+| **Shader Editor** | **着色器编辑器**：屏幕下方组装与控制材质逻辑的蓝图窗口 | 展现为由彩色连线互相链接的功能方块网图 | W1 认识其为材质逻辑承载地，不做复杂节点构建 |
+| **Node** | **节点**：着色器中的独立功能功能块（如 `Body_Color_Tint`） | 一个个具有左侧输入与右侧输出的矩形控制盒 | W1 只需识别其为局部调色功能单元 |
+| **Connection / Data Flow** | **连接与数据流 (概念性)**：节点间由连线承载的数据流动（从左往右输出流入输入） | 贴图颜色通过连线流向 Mix 节点，运算后注入着色器端口 | 仅作概念理解，严禁学生在 W1 动手排查连线或重定向 |
+| **Base Color** | **基础颜色 (固有色)**：物体材质表面本身的反射颜色 | 表现为外壳墨绿漆面或金属底色，表面绝对不含任何光源光斑 | PBR 核心因果纪律，严禁混入外部高光与假阴影 |
+| **Factor** | **混合因子 (影响强度)**：控制颜色混合比例的 0.0 到 1.0 滑块 | 拖动滑块时，外壳从“无涂装原底色 (0.0)”平滑渐变到“浓厚喷漆层 (1.0)” | W1 唯二允许学生调整的核心滑块之一 |
+
 ---
 
 ## 6. 恢复阶梯规范与局部完成属性 (Recovery Ladder)
@@ -155,13 +175,13 @@ Week 1 是《三维数字材质制作》的第一堂实践课。本周不追求�
 ```mermaid
 flowchart TD
     Start["学生实操遇阻"] --> Cond{"阻碍类型判断"}
-    Cond -->|误操作/删错节点/视口混乱| RecA["Recovery A (清洁开局)<br>重新载入 W1_Recovery_A_Starter.blend<br>耗时: 10 秒，回到原点自主重做"]
-    Cond -->|节点连线严重超时/卡死 > 5 min| RecB["Recovery B (跳关检查点)<br>直接分发 W1_Recovery_B_Post_Edit.blend<br>跳过连线，直接进入颜色参数微调与反馈修订"]
+    Cond -->|误操作/删错节点/视口做乱| RecA["Recovery A (纯净中性起点)<br>重新载入 W1_Recovery_A_Starter.blend<br>耗时: 10 秒，回到预置节点中性原点自主重做"]
+    Cond -->|试色严重超时/卡顿 > 5 min| RecB["Recovery B (跳关检查点)<br>直接分发 W1_Recovery_B_Post_Edit.blend<br>跳过初次决策，直接进入已连好的军绿状态参与反馈与修订"]
     Cond -->|机房崩溃/显卡报错/无法运行| RecC["Recovery C (应急部分完成路径)<br>提供 W1_Recovery_C_Reference_View.png<br>脱离软件，仅完成纸面观察解构卡"]
 ```
 
-- **Recovery A (清洁起点)**：`W1_Recovery_A_Starter.blend`。适用于手滑删除了相机、误改了受保护材质的学生，10 秒内恢复纯净初始态；
-- **Recovery B (检查点跳关)**：`W1_Recovery_B_Post_Edit.blend`。内置已连好的 Mix Color 节点。专门拯救在连线环节卡死超 5 分钟的学生，使其跳过机械连线，跟上大部队参与色彩微调、三字段记录与反馈修订；
+- **Recovery A (纯净中性起点)**：`W1_Recovery_A_Starter.blend`。适用于手滑误删节点、乱动保护材质槽的学生，10 秒内恢复预置节点的纯净中性初始态；
+- **Recovery B (检查点跳关)**：`W1_Recovery_B_Post_Edit.blend`。内置已连好并完成初次涂装决策（Multiply 0.85 军绿）的检查点。专门拯救试色纠结超 5 分钟的学生，使其直接跳过初次决策，跟上大部队参与反馈点拨、三字段记录与 Block 8 修订；
 - **Recovery C (应急部分完成路径)**：`W1_Recovery_C_Reference_View.png`。
   > [!WARNING]
   > **Recovery C 属性严正声明**：  
@@ -171,27 +191,29 @@ flowchart TD
 
 ## 7. 教师现场 GUI 点检记录与实机干跑证据 (Manual UI Spot-check & Dry-run)
 
-### 7.1 Blender 5.2.2 LTS 手工 GUI 现场点检 (Manual UI Spot-check)
+### 7.1 Blender 5.2.2 LTS 手工 GUI 现场点检 (Option B Manual UI Spot-check)
 在真实 macOS 视窗环境下对 Blender 5.2.2 LTS 进行了 3–5 分钟的手工 GUI 操作点检，确认学生任务单中的指令与真实软件界面 100% 吻合：
 
 | 点检环节 | 界面实际表现与验证事实 | 与 Handout 匹配状态 | 教师注意事项 |
 | :--- | :--- | :---: | :--- |
 | **1. 打开 Starter 文件** | 双击打开，3D 视口默认激活 **Material Preview (材质预览)**，机位自动锁定在 `Cam_Obs`。材质面板默认选中 Slot 2 (`vintage_flashlight_body`)。 | `[VERIFIED]` 吻合 | 学生开箱立即可见材质，无需手动寻找切换着色球。 |
-| **2. 添加 Mix Color 节点** | 在 Shader Editor 中按快捷键 `Shift + A`，弹出菜单中有 `Color -> Mix Color` 节点。添加后默认名称为 `Mix`。 | `[VERIFIED]` 吻合 | 节点默认数据类型为 `Float`，需手动在顶部下拉菜单中选择 `Color`。 |
-| **3. 混合算法与连线** | 下拉菜单中包含 `Multiply` 算法。端口包含 `A` (Color)、`B` (Color)、`Factor` 与 `Result`。连入 Principled BSDF 的 `Base Color` 立即见效。 | `[VERIFIED]` 吻合 | 视口中外壳颜色瞬间转为军绿，螺丝与玻璃完全未受影响。 |
-| **4. 保存与退出重开** | 执行 `File -> Save As` 保存；彻底 `Cmd + Q` 关闭 Blender 进程并重新双击打开，视口、相机机位、材质节点与调色参数 100% 持久化。 | `[VERIFIED]` 吻合 | 重开持久化流程顺畅，用时约 15 秒。 |
-| **5. 打开 Recovery B** | 双击打开 `W1_Recovery_B_Post_Edit.blend`，视口直接呈现调好的军绿色，Shader Editor 中 Mix Color 节点已就位，可直接调节 Factor。 | `[VERIFIED]` 吻合 | 跳关检查点完备有效。 |
+| **2. 检视预连节点链路** | 切换到顶部 `Shading` 工作区，下方 Shader Editor 中清晰可见预置好的 `vintage_flashlight_diff` $\to$ `Body_Color_Tint` (Multiply, Factor=0.0, 纯白) $\to$ `Base Color`。 | `[VERIFIED]` 吻合 | 节点网络已预先接通，学生开箱无需新建节点或接线。 |
+| **3. 调节参数与视口响应** | 将 `Body_Color_Tint` 节点的 `Factor` 滑块拖动至 0.85，并在插槽 `B` 颜色块选取军绿色，3D 视口中外壳瞬间呈现复古喷漆质感，反光碗与玻璃完全零变动。 | `[VERIFIED]` 吻合 | 视口实时响应，色彩决策明显，保护区完全不受影响。 |
+| **4. 保存与退出重开** | 执行 `File -> Save As` 保存；彻底 `Cmd + Q` 关闭 Blender 进程并重新双击打开，视口、相机机位、`Body_Color_Tint` 节点调节的 Factor=0.85 与军绿参数 100% 持久化。 | `[VERIFIED]` 吻合 | 重开持久化流程顺畅，用时约 15 秒。 |
+| **5. 打开 Recovery B** | 双击打开 `W1_Recovery_B_Post_Edit.blend`，视口直接呈现调好的军绿色，`Body_Color_Tint` 已预置 Factor=0.85 与军绿色，可直接用于反馈讲评与微调。 | `[VERIFIED]` 吻合 | 跳关检查点完备有效。 |
 
 ### 7.2 运行时自动化断言核查 (Automated Runtime Assertions)
-通过独立脚本对本地教学包进行了 7 项核心任务断言测试：
-- **断言 1**：Starter 包含 3 槽，预置 `Cam_Obs` 与 `Light_Obs`，默认激活 Slot 2 (`PASS`)；
-- **断言 2**：Slot 2 插入 `ShaderNodeMix` (Multiply 0.85 军绿) 成功 (`PASS`)；
-- **断言 3**：受保护区 Slot 0 (3,765 面) 与 Slot 1 (56 面) 节点与面分配严格零变动 (`PASS`)；
-- **断言 4**：反馈修订 Factor 0.80 与加深对比生效 (`PASS`)；
-- **断言 5**：工程保存至独立学生文件成功 (`PASS`)；
-- **断言 6**：内存完全重置后重新载入，节点参数持久化保持 100% (`PASS`)；
-- **断言 7**：Recovery 阶梯 A/B/C 加载断言无误 (`PASS`)。  
-*自动化断言总耗时 0.47 秒，全绿通过。*
+通过独立脚本对本地教学包进行了 9 项核心任务狭义断言测试：
+- **断言 1**：官方源确定性重构生成 Starter/Recovery A/B/C/Reference 完整无误 (`PASS`)；
+- **断言 2**：Starter 包含 3 槽，锁定 `Cam_Obs` 与 Material Preview，默认激活 Slot 2 (`PASS`)；
+- **断言 3**：Slot 2 中预置调色节点 `Body_Color_Tint` (Multiply, Factor=0.0, White) 且连线完整 (`PASS`)；
+- **断言 4**：Starter 初始状态实测与原版资产视觉像素差严格为 0.0，保持纯净中性 (`PASS`)；
+- **断言 5**：学生首个材质决策（Factor=0.85, 军绿色）产生显著视觉变化（Max diff = 0.2314 > 0.10） (`PASS`)；
+- **断言 6**：受保护区 Slot 0 (3,765面) 与 Slot 1 (56面) 节点与面分配严格零变动 (`PASS`)；
+- **断言 7**：工程保存后彻底重置内存并重开，节点参数持久化保持 100% (`PASS`)；
+- **断言 8**：Recovery B 跳关检查点包含完备的已决策节点与军绿参数 (`PASS`)；
+- **断言 9**：Reference 包含微调终态参数 (Factor 0.80)，Recovery C 离线渲染参考图完备 (`PASS`)。  
+*自动化断言全部绿灯通过。*
 
 ---
 
@@ -204,8 +226,24 @@ flowchart TD
 
 ---
 
-## 9. 对后续周次的影响与 WU3 记录 (Follow-up for WU3)
+## 9. 对后续周次的影响与 #13 记录 (Follow-up for Issue #13)
 
+### 9.1 DEFERRED CAPABILITY FOR #13 — Node Construction Basics
+依据 Option B 核心原则（**B = DEFER, NOT OMIT**），Week 1 为保护观察解构与材质因果闭环而延后的技术能力在此正式登记，交由 **GitHub Issue #13** 统筹落地：
+
+- **最低延后范围 (Minimum Deferred Scope)**：
+  1. **Add Node (新建节点)**：如快捷键 `Shift + A` 呼出菜单、分类目录浏览与节点名称搜索；
+  2. **Input / output / socket relationship (输入/输出/插槽关系)**：插槽数据类型匹配（Color, Float, Vector）、输入与输出端口对应逻辑；
+  3. **Connect / disconnect (连接与断开)**：鼠标拖拽端口连线、断开已有连线、替换与重定向数据管线；
+  4. **Basic node / data-flow mental model (基础节点数据流心智模型)**：从左至右运算序列、节点网络拓扑与材质运算流程；
+  5. **Minimum Principled BSDF structure needed by later material work (后续材质工作所需的 Principled BSDF 最小结构认知)**：Principled BSDF 的核心通道端口分布与基础结构理解。
+
+- **周次排期纪律**：
+  - **严禁在本 Work Unit 将上述能力永久冻结到 Week 2**；
+  - Week 2 目前仅为领先候选承接周（Leading candidate）；
+  - 最终落地周次必须由 **Issue #13** 在 160 分钟全课程重基线（Whole-course rebaseline）中统筹排定，避免产生新的课时超载。
+
+### 9.2 其他后续承接项
 1. **Material Slot Assign 移期**：W1 预置了接缝，选面与分槽技能点移至 W2/W3 适当位置补齐；
 2. **Roughness 节点调整独立化**：W1 裁剪了 Roughness 连线，建议在 W2 金属/介电质粗糙度规律中作为核心实操；
 3. **确立全员轻量决策卡（含修订三字段）+ 视口截图的标准批阅范式**；
@@ -213,14 +251,12 @@ flowchart TD
 
 ---
 
-## 10. 最终判定结论 (Final Verdict)
+## 10. 最终状态声明 (Status Statement)
 
-根据 Issue #11 判定词表（Verdict Vocabulary）：
+根据 Issue #15 规定，本工单判定状态达到：
 
-### **PASS WITH CONDITION — EXECUTABLE, LAB/STUDENT TIMING PENDING**
+### **OPTION B BOUNDED CORRECTION IMPLEMENTED — FINAL TEACHER ACCEPTANCE PENDING**
 
-**判定理由**：
-1. **教学包完全可执行 (Executable)**：教学定位单一明确，Starter/Recovery/Reference 资产由官方原版资产直接确定性重构，在 Blender 5.2.2 LTS 中经过完整实机干跑与 GUI 手工点检，断言全数通过；
-2. **时间与负荷严谨闭环**：160 分钟规划预算严格加总且包含 10 分钟显式缓冲，每模块均有超时裁剪规则，受保护核心逻辑严密自洽；
-3. **证据与反馈轻量可行**：设计了面向 35/17 人单教师的轻量化双联决策卡与截图机制，低成本证明了反馈驱动的修订闭环；
-4. **条件性保留 (Condition)**：因尚未在真实 Windows 机房环境中由真实零基础学生进行带秒表的可用性测试，依事实标签纪律判定为**条件通过**，完全具备开展试点试教（Pilot）的充分条件。
+> [!NOTE]
+> **状态纪律说明**：  
+> 本工单已在代码、教学包工程与文档层面 100% 完成 Option B 有界修正。依据工作流规范，当前状态**不得声明为 `TEACHER ACCEPTED`**，必须将成果提交主理教师与课程负责人开展最终整体验收（Teacher Acceptance）。验收通过后方可在 Issue #14 正式归档，并开启 Issue #13 全程重基线。
