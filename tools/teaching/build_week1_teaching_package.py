@@ -3,10 +3,10 @@ Week 1 教学资产包确定性构建脚本 (Week 1 Teaching Package Determinist
 
 用途：
 从 Poly Haven 官方原版 Vintage Flashlight 资产（1K 分辨率）出发，
-确定性重构出符合 Week 1 教学要求的完整资产包：
-- Starter: 预置 Slot 2 (vintage_flashlight_body, 1,462面)，锁定机位与 Material Preview；
-- Recovery A: 纯净初始开局备份；
-- Recovery B: 内置已连接调色节点（Multiply 0.85 军绿）的跳关检查点；
+确定性重构出符合 Week 1 教学要求的完整资产包 (Option B Scaffolded Shader Editor 方案)：
+- Starter: 预置 Slot 2 (vintage_flashlight_body, 1,462面)，预连 Body Color Tint 节点并保持视觉中性开局状态 (Factor=0.0, Color B=(1,1,1,1))，锁定机位与 Material Preview；
+- Recovery A: 预连节点的纯净中性开局备份；
+- Recovery B: 内置已完成首次材质决策（Multiply 0.85 军绿）的跳关检查点；
 - Recovery C & Reference: 统一光照源下的参考工程与效果截图。
 
 使用方式 (在 Blender 5.2 LTS 环境下运行)：
@@ -175,14 +175,7 @@ def build_package(source_dir, output_dir):
             assert os.path.exists(abs_p), f"贴图未找到: {abs_p}"
         bpy.ops.wm.save_mainfile()
 
-    # --- 生成 Starter 与 Recovery A ---
-    bpy.ops.wm.save_as_mainfile(filepath=starter_blend)
-    configure_viewport_and_textures()
-    print(f"已生成 Starter: {starter_blend}")
-    shutil.copyfile(starter_blend, recovery_a_blend)
-    print(f"已生成 Recovery A: {recovery_a_blend}")
-
-    # --- 生成 Recovery B (已连好 Mix Color 节点) ---
+    # --- 在 Slot 2 (vintage_flashlight_body) 中预置并连好 Mix Color 调色节点 ---
     nodes = mat_body.node_tree.nodes
     links = mat_body.node_tree.links
 
@@ -191,20 +184,32 @@ def build_package(source_dir, output_dir):
 
     mix_node = nodes.new(type='ShaderNodeMix')
     mix_node.name = "Body_Color_Tint"
+    mix_node.label = "Body Color Tint"
     mix_node.data_type = 'RGBA'
     mix_node.blend_type = 'MULTIPLY'
-    mix_node.inputs['Factor'].default_value = 0.85
-    mix_node.inputs[7].default_value = (0.32, 0.58, 0.22, 1.0) # 军绿色
+    mix_node.inputs['Factor'].default_value = 0.0
+    mix_node.inputs[7].default_value = (1.0, 1.0, 1.0, 1.0) # 中性纯白，初始状态像素级零偏差
     mix_node.location = (bsdf.location.x - 300, bsdf.location.y + 100)
 
     links.new(diff_img.outputs['Color'], mix_node.inputs[6])
     links.new(mix_node.outputs['Result'], bsdf.inputs['Base Color'])
 
+    # --- 生成 Starter 与 Recovery A (预连节点、中性开局状态) ---
+    bpy.ops.wm.save_as_mainfile(filepath=starter_blend)
+    configure_viewport_and_textures()
+    print(f"已生成 Starter (预连中性节点): {starter_blend}")
+    shutil.copyfile(starter_blend, recovery_a_blend)
+    print(f"已生成 Recovery A: {recovery_a_blend}")
+
+    # --- 生成 Recovery B (已完成首个材质决策检查点: Multiply 0.85 军绿色) ---
+    mix_node.inputs['Factor'].default_value = 0.85
+    mix_node.inputs[7].default_value = (0.32, 0.58, 0.22, 1.0) # 军绿色
+
     bpy.ops.wm.save_as_mainfile(filepath=recovery_b_blend)
     configure_viewport_and_textures()
-    print(f"已生成 Recovery B: {recovery_b_blend}")
+    print(f"已生成 Recovery B (完成初次决策检查点): {recovery_b_blend}")
 
-    # --- 生成 Reference Result (优化微调后状态) ---
+    # --- 生成 Reference Result (优化微调后终态: Factor 0.80) ---
     mix_node.inputs['Factor'].default_value = 0.80
     mix_node.inputs[7].default_value = (0.28, 0.62, 0.18, 1.0)
 
