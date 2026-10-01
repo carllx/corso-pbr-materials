@@ -28,3 +28,13 @@
 - 决策记录参见 `docs/adr/`（如需创建）。
 - 本项目遵循单上下文模型（Single-context layout）。
 - 详细知识架构见 `docs/research/knowledge-architecture.md`，设计台账见 `docs/research/course-design-ledger.md`，外部能力见 `docs/agents/capabilities.md`。
+
+## 决策权威与人机协作边界 (Course Owner & Agent Decision Authority Boundary)
+
+- **Course Owner / 教师人类决策权威 (Human Decision Authority)**：
+  - 拥有课程培养目标、9 周大纲架构、实操深度、作业练习体系、平时/期末考核评价框架以及所有里程碑门禁（Review / Exit / Gating）的最终裁决与冻结权；
+  - 任何教学方案的正式采纳、范围基线调整或门禁放行，必须经由 Course Owner 显式确认。
+- **Agent / 智能体工程协作边界 (Agent Boundary)**：
+  - 负责在既定授权与约束内执行一手实证调研、软件运行时技术切片验证、可执行教学资产包与自动化脚本构建、以及有界文本修订（Bounded Corrections）；
+  - 严禁擅自冻结未经人类批准的考核比例、评分标准或跨周架构重排；
+  - 严禁在未获人类授权的情况下私自关闭门禁 Issue 或解锁下游阻断任务。
