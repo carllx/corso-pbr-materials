@@ -21,9 +21,18 @@
   - 覆盖两个独立教学班：GR2102-1（35 人）与 GR2102-3（17 人），单教师现场主讲；
   - 完成有界影响分析报告（`course-offering-impact-analysis-2026-2027-1.md`），明确 9 周用于解除下游交付与 LookDev 挤压，释放主资产反馈打磨空间，严禁借周次扩张新内容；
   - 历史草案存档：`week1-8-conditional-planning-draft-v0.1.md` 标记为**历史条件性规划草案 (Historical Conditional Draft)**；
-- **当前规划前沿 (Current Frontier)**：**`WEEK_1_9_CONDITIONAL_PLANNING_DRAFT_V0_2`**
-  - 正式发布并硬化完成《Week 1–9 条件性排课草案 v0.2》（`week1-9-conditional-planning-draft-v0.2.md`），处于 **CONDITIONAL / NOT FROZEN** 状态；
-  - 状态标识：`WEEK_1_9_CONDITIONAL_PLANNING_DRAFT_V0_2_BROWSER_ACCEPTED_AFTER_HARDENING`。
+- **当前规划前沿 (Current Frontier)**：**`WEEK_1_9_CONDITIONAL_PLANNING_DRAFT_V0_3`**
+  - 基于 Issue #14 已验收的 Week 1 可执行证据（160m、15m 课程介绍占位、Option B、三字段修订闭环）与历史教务资料预检，正式完成《Week 1–9 条件性排课草案 v0.3》（`week1-9-conditional-planning-draft-v0.3.md`）；
+  - 核心重校准：
+    1. 每周提供 5 桶粗颗粒度的 160 分钟计划预算（严格求和 160 分钟），消除定性容量掩盖的超载风险；
+    2. Week 2 正式承接延后的 Node Construction Basics 与粗糙度/金属度因果；
+    3. Normal Bake 降级为 Week 3 教师演示 + 25 分钟表征微实验，不占满整节课；
+    4. 早期 LookDev 习惯前移至 Week 3 开始，W8 作为整合总评；
+    5. Week 6 近迁移压缩为 35 分钟短独立证据任务，释放 125 分钟回流手电主资产；
+    6. 程序化聚焦单一可解释噪波，AI 增加一次“接受/拒绝/替换”决策闭环；
+    7. 显式界定最低课外负荷（2–3 小时/周），单生合格底线在课内达成；
+    8. 提供支撑回填 Week 1 课程介绍的 5 大要素，评分比例维持未冻结依赖；
+  - 状态标识：`CONDITIONAL / NOT FROZEN`（Weeks 2–9 仍为条件性排课，非可执行教案）。
 - **Week 1 教学实施包与教师验收决议 (Week 1 Executable Package & Teacher Review / Issues #11, #15, #14)**：
   - 决议状态 (2026-10-01)：**`TEACHER ACCEPTED WITH DELTAS — APPLY BOUNDED CORRECTIONS THEN USE AS BASELINE`**
   - **决议事实与有界修正 (Bounded Correction)**：
@@ -35,7 +44,7 @@
       - Block 10: 5 min (轻量交付与收尾)；
       - 其余模块 (Block 3–9, 11) 严格保持不变；
     - **核心实践循环与技术链路零变动**：坚决保护“材质动作 $\to$ 现场反馈 $\to$ 受控修订 $\to$ 保存退出重开持久化 $\to$ 缓冲容灾”完整循环；不改动 Blender 5.2.2 LTS 运行时、Starter 资产或材质交互逻辑；
-    - **门禁纪律**：本工单仅完成有界修正并作为后续基线，**严禁启动后续 W1–W9 v0.3 重排，不提前解除 Issue #13 阻塞**。
+    - **门禁流转完成**：已在 PR #17 中完成合并并自动关闭 Issue #14，正式解锁 Issue #13。
 
 ---
 
