@@ -21,9 +21,9 @@
   - 覆盖两个独立教学班：GR2102-1（35 人）与 GR2102-3（17 人），单教师现场主讲；
   - 完成有界影响分析报告（`course-offering-impact-analysis-2026-2027-1.md`），明确 9 周用于解除下游交付与 LookDev 挤压，释放主资产反馈打磨空间，严禁借周次扩张新内容；
   - 历史草案存档：`week1-8-conditional-planning-draft-v0.1.md` 标记为**历史条件性规划草案 (Historical Conditional Draft)**；
-- **当前规划前沿 (Current Frontier)**：**`WEEK_1_9_CONDITIONAL_PLANNING_DRAFT_V0_2`**
-  - 正式发布并硬化完成《Week 1–9 条件性排课草案 v0.2》（`week1-9-conditional-planning-draft-v0.2.md`），处于 **CONDITIONAL / NOT FROZEN** 状态；
-  - 状态标识：`WEEK_1_9_CONDITIONAL_PLANNING_DRAFT_V0_2_BROWSER_ACCEPTED_AFTER_HARDENING`。
+- **当前规划前沿 (Current Frontier)**：**`WEEK_1_9_CONDITIONAL_PLANNING_DRAFT_V0_3`**
+  - 基于 Week 1 可执行教学实施包验收实证与历史资产清查，发布《Week 1–9 条件性排课草案 v0.3》（`week1-9-conditional-planning-draft-v0.3.md`），处于 **CONDITIONAL / NOT FROZEN** 状态；
+  - 状态标识：`WEEK_1_9_CONDITIONAL_PLANNING_DRAFT_V0_3_DRAFT`。
 - **Week 1 教学实施包与教师验收决议 (Week 1 Executable Package & Teacher Review / Issues #11, #15, #14)**：
   - 决议状态 (2026-10-01)：**`TEACHER ACCEPTED WITH DELTAS — APPLY BOUNDED CORRECTIONS THEN USE AS BASELINE`**
   - **决议事实与有界修正 (Bounded Correction)**：
@@ -35,7 +35,19 @@
       - Block 10: 5 min (轻量交付与收尾)；
       - 其余模块 (Block 3–9, 11) 严格保持不变；
     - **核心实践循环与技术链路零变动**：坚决保护“材质动作 $\to$ 现场反馈 $\to$ 受控修订 $\to$ 保存退出重开持久化 $\to$ 缓冲容灾”完整循环；不改动 Blender 5.2.2 LTS 运行时、Starter 资产或材质交互逻辑；
-    - **门禁纪律**：本工单仅完成有界修正并作为后续基线，**严禁启动后续 W1–W9 v0.3 重排，不提前解除 Issue #13 阻塞**。
+    - **门禁纪律**：本工单仅完成有界修正并作为后续基线，PR #17 合并且 Issue #14 正式关闭。
+- **WU3: 9 周全景规划重基准化决议 (Week 1–9 Conditional Rebaseline / Issue #13)**：`COMPLETED`
+  - 依据已验收的 Week 1 证据与历史教学资产清查（Legacy Preflight），系统重基准化产出 `week1-9-conditional-planning-draft-v0.3.md`；
+  - **核心重基准化事实**：
+    1. 确立粗粒度 160 分钟规划预算表，每周 5 项预算严格相加等于 160 分钟；
+    2. 继承 Week 1 全部验收成果与 15 min 导引占位，不推倒重来；
+    3. 显式递延节点基础至 W2（三大数据类型与骨架）；
+    4. 将 Normal Bake 从 W2 45 min 全员操作重定位为 W3 20 min 有界微实验/教师示范；
+    5. W4 引入外部/AI 贴图审查与“采纳/拒绝/融合”有界决策动作；
+    6. W6 陌生非金属近迁移明确为 40 min 独立任务，完成 6 项行为后即时归档，不作为第二个期末精修包；
+    7. 确立四级反馈漏斗（共性讲评、同伴互查、流动抽检、异步工件核验），消灭课内排队，匹配单师 35/17 人真实容量；
+    8. 明确支持后续回填 Week 1 导引的 5 维框架，坚决不编造未决成绩百分比；
+  - 状态保持为 **CONDITIONAL / NOT FROZEN**。
 
 ---
 
@@ -92,9 +104,10 @@
 
 ## 4. Open Questions & Next Actions (待决问题与后续行动)
 
-1. **LO3 空间局部性 GUI 实操探针测试**：在合适节点组织真实 Blender 5.2 界面下的局部绘制—保存—重开验证，判定是否需触发 Painter 条件性窄对比。
-2. **学校教务管理输入补全**：获取考查课平时/期末成绩比例硬性规定，获取机房 PC 硬件参数与软件预装窗口。
-3. **正式执行课表冻结**：在上述 5 项门禁逐一核销后，将 Week 1–9 条件草案 v0.2 正式冻结为学期执行大纲。
+1. **推进 WU4：Week 2 教学切片规范与 Starter 准备 (Week 2 Minimum Teachable Slice Specification & Starter Prep)**：聚焦递延节点基础（三大数据类型与 Principled BSDF 骨架）、Roughness/Metallic 极性对比及多材质槽分配。
+2. **LO3 空间局部性 GUI 实操探针测试**：在合适节点组织真实 Blender 5.2 界面下的局部绘制—保存—重开验证，判定是否需触发 Painter 条件性窄对比。
+3. **学校教务管理输入补全**：获取考查课平时/期末成绩比例硬性规定，获取机房 PC 硬件参数与软件预装窗口。
+4. **正式执行课表冻结**：在上述门禁逐一核销后，将 Week 1–9 条件草案正式冻结为学期执行大纲。
 
 ---
 *本台账随课程调研与设计推进持续更新，归档于 `docs/research/course-design-ledger.md`。*
