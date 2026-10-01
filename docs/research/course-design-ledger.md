@@ -24,12 +24,28 @@
 - **当前规划前沿 (Current Frontier)**：**`WEEK_1_9_CONDITIONAL_PLANNING_DRAFT_V0_2`**
   - 正式发布并硬化完成《Week 1–9 条件性排课草案 v0.2》（`week1-9-conditional-planning-draft-v0.2.md`），处于 **CONDITIONAL / NOT FROZEN** 状态；
   - 状态标识：`WEEK_1_9_CONDITIONAL_PLANNING_DRAFT_V0_2_BROWSER_ACCEPTED_AFTER_HARDENING`。
+- **Week 1 教学实施包与教师验收决议 (Week 1 Executable Package & Teacher Review / Issues #11, #15, #14)**：
+  - 决议状态 (2026-10-01)：**`TEACHER ACCEPTED WITH DELTAS — APPLY BOUNDED CORRECTIONS THEN USE AS BASELINE`**
+  - **决议事实与有界修正 (Bounded Correction)**：
+    - 教师与 Course Owner 正式认可 Week 1 教学设计方案及 160 分钟课时节奏，附带一项有界修正：第一周开局显式预留 **15 分钟课程整体介绍 (Course Orientation)** 占位段；
+    - **占位段规范**：内容后续由全课权威设计回填，最终覆盖 W1–W9 演进轨迹、后八周教学结构、作业练习体系、期末项目期望及考核评价框架原则；现阶段不编造或冻结任何具体成绩比例；
+    - **课时重分配 (严格等于 160 分钟)**：
+      - Block 1: 20 min (15 min Orientation + 5 min 入学摸底)；
+      - Block 2: 15 min (概念与光影剥离示范聚焦)；
+      - Block 10: 5 min (轻量交付与收尾)；
+      - 其余模块 (Block 3–9, 11) 严格保持不变；
+    - **核心实践循环与技术链路零变动**：坚决保护“材质动作 $\to$ 现场反馈 $\to$ 受控修订 $\to$ 保存退出重开持久化 $\to$ 缓冲容灾”完整循环；不改动 Blender 5.2.2 LTS 运行时、Starter 资产或材质交互逻辑；
+    - **门禁纪律**：本工单仅完成有界修正并作为后续基线，**严禁启动后续 W1–W9 v0.3 重排，不提前解除 Issue #13 阻塞**。
 
 ---
 
 ## 2. Stable / Accepted Boundaries (稳定边界与已确认决定)
 
 以下原则与边界已在前期研究与讨论中确立，作为后续大纲与教学设计的基础约束：
+
+0. **课程负责人与人机决策权威边界 (Course Owner & Human Decision Authority Boundary)**：
+   - **人类决策权威 (Human Decision Authority)**：Course Owner（教师/课程负责人）拥有教学目标、9 周大纲架构、实操深度、平时/期末考核评价框架以及所有 Gate 里程碑（Review / Exit）的最终裁决与冻结权；
+   - **智能体工程协作边界 (Agent Boundary)**：Agent 承担一手实证调研、运行时技术切片验证、教学包与自动化脚本重构及有界文本草案编写；严禁在未获人类显式确认前擅自冻结评分比例、私自启动大纲重排或放行阻断门禁。
 
 1. **课程核心聚焦于 Material / Texture Authoring**：
    - 核心教学与训练对象是**材质与纹理创作**本身，不扩张为大而全的次世代游戏资产建模与全案制作流程。
