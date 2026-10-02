@@ -166,7 +166,37 @@
 
 ---
 
-## 7. 工单结项停靠状态说明 (Stop Gate & Human Review Disposition)
+## 7. NotebookLM 外部知识库交叉核验附录 (Appendix: NotebookLM Cross-Source Integrity Check)
+
+依据 Issue #13 流程复盘与 Issue #19 门禁契约，在 Course Owner 最终裁定前，调用项目已登记的外部知识库能力对本报告核心结论进行窄域交叉核验（Cross-Check）。核验凭据与结果记录如下：
+
+### 7.1 核验能力环境与访问路径 (Capability Provenance)
+- **Target Capability**: Course Knowledge Notebook (课程领域知识库)
+- **Provider**: Gemini NotebookLM
+- **Locator**: `e29f9644-03b2-4e1b-bcb0-b954b5bf08be`
+- **Execution Host & Path**: 本地 IDE 环境依托 CLI `/Users/yamlam/.local/bin/notebooklm`，会话凭证健康（`status: ok`, `token_fetch: true`，覆盖 29 项高纯度权威教材与规范来源）；
+- **权威性界定**: NotebookLM 输出属于外部研究与检索凭据（Reported with Provenance），不自动构成项目权威（Project Authority）。
+
+### 7.2 三大核心问题检索结论 (Cross-Check Findings)
+
+1. **Q1: 案例组织拓扑（有限主案例+微案例 vs 频繁换模）**：
+   - **判定**: **`NOT FOUND` (理论论述) / `AMBIGUOUS & COMPLEMENTARY` (实践先例)**；
+   - **语料上下文**: 语料库中没有任何教材或大纲在理论层面明确讨论或对比案例拓扑对初学者教学摩擦的优劣。但在实践结构上存在互补先例：CG Cookie CORE V1 (Blender 4.2) 实际采用了类似混合模型（着色器基础与程序化贴图采用球体/方块/肥皂泡等微案例，全流程烘焙与绘制则回归单一基准主资产 LowPoly Binoculars 望远镜）；而 Shah (2022) 采用每章切换新资产（Retro TV, Mascot Head, Shelf, Pavement 等）；印度 NEP 2020 动画教学大纲则将资产组织形式完全留给授课教师自由裁量。
+2. **Q2: 关键实践动作的语料直接证据**：
+   - **Normal / Bake 作为有界对比微实验**: **`PARTIALLY FOUND`**。Dinur (2026) Ch 13 明确提供了“剪影不变 vs 着色法线扰动”的视觉对比原理；但将 Bake 裁减为免配置只读微实验在语料中为 `NOT FOUND`（属于本项目针对机房排错负荷的教学法推论）；
+   - **光滑非金属 / 陶瓷类材质学习**: **`FOUND`**。Adobe PBR Guide (Pt 1 & 2)、OpenPBR v1.1、Blender 手册与 Dinur Ch 9 详尽阐述了非金属弱高光（$F_0 \approx 0.04$）、无色反射、菲涅尔效应与双层施釉（Clearcoat）物理机制；
+   - **跨资产知识迁移与三分类评测**: **`NOT FOUND`**。教材与规范均聚焦于具体资产制作步骤或基础物理定律，未提及跨载体近迁移三分类测试设计（属于本项目教学评价推论）。
+3. **Q3: 宏观阶段解耦冲突检查 (Contradiction Check)**：
+   - **判定**: **`NO CONTRADICTION FOUND`**；
+   - **语料上下文**: 语料库中没有任何来源强制要求基础练习资产必须贯穿带入期末大作业，亦无任何来源反驳 W1–W6 基础演练与 W7–W9 独立期末大作业的 6+3 解耦模式。该结构与 Shah (2022) 及 CG Cookie 从基础模块向独立收官案例演进的教学逻辑完全兼容。
+
+### 7.3 交叉核验结论与分流 (Integrity Verdict)
+- **路线冲突判断 (Route-Changing Conflict)**: **`NO`**；
+- **处置**: 语料库既未提出反驳证据，亦未提供足以推翻当前 W1–W6 推荐案的外部新事实。本报告维持**宏观阶段解耦（W1–W6 演练 $\to$ W7–W9 期末）**与 **W1–W6 选项 C（有限主案例 + 有界微案例）**的智能体推荐不变，直接提交 Course Owner 审定。
+
+---
+
+## 8. 工单结项停靠状态说明 (Stop Gate & Human Review Disposition)
 
 根据人机决策权威边界规范与 Issue #19 停靠契约：
 
