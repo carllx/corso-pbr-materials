@@ -1,6 +1,6 @@
 # 选定权威文献材质行为调研与初学者代表性材质集 (Bounded Material-Behavior Survey & Beginner Teaching Set)
 
-> **文档定位**：本研究报告响应 GitHub Issue #20 契约及最新 Browser Review（技术 locator 与来源准确性审查）要求。报告首先呈现选定一手权威文献（OpenPBR Surface Specification, Adobe PBR Guide 3rd ed, Eran Dinur 2026 2nd ed）所界定的**有界材质物理行为调研（Bounded Material-Behavior Survey）**；在此基础上，根据 9 周本科初学者教学容量、认知阶梯与先修门槛，由本项目综合推演提出 M1–M8 初学者代表性材质教学原型集（Project Pedagogical Synthesis / Teaching Hypothesis），为下游案例审计（#19）与期末项目设计（#22）提供具有严格追溯性的物理依据。  
+> **文档定位**：本研究报告响应 GitHub Issue #20 契约及最新 Browser Review（技术 locator 与来源准确性审查）要求。报告首先呈现选定一手权威文献（OpenPBR Surface Specification v1.1.1, Adobe PBR Guide 3rd ed, Eran Dinur 2026 2nd ed）所界定的**选定规范有界材质行为调研（Bounded Material-Behavior Survey）**；在此基础上，根据 9 周本科初学者教学容量、认知阶梯与先修门槛，由本项目综合推演提出 M1–M8 初学者代表性材质教学原型集（Project Pedagogical Synthesis / Teaching Hypothesis），为下游案例审计（#19）与期末项目设计（#22）提供具有严格追溯性的物理依据。  
 > **前置依赖**：`CONTEXT.md`（Blender 5.2.2 LTS Principled BSDF v2 环境锁定）。  
 > **门禁状态**：`RESEARCH CANDIDATE ARTIFACT — PENDING BROWSER REVIEW`（不代替 #19 冻结拓扑，不替 #22 预设期末考核规则）。
 
@@ -12,7 +12,7 @@
 
 | 权威规范标识 | 出处与版本 | 精确章节点定位 (Traceable Locators) | 规范定位与提取要点 (Source-Backed Evidence) |
 | :--- | :--- | :--- | :--- |
-| **OpenPBR Surface** | Academy Software Foundation (ASWF, 2024–2026), *OpenPBR Surface Specification* | • Named Layer: `Base` (Diffuse & Base Metal)<br>• Named Layer: `Specular` (Roughness / Dielectric & Conductor)<br>• Named Layer: `Transmission` (Specular Transmission & Absorption)<br>• Named Layer: `Subsurface` (Subsurface Scattering)<br>• Named Layer: `Coat` (Clearcoat Layer)<br>• Named Layer: `Fuzz` (Microfiber Sheen)<br>• Named Layer: `Emission` (Luminescence)<br>• Named Layer: `Thin Film` (Wave Interference)<br>• Named Layer: `Geometry` (Bump & Normal Mapping) | 现代影视与工业开放材质标准。严格定义了物理分层因果（Base $\to$ Specular $\to$ Coat $\to$ Fuzz），并为每种高级光学行为提供了独立的能量平衡与参数接口规范。 |
+| **OpenPBR Surface** | Academy Software Foundation (ASWF), *OpenPBR Surface Specification v1.1.1* (2026-04-17) | • Base Substrate: `Dielectric base` & `Metal`<br>• Parameter Interface: `Specular` (Roughness & Anisotropy)<br>• Base Variants: `Translucent-base` / `Transmission` & `Subsurface`<br>• Top Layer: `Coat` (Clearcoat layer)<br>• Top Layer: `Fuzz` (Microfiber sheen)<br>• Emission: `Emission` (Luminescence)<br>• Optical Effects: `Thin-film` (Wave interference)<br>• Geometry Reference: `Geometry` (Bump & Normal mapping) | 现代影视与工业开放材质标准。严格按官方结构规范了物理分层因果（Base substrate $\to$ Coat $\to$ Fuzz），并为每种高级光学行为提供了独立的能量平衡与参数接口规范。 |
 | **Adobe PBR Guide** | Wes McDermott (2018), *The PBR Guide: A Handbook for Physically Based Rendering*, 3rd ed., Allegorithmic / Adobe | • Pt 1, pp. 18–27 (Light Rays, Absorption, Scattering, Microfacet Theory)<br>• Pt 1, pp. 30–37 (Energy Conservation, Fresnel Effect, F0, Conductors & Insulators)<br>• Pt 2, pp. 47–63 (Metal/Roughness Workflow: Base Color, Metallic, Roughness)<br>• Pt 2, pp. 74–79 (Common Maps: Ambient Occlusion, Height/Normal) | 实时与游戏行业事实标准。明确了金属度工作流语义（金属无漫反射，F0 编码于 Base Color；绝缘体 F0 约 4%）、微表面粗糙度高光散射，以及反照率安全区与线性工作流规范。 |
 | **Dinur (2026)** | Eran Dinur (2026), *The Complete Guide to Photorealism for Visual Effects, Visualization, and Games*, 2nd ed., Routledge | • Ch 1 (Reality and Photorealism, pp. 9–21: 细节困境、微瑕疵与倒角高光磁铁)<br>• Ch 3 (Color, pp. 32–48: 六层解构模型、固有色与环境剥离)<br>• Ch 5 (Light Interaction, pp. 57–68: 吸收、漫散射、镜面反射、透射折射、Albedo)<br>• Ch 9 (Basic Material Properties, pp. 92–96: 绝缘体与金属导体光学本质、菲涅尔效应)<br>• Ch 11 (Rendering and Lighting, pp. 113–130: IBL 与环境光照质检)<br>• Ch 12 (Shading, pp. 131–142: 现代 BRDF 着色与能量守恒)<br>• Ch 13 (Texturing, pp. 143–156: 贴图因果与程序化控制)<br>• Ch 19 (Photorealism with Generative AI, pp. 207–227: AI 质检与控制边界) | 质感观察与外观开发（LookDev）权威方法论。章节点严格对齐仓库一手知识索引（`docs/research/source-native-knowledge-index.md`），强调材质因果律（Material Causality）与微表面粗糙度变异。 |
 | **Khronos glTF 2.0** | Khronos Group, *glTF 2.0 Specification* | • §3.9.2 (Metallic-Roughness Material)<br>• §3.9.3 (Additional Textures: Normal, Occlusion, Emissive)<br>• §3.8.4 & §3.8.4.5 (Sampler & NPOT Texture Handling)<br>• §5.19.5 (`normalTexture`), §5.21 (`occlusionTexture`), §5.22.5 (`metallicRoughnessTexture`) | 工业实时交换标准。定义 `metallicFactor` 在 $[0, 1]$ 连续区间的 BRDF 线性插值混合行为，明确 OpenGL (+Y) 切线空间法线约定。 |
@@ -25,19 +25,19 @@
 
 | 物理行为维度 | 来源显式物理机制 (Source Explicit Physics) | 规范出处索引 (Exact Locators) | 项目教学综合判定 (Project Pedagogical Synthesis) | 教学准入依据与认知门槛分析 | 候选教学安排窗口 (Candidate Placement Window) |
 | :--- | :--- | :--- | :---: | :--- | :---: |
-| **基础介电质反射<br>(Dielectric Reflectance)** | 光线折射入内部经散射出射为漫反射；表面具弱高光（$F_0 \approx 0.04$），受菲涅尔效应支配。 | OpenPBR Layer `Base`<br>Adobe Pt 1 pp. 30–37<br>Dinur Ch 5 & 9 | **CORE**<br>(核心教学主干) | 建立“反照率（Albedo）剥离光影”的基石认知，破除初学者颜色常识误区。 | 候选窗口：W1–W2 阶段导入，贯穿全课 |
-| **导电金属反射<br>(Conductor Reflectance)** | 自由电子吸收透射光（无漫反射），高光反射率高（70%–100%）且具波长选择性（有色高光）。 | OpenPBR Layer `Base`<br>Adobe Pt 1 pp. 34–37<br>Dinur Ch 9 | **CORE**<br>(核心教学主干) | 掌握金属度工作流核心法则，理解金属 Base Color 即为高光颜色的物理本质。 | 候选窗口：W2–W3 阶段攻坚 |
-| **微表面粗糙度变异<br>(Roughness Variation)** | 微观几何法线扰动导致镜面反射光线弥散，决定高光斑的锐利/模糊程度。 | OpenPBR Layer `Specular`<br>Adobe Pt 1 pp. 24–27<br>Dinur Ch 1, 12, 13 | **CORE**<br>(核心教学主干) | 观察并表达岁月抚摸、摩擦抛光与灰尘粗糙，质感逼真度第一控制轴。 | 候选窗口：W2 起作为主线控制轴贯穿 |
-| **法线与微起伏<br>(Normal / Bump Relief)** | 利用切线空间法线贴图扰动像素着色法线，在平整几何面上产生凹凸光影流动。 | glTF §3.9.3 & §5.19.5<br>OpenPBR Layer `Geometry`<br>Adobe Pt 2 pp. 78–79 | **CORE**<br>(核心教学主干) | 区分“表面轮廓剪影”与“微表面着色欺骗”，理解工业贴图烘焙与纹理表征。 | 候选窗口：W3 微实验或专项实操导入 |
-| **物理分层与复合遮罩<br>(Layering & Masks)** | 基底与涂层物理叠加（如金属底材 + 绝缘色漆），遮罩受边缘磨损或凹陷脏迹因果驱动。 | OpenPBR Layer `Base` & `Coat`<br>Dinur Ch 3, 12, 13 | **CORE**<br>(核心教学主干) | 破除单一着色器思维，建立工业人造物“制造工艺 $\to$ 服役损坏”因果逻辑。 | 候选窗口：W3–W5 分层与细节进阶 |
-| **清漆涂层<br>(Clearcoat Layer)** | 在粗糙介电质或金属基底上叠加一层薄透明反射涂层（带独立 IOR 与粗糙度）。 | OpenPBR Layer `Coat`<br>Dinur Ch 12 | **BOUNDED EXPOSURE**<br>(有界接触/启发) | 适用于陶瓷釉面或汽车烤漆，Principled BSDF v2 已内置 Coat 滑块，适于近迁移启发。 | 候选窗口：W6 近迁移或高阶示范 |
-| **透射与透明折射<br>(Transmission / IOR)** | 入射光穿透物体产生屈光折射（Snell 定律），涉及表面粗糙度与内部透明吸收。 | OpenPBR Layer `Transmission`<br>Adobe Pt 1 p. 21<br>Dinur Ch 5 | **BOUNDED EXPOSURE**<br>(有界接触/预置) | 视觉吸引力高，但透射要求网格封闭且折射易受环境扭曲，初学者难以自主调试。 | 候选窗口：手电透镜提供预置参数，不作深调 |
-| **表面自发光<br>(Emission)** | 表面主动向外辐射光能，不依赖外部反射。 | OpenPBR Layer `Emission`<br>glTF §3.9.3 | **BOUNDED EXPOSURE**<br>(有界接触/微量) | 技术原理简单直观，但易导致学生滥用破坏场景光影平衡。 | 候选窗口：手电灯珠或状态指示微量接触 |
-| **微纤维光泽与绒毛<br>(Fuzz / Sheen)** | 微纤维（Microfibers）在物体边缘产生逆反射与前向天鹅绒般的高光漫晕（Velvet sheen）。 | OpenPBR Layer `Fuzz`<br>ASWF Spec (2024) | **DEFER**<br>(明确延后) | 属于织物与特定软质生物表面专项，不属于 9 周基础硬表面与工业质感主线。 | 明确排除于本 9 周教学范围 |
-| **次表面散射<br>(Subsurface / SSS)** | 光线穿入半透明介质在内部多次散射后出射，产生柔和通透感（玉石、皮肤、蜡烛）。 | OpenPBR Layer `Subsurface`<br>Adobe Pt 1 pp. 20–25<br>Dinur Ch 5 | **DEFER**<br>(明确延后) | 计算昂贵，依赖模型真实物理尺度与闭合体积，极易混淆漫反射基础理解。 | 明确排除于本 9 周教学范围 |
-| **各向异性<br>(Anisotropy)** | 微表面存在定向平行细纹（如拉丝金属、唱片），高光沿特定切线方向拉长。 | OpenPBR Layer `Specular`<br>ASWF Spec (2024) | **DEFER**<br>(明确延后) | 依赖复杂的网格切线（Tangents）与极坐标贴图，实时端兼容性差。 | 明确排除于本 9 周教学范围 |
-| **薄膜干涉<br>(Thin-Film Interference)** | 光波在纳微米级薄膜（如油污膜、肥皂泡、高温回火层）上下界面反射产生波干涉彩虹纹。 | OpenPBR Layer `Thin Film`<br>ASWF Spec (2024) | **DEFER**<br>(明确延后) | 涉及高阶波动光学与复数折射率，超出本科基础教学认知负荷。 | 明确排除于本 9 周教学范围 |
-| **参与介质与体积着色<br>(Volume / Absorption)** | 烟雾、浑浊水体内部的吸收与前向/后向散射系数计算。 | OpenPBR Layer `Transmission`<br>ASWF Spec (2024) | **DEFER**<br>(明确延后) | 属于环境与特效范畴，脱离表面着色（Surface Shading）本体。 | 明确排除于本 9 周教学范围 |
+| **基础介电质反射<br>(Dielectric Reflectance)** | 光线折射入内部经散射出射为漫反射；表面具弱高光（$F_0 \approx 0.04$），受菲涅尔效应支配。 | OpenPBR: `Dielectric base`<br>Adobe Pt 1 pp. 30–37<br>Dinur Ch 5 & 9 | **CORE**<br>(核心教学主干) | 建立“反照率（Albedo）剥离光影”的基石认知，破除初学者颜色常识误区。 | 候选窗口：W1–W2 阶段导入，贯穿全课 |
+| **导电金属反射<br>(Conductor Reflectance)** | 自由电子吸收透射光（无漫反射），高光反射率高（70%–100%）且具波长选择性（有色高光）。 | OpenPBR: `Metal substrate`<br>Adobe Pt 1 pp. 34–37<br>Dinur Ch 9 | **CORE**<br>(核心教学主干) | 掌握金属度工作流核心法则，理解金属 Base Color 即为高光颜色的物理本质。 | 候选窗口：W2–W3 阶段攻坚 |
+| **微表面粗糙度变异<br>(Roughness Variation)** | 微观几何法线扰动导致镜面反射光线弥散，决定高光斑的锐利/模糊程度。 | OpenPBR: `Specular roughness`<br>Adobe Pt 1 pp. 24–27<br>Dinur Ch 1, 12, 13 | **CORE**<br>(核心教学主干) | 观察并表达岁月抚摸、摩擦抛光与灰尘粗糙，质感逼真度第一控制轴。 | 候选窗口：W2 起作为主线控制轴贯穿 |
+| **法线与微起伏<br>(Normal / Bump Relief)** | 利用切线空间法线贴图扰动像素着色法线，在平整几何面上产生凹凸光影流动。 | glTF §3.9.3 & §5.19.5<br>OpenPBR: `Geometry`<br>Adobe Pt 2 pp. 78–79 | **CORE**<br>(核心教学主干) | 区分“表面轮廓剪影”与“微表面着色欺骗”，理解工业贴图烘焙与纹理表征。 | 候选窗口：W3 微实验或专项实操导入 |
+| **物理分层与复合遮罩<br>(Layering & Masks)** | 基底与涂层物理叠加（如金属底材 + 绝缘色漆），遮罩受边缘磨损或凹陷脏迹因果驱动。 | OpenPBR: `Base substrate & Coat`<br>Dinur Ch 3, 12, 13 | **CORE**<br>(核心教学主干) | 破除单一着色器思维，建立工业人造物“制造工艺 $\to$ 服役损坏”因果逻辑。 | 候选窗口：W3–W5 分层与细节进阶 |
+| **清漆涂层<br>(Clearcoat Layer)** | 在粗糙介电质或金属基底上叠加一层薄透明反射涂层（带独立 IOR 与粗糙度）。 | OpenPBR: `Coat layer`<br>Dinur Ch 12 | **BOUNDED EXPOSURE**<br>(有界接触/启发) | 适用于陶瓷釉面或汽车烤漆，Principled BSDF v2 已内置 Coat 滑块，适于近迁移启发。 | 候选窗口：W6 近迁移或高阶示范 |
+| **透射与透明折射<br>(Transmission / IOR)** | 入射光穿透物体产生屈光折射（Snell 定律），涉及表面粗糙度与内部透明吸收。 | OpenPBR: `Transmission`<br>Adobe Pt 1 p. 21<br>Dinur Ch 5 | **BOUNDED EXPOSURE**<br>(有界接触/预置) | 视觉吸引力高，但透射要求网格封闭且折射易受环境扭曲，初学者难以自主调试。 | 候选窗口：手电透镜提供预置参数，不作深调 |
+| **表面自发光<br>(Emission)** | 表面主动向外辐射光能，不依赖外部反射。 | OpenPBR: `Emission`<br>glTF §3.9.3 | **BOUNDED EXPOSURE**<br>(有界接触/微量) | 技术原理简单直观，但易导致学生滥用破坏场景光影平衡。 | 候选窗口：手电灯珠或状态指示微量接触 |
+| **微纤维光泽与绒毛<br>(Fuzz / Sheen)** | 微纤维（Microfibers）在物体边缘产生逆反射与前向天鹅绒般的高光漫晕（Velvet sheen）。 | OpenPBR: `Fuzz layer`<br>OpenPBR Spec v1.1.1 | **DEFER**<br>(明确延后) | 属于织物与特定软质生物表面专项，不属于 9 周基础硬表面与工业质感主线。 | 明确排除于本 9 周教学范围 |
+| **次表面散射<br>(Subsurface / SSS)** | 光线穿入半透明介质在内部多次散射后出射，产生柔和通透感（玉石、皮肤、蜡烛）。 | OpenPBR: `Subsurface`<br>Adobe Pt 1 pp. 20–25<br>Dinur Ch 5 | **DEFER**<br>(明确延后) | 计算昂贵，依赖模型真实物理尺度与闭合体积，极易混淆漫反射基础理解。 | 明确排除于本 9 周教学范围 |
+| **各向异性<br>(Anisotropy)** | 微表面存在定向平行细纹（如拉丝金属、唱片），高光沿特定切线方向拉长。 | OpenPBR: `Specular anisotropy`<br>OpenPBR Spec v1.1.1 | **DEFER**<br>(明确延后) | 依赖复杂的网格切线（Tangents）与极坐标贴图，实时端兼容性差。 | 明确排除于本 9 周教学范围 |
+| **薄膜干涉<br>(Thin-Film Interference)** | 光波在纳微米级薄膜（如油污膜、肥皂泡、高温回火层）上下界面反射产生波干涉彩虹纹。 | OpenPBR: `Thin-film`<br>OpenPBR Spec v1.1.1 | **DEFER**<br>(明确延后) | 涉及高阶波动光学与复数折射率，超出本科基础教学认知负荷。 | 明确排除于本 9 周教学范围 |
+| **参与介质与体积着色<br>(Volume / Absorption)** | 烟雾、浑浊水体内部的吸收与前向/后向散射系数计算。 | OpenPBR: `Transmission (Volume)`<br>OpenPBR Spec v1.1.1 | **DEFER**<br>(明确延后) | 属于环境与特效范畴，脱离表面着色（Surface Shading）本体。 | 明确排除于本 9 周教学范围 |
 
 ---
 
@@ -90,7 +90,7 @@
 ### 4.1 候选资产已有仓库事实基准 (Asset Provenance Baseline)
 - **Poly Haven `Vintage Flashlight`**（CC0 1.0 Universal，作者：Omar M. El-Safy）：
   - `[PROVENANCE VERIFIED]`: 约 11K 三角面（~11K tris），UV 已展开；
-  - `[PROVENANCE VERIFIED]`: 官方材质构成：红色绝缘漆外壳（Red dielectric paint）、裸金属（Bare metal）、黑色橡胶/塑料把手（Black rubber/plastic）、镀铬反光碗（Chrome reflector）与玻璃透镜（Glass lens）；
+  - `[PROVENANCE VERIFIED]`: 官方材质构成：红色绝缘漆外壳（Red dielectric paint）、裸金属（Bare metal）、黑色橡胶/塑料把手（Black rubber/plastic）、镀铬反光碗（Chrome reflector）与玻璃透镜（Glass lens）；金属基底成分标记为通用工业金属；
   - `[PROJECT INFERENCE / REQUIRES ASSET INSPECTION]`: 电池仓内部氧化锈蚀（M6）、细微缝隙积灰分布（M7）、握柄处防滑滚花法线贴图适配度（M8），属于推论性教学设想，需在实测中进一步核验。
 - **Poly Haven `Antique Ceramic Vase 01`**（CC0 1.0 Universal，作者：James Ray Cock）：
   - `[PROVENANCE VERIFIED]`: 约 9K 三角面（~9K tris），包含完整展开 UV；
