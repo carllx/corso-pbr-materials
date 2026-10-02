@@ -45,21 +45,26 @@
 依据 Issue #13 流程复盘与实机验证结果，对外部 NotebookLM 能力的操作集成与调用边界确立如下规范：
 
 - **Known Host & Execution Placement (已知宿主与环境配置)**：
-  - 支持在已配置 Google 授权的 macOS 本地开发环境中运行；
-  - 依赖本地 CLI 路径：`/Users/yamlam/.local/bin/notebooklm`，依托用户配置目录 `~/.notebooklm/profiles/default/storage_state.json` 的安全会话缓存。
+  - Known host (verified 2026-10-02): IDE / local macOS environment with `notebooklm` CLI available; other hosts remain UNKNOWN until probed.
 - **Access Hint & Integration Path (访问路径与操作指令)**：
-  - 会话诊断：`notebooklm auth check --test --json`（必须确认 `"checks.token_fetch": true`）；
-  - 资产概览：`notebooklm source list --notebook <locator> --json`；
-  - 精准查询：`notebooklm ask "<query>" --notebook <locator> --json`。
+  - CLI executable: `notebooklm`（在已知宿主上可通过 `command -v notebooklm` 解析定位）；
+  - 认证与会话状态由本地/外部环境独立维护（Authentication/session state is local/external）；凭据与缓存存储细节不在项目权威（Project Authority）文档中持久化；
+  - 运行时探测方法（Runtime probe method，非永久项目状态）：`notebooklm auth check --test --json`；
+  - 常用只读交互命令：
+    - 来源检查：`notebooklm source list --notebook <locator> --json`；
+    - 定向提问：`notebooklm ask "<query>" --notebook <locator> --json`。
 - **Verified Operations (已核实操作集合)**：
-  - 已实测验证只读检索、来源清单读取及多来源问答综合；
-  - 严禁执行未经显式授权的删除（`source delete` / `notebook delete`）或生成类重载操作。
-- **Invocation Boundary (调用边界与人工触发原则)**：
-  - 当且仅当研究工单显式触及已登记知识库覆盖的专业领域，或上游门禁要求交叉核验时触发调用；
-  - 严禁智能体伪造外部能力调用结果；若会话失效或环境不支持，必须如实报告为不可访问，并请求人工介入登录。
+  - 实测验证范围严格限于只读操作：`source list`（来源清单读取）与 `focused ask / read-only synthesis`（定向问答与只读综合）；
+  - 未经单独测试与明确授权的导入、写入或删除操作（import / write / delete），严禁假定为已核实能力。
+- **Capability Routing Decision (能力路由决策而非机械强制调用)**：
+  - 当研究工单触及已登记知识库覆盖的专业领域时，应触发一次低成本的能力路由决策（Capability routing decision），而非机械地将 NotebookLM 作为必经步骤；
+  - 路由决策记录为以下三种判定之一：
+    1. **`USE — bounded probe`**：直接一手文献不足或需交叉核验时，启动有界探针/检索；
+    2. **`NOT NEEDED — direct primary-source path sufficient`**：仓库已有的一手规范与代码实证已足够支撑决策，无需调用外部知识库；
+    3. **`UNKNOWN HOST/ACCESS — bounded fact probe`**：当前宿主或执行环境未经探测确认时，执行最小事实核查。
+  - 严禁智能体伪造外部能力调用结果；若当前宿主无可用环境，如实记录并走备选路线。
 - **Runtime Availability Requires Probe (运行时可用性需动态探测)**：
-  - 外部服务连接受 Google 认证会话生命周期与网络限制影响，不可假设静态长期有效；
-  - 每次涉及能力调用的工作单元开始前，必须执行最小受控探测（Bounded Probe），确认连接就绪后方可推进。
+  - 外部服务连接与认证状态受外部会话生命周期影响，不可假设静态长期有效；每次涉及能力调用的工作单元前，需通过运行时探测确认就绪。
 
 ## 4. 知识边界与凭据溯源约束 (Provenance & Authority Rules)
 
