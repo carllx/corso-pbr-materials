@@ -21,9 +21,18 @@
   - 覆盖两个独立教学班：GR2102-1（35 人）与 GR2102-3（17 人），单教师现场主讲；
   - 完成有界影响分析报告（`course-offering-impact-analysis-2026-2027-1.md`），明确 9 周用于解除下游交付与 LookDev 挤压，释放主资产反馈打磨空间，严禁借周次扩张新内容；
   - 历史草案存档：`week1-8-conditional-planning-draft-v0.1.md` 标记为**历史条件性规划草案 (Historical Conditional Draft)**；
-- **当前规划前沿 (Current Frontier)**：**`WEEK_1_9_CONDITIONAL_PLANNING_DRAFT_V0_2`**
-  - 正式发布并硬化完成《Week 1–9 条件性排课草案 v0.2》（`week1-9-conditional-planning-draft-v0.2.md`），处于 **CONDITIONAL / NOT FROZEN** 状态；
-  - 状态标识：`WEEK_1_9_CONDITIONAL_PLANNING_DRAFT_V0_2_BROWSER_ACCEPTED_AFTER_HARDENING`。
+- **当前规划前沿 (Current Frontier)**：**`WEEK_1_9_CONDITIONAL_PLANNING_DRAFT_V0_3`**
+  - 基于 Issue #14 已验收的 Week 1 可执行证据（160m、15m 课程介绍占位、Option B、三字段修订闭环）与历史教务资料预检，正式完成《Week 1–9 条件性排课草案 v0.3》（`week1-9-conditional-planning-draft-v0.3.md`）；
+  - 核心重校准：
+    1. 每周提供少量粗颗粒度时间桶的 160 分钟计划预算（通常 5 桶，W1 为 6 组特例，严格求和 160 分钟），消除定性容量掩盖的超载风险；
+    2. Week 2 正式承接延后的 Node Construction Basics 与粗糙度/金属度因果；
+    3. Normal Bake 降级为 Week 3 教师演示 + 25 分钟表征微实验，不占满整节课；
+    4. 早期 LookDev 习惯前移至 Week 3 开始，W8 作为整合总评；
+    5. Week 6 近迁移压缩为 50 分钟短独立闭环（35m 独立实操 + 15m 共性反馈），释放 110 分钟回流手电主资产；
+    6. 程序化聚焦单一可解释噪波，AI 增加一次“接受/拒绝/替换”决策闭环；
+    7. 明确及格底线在 160m 课内达成，2–3 小时/周仅作为建议打磨负荷 (Recommended Refinement)，受学校教务工作量政策约束；
+    8. 提供支撑回填 Week 1 课程介绍的 5 大要素，评分比例维持未冻结依赖；
+  - 状态标识：`CONDITIONAL / NOT FROZEN`（Weeks 2–9 仍为条件性排课，非可执行教案）。
 - **Week 1 教学实施包与教师验收决议 (Week 1 Executable Package & Teacher Review / Issues #11, #15, #14)**：
   - 决议状态 (2026-10-01)：**`TEACHER ACCEPTED WITH DELTAS — APPLY BOUNDED CORRECTIONS THEN USE AS BASELINE`**
   - **决议事实与有界修正 (Bounded Correction)**：
@@ -35,7 +44,7 @@
       - Block 10: 5 min (轻量交付与收尾)；
       - 其余模块 (Block 3–9, 11) 严格保持不变；
     - **核心实践循环与技术链路零变动**：坚决保护“材质动作 $\to$ 现场反馈 $\to$ 受控修订 $\to$ 保存退出重开持久化 $\to$ 缓冲容灾”完整循环；不改动 Blender 5.2.2 LTS 运行时、Starter 资产或材质交互逻辑；
-    - **门禁纪律**：本工单仅完成有界修正并作为后续基线，**严禁启动后续 W1–W9 v0.3 重排，不提前解除 Issue #13 阻塞**。
+    - **门禁流转完成**：已在 PR #17 中完成合并并自动关闭 Issue #14，正式解锁 Issue #13。
 
 ---
 
@@ -61,8 +70,10 @@
 5. **极简双应用出口定位**：
    - 实时游戏（WebGL/glTF 交付核验，允许标准烘焙/导出预设）与动画/视觉开发（Cycles 预置离线演播室 LookDev 一致性归因）统一在材质能力框架下，复用主资产源工程，不开设两套庞大生产管线。
 6. **制作环境与工具触发纪律**：
-   - **主要实操制作环境**：以 **Blender 5.2 LTS** 为当前暂定主要实操环境；
-   - **条件性工具对比触发**：Blender-first 为默认宿主；仅当 LO3 空间局部实操探针证明 Blender 原生界面存在不可接受的教学摩擦时，才在受控修改任务上启动与 Substance 3D Painter 的狭窄成本对比；
+   - **主要实操制作环境**：以 **Blender 5.2 LTS** 为当前基准主要实操环境（Blender-first 默认不变）；
+   - **Substance 3D Painter 的双轨机制严格区分**：
+     a) **替换/成本对比触发 (Substitution Trigger)**：仅当 LO3 空间局部实操探针证明 Blender 原生界面存在不可接受的教学摩擦时，才在受控修改任务上启动与 Substance 3D Painter 的狭窄成本对比；
+     b) **同资产连续性迁移假说 (Continuity Transfer Hypothesis)**：作为待干跑验证候选假说（Same-Asset Painter Transfer Lab），仅在完成有界 Teacher/IDE Dry-run 评估且获得 Course Owner 显式批准后方可考虑采纳，严禁在未决状态下预先挤占或置换纯 Blender 课表；
    - 广域软件比选与参考搜索保持关闭。
 7. **最终教材与教学资源体系决议**：
    - **Primary Textbook Skeleton**：Zeeshan Jawed Shah (2022) 保持为教材目录骨架（教材骨架 ≠ 学生实践主线）；
@@ -94,7 +105,7 @@
 
 1. **LO3 空间局部性 GUI 实操探针测试**：在合适节点组织真实 Blender 5.2 界面下的局部绘制—保存—重开验证，判定是否需触发 Painter 条件性窄对比。
 2. **学校教务管理输入补全**：获取考查课平时/期末成绩比例硬性规定，获取机房 PC 硬件参数与软件预装窗口。
-3. **正式执行课表冻结**：在上述 5 项门禁逐一核销后，将 Week 1–9 条件草案 v0.2 正式冻结为学期执行大纲。
+3. **正式执行课表冻结**：在上述门禁逐一核销并经 Course Owner 显式验收后，将 Week 1–9 条件草案 v0.3 正式冻结为学期执行大纲。
 
 ---
 *本台账随课程调研与设计推进持续更新，归档于 `docs/research/course-design-ledger.md`。*
