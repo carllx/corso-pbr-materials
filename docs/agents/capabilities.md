@@ -40,8 +40,36 @@
   2. 检索噪声明显影响研究；
   3. 游戏和动画已经形成各自稳定、独立的方法体系。
 
-## 3. 知识边界与凭据约束
+## 3. 能力调用与执行元数据规范 (Execution Metadata & Operating Boundaries)
 
-- **权威性界定**：NotebookLM 是研究与检索环境，不是项目最终事实权威（Project Authority）。被项目采纳的重要研究结论、课程判断与设计决定，应沉淀回 repository。
+依据 Issue #13 流程复盘与实机验证结果，对外部 NotebookLM 能力的操作集成与调用边界确立如下规范：
+
+- **Known Host & Execution Placement (已知宿主与环境配置)**：
+  - Known host (verified 2026-10-02): IDE / local macOS environment with `notebooklm` CLI available; other hosts remain UNKNOWN until probed.
+- **Access Hint & Integration Path (访问路径与操作指令)**：
+  - CLI executable: `notebooklm`（在已知宿主上可通过 `command -v notebooklm` 解析定位）；
+  - 认证与会话状态由本地/外部环境独立维护（Authentication/session state is local/external）；凭据与缓存存储细节不在项目权威（Project Authority）文档中持久化；
+  - 运行时探测方法（Runtime probe method，非永久项目状态）：`notebooklm auth check --test --json`；
+  - 常用只读交互命令：
+    - 来源检查：`notebooklm source list --notebook <locator> --json`；
+    - 定向提问：`notebooklm ask "<query>" --notebook <locator> --json`。
+- **Verified Operations (已核实操作集合)**：
+  - 实测验证范围严格限于只读操作：`source list`（来源清单读取）与 `focused ask / read-only synthesis`（定向问答与只读综合）；
+  - 未经单独测试与明确授权的导入、写入或删除操作（import / write / delete），严禁假定为已核实能力。
+- **Capability Routing Decision (能力路由决策而非机械强制调用)**：
+  - 当研究工单触及已登记知识库覆盖的专业领域时，应触发一次低成本的能力路由决策（Capability routing decision），而非机械地将 NotebookLM 作为必经步骤；
+  - 路由决策记录为以下三种判定之一：
+    1. **`USE — bounded probe`**：直接一手文献不足或需交叉核验时，启动有界探针/检索；
+    2. **`NOT NEEDED — direct primary-source path sufficient`**：仓库已有的一手规范与代码实证已足够支撑决策，无需调用外部知识库；
+    3. **`UNKNOWN HOST/ACCESS — bounded fact probe`**：当前宿主或执行环境未经探测确认时，执行最小事实核查。
+  - 严禁智能体伪造外部能力调用结果；若当前宿主无可用环境，如实记录并走备选路线。
+- **Runtime Availability Requires Probe (运行时可用性需动态探测)**：
+  - 外部服务连接与认证状态受外部会话生命周期影响，不可假设静态长期有效；每次涉及能力调用的工作单元前，需通过运行时探测确认就绪。
+
+## 4. 知识边界与凭据溯源约束 (Provenance & Authority Rules)
+
+- **权威性界定与溯源规则 (Provenance Rule)**：
+  - NotebookLM 输出定位于“外部研究与交叉核验证据（Reported with Provenance）”，绝不自动成为项目事实权威（Project Authority）；
+  - 引用外部能力时，必须记录完整来源元数据（Provider、Locator、精确 Query、提取语料标题与上下文），并经过教师或课程负责人审定后方可沉淀入库。
 - **资料独立性**：两个 Notebook 职责分明，不要求复制相同材料。
 - **安全与凭据**：严禁在代码仓库中保存任何 NotebookLM cookie、token、storage state 或其他身份凭据。
