@@ -13,7 +13,7 @@
 - **前置准备**：Issue #6 Gate E 完成了 5 个本地 Markdown 导出 bundle 的治理与切片准备；
 - **历史部署事实**：只读 NotebookLM 来源元数据显示，5 份规范的 CORE42 Markdown sources 的 `created_at` 均为 `2026-09-18`，表明其在历史流程中已被摄入并处于就绪状态；
 - **本轮工作性质 (2026-10-03)**：本轮执行并非首次全量上传，而是对已就绪语料的**重新发现（Rediscovery）、真实源身份对账注册（Source Identity Registration）与专项决策支持实证审计（Decision-Support Audit）**；
-- **临时测试源处理**：在早期环境探测中，单次命令行路径测试产生了一个临时 `pasted_text` 重复源（`source_id: 646d9ab1-9c7b-474c-b0bd-ccc3d02e98bd`），该源已在本轮审计中被清理删除；
+- **临时测试源处理**：在早期环境探测中，单次命令行路径测试产生了一个临时 `pasted_text` 重复源（`source_id: 646d9ab1-9c7b-474c-b0bd-ccc3d02e98bd`；该源创建与删除事件属于 `Reported local execution evidence`，非浏览器直接核验凭据），该源已在本轮审计中被清理删除；
 - **历史显示状态说明**：针对 10 月 2 日早期探测中为何 `source list` 未显式返回该 5 个源的具体原因，当前保持为 **`UNKNOWN`**（在缺乏工具链底层调用日志凭据前，不作主观推断）。
 
 ---
