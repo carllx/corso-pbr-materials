@@ -8,10 +8,11 @@
 >    - M1–M8 是本项目面向初学者的教学原型集（Project Pedagogical Synthesis），不是绝对物理分类法；
 >    - 所有课时与时间开销均为规划估算（Planning Estimates），非真实机房硬实证；
 >    - 绝不重新打开已验收的 Week 1 基线；
->    - 不替 Issue #22 预设期末大作业的具体形式、考核规则与成绩权重；
->    - 本报告仅提供智能体推荐，**绝不擅自标记为 `TEACHER ACCEPTED`**，最终采纳权归 Course Owner；
+>    - **最终采纳状态**：本报告拓扑方案已获 Course Owner 正式采纳（**`TEACHER ACCEPTED — BOUNDED HYBRID W1–W6 TOPOLOGY BASELINE`**）；
+>    - **宏观边界**：W1–W6 基础演练 $\neq$ W7–W9 全新独立综合期末大作业（Fixed Macro Boundary）；
+>    - **未决门禁提示**：Teacher Acceptance 不等于资产与运行时实现已全部验证完成，`[GATE-ASSET-01]`、`[GATE-ASSET-02]`、`[GATE-RT-01]` 及具体 Normal Bake 实操形式继续保持 `UNRESOLVED / CONDITIONAL`；
 >    - 严禁启动 Issue #22，严禁生成课表 v0.4，严禁启动 Week 2 教学包，严禁修改或合并 PR #18。  
-> **门禁状态**：`JOIN ARTIFACT COMPLETE — PENDING COURSE OWNER REVIEW GATE`。
+> **门禁状态**：`TEACHER ACCEPTED — BOUNDED HYBRID W1–W6 TOPOLOGY BASELINE`。
 
 ---
 
@@ -31,7 +32,7 @@
   - 明确了单一手电筒资产在 M1（纯漫反射）与 M2（镜面施釉）上存在天然材质覆盖盲区；而其对 M6（锈蚀）与 M7（积灰）的承载性仍属于**推论性假设（`PROJECT INFERENCE / REQUIRES ASSET INSPECTION`）**。
 - **案例特征与实践动作审计（Issue #19 Phase A / PR #24，commit `f37bdf5a`）**：
   - 确立了 Vintage Flashlight（~11K tris，`ADAPT_CANDIDATE`）、Antique Ceramic Vase 01（~9K tris，`REUSE_CANDIDATE`）、Classical Bust（高低模对，`ADAPT_MICRO_ONLY`）与历史资产（`REFERENCE_ONLY`）的资产事实基准；
-  - 明确高低模全流程烘焙在机房面临显著教学摩擦，仅适于微实验观察；近迁移练习需具备流程隔离。
+  - 明确高低模从零全流程烘焙在机房面临显著教学摩擦，不可作为默认全员实操（具体实操深度待排课与机房验证确定）；近迁移练习需具备流程隔离。
 - **Week 1 教学实施包已验收锁定（Issue #11 / #15 / #14）**：
   - Week 1 的 160 分钟教学结构（包含开局 15 分钟课程整体介绍）已被 Course Owner 验收锁定（`TEACHER ACCEPTED WITH DELTAS`），**本工单绝不重新打开 Week 1，不向 Week 1 插入新的微实验**。
 
@@ -100,10 +101,11 @@
 
 基于上述权衡，提出以下明确的智能体推荐意见，提交 Course Owner 审定：
 
-> ### 智能体推荐结论：
-> 1. **已锁定宏观架构**：**W1–W6 教学基础演练 与 W7–W9 全新综合期末大作业彻底解耦 (Fixed Stage 4 Decoupling)**；
-> 2. **W1–W6 案例拓扑推荐**：**采纳选项 C（有限主案例 + 有界代表性微案例模型，Bounded Hybrid）**；
-> 3. **状态标记**：`AGENT RECOMMENDATION — PENDING ASSET RUNTIME PROBES & COURSE OWNER ADOPTION`（绝不擅自标记为 `TEACHER ACCEPTED`）。
+> ### 智能体推荐与负责人采纳结论 (Recommendation & Teacher Acceptance Disposition):
+> 1. **已锁定宏观边界**：**W1–W6 教学基础演练 与 W7–W9 全新综合期末大作业彻底解耦 (Fixed Macro Boundary)**；
+> 2. **W1–W6 案例拓扑基线**：**采纳选项 C（有限主案例 + 有界代表性微案例模型，Bounded Hybrid）**；
+> 3. **最终决策状态**：**`TEACHER ACCEPTED — BOUNDED HYBRID W1–W6 TOPOLOGY BASELINE`**（智能体推荐已获 Course Owner 正式裁定采纳）；
+> 4. **技术门禁前提**：采纳不等于资产与运行时已验证闭环，`[GATE-ASSET-01]`、`[GATE-ASSET-02]`、`[GATE-RT-01]` 及 Normal Bake 具象实操方式继续保持未决与条件性约束。
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
@@ -127,7 +129,7 @@
 1. **最大化保护 35 人单师课堂教学带宽**：W1–W5 主线资产保持稳定，教师能持续依托投屏共性讲评与标准化 Checklist 推进辅导，避免大班排错阻塞；
 2. **结构化补齐代表性材质行为**：
    - **M3 (镜面金属) / M4 (工业金属) / M5 (复合磨损漆面)**：由手电筒主干深度攻坚；
-   - **M1 (哑光漫反射) / M8 (法线浮雕)**：在 W3 或后续合适窗口通过石膏胸像以免配置、纯观察微实验轻量展示（不组织现场全员烘焙）；
+   - **M1 (哑光漫反射) / M8 (法线浮雕)**：作为高低模法线微案例候选（Active Teaching Candidate，非默认 45 分钟全员完整烘焙；实操形式如演示 vs 引导微实验 vs 拓展待排课综合与机房验证确定）；
    - **M2 (玻璃态施釉面)**：在 W6 通过预置花瓶工程完成独立近迁移判断；
    - **M6 (风化锈蚀) / M7 (缝隙积灰)**：根据 #20，手电筒对二者的承载性保持为**条件性候选（`candidate coverage pending GATE-ASSET-01`）**，若原模不理想可使用替代示例或由后续教研决定，不妄称全量闭环。
 3. **清晰的失败容灾与阶段重启**：W1–W6 练习在 W6 归档后即告一段落；W7 进入期末大作业时学生基于新资产轻装上阵，消除前期练习的历史包袱。
@@ -221,7 +223,7 @@
 - **决策结论**:
   1. **宏观解耦边界界定**：W1–W6 教学基础演练 $\to$ W7–W9 全新独立综合期末大作业是 **Course Owner 锁定的宏观边界（Fixed Macro Boundary）**；CORE42 语料库对此**没有发现冲突（No Contradiction Found）**；
   2. **微观拓扑支持界定**：CORE42 的直接正向证据主要支持 W1–W6 范围内的 **Limited Main Case + Bounded Micro-Cases（选项 C 有界混合模型）**，并在节点通道推理、程序化噪波分层与视口 LookDev 自检上提供了坚实的实证支撑；
-  3. **维持智能体推荐**：本报告维持智能体推荐不变，完整提交 Course Owner 审定。
+  3. **智能体推荐与负责人采纳**：智能体分析推荐选项 C，并已获 Course Owner 正式裁定采纳（**`TEACHER ACCEPTED — BOUNDED HYBRID W1–W6 TOPOLOGY BASELINE`**）；宏观边界与 W1–W6 拓扑已锁定，技术与资产门禁继续受控等待后续工单。
 
 ---
 
@@ -229,11 +231,17 @@
 
 根据人机决策权威边界规范与 Issue #19 停靠契约：
 
-1. **当前状态**：`JOIN ARTIFACT COMPLETE — PENDING COURSE OWNER REVIEW GATE`；
-2. **严守非目标（Non-Goals）**：
-   - 本报告**未启动 Issue #22**；
-   - 本报告**未生成排课草案 v0.4**；
-   - 本报告**未启动 Week 2 可执行教学包编写**；
-   - 本报告**未修改或合并 PR #18**；
-   - 本报告**未将上述推荐方案擅自标记为 `TEACHER ACCEPTED`**；
-3. **后续指令等待**：本分支（`research/issue-19-case-topology-join`）在完成提交、推送并在稳定 HEAD 上重跑代码审查后，在 Course Owner Review Gate 处就地停靠，等待课程负责人的明确评审裁决。
+1. **当前状态**：**`TEACHER ACCEPTED — BOUNDED HYBRID W1–W6 TOPOLOGY BASELINE`**；
+2. **权威决策已锁定范围**：
+   - **宏观边界**：W1–W6 基础演练与能力构建 $\to$ W7–W9 全新独立综合期末大作业（Fixed Macro Boundary）；
+   - **W1–W6 拓扑基线**：有限主案例 + 有界微案例混合模型（Bounded Hybrid）；
+3. **技术与资产未决门禁（保持条件性）**：
+   - 负责人采纳不等于资产工程与运行时实现已全部验证完成；
+   - `[GATE-ASSET-01]`（手电筒 M6/M7 风化积灰承载性验证）、`[GATE-ASSET-02]`（花瓶零摩擦模板验证）、`[GATE-RT-01]`（Web 3D viewer runtime 门禁保持 OPEN）及具体 Normal Bake 实操形式（演示 vs 引导微实验 vs 拓展，不等于已锁定为纯观察）仍为未决门禁；
+4. **严守非目标（Non-Goals）**：
+   - 本工单**未启动 Issue #22**；
+   - 本工单**未生成排课草案 v0.4**；
+   - 本工单**未启动 Week 2 可执行教学包编写**；
+   - 本工单**未修改或合并 PR #18**；
+   - **不得合并 PR #26**（PR #26 就地停靠等待负责人合并）；
+5. **后续工单交接**：本分支（`research/issue-19-case-topology-join`）在完成提交、推送并在稳定 HEAD 上重跑代码审查后就地停靠，后续由 Issue #22 承接期末大作业设计，排课草案综合工单承接 v0.4 综合排课。

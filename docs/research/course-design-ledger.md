@@ -72,7 +72,7 @@
      - **核心模型**：采纳**有限主案例 + 有界代表性微案例模型 (Limited Main Case + Bounded Representative Micro-Cases, Bounded Hybrid)**；
      - **当前候选资产结构**：
        - **Vintage Flashlight**：作为 W1–W5-ish 主练习的连续性主干（Continuity Backbone，具体周次安排由后续排课草案 v0.4 确定）；
-       - **Classical Bust**：作为 W3 或之后的法线/浮雕（Normal / representation）有界微案例观察候选（Bounded Micro-case Candidate，不组织现场全员烘焙）；
+       - **Classical Bust**：作为 W3 或之后的法线/浮雕（Normal / representation）有界微案例候选（Bounded Micro-case Candidate，具体实操组织深度待定）；
        - **Antique Ceramic Vase 01**：作为 W6 光滑施釉近迁移测试候选（Near-transfer Candidate，归档即闭环，仍受运行时/模板门禁约束）；
      - **排课纪律**：具体周次不写成冻结的时间表（Not a frozen timetable）。
 5. **极简双应用出口定位**：
@@ -109,7 +109,7 @@
   - **`[GATE-ASSET-01]`**：Flashlight M6 (风化锈蚀) / M7 (缝隙积灰) 的几何承载性（待网格运行时解构核验）；
   - **`[GATE-ASSET-02]`**：Vase 01 零摩擦 `.blend` 模板工程与近迁移可用性；
   - **`[GATE-RT-01]`**：外部 Web 实时查看器的机房离线运行与 GPU 兼容性（未通过前严格保持 EEVEE 视口基线）；
-  - **Exact Normal Bake Implementation**：高低模法线烘焙具体实现形式（保持为免配置只读微实验观察，不组织课堂全员卡模烘焙）；
+  - **Exact Normal Bake Implementation**：高低模法线烘焙实操形式（保持为活跃教学候选 Active Teaching Candidate。已定边界：不作为默认 45 分钟全员完整烘焙、不进入 Week 1、不锁死于固定周次、不将全员从零高低模投影烘焙设为默认；待定选项：教师演示 / 边界受控的学生微实验 / 可选拓展 / 延期或移除；具体实操深度、时间预算、周次落位与作业设计留待后续排课草案综合与运行时验证，绝非只读观察最终裁决）；
   - **Final Assignment Form**：期末大作业的具体选型、交付规格与评分细则（完整留待 Issue #22 独立解答）。
 
 ---
