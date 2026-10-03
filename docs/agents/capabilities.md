@@ -19,7 +19,7 @@
   - 成熟课程、官方文档与教学资料
 - **Locator**: `e29f9644-03b2-4e1b-bcb0-b954b5bf08be`
 - **URL**: `https://notebook.google.com/notebook/e29f9644-03b2-4e1b-bcb0-b954b5bf08be`
-- **Deployed Source Registry**: 详见 [CORE42 Deployment Registry & Provenance Locator](file:///Users/yamlam/Documents/GitHub/corso-pbr-materials/docs/research/core42-deployment-registry.md)，记录了已部署的 5 份 CORE42 认知源 ID 及可移植定位链路（NotebookLM → Source → Bundle → `lesson_id` → Transcript → Cue-map → Video）。
+- **Deployed Source Registry**: 详见 [CORE42 Deployment Registry & Provenance Locator](../research/core42-deployment-registry.md)，记录了已部署的 5 份 CORE42 认知源 ID 及可移植定位链路（NotebookLM → Source → Bundle → `lesson_id` → Transcript → Cue-map → Video）。
 - **Boundary Note**: 这是课程自身的领域知识库，聚焦于三维数字材质与贴图制作的理论、标准工作流与工具链，不应被定义成 AI-native Game Art Notebook。
 
 ## 2. AI Creative Workflow Notebook
