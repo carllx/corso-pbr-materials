@@ -199,9 +199,26 @@
 - **版本差异事实**: 仓库规范一手文献研究严格锁定 Dinur (2026) 2nd edition 与 OpenPBR v1.1.1 规范；而 NotebookLM 交叉核验调用的语料库现存来源包含早期版本（Dinur 2021 1st edition 与 OpenPBR v1.1 标题）；
 - **权威性约束**: 这一版本差异并未在本次 Q1–Q3 核心物理与拓扑逻辑上产生实质性结论冲突，但充分表明：**NotebookLM 外部检索仅作为辅助性交叉验证凭据，绝不覆盖（does not override）项目权威一手文献与仓库审计的基准地位**。
 
-### 7.4 交叉核验结论与分流 (Integrity Verdict)
+### 7.4 初始交叉核验结论与分流 (Initial Integrity Verdict)
 - **路线冲突判断 (Route-Changing Conflict)**: **`NO`**；
-- **处置**: 语料库既未提出反驳证据，亦未提供足以推翻当前 W1–W6 推荐案的外部新事实。本报告维持**宏观阶段解耦（W1–W6 演练 $\to$ W7–W9 期末）**与 **W1–W6 选项 C（有限主案例 + 有界微案例）**的智能体推荐不变，直接提交 Course Owner 审定。
+- **处置**: 语料库既未提出反驳证据，亦未提供足以推翻当前 W1–W6 推荐案的外部新事实。
+
+### 7.5 CORE42 部署后专项决策支持实证审计 (Post-Deployment CORE42 Decision-Support Audit)
+
+在完成 CG Cookie CORE V1 (Blender 4.2) 5 大认知源于 Course Knowledge Notebook 的规范部署后（部署注册表见 `docs/research/core42-deployment-registry.md`），针对本报告推荐的拓扑方案与教学机制，围绕 6 大核心议题执行了基于真实课时文本的专项闭环审计：
+
+| 评估维度与审计议题 | 判定结果 | CORE42 来源与核心课时锚点 (`lesson_id`) | 真实教学事实与上下文证据 (Citation / Context) | 教学法边界与客观局限性 (Limitations) |
+| :--- | :---: | :--- | :--- | :--- |
+| **1. Limited Main Case + Bounded Micro-Cases**<br>(有限主案例 + 有界微案例混合拓扑) | **`SUPPORTS`** | • `CORE42_OVERVIEW.md`<br>• `CORE42_CASE_INDEX.md`<br>• `CORE42_MATERIALS_AND_SHADING.md`<br>• `CORE42_TEXTURING_WORKFLOWS.md`<br>课时：`materials-shading-c04-l20/l21`, `materials-shading-c02-l13`, `texturing-c02-l06/l07`, `texturing-c05-l20/l21`, `texturing-c03-l10~l13`;<br>主干：`texturing-c04-l19`, `texturing-c07-l28~l33` | 课程完全采用“极简微型几何体（Cube/Plane/Sphere/Suzanne/Hammer 排除干扰攻坚单项节点与物理数学原理） + 统一复合工业道具（LowPoly Binoculars 双筒望远镜贯穿拆 UV $\to$ 视口手绘 $\to$ 程序化合成 $\to$ PBR 烘焙闭环）”的双层教学组织结构。 | 原厂归档中望远镜 3D 模型源文件缺失（标注为 `UNRESOLVED` 资产关联）；望远镜偏硬表面，经验难以直接平移至有机角色或大型建筑；程序化纹理在非规则复杂曲面上易产生尺度失真。 |
+| **2. Normal / Bake Bounded Comparison**<br>(法线/置换有界对比与烘焙定位) | **`SUPPORTS`** | • `CORE42_TEXTURING_FOUNDATIONS.md`<br>• `CORE42_TEXTURING_WORKFLOWS.md`<br>• `CORE42_OVERVIEW.md`<br>课时：`texturing-c02-l06` (Bump/Normal), `texturing-c02-l07` (Displacement), `texturing-c07-l33` (Bake), `texturing-c03-l11` | 明确区分 Bump（不改网格，灰度扰动着色法线）、Normal Map（切线空间 RGB，Non-Color，边缘露平）、Displacement（微多边形细分真实移动顶点）。贴图烘焙（`c07-l33`）定位为**把低模望远镜上的多层程序化混合与手绘材质扁平化烘焙导出为标准 PBR 贴图集**，而非在 Blender 内部组织高低模卡模烘焙（高低模烘焙在 `c03-l11` 中指向外部工具 Substance Painter）。 | Blender 内烘焙不支持/未演示复杂高低模投影烘焙；印证了课程初阶将高低模烘焙作为轻量原理或外部工具任务、不占用初阶主干排错带宽的合理性。 |
+| **3. Procedural / Noise**<br>(程序化噪波与数学纹理) | **`SUPPORTS`** | • `CORE42_TEXTURING_WORKFLOWS.md`<br>课时：`texturing-c05-l20` (Noise 4D W, Voronoi, Wave, Brick, Checker, White Noise), `texturing-c05-l21` (AO + Z-axis 灰尘污渍), `texturing-c07-l32` (望远镜皮革与磨损程序化收尾) | 程序化纹理定位为“无无限放大失真、无缝平铺、打破 CG 完美感”的细节生成工具，作为手绘与图像贴图的**辅助修饰图层**，并提炼了通用的 `AO (缝隙)` + `Separate XYZ Z轴 (顶部落灰)` 双层脏迹网络。 | 缺乏具象商标/文字控制力；三维坐标映射在非规则网格上易出现接缝错位；多层 4D 噪波与体积计算开销大。 |
+| **4. UV & Channel Reasoning**<br>(UV 展开与 PBR 通道连接推理) | **`SUPPORTS`** | • `CORE42_TEXTURING_FOUNDATIONS.md`<br>• `CORE42_TEXTURING_WORKFLOWS.md`<br>课时：`texturing-c03-l10~l13` (Hammer 缝合线原则、拉伸修复、Texel Density 统一、0.007 安全边距防渗色、Smart UV / Follow Active Quads), `texturing-c07-l28` (Binoculars UV), `texturing-c04-l16/l19` (Principled BSDF 通道组装) | 建立“基础工具单一道具 (Hammer) $\to$ 复合资产 (Binoculars)”阶梯展开路线。严密区分色彩空间：**sRGB** 用于视觉色彩通道（Base Color/SSS Color），**Non-Color** 用于数值/矢量数据通道（Normal, Metallic, Roughness, Displacement, Alpha, Transmission），Node Wrangler 快捷键批量接入。Base Color 混合 AO 贴图建议采用 Multiply 模式 (Factor 0.75)。 | Smart UV 产生的非规则碎片在手绘与纹理映射时有严重碎裂风险，实操依然高度依赖手动标记缝合线规范。 |
+| **5. Representative-Material Transfer**<br>(代表性材质物理规律迁移) | **`SUPPORTS`** | • `CORE42_MATERIALS_AND_SHADING.md`<br>• `CORE42_TEXTURING_FOUNDATIONS.md`<br>• `CORE42_TEXTURING_WORKFLOWS.md`<br>课时：`texturing-c04-l16/l18` (能量守恒、金属/电介质二分法、垂直入射 $F_0 \approx 0.04$、菲涅尔效应), `texturing-c05-e01/l20` (金属+噪波锈蚀氧化迁移), `materials-shading-c02-l08/c04-l20` (玻璃与瓷器), `texturing-c05-l21` (灰尘积垢通用双层掩码) | 引导学员基于**通用 PBR 物理法则与通道二分法**认知材质，而非死记特定道具配方。金属（无漫射、高光带色）与非金属（无色弱高光、菲涅尔增强）的物理二分，使参数理解能自然迁移到未知道具。 | 教学案例主要覆盖硬表面工业材质（金属、塑料、玻璃、皮革、油漆、污渍），缺乏软质面料折叠、有机皮肤次表面等更复杂物理材质的迁移范例。 |
+| **6. LookDev**<br>(外观开发与渲染环境自检) | **`SUPPORTS`** | • `CORE42_MATERIALS_AND_SHADING.md`<br>• `CORE42_TEXTURING_FOUNDATIONS.md`<br>• `CORE42_CASE_INDEX.md`<br>课时：`texturing-c03-l09` / `texturing-c04-l17` (PolyHaven autoshop_01_2k.hdr 标准 HDRI 环境光照管理与无偏评估), `materials-shading-c04-l18` (Cycles 光线弹跳与 Fast GI), `materials-shading-c03-l17` (EEVEE 屏幕空间反射与反射探针 Light Probe), `materials-shading-c04-l20` (焦散/色散对比), Viewport Shading (Material Preview 内置 HDRI 质感开发 vs Rendered 真实光照) | 通过引入标准中性 HDRI（PolyHaven 工业车间）、Material Preview 视口快速迭代与 Cycles/EEVEE 引擎双向校验，建立无偏偏置的外观评估规范。 | 聚焦于单道具 LookDev，未涉及复杂多灯光摄影棚演播室布光或多环境换光自动化评测套件。 |
+
+### 7.6 终审路线决策判定 (Final Synthesis Verdict)
+- **是否存在足以改变推荐路线的冲突 (Route-Changing Contradiction)**: **`NO`**；
+- **决策结论**: CORE42 真实教学语料对本项目“**阶段彻底解耦（W1–W6 基础演练 $\to$ W7–W9 全新期末）**”与“**W1–W6 选项 C（有限主案例 + 有界代表性微案例）**”的拓扑设计提供了从教学结构、材质分层、节点通道、凹凸机制到 LookDev 视口自检的全方位强力实证支撑。本报告维持智能体推荐不变，完整提交 Course Owner 审定。
 
 ---
 
