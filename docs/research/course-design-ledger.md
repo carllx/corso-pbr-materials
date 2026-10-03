@@ -21,9 +21,17 @@
   - 覆盖两个独立教学班：GR2102-1（35 人）与 GR2102-3（17 人），单教师现场主讲；
   - 完成有界影响分析报告（`course-offering-impact-analysis-2026-2027-1.md`），明确 9 周用于解除下游交付与 LookDev 挤压，释放主资产反馈打磨空间，严禁借周次扩张新内容；
   - 历史草案存档：`week1-8-conditional-planning-draft-v0.1.md` 标记为**历史条件性规划草案 (Historical Conditional Draft)**；
-- **当前规划前沿 (Current Frontier)**：**`WEEK_1_9_CONDITIONAL_PLANNING_DRAFT_V0_2`**
-  - 正式发布并硬化完成《Week 1–9 条件性排课草案 v0.2》（`week1-9-conditional-planning-draft-v0.2.md`），处于 **CONDITIONAL / NOT FROZEN** 状态；
-  - 状态标识：`WEEK_1_9_CONDITIONAL_PLANNING_DRAFT_V0_2_BROWSER_ACCEPTED_AFTER_HARDENING`。
+- **当前规划前沿 (Current Frontier)**：**`Teacher Review Rebaseline`**
+  - **#19 Case Topology Closeout**：完成案例拓扑 Join 实证审计与决策收口；
+  - **Accepted W1–W6 Bounded Hybrid**：Course Owner 正式接受 W1–W6 采用有限主案例 + 有界代表性微案例混合模型；
+  - **Fixed W7–W9 New-Final Boundary**：锁定 W1–W6 基础演练与 W7–W9 全新期末大作业彻底解耦的宏观边界；
+  - **Next Dependencies**：下一阶段严格依赖于 **Issue #22（期末大作业架构设计）**，待其完成后方可启动并综合生成 **Week 1–9 排课草案 v0.4**（注：v0.4 尚未生成，严禁标记为完成）。
+- **课程负责人决策记录 (Course Owner Decision Record — 2026-10-03)**：
+  - **决策结论**：**`TEACHER ACCEPTED — USE BOUNDED HYBRID AS W1–W6 TOPOLOGY BASELINE`**
+  - **核心判定**：
+    1. **锁定宏观边界**：W1–W6 基础演练 $\neq$ W7–W9 全新独立综合期末大作业（Fixed Macro Boundary）；期末大作业严禁继续使用 W1–W6 主练习资产；
+    2. **确立拓扑基线**：W1–W6 采纳选项 C（有限主案例 + 有界代表性微案例模型）；
+    3. **证据属性说明**：CORE42 后续外部语料审计未发现足以改变路线的冲突（`NO CONTRADICTION FOUND`），直接正向强化了 W1–W6 聚焦微案例配合复合主道具的教学组织证据；CORE42 是外部验证凭据（Reported with Provenance），而非该 Course Owner 决策本身的产生来源。
 - **Week 1 教学实施包与教师验收决议 (Week 1 Executable Package & Teacher Review / Issues #11, #15, #14)**：
   - 决议状态 (2026-10-01)：**`TEACHER ACCEPTED WITH DELTAS — APPLY BOUNDED CORRECTIONS THEN USE AS BASELINE`**
   - **决议事实与有界修正 (Bounded Correction)**：
@@ -55,9 +63,18 @@
 3. **真实教学容量约束 (Verified 9-Week / 24-Contact-Hour Reality)**：
    - 严格在单班每周 160 分钟、9 周总计 24 实际小时物理接触时间内组织教学；不设计未经验证的分钟数伪精确配额；
    - 35 人班与 17 人班维持完全一致的学习标准与考核 Rubric，现场通过四级反馈漏斗（共性讲评、自查互查、流动抽检、工件异步核验）自适应调节节奏。
-4. **实践双主线分工 (Dual Practice Backbone Allocation)**：
-   - **主工业资产**：小型工业复合外壳（贯穿 Weeks 1–5、7–9），承担因果分层、受控修改、烘焙交付与**终期唯一的重点精修打磨**；
-   - **轻量近迁移资产**：预置 UV 陌生非金属载体（Week 6），独立完成 6 项行为与三分类迁移判断；**完成证据包归档后即闭环，后续周次不作为第二个期末精修作品**。
+4. **宏观阶段解耦与案例拓扑架构 (Macro Boundary Decoupling & Case Topology)**：
+   - **已锁定宏观边界 (FIXED MACRO BOUNDARY)**：
+     - **W1–W6 = 教学基础演练与能力构建 (Teaching / Practice Capability Construction)**；
+     - **W7–W9 = 全新独立综合期末大作业 (New Comprehensive Final Project)**；
+     - **彻底解耦原则**：W7–W9 严禁继续使用 W1–W6 主练习资产（如 Flashlight）作为期末作品，消除前期练习的历史包袱；
+   - **W1–W6 案例拓扑架构 (TEACHER ACCEPTED)**：
+     - **核心模型**：采纳**有限主案例 + 有界代表性微案例模型 (Limited Main Case + Bounded Representative Micro-Cases, Bounded Hybrid)**；
+     - **当前候选资产结构**：
+       - **Vintage Flashlight**：作为 W1–W5-ish 主练习的连续性主干（Continuity Backbone，具体周次安排由后续排课草案 v0.4 确定）；
+       - **Classical Bust**：作为 W3 或之后的法线/浮雕（Normal / representation）有界微案例观察候选（Bounded Micro-case Candidate，不组织现场全员烘焙）；
+       - **Antique Ceramic Vase 01**：作为 W6 光滑施釉近迁移测试候选（Near-transfer Candidate，归档即闭环，仍受运行时/模板门禁约束）；
+     - **排课纪律**：具体周次不写成冻结的时间表（Not a frozen timetable）。
 5. **极简双应用出口定位**：
    - 实时游戏（WebGL/glTF 交付核验，允许标准烘焙/导出预设）与动画/视觉开发（Cycles 预置离线演播室 LookDev 一致性归因）统一在材质能力框架下，复用主资产源工程，不开设两套庞大生产管线。
 6. **制作环境与工具触发纪律**：
@@ -87,6 +104,13 @@
   - `[GATE 3: HARDWARE]` 机房 GPU 与显存参数核查 $\to$ 仅阻断 `exact render assumptions`；
   - `[GATE 4: SOFTWARE]` 学校软件预装部署时限 $\to$ 仅阻断 `implementation readiness`；
   - `[GATE 5: LO3 PROBE]` LO3 空间局部性实操探针 $\to$ 仅阻断 `LO3 exact teaching path`。
+- **假设 6（未决资产运行时与交付门禁 / Unresolved Runtime & Asset Gates）**：
+  以下关键技术与资产链路严格保持为 `UNRESOLVED / CONDITIONAL`，严禁假设为已验证：
+  - **`[GATE-ASSET-01]`**：Flashlight M6 (风化锈蚀) / M7 (缝隙积灰) 的几何承载性（待网格运行时解构核验）；
+  - **`[GATE-ASSET-02]`**：Vase 01 零摩擦 `.blend` 模板工程与近迁移可用性；
+  - **`[GATE-RT-01]`**：外部 Web 实时查看器的机房离线运行与 GPU 兼容性（未通过前严格保持 EEVEE 视口基线）；
+  - **Exact Normal Bake Implementation**：高低模法线烘焙具体实现形式（保持为免配置只读微实验观察，不组织课堂全员卡模烘焙）；
+  - **Final Assignment Form**：期末大作业的具体选型、交付规格与评分细则（完整留待 Issue #22 独立解答）。
 
 ---
 
@@ -94,7 +118,7 @@
 
 1. **LO3 空间局部性 GUI 实操探针测试**：在合适节点组织真实 Blender 5.2 界面下的局部绘制—保存—重开验证，判定是否需触发 Painter 条件性窄对比。
 2. **学校教务管理输入补全**：获取考查课平时/期末成绩比例硬性规定，获取机房 PC 硬件参数与软件预装窗口。
-3. **正式执行课表冻结**：在上述 5 项门禁逐一核销后，将 Week 1–9 条件草案 v0.2 正式冻结为学期执行大纲。
+3. **正式执行课表排定与冻结**：待 Issue #22（期末大作业架构设计）确立、相关前置门禁核销后，启动综合生成《Week 1–9 排课草案 v0.4》，并依规提交 Course Owner 审定冻结。
 
 ---
 *本台账随课程调研与设计推进持续更新，归档于 `docs/research/course-design-ledger.md`。*
