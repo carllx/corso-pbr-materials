@@ -286,6 +286,9 @@ Course Design / Week Plan (课程设计与排课执行：W1–W9 方案/课件�
 - **`COURSE PRECEDENT` (同类课程实践先例)**：成熟商业课程或专业专著中采用的教学范式、资产组合或演示片段（如 CORE42 采用小道具配合望远镜贯穿、Shah 围绕老式收音机推进）；这仅证明该教学形式存在实践先例，并不等同于本项目开课周历的直接映射；
 - **`PROJECT INFERENCE` (项目教学法推论与架构综合)**：项目团队基于 35/17 人大班教学容量、单师辅导带宽、机房硬件环境与学生认知阶梯，对教学内容、微案例拓扑与排课节奏做出的工程剪裁、组合与推论（如 W1–W6 练习与 W7–W9 期末彻底解耦、手电筒主干配合石膏微实验）。
 
-### 3. 证据优先与研究触发纪律 (Existing Evidence First)
+### 3. 证据优先与研究/探针触发纪律 (Existing Evidence First & Trigger Rules)
 - **现有证据优先原则 (Existing Evidence First)**：在进行周次排课、教学方案论证与技术方案设计时，必须优先检索并消费仓库现有治理证据（`docs/research/` 目录下的一手索引、素材治理档案与已登记知识库），严禁一遇到疑问即盲目启动广域全网搜索；
-- **缺口触发靶向研究 (Targeted Research Trigger)**：只有在 `docs/research/week1-9-teaching-evidence-map.md` 中被显式标注为 `MISSING`、`PARTIAL` 或 `UNKNOWN` 的未覆盖单元，且该单元属于阻断后续教学决策的承重缺口（Load-bearing Gap）时，方可触发受控的外部靶向研究（Targeted Research）或机房技术探针（Runtime Probe）。
+- **缺口分流触发机制 (Split Trigger Disciplines)**：
+  - **靶向理论与文献研究 (Targeted Research Trigger)**：只有在 `docs/research/week1-9-teaching-evidence-map.md` 中被标注为 **`MISSING`**（现有语料未检索到支撑事实，即 `NOT FOUND IN CURRENT CORPUS`）、**`PARTIAL`**（原理存在但教学法设计不全）或 **`UNKNOWN`**（项目假设缺乏依据）的未覆盖单元，且该单元属于阻断后续教学决策的承重缺口（Load-bearing Gap）时，方可针对性触发受控的外部靶向研究（Targeted Research）；
+  - **有界运行时探针 (Bounded Runtime Probe Trigger)**：当且仅当单元状态包含 **`RUNTIME REQUIRED`**（即理论与来源依据充分，但受限于真实 Blender 软件交互路径、未经验证的材质数据持久化行为、资产网格拓扑或机房离线环境）且构成阻断门禁时，显式触发受控的有界运行时探针（Bounded Runtime Probe）。
+
