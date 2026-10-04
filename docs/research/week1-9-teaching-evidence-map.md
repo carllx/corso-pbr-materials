@@ -28,6 +28,9 @@
   - **`RUNTIME REQUIRED`**：理论依据充分，但真实软件操作（如 Blender 交互路径）、资产拓扑或机房环境可行性必须经受控探针闭环。
 - **项目决策与教学定性 (Project Disposition & Teaching Status)**：
   - 由当前 Project Authority 决定（如 `TEACHER ACCEPTED` / `candidate` / `optional` / `unresolved`）。负责人采纳的项目决策属于 Project Authority，**严禁伪装为外部文献来源事实**。
+- **CORE42 现有路由证据指针审计 (CORE42 existing-routing-evidence pointer audit)**：
+  - 严格基于仓库已有依据（`core42-source-profile.md`、已审查工件 `case-topology-join.md` §7.5 与 `core42-gate-e-migration-report.md`）进行指针映射与核验，不宣称读取未验证的原厂 local manifest；
+  - 仅对上述依据明确锚定的课时保留规范名称，未逐一核实的课时区间（如 `materials-shading-c01` 与 `texturing-c06` 视口手绘）统一标记为 `[topic summary: ...; NOT FULLY ANCHORED IN REVIEWED MANIFEST]`，并由 Blender 官方手册兜底。
 
 ---
 
