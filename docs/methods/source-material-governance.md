@@ -250,3 +250,42 @@ last_derived_at: "2026-09-18"
   - 本治理规范方法论文档；
   - 统计汇总档案（Source Profile）与不含版权正文的元数据清单；
   - 课程选型决议、架构决策（ADR）与学术分析笔记。
+
+---
+
+## 九、 课程证据消费与规划映射规范 (Curriculum Evidence Consumption)
+
+为确保素材治理成果能够稳定服务于教学大纲与周次排课，防止未来智能体脱离源素材凭空脑补或将教学推论与文献事实混淆，特确立以下六级证据消费链路：
+
+```
+Immutable Source (不可变源层：视频/工程/PDF/官方规范)
+      │
+      ▼
+Traceable Source View (可追溯源视图层：分块文稿/时码侧车/清单)
+      │
+      ▼
+Persistent Knowledge (持久维基层：核心概念/物理通道/工作流规范)
+      │
+      ▼
+Consumer View (认知消费层：NotebookLM 研读包/大纲映射视图)
+      │
+      ▼
+Teaching Evidence Map (教学证据地图：知识单元路由与缺口台账)
+      │
+      ▼
+Course Design / Week Plan (课程设计与排课执行：W1–W9 方案/课件包)
+```
+
+### 1. 认知消费工具与项目事实权威界定 (Authority vs Consumption)
+- **NotebookLM / Consumer View 不是 Project Authority**：NotebookLM 及各类消费视图是高效检索、语义聚类与跨源比对的**下游认知辅助工具（Cognitive Projections）**，其模型检索或问答输出仅作为辅助参考（Reported with Provenance），不具备覆盖仓库一手权威文献、规范与排课决策台账的法理效力。
+- **事实基准**：项目的最终事实基准严格保留在：不可变源层文档（教材原著、官方技术规范、只读工程）与仓库正式评审合并的审计报告中。
+
+### 2. 证据类型三级严格解耦 (Evidence Typology)
+在证据消费与排课主张中，必须严格区分三类不同性质的命题，严禁混用：
+- **`DIRECT SOURCE FACT` (直接来源事实)**：教材章节、学术专著或官方技术规范中明确给出的定义、公式、参数范围或系统性论述（如 Principled BSDF v2 能量守恒规则、OpenPBR 规范取值）；
+- **`COURSE PRECEDENT` (同类课程实践先例)**：成熟商业课程或专业专著中采用的教学范式、资产组合或演示片段（如 CORE42 采用小道具配合望远镜贯穿、Shah 围绕老式收音机推进）；这仅证明该教学形式存在实践先例，并不等同于本项目开课周历的直接映射；
+- **`PROJECT INFERENCE` (项目教学法推论与架构综合)**：项目团队基于 35/17 人大班教学容量、单师辅导带宽、机房硬件环境与学生认知阶梯，对教学内容、微案例拓扑与排课节奏做出的工程剪裁、组合与推论（如 W1–W6 练习与 W7–W9 期末彻底解耦、手电筒主干配合石膏微实验）。
+
+### 3. 证据优先与研究触发纪律 (Existing Evidence First)
+- **现有证据优先原则 (Existing Evidence First)**：在进行周次排课、教学方案论证与技术方案设计时，必须优先检索并消费仓库现有治理证据（`docs/research/` 目录下的一手索引、素材治理档案与已登记知识库），严禁一遇到疑问即盲目启动广域全网搜索；
+- **缺口触发靶向研究 (Targeted Research Trigger)**：只有在 `docs/research/week1-9-teaching-evidence-map.md` 中被显式标注为 `MISSING`、`PARTIAL` 或 `UNKNOWN` 的未覆盖单元，且该单元属于阻断后续教学决策的承重缺口（Load-bearing Gap）时，方可触发受控的外部靶向研究（Targeted Research）或机房技术探针（Runtime Probe）。
