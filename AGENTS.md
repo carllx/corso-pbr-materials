@@ -37,7 +37,7 @@ Repository-level file-growth and context-budget guidance across code, research M
    - **`PROJECT INFERENCE`**：明确标记为项目教学法推论或结构综合（如结合单师大班负荷对案例进行的剪裁与组合），不可混同为原始文献事实；
    - **`UNKNOWN / RESEARCH REQUIRED`**：当前在语料与仓库中缺乏足够依据，需显式暴露为待研究缺口（Research Gap），由后续专项调研补齐。
 2. **运行时可行性维度 (Runtime Validity)**：
-   - **`VERIFIED`**：已在受控环境（如真实机房 PC 或指定 Blender 版本）完成端到端探针验证；
+   - **`VERIFIED`**：已在受控环境（如真实机房 PC 或指定 Blender 版本）完成端到端探针验证；`VERIFIED` 只对实际测试的 host / software version / environment 生效；local macOS verification 不得自动泛化成 target-lab VERIFIED；
    - **`RUNTIME REQUIRED`**：理论与原理依据充分，但真实软件操作（如 Blender 交互路径）、资产拓扑/展开或机房环境可行性未经现场实测验证，必须由受控探针闭环。
 3. **人类/项目决策权威维度 (Human / Project Disposition)**：
    - 从当前 Project Authority 读取（如 **`TEACHER ACCEPTED`**、`CONDITIONAL`、`HOLD` 等）；
