@@ -276,11 +276,11 @@
 
 本节阐述若秦陵兵马俑最终通过 `[GATE-ASSET-03]` 成为法定载体时的具体工程与教学规范：
 
-### 11.1 白模工程规范候选验收指标 (Candidate Asset Targets) `[PROPOSED]` `[RUNTIME REQUIRED]`
-1. **几何面数与拓扑**：候选控制在 **1.5 万–3.5 万三角面** 之间（兼顾 35 人机房老旧显卡的实时着色视口流畅度，且保留甲片与头部的结构轮廓，须通过机房带载验证）；
+### 11.1 白模工程规范候选验收指标 (Candidate Asset Targets) `[PROPOSED / NOT YET TEACHER ACCEPTED]` `[RUNTIME REQUIRED]`
+1. **几何面数与拓扑**：候选控制在 **1.5 万–3.5 万三角面** 粗估区间（兼顾 35 人机房老旧显卡的实时着色视口流畅度，且保留甲片与头部的结构轮廓，须通过机房带载验证）；
 2. **切线法线底模 (Pre-baked Base Normal)**：由高精度雕刻扫描件烘焙出基础微观起伏（发髻线条、甲片重叠光影），作为基础 Normal 预置在工程中；
 3. **UV 象限规范**：展开于单张 0–1 象限，UV 缝合线隐藏于内侧袍服，展开率候选目标 $\ge 75\%$，无拉伸变色；
-4. **预置辅助贴图集 (Pre-baked Maps)**：教师端发布工程建议内置全套 2K 贴图：
+4. **预置辅助贴图集 (Pre-baked Maps)**：教师端发布工程建议内置全套 2K 贴图（注：上述面数与贴图指标均为示意性规划参考，具体受 `[GATE-ASSET-03]` 实测约束）：
    - `Curvature Map`（曲率图，用于边缘快速识别）；
    - `Ambient Occlusion Map`（环境光遮蔽图，用于内凹缝隙积灰）；
    - `Material ID Mask`（顶点色或分色贴图，清晰界定战甲片、甲带钉扣、面部肌肉、发髻、袍服布料、靴履六大部位）。
@@ -307,7 +307,7 @@
 
 ---
 
-## 12. 待课程负责人裁决事项 (Open Course Owner Decisions) `[UNRESOLVED DECISIONS FOR COURSE OWNER]`
+## 12. 待课程负责人裁决事项 (Open Course Owner Decisions) `[PROPOSED / NOT YET TEACHER ACCEPTED]`
 
 请 Course Owner 审阅本设计，并针对以下 4 项核心决策进行裁决：
 
