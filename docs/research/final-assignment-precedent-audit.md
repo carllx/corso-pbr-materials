@@ -66,8 +66,6 @@
 
 ---
 
-## 2. 院系 / 教师既往课程大作业与考核资产事实调查
-
 ## 2. 院系 / 教师既往课程大作业与考核资产事实调查 `[SOURCE-BACKED] [VERIFIED LOCAL ARCHIVE (IDE HOST)]`
 
 通过挂载并正确定位 PC 端旧课件存储卷宗（`/Volumes/Download(ThinkPad)/gzus-数字材质课件`），对任课教师在广州软件学院（GZUS）数字传媒学院开设的真实前序课程 **《三维数字材质制作》（课程代码：GR2102，2025–2026 第一学期）** 完整教学归档、大纲、考查试卷、案例源文件及期末考核分析报告进行了全面一手核验：
@@ -176,7 +174,7 @@
   - **严禁纯颜色贴纸**：任何贴纸/图腾必须表现为具有物理厚度（Height/Bump delta）的附加涂层，且其粗糙度与金属性必须与基底产生清晰区分；
   - **物理底线红线**：凡是 Base Color 带有绘制阴影/高光、或者全局单一 Roughness 值的，直接触发不及格判定。
 
-#### 4.5 批改与辅导负荷 (Grading & Mentoring Load) `[PROJECT INFERENCE]`
+### 4.5 批改与辅导负荷 (Grading & Mentoring Load) `[PROJECT INFERENCE]`
 * **单师大班收益**：统一模型使得教师面对 35（或 52）人时，能迅速定位贴图通道错位、法线翻转等典型 Bug，消除因学生自备网格拓扑不良带来的非材质排障负担，辅导精力得以聚焦于材质本身。
 
 ### 4.6 时间预算可行性 (Time Budget Feasibility) `[PROJECT INFERENCE]`
