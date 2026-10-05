@@ -10,21 +10,21 @@
 
 ---
 
-## 1. 已接受的期末大作业架构基准 (Accepted Architecture) `[TEACHER ACCEPTED]` `[PROJECT INFERENCE]`
+## 1. 已接受的期末大作业架构基准 (Accepted Architecture) `[PROJECT INFERENCE]` `[TEACHER ACCEPTED]`
 
 基于 Issue #22 阶段 A（事实核验与前序审计）的审定结论，本课程期末大作业（Weeks 7–9）确立并锁定以下五大核心架构原则：
 
 1. **统一预制主体资产与几何基准 (Common Prepared Hero Asset & Geometry Baseline) `[TEACHER ACCEPTED]`**：
    - 彻底剥离三维建模与复杂拓扑任务。全班统一下发同一套由教师预制、经过严格规范检验的中多边形白模；
    - 消解因学生建模技术参差导致的评分污染，使评估标尺聚焦于材质创作与着色表现本体；
-   - *具体工程参数*（标准流形、UV 展开无拉伸无重叠、Material ID 贴图、预烘焙 AO/Curvature 图集等）定位于候选验收目标 `[PROPOSED] [RUNTIME REQUIRED]`，待资产实测闭环，不作为预设已批准的既成事实。
+   - *具体工程参数*（标准流形、UV 展开无拉伸无重叠、Material ID 贴图、预烘焙 AO/Curvature 图集等）定位于候选验收目标 `[PROJECT INFERENCE] [RUNTIME REQUIRED] [PROPOSED / NOT YET TEACHER ACCEPTED]`，待资产实测闭环，不作为预设已批准的既成事实。
 2. **个体独立材质重释 (Individual Material Reinterpretation) `[TEACHER ACCEPTED]`**：
    - 在统一几何形体约束下，要求学生自主选择不同的物质文明、工业时代或艺术假说主题（如风化青铜、仿生陶瓷机甲、残损玉石琉璃、工业特种涂装等），对载体进行微观物理材质的深度重构与叙事性重释，破除视觉同质化。
 3. **统一最低材质物理行为契约框架 (Common Minimum Material-Behavior Floor Architecture) `[TEACHER ACCEPTED]`**：
-   - 不以主观审美或单一贴图数量论成败，而是建立全班统一的“物理行为及格底线架构”（包含微观粗糙度层次、表面细节法线、环境自适应性等），防范“仅换底色”的应付式作品；具体条款保持为 `[PROPOSED / NOT YET TEACHER ACCEPTED]`。
+   - 不以主观审美或单一贴图数量论成败，而是建立全班统一的“物理行为及格底线架构”（包含微观粗糙度层次、表面细节法线、环境自适应性等），防范“仅换底色”的应付式作品；具体条款保持为 `[PROJECT INFERENCE] [PROPOSED / NOT YET TEACHER ACCEPTED]`。
 4. **个体独立考核绝对为主，班级装置汇聚为次且条件性 (Individual Grading Primary, Cohort Secondary/Conditional) `[TEACHER ACCEPTED]`**：
    - 学生的学分与期末成绩评定完全基于个人独立完成的工件（工程、渲染静帧、说明报告）；
-   - 班级群像军阵（Cohort Installation / Web 3D 展厅）定位于教学成果展示与文化冲击力呈现，其技术实现与学生个人成绩在架构上彻底解耦，汇聚成败绝不波及个人评分。
+   - 班级群像军阵（Cohort Installation / Web 3D 展厅）定位于教学成果展示与文化冲击力呈现，其技术实现与学生个人成绩在架构上彻底解耦，汇聚成败绝不波及个人评分（本原则为**全课架构不变量 Architecture Invariant**，全文严格遵循，下游章节不另赘述）。
 5. **兵马俑载体定位与平替兜底原则 (Preferred Candidate with Seamless Fallback) `[TEACHER ACCEPTED]`**：
    - 秦陵兵马俑白模为当前首选候选载体（PREFERRED CARRIER CANDIDATE），但受制于资产合规与制作门禁 `[GATE-ASSET-03]`；
    - 若兵马俑通过门禁，则载入该模型；若门禁失败，完整保留本文确立的 W7–W9 教学结构与契约，仅平替为另一套合规的通用预制载体（如复古精密工业道具）。
@@ -51,7 +51,7 @@
 
 ---
 
-## 3. 载体无关型学生任务定义 (Carrier-Independent Task Definition) `[PROJECT INFERENCE]`
+## 3. 载体无关型学生任务定义 (Carrier-Independent Task Definition) `[PROJECT INFERENCE]` `[PROPOSED / NOT YET TEACHER ACCEPTED]`
 
 为确保教学设计的稳健性与通用性，无论期末载体最终采用秦陵兵马俑、复古机械道具还是文化雕塑，学生端任务书的核心框架严格保持一致：
 
@@ -69,7 +69,7 @@
 
 ---
 
-## 4. 候选最低材质行为契约 (Proposed Material-Behavior Contract) `[PROPOSED / NOT YET TEACHER ACCEPTED]` `[PROJECT INFERENCE]`
+## 4. 候选最低材质行为契约 (Proposed Material-Behavior Contract) `[PROJECT INFERENCE]` `[PROPOSED / NOT YET TEACHER ACCEPTED]`
 
 > **决策状态说明 (Review Standing)**：  
 > 本契约属于 **项目教学法候选提案 (PROPOSED / NOT YET TEACHER ACCEPTED)**。旨在替代过去“必须做 3 个材质球”或“必须有金属和铁锈”的机械考核，建立面向物理本质的科学标尺。
@@ -103,11 +103,11 @@
 
 ---
 
-## 5. Week 7 里程碑：启动、材质解构与初版搭建 (W7 Milestone) `[PROJECT INFERENCE]` `[PROPOSED / NOT YET TEACHER ACCEPTED]`
+## 5. Week 7 里程碑：启动、材质解构与初版搭建 (W7 Milestone) `[PROJECT INFERENCE]` `[RUNTIME REQUIRED]` `[PROPOSED / NOT YET TEACHER ACCEPTED]`
 
 - **课内接触预算**：第 7 周单次课 160 分钟（以里程碑达成度为准，不设机械分钟切片）。
 - **Entry State (入场状态)**：
-  - 教师下发期末候选工程包（白模 `.blend`、展开 UV、Material ID 贴图、Curvature/AO 预置烘焙图，规格保持 `[PROPOSED] [RUNTIME REQUIRED]`）；
+  - 教师下发期末候选工程包（白模 `.blend`、展开 UV、Material ID 贴图、Curvature/AO 预置烘焙图，规格保持 `[PROJECT INFERENCE] [RUNTIME REQUIRED] [PROPOSED / NOT YET TEACHER ACCEPTED]`）；
   - 学生已掌握 W1–W6 材质基础理论与节点网络搭建基础。
 - **Student Goal (学生目标)**：
   - 确立个人材质重释方向，收集并整理真实材质参考板（Moodboard）；
@@ -129,7 +129,7 @@
 
 ---
 
-## 6. Week 8 里程碑：材质深化、迭代与形成性讲评 (W8 Milestone) `[PROJECT INFERENCE]` `[PROPOSED / NOT YET TEACHER ACCEPTED]`
+## 6. Week 8 里程碑：材质深化、迭代与形成性讲评 (W8 Milestone) `[PROJECT INFERENCE]` `[RUNTIME REQUIRED]` `[PROPOSED / NOT YET TEACHER ACCEPTED]`
 
 - **课内接触预算**：第 8 周单次课 160 分钟。
 - **Entry State (入场状态)**：
@@ -155,7 +155,7 @@
 
 ---
 
-## 7. Week 9 里程碑：打磨、演播室标定与终期交付 (W9 Milestone) `[PROJECT INFERENCE]` `[PROPOSED / NOT YET TEACHER ACCEPTED]`
+## 7. Week 9 里程碑：打磨、演播室标定与终期交付 (W9 Milestone) `[PROJECT INFERENCE]` `[RUNTIME REQUIRED]` `[PROPOSED / NOT YET TEACHER ACCEPTED]`
 
 - **课内接触预算**：第 9 周单次课 160 分钟。
 - **Entry State (入场状态)**：
@@ -184,7 +184,7 @@
 
 > **依据溯源说明 `[SOURCE-BACKED]` 与缺口定位 `[GAP-W08-FEED]`**：  
 > - 广州软件学院真实教学容量为单师面对 35 人班（GR2102-1）及 17 人班（GR2102-3），单班课内仅 160 分钟（依据：`course-offering-impact-analysis-2026-2027-1.md` §3；历史教研档案考查分析报告记录两班合计 101 人，单师指导负荷极重）；  
-> - Evidence Map 中 **`[GAP-W08-FEED]` 仍属于 OPEN 状态的教学法与评估缺口**。本漏斗机制属于**项目教学法候选设计方案 `[PROJECT INFERENCE] [PROPOSED]`**，不伪装为已验证事实，删除未经验证的吞吐率量化承诺（如“过滤 70%”、“覆盖 100%”等）。
+> - Evidence Map 中 **`[GAP-W08-FEED]` 仍属于 OPEN 状态的教学法与评估缺口**。本漏斗机制属于**项目教学法候选设计方案 `[PROJECT INFERENCE] [PROPOSED / NOT YET TEACHER ACCEPTED]`**，不伪装为已验证事实，删除未经验证的吞吐率量化承诺（如“过滤 70%”、“覆盖 100%”等）。
 
 若采用“学生排队、教师逐个 1:1 面对面修改”模式，每人平均不足 4.5 分钟，容易引发大面积等待与进度失控。本方案提出旨在缓解单师排队压力的**四级反馈漏斗 (Four-Tier Feedback Funnel)**：
 
@@ -209,7 +209,7 @@
 
 ---
 
-## 9. 历史失败规避阶梯与最低可评价提交 (Historical Failure Recovery Ladder) `[PROJECT INFERENCE]` `[SOURCE-BACKED]`
+## 9. 历史失败规避阶梯与最低可评价提交 (Historical Failure Recovery Ladder) `[PROJECT INFERENCE]` `[SOURCE-BACKED]` `[PROPOSED / NOT YET TEACHER ACCEPTED]`
 
 ### 9.1 历史事实教训核实 `[SOURCE-BACKED]` 与因果定界 `[PROJECT INFERENCE]`
 广州软件学院（GZUS）《三维数字材质制作》（GR2102，101 人）官方考核分析报告（物证哈希：`38d5b29fb50c32a69bc8df14c836c9c82fa2a6498d102d73b3019b9d9d7db309`）确凿证明：  
@@ -243,7 +243,7 @@
 
 ---
 
-## 10. 候选交付物架构分层 (Proposed Deliverables Architecture) `[PROJECT INFERENCE]` `[PROPOSED / NOT YET TEACHER ACCEPTED]`
+## 10. 候选交付物架构分层 (Proposed Deliverables Architecture) `[PROJECT INFERENCE]` `[RUNTIME REQUIRED]` `[PROPOSED / NOT YET TEACHER ACCEPTED]`
 
 明确区分“证明课程核心学习成果（LO）的法定证据”与“次级展示性附加物”，消除学生无效负担：
 
@@ -262,31 +262,29 @@
 │                                                                                        │
 │ STRETCH (可选拓展与卓越证据 Optional Extension / Excellence Evidence，非全员要求)     │
 │  ├── 6. 360 度转台旋转短视频 ── 5–10 秒 Cycles/EEVEE 动画                              │
-│  └── 7. 班级军阵汇聚资产 ───── 按规范导出的标准化轻量资产，完全不影响个人独立成绩     │
+│  └── 7. 班级军阵汇聚资产 ───── 按规范导出的标准化轻量资产，完全遵循 §1.4 绝对解耦原则 │
 └────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-> **绝对隔离纪律 (Decoupling Invariant) `[TEACHER ACCEPTED]`**：  
-> **班级军阵汇聚绝不作为个人独立评分的前置条件**。哪怕自动化组装脚本崩溃、哪怕某位学生未提交汇聚资产，只要其个人候选 CORE 工件完备，个人期末成绩评定照常进行，彻底隔离系统性风险。  
-> **评分权重声明**：STRETCH 交付物不作预设“加分项”承诺，评分规则与权重严格受制于 `[GATE-ADMIN-02]`。
+> **绝对隔离与权重声明**：班级军阵汇聚与个人评分关系完全遵循 §1.4 架构不变量；STRETCH 交付物不作预设“加分项”承诺，评分规则与权重严格受制于 `[GATE-ADMIN-02]`。
 
 ---
 
-## 11. 兵马俑特定叠加层与候选资产就绪要求 (Terracotta Specific Overlay) `[PROJECT INFERENCE]` `[CONDITIONAL]`
+## 11. 兵马俑特定叠加层与候选资产就绪要求 (Terracotta Specific Overlay) `[PROJECT INFERENCE]` `[RUNTIME REQUIRED]` `[CONDITIONAL]`
 
 本节阐述若秦陵兵马俑最终通过 `[GATE-ASSET-03]` 成为法定载体时的具体工程与教学规范：
 
-### 11.1 白模工程规范候选验收指标 (Candidate Asset Targets) `[PROPOSED / NOT YET TEACHER ACCEPTED]` `[RUNTIME REQUIRED]`
-1. **几何面数与拓扑**：候选控制在 **1.5 万–3.5 万三角面** 粗估区间（兼顾 35 人机房老旧显卡的实时着色视口流畅度，且保留甲片与头部的结构轮廓，须通过机房带载验证）；
+### 11.1 白模工程规范候选验收指标 (Candidate Asset Targets) `[PROJECT INFERENCE]` `[RUNTIME REQUIRED]` `[PROPOSED / NOT YET TEACHER ACCEPTED]`
+1. **几何面数与拓扑**：候选控制在 **中多边形范围（经验粗估约 1.5 万–3.5 万三角面）**（兼顾 35 人机房老旧显卡的实时着色视口流畅度，且保留甲片与头部的结构轮廓，具体须通过机房带载验证）；
 2. **切线法线底模 (Pre-baked Base Normal)**：由高精度雕刻扫描件烘焙出基础微观起伏（发髻线条、甲片重叠光影），作为基础 Normal 预置在工程中；
-3. **UV 象限规范**：展开于单张 0–1 象限，UV 缝合线隐藏于内侧袍服，展开率候选目标 $\ge 75\%$，无拉伸变色；
+3. **UV 象限规范**：展开于单张 0–1 象限，UV 缝合线隐藏于内侧袍服，展开率以无明显拉伸变色为准，避免伪精确数字约束；
 4. **预置辅助贴图集 (Pre-baked Maps)**：教师端发布工程建议内置全套 2K 贴图（注：上述面数与贴图指标均为示意性规划参考，具体受 `[GATE-ASSET-03]` 实测约束）：
    - `Curvature Map`（曲率图，用于边缘快速识别）；
    - `Ambient Occlusion Map`（环境光遮蔽图，用于内凹缝隙积灰）；
    - `Material ID Mask`（顶点色或分色贴图，清晰界定战甲片、甲带钉扣、面部肌肉、发髻、袍服布料、靴履六大部位）。
 5. **运行时隔离原则**：
    - **学生个人资产运行时要求**：必须在机房 PC 单机实现流畅着色编辑与渲染；
-   - **班级 35/52 人阵列汇聚运行时要求**：属于展示性扩展，其性能压力由汇聚脚本与展示主机承担，**绝不反向成为学生个人 carrier gate 的必要门禁**。
+   - **班级 35/52 人阵列汇聚运行时要求**：完全遵循 §1.4 架构不变量，其性能压力由展示端承担，**绝不反向成为学生个人 carrier gate 的必要门禁**。
 
 ### 11.2 教学承载天然优势与重释方向
 * **高度契合 M1–M8 材质矩阵**：陶俑天然具备“泥胎陶土（哑光介电质 M1）”、“残存矿物颜料彩绘（涂层剥落 M5）”、“氧化出土（风化 M6）”与“地宫淤积（积灰 M7）”的真实历史属性；
@@ -303,11 +301,11 @@
   - 版权合规审查（确认开源许可或公有领域无排他性商用/学术限制）；
   - 教师制作成本实测（低模拓扑与贴图烘焙必须可控）；
   - 机房运行时带载实测（单机编辑视口流畅不崩溃）。
-* 若上述任何一项不满足，**平替为其他已验证的 CC0 复杂中型工业道具**（如 Vintage Cash Register 或类似复古机械），本文件除第 11 节外，其余通用章节保持适用。
+* 若上述任何一项不满足，平替为其他已验证的 CC0 复杂中型工业道具，本文件除第 11 节外，其余通用章节保持适用（完全对齐 §1.5 平替原则）。
 
 ---
 
-## 12. 待课程负责人裁决事项 (Open Course Owner Decisions) `[PROPOSED / NOT YET TEACHER ACCEPTED]`
+## 12. 待课程负责人裁决事项 (Open Course Owner Decisions) `[PROJECT INFERENCE]` `[PROPOSED / NOT YET TEACHER ACCEPTED]`
 
 请 Course Owner 审阅本设计，并针对以下 4 项核心决策进行裁决：
 
@@ -316,13 +314,13 @@
 2. **最低材质物理行为契约裁决**：
    - 是否批准将 **CORE（2 区域、粗糙度微对比、表面法线、概念自洽的局部非均匀变化、多环境自证）** 作为期末考核及格底线框架，并批准全介电质题材享有免除金属度与风化锈蚀考核的完全公平性？
 3. **交付物分层与解耦裁决**：
-   - 是否批准将 **CORE 三件套候选工件（工程、三静帧、标定报告）** 作为个人独立考核基准，并永久将“班级军阵汇聚”定位于次级条件性呈现、彻底与个人评分脱钩？
+   - 是否批准将 **CORE 三件套候选工件（工程、三静帧、标定报告）** 作为个人独立考核基准，并永久将“班级军阵汇聚”定位于次级条件性呈现、彻底与个人评分脱钩（遵循 §1.4 架构不变量）？
 4. **历史失败挽救机制裁决**：
    - 是否批准在大班中推行**四级反馈漏斗**，并设立 **Minimum Assessable Submission (MAS) 最低可评价提交通道**（不承诺自动及格，仅确保有作业可供正式评价以规避弃考归零）？
 
 ---
 
-## 13. 运行时与资产门禁对照表 (Runtime & Asset Gates)
+## 13. 运行时与资产门禁对照表 (Runtime & Asset Gates) `[PROJECT INFERENCE]` `[RUNTIME REQUIRED]`
 
 | 门禁标识 | 门禁描述 | 当前状态 | 阻断范围与影响 |
 | :--- | :--- | :---: | :--- |
