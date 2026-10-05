@@ -4,10 +4,10 @@ Week 1 教学资产包确定性构建脚本 (Week 1 Teaching Package Determinist
 用途：
 从 Poly Haven 官方原版 Vintage Flashlight 资产（1K 分辨率）出发，
 确定性重构出符合 Week 1 教学要求的完整资产包 (Option B Scaffolded Shader Editor 方案)：
-- Starter: 预置 Slot 2 (vintage_flashlight_body, 1,462面)，预连 Body Color Tint 节点并保持视觉中性开局状态 (Factor=0.0, Color B=(1,1,1,1))，锁定机位与 Material Preview；
+- Starter: 预置 Slot 2 (vintage_flashlight_body, 1,462面)，预连 Body Color Tint 节点并保持视觉中性开局状态 (Multiply, Factor=0.0, Color B=(1,1,1,1))，支持有界色彩叠加调节 (Bounded Color Adjustment)，全屏幕锁定机位 Cam_Obs 与 Material Preview，贴图全内置封包 (Pack All) 保障分发与提交生命周期；
 - Recovery A: 预连节点的纯净中性开局备份；
-- Recovery B: 内置已完成首次材质决策（Multiply 0.85 军绿）的跳关检查点；
-- Recovery C & Reference: 统一光照源下的参考工程与效果截图。
+- Recovery B: 内置已完成首次材质决策（Multiply 0.85 军绿变体）的跳关检查点；
+- Recovery C & Reference: 统一光照源下的参考工程与效果截图 (Recovery C 应急部分完成参考图)。
 
 使用方式 (在 Blender 5.2 LTS 环境下运行)：
 blender -b --python tools/teaching/build_week1_teaching_package.py -- [可选参数]
@@ -158,13 +158,23 @@ def build_package(source_dir, output_dir):
     bpy.context.scene.render.engine = 'BLENDER_EEVEE'
 
     def configure_viewport_and_textures():
-        # 设置视口首屏默认使用 Material Preview 且锁定相机视角
-        for a in bpy.context.screen.areas:
-            if a.type == 'VIEW_3D':
-                for s in a.spaces:
-                    if s.type == 'VIEW_3D':
-                        s.shading.type = 'MATERIAL'
-                        s.region_3d.view_perspective = 'CAMERA'
+        # 确保所有屏幕 (包括 Layout 与 Shading 工作区) 的 3D 视口均处于 Material Preview 且锁定相机机位
+        for screen in bpy.data.screens:
+            for a in screen.areas:
+                if a.type == 'VIEW_3D':
+                    for s in a.spaces:
+                        if s.type == 'VIEW_3D':
+                            s.shading.type = 'MATERIAL'
+                            s.region_3d.view_perspective = 'CAMERA'
+
+        # 确保 Body_Color_Tint 节点在着色器编辑器中被唯一选中且激活
+        if mat_body and mat_body.node_tree:
+            for n in mat_body.node_tree.nodes:
+                n.select = False
+            if mix_node:
+                mix_node.select = True
+                mat_body.node_tree.nodes.active = mix_node
+
         # 修正相对路径
         for img in bpy.data.images:
             if not img.name or img.name == 'Render Result':
@@ -173,6 +183,10 @@ def build_package(source_dir, output_dir):
             img.filepath = f"//../textures/{base}"
             abs_p = bpy.path.abspath(img.filepath)
             assert os.path.exists(abs_p), f"贴图未找到: {abs_p}"
+
+        # 关键生命周期保障：打包全部贴图资源到 .blend 文件内部 (Pack All)
+        # 确保学生另存为或提交到无 ../textures/ 的任何路径时，贴图零丢失、绝不报洋红
+        bpy.ops.file.pack_all()
         bpy.ops.wm.save_mainfile()
 
     # --- 在 Slot 2 (vintage_flashlight_body) 中预置并连好 Mix Color 调色节点 ---
@@ -197,7 +211,7 @@ def build_package(source_dir, output_dir):
     # --- 生成 Starter 与 Recovery A (预连节点、中性开局状态) ---
     bpy.ops.wm.save_as_mainfile(filepath=starter_blend)
     configure_viewport_and_textures()
-    print(f"已生成 Starter (预连中性节点): {starter_blend}")
+    print(f"已生成 Starter (预连中性节点并打包贴图): {starter_blend}")
     shutil.copyfile(starter_blend, recovery_a_blend)
     print(f"已生成 Recovery A: {recovery_a_blend}")
 
