@@ -1,12 +1,13 @@
 """
-Week 1 教师 160 分钟连续走课排练与故障点实录套件 (Week 1 Continuous Teacher Rehearsal Suite)
+Week 1 自动化排练模拟与前飞检查套件 (Week 1 Automated Rehearsal Simulation & Pre-Flight Suite)
 
 用途：
-模拟真实 160 分钟课堂时序，端到端完整执行 Block 1 至 Block 11 的教学与实操全流程：
-- 检验各模块衔接顺畅度；
-- 暴露并捕获 First Failure Points；
+对 160 分钟课堂时序进行自动化推演与资产链路前飞检查 (Block 1 至 Block 11)：
+- 检验各模块衔接顺畅度与脚本端到端执行；
+- 暴露并捕获前飞摩擦点 (Pre-flight Friction Points)；
 - 验证有界修正与安全 Fallback；
-- 输出详尽的 Rehearsal Evidence。
+- 重要纪律：本脚本属于自动化前飞模拟 (Automated Simulation / Pre-Flight)，
+  绝不可冒充真人教师连续走课排练；真实授课前始终保持 TEACHER LIVE REHEARSAL REQUIRED。
 """
 
 import os
@@ -23,7 +24,8 @@ def run_rehearsal(package_dir):
     recovery_c = os.path.join(package_dir, "recovery", "W1_Recovery_C_Reference_View.png")
 
     print("==================================================================")
-    print("      WEEK 1 连续走课排练 (CONTINUOUS TEACHER REHEARSAL)        ")
+    print("  WEEK 1 自动化排练模拟与前飞检查 (AUTOMATED PRE-FLIGHT SIMULATION)  ")
+    print("  [DISCIPLINE: AUTOMATED SIMULATION ONLY - REHEARSAL REQUIRED]     ")
     print("==================================================================")
 
     rehearsal_log = []
@@ -44,7 +46,7 @@ def run_rehearsal(package_dir):
 
     # --- Block 2: 概念讲解与物理-视觉解构示范 (15 min) ---
     print("\n[Block 2] 概念讲解与物理-视觉解构示范 (15 min)")
-    rehearsal_log.append("Block 2: 投屏示范手电筒，重点强调 Base Color 绝不包含光斑，澄清 Transmission ≠ Alpha。")
+    rehearsal_log.append("Block 2: 投屏示范手电筒，重点强调 Base Color 绝不包含光斑，澄清 Transmission ≠ Alpha (Alpha 控制 surface transparency / opacity masking，Transmission 控制穿透折射)。")
     print("  -> 演示四通道与因果解构完毕。")
 
     # --- Block 3: 学生动手：参考观察与解构填表 (20 min) ---
@@ -55,8 +57,8 @@ def run_rehearsal(package_dir):
 
     # --- Block 4: 全班共性诊断与清单核对 (15 min) ---
     print("\n[Block 4] 全班共性诊断与清单核对 (15 min)")
-    print("  -> 投屏诊断典型误区：将高光光斑误认为 Base Color 贴图固有色；将玻璃透明误等同于 Alpha 镂空。")
-    rehearsal_log.append("Block 4: 针对两大高频误区（假高光、Alpha≠Transmission）现场纠偏。")
+    print("  -> 投屏诊断典型误区：将高光光斑误认为 Base Color 贴图固有色；将玻璃透明透射混淆为 Alpha 表面透明遮罩。")
+    rehearsal_log.append("Block 4: 针对两大高频误区（假高光、Transmission与Alpha混淆）现场纠偏。")
 
     # --- Block 5: 教师示范：极简定向与首个有界动作 (15 min) ---
     print("\n[Block 5] 教师示范：极简定向与首个有界动作 (15 min)")
@@ -144,23 +146,24 @@ def run_rehearsal(package_dir):
     shutil.rmtree(sim_workspace)
 
     print("\n==================================================================")
-    print("                   REHEARSAL SUMMARY REPORT                       ")
+    print("             PRE-FLIGHT SIMULATION SUMMARY REPORT                 ")
     print("==================================================================")
     for log in rehearsal_log:
         print(f"✓ {log}")
-    print("\nFirst Failure Points Identified & Addressed:")
-    print("1. [First Failure Point 1 - Workspace Misalignment]: 打开 Starter 时部分界面停留在 Layout，初学者找不到 Shader 节点。")
+    print("\nPre-flight Friction Points Identified & Addressed (Automated Simulation):")
+    print("1. [Workspace Misalignment]: 打开 Starter 时部分界面停留在 Layout，初学者找不到 Shader 节点。")
     print("   -> 实际修正：在构建脚本中遍历全部 screens，将所有视口均锁定在 Cam_Obs 与 Material Preview，且设置 Body_Color_Tint 节点为唯一高亮激活。")
-    print("2. [First Failure Point 2 - Relative Path Texture Loss]: 学生将工程另存到其他目录或单文件提交到教师机时贴图丢失报洋红。")
-    print("   -> 实际修正：在构建脚本中引入 bpy.ops.file.pack_all()，全部贴图内置封包，生命周期隔离重开 100% 完整。")
-    print("3. [First Failure Point 3 - False Single-Cause Obs Answers]: 观察表强行归为单一确定答案，且把 Alpha 误等同于透射。")
-    print("   -> 实际修正：教师参考答案重构为多物理因果耦合分析，澄清 Transmission ≠ Alpha，不把审美偏好伪装成物理违规。")
-    print("4. [First Failure Point 4 - Hidden Homework via Cuts]: 原方案中观察超载和 Recovery C 要求课后补齐，制造隐性作业。")
+    print("2. [Isolated-Path Texture Loss]: 学生将工程另存到其他目录或单文件提交到教师机时贴图丢失报洋红。")
+    print("   -> 实际修正：在构建脚本中引入 bpy.ops.file.pack_all()，全部贴图内置封包，dependency-isolated 隔离重开 100% 完整。")
+    print("3. [False Single-Cause Obs Answers & Alpha Confusion]: 观察表强行归为单一确定答案，且把 Alpha 误等同于透射。")
+    print("   -> 实际修正：教师参考答案重构为多物理因果耦合分析，澄清 Transmission ≠ Alpha (Alpha 控制 surface transparency / opacity masking)，不把审美偏好伪装成物理违规。")
+    print("4. [Hidden Homework via Cuts]: 原方案中观察超载和 Recovery C 要求课后补齐，制造隐性作业。")
     print("   -> 实际修正：确立 No-hidden-homework 原则，核心项课内闭环，Recovery C 明确为 partial completion，不产生课外债务。")
-    print("5. [First Failure Point 5 - Rote Parameter Copying]: 学生可能互相照抄参数蒙混过关。")
+    print("5. [Rote Parameter Copying]: 学生可能互相照抄参数蒙混过关。")
     print("   -> 实际修正：引入 Predict → Operate → Explain 判别式检查（纯白乘法不变因果），无法通过抄袭参数完成。")
     print("==================================================================")
-    print("REHEARSAL STATUS: 160-MINUTE CONTINUOUS REHEARSAL 100% PASS")
+    print("AUTOMATED PRE-FLIGHT SIMULATION: PASS")
+    print("TEACHER LIVE REHEARSAL STATUS: REHEARSAL REQUIRED (Pending真人现场排练)")
     print("==================================================================")
 
 if __name__ == "__main__":
