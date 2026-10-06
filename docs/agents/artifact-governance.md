@@ -63,6 +63,95 @@ When temporary mitigations are introduced (such as a temporary freeze, no-growth
 
 ---
 
+## Teacher Preparation Views, PPT Production, and Change Propagation
+
+The course repository uses several artifacts because they serve different audiences and validation duties. Efficiency comes from controlling **authority and propagation**, not from forcing every artifact to be textually unique.
+
+### Authority and presentation responsibilities
+
+- **Teaching Evidence Map**: authority for evidence routing, coverage/gap status, and source/decision boundaries. It is not the teacher's day-to-day preparation dashboard.
+- **Executable Teaching Package**: authority for the weekly teaching contract: outcomes, protected/cuttable core, activity order and plan budget, teacher/student actions, evidence requirements, answer boundaries, recovery, and runtime gates.
+- **Student Handout**: authority for what students actually read, fill in, operate, and submit. Its task semantics must remain compatible with the Teaching Package.
+- **PPT + embedded Presenter Notes**: the single classroom presentation artifact. Visible slides own page-level expression, visuals, reveal order, and activity prompts. Notes own page-level speaking cues, transitions, misconceptions, demo cues, and necessary pointers.
+- **Teacher discussion view / prototype copy**: no authority. It is a rebuildable projection of current authorities for a specific discussion or validation question.
+
+Literal duplication is sometimes necessary for usability. The invariant is that duplicated rules must have one clear owner and must not become independently maintained policy.
+
+### No fifth teaching SSOT
+
+Do not create a long-lived Teacher Preparation Spine, parallel Notes document, YAML/JSON curriculum database, or other registry solely to reduce teacher reading load unless live evidence demonstrates that the additional system reduces net maintenance cost.
+
+A temporary teacher view is allowed only when it:
+- can be regenerated from existing authority artifacts;
+- identifies the source revision it reflects;
+- contains no unique decision or policy;
+- is overwritten or discarded when its validation purpose is complete.
+
+If unique content accumulates in the temporary view, first move that content to the correct authority before continuing.
+
+### Decision-driven preparation loop
+
+Use this loop for lesson preparation and revisions:
+
+1. **Locate the authority** for the proposed change.
+2. **Make or obtain the teaching decision** at the correct authority boundary.
+3. **Choose the cheapest adequate validation** for the uncertainty:
+   - structure/order -> a compact block view or short walkthrough;
+   - student task wording/evidence -> the real Handout;
+   - software interaction -> the real Starter/Recovery asset;
+   - visual discrimination -> the real reference image or verified screenshot;
+   - page flow/explanation -> a few rough slides or a page sequence.
+4. **Propagate the accepted decision immediately** to affected consumers.
+5. **Revalidate only the affected chain** unless the change alters the full lesson architecture.
+
+Do not require two complete review meetings, a complete rough deck, or a fixed number of prototype rounds when a narrower test can answer the live question.
+
+### Prototype fidelity follows the risk
+
+Low cost does not mean fake content.
+
+- Keep decoration, typography polish, animation, and nonessential image hunting low fidelity until the teaching structure is stable enough for production.
+- Use **real** or already verified material early whenever the material itself is part of the learning task, evidence, or operation: software controls, important reference images, observation contrasts, task prompts, file/recovery behavior.
+- A prototype may be disposable or may evolve into the final deck, but there must be only **one active editable slide lineage**. Do not maintain separate prototype and final decks in parallel.
+
+### Production gate vs. go-live gate
+
+A lesson may enter final PPT/Notes production when:
+- protected learning requirements and student tasks are understood well enough that no known dispute would change the page/task architecture;
+- the representative high-risk task path has been walked using the actual student/asset materials relevant to that path;
+- the teacher can account for the major see/listen/do/fill/submit transitions and identify remaining timing assumptions as plan estimates;
+- the relevant Teaching Package, Handout, critical visuals/assets, and known pointers belong to the same revision.
+
+This gate authorizes production effort only. It does **not** establish classroom readiness. Existing runtime, delivery, submission, rehearsal, accessibility, and field-validation gates remain independent.
+
+### Minimal change-propagation model
+
+Agents should classify a change by meaning, then update only semantically dependent artifacts:
+
+| Change type | Owning location | Typical dependent consumers | Minimum revalidation |
+| --- | --- | --- | --- |
+| Teaching decision: add/remove/deepen a concept, task, outcome, evidence requirement | Project Authority and/or Teaching Package | Handout; related PPT/Notes; Evidence Map only if evidence/decision boundary changes; code/assets only when their behavior/assertions depend on the decision | Student can still produce intended evidence; timing/recovery still coherent |
+| Timing/order/cut/recovery | Teaching Package | Notes pacing; Handout step/recovery wording; PPT reveal/transition order; Evidence Map pointers when block anchors change | Affected block plus its entry/exit transitions |
+| Implementation: control name, parameter, path, asset/version | Asset/code + Teaching Package interface text | Handout operation; related screenshots/PPT/Notes; source/version pointers when applicable | Real operation, save/reopen/recovery path affected by the change |
+| Presentation-only: layout, crop, equivalent phrasing, typography | Active PPT/Notes editing source | Usually none | Projected readability and unchanged meaning/reveal order |
+| Evidence/source correction | Evidence Map / verified source pointer | Only consumers that use the corrected claim; related assertions | Claim-pointer consistency plus affected teaching fragment |
+| Validation-state change | Existing gate/evidence location in Teaching Package or tracker | Operational hints/fallbacks in Handout/Notes when affected | Corrected runtime/delivery path; unrelated validation remains valid |
+
+For each accepted substantive change, the Agent should leave a short review trace in the active Issue/PR or commit message containing:
+**decision/status | semantic change | affected artifacts | deliberately unchanged artifacts + why | evidence requiring revalidation**.
+
+### Supersession and retirement discipline
+
+When a newer teacher decision replaces an older project choice:
+- mark the older choice as superseded in the current Issue/PR or edit the owning authority so only one active rule remains;
+- remove obsolete downstream wording and stale pointers rather than preserving competing variants;
+- do not rewrite historical audit reports merely to hide that a prior decision once existed;
+- keep unresolved proposals explicitly non-authoritative until accepted.
+
+Current teacher-preparation decisions should live in the active project authority plus these durable Agent rules; they should not be copied into an additional teaching manual.
+
+---
+
 ## Legacy Aggregate: `docs/research/source-native-knowledge-index.md` (~1,356 lines)
 
 - **Status & Nature**: Legacy aggregate containing source-native evidence for Shah, The PBR Guide, Dinur, and RTR4 (Batches 1–4) with recognized structural risk due to size and multi-source accumulation.
