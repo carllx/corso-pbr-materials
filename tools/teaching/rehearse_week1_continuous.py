@@ -8,6 +8,8 @@ Week 1 自动化排练模拟与前飞检查套件 (Week 1 Automated Rehearsal Si
 - 验证有界修正与安全 Fallback；
 - 重要纪律：本脚本属于自动化前飞模拟 (Automated Simulation / Pre-Flight)，
   绝不可冒充真人教师连续走课排练；真实授课前始终保持 TEACHER LIVE REHEARSAL REQUIRED。
+- 本脚本不测量学生耗时或buffer容量；打印的Block分钟数均为PLAN BUDGET。
+- 本脚本的参数/文件检查不产生真实学生答卷、GUI截图操作或平台收件证据。
 """
 
 import os
@@ -41,7 +43,7 @@ def run_rehearsal(package_dir):
         "期末项目期望 (final-project expectation)",
         "考核评价框架原则 (assessment/grading framework)"
     ]
-    rehearsal_log.append("Block 1: 导学五要素齐备，摸底 3 问顺利下发。用时估算 18 min，留 2 min 弹性。")
+    rehearsal_log.append("Block 1: 导学五要素/3问列入模拟；真实下发、讲述及学生用时未测。")
     print("  -> 导学五要素与 3 问摸底就绪。")
 
     # --- Block 2: 概念讲解与物理-视觉解构示范 (15 min) ---
@@ -53,7 +55,7 @@ def run_rehearsal(package_dir):
     print("\n[Block 3] 学生动手：参考观察与解构填表 (20 min)")
     # 测试学生端任务 A 观察表
     print("  -> 学生填写决策卡：主体外壳 (固有色) ＋ 高光斑 (环境光照/非固有色) ＋ 透镜 (Transmission) ＋ 反光碗 (Metallic) ＋ 接缝暗痕 (AO+脏污)。")
-    rehearsal_log.append("Block 3: 落实 No-hidden-homework，前两项核心必答在 15 min 内闭环，后三项课堂讨论收拢，零课后债务。")
+    rehearsal_log.append("Block 3: 模拟两项核心及可裁讨论；真人完成时间未测，No-hidden-homework为教学要求。")
 
     # --- Block 4: 全班共性诊断与清单核对 (15 min) ---
     print("\n[Block 4] 全班共性诊断与清单核对 (15 min)")
@@ -90,7 +92,7 @@ def run_rehearsal(package_dir):
     s_mix.inputs[7].default_value = (0.1, 0.95, 0.1, 1.0) # 刺眼荧光绿
     bpy.ops.wm.save_mainfile()
     print("  -> 学生完成初次决策：选定鲜艳草绿色 (Factor=0.90)。")
-    rehearsal_log.append("Block 6: 学生独立完成实操并填写字段 1。")
+    rehearsal_log.append("Block 6: 脚本修改示例参数；未验证学生独立操作或字段1填写。")
 
     # --- Block 7: 现场分层巡视反馈与抽检 (10 min) ---
     print("\n[Block 7] 现场分层巡视反馈与抽检 (10 min)")
@@ -109,12 +111,12 @@ def run_rehearsal(package_dir):
 
     # --- Block 9: 工程保存、退出重启持久化验证 (10 min) ---
     print("\n[Block 9] 工程保存、退出重启持久化验证 (10 min)")
-    # 模拟完全退出 Blender 进程并重开
+    # 同进程重新加载：不等于真实退出Blender进程后重启
     bpy.ops.wm.open_mainfile(filepath=student_blend)
     reopened_mix = bpy.data.materials["vintage_flashlight_body"].node_tree.nodes["Body_Color_Tint"]
     assert abs(reopened_mix.inputs["Factor"].default_value - 0.80) < 1e-4
-    print("  -> 退出重启持久化核验：Factor=0.80 与军绿参数 100% 完整保留！")
-    rehearsal_log.append("Block 9: 100% 达成数据持久化核验，用时 8 min。")
+    print("  -> 同进程重开参数断言通过；新进程重启及学生用时未测。")
+    rehearsal_log.append("Block 9: 同进程重开参数断言通过；真实退出/重启及用时未测。")
 
     # --- Block 10: 轻量交付与全课收尾 (5 min) ---
     print("\n[Block 10] 轻量交付与全课收尾 (5 min)")
@@ -129,11 +131,11 @@ def run_rehearsal(package_dir):
 
     # --- Block 11: 显式缓冲与极端恢复容量 (10 min) ---
     print("\n[Block 11] 显式缓冲与极端恢复容量 (10 min)")
-    # 测试三级恢复阶梯响应速度
+    # 检查恢复文件状态/存在性，不测量学生恢复速度
     # 恢复 A
     bpy.ops.wm.open_mainfile(filepath=recovery_a)
     assert bpy.data.materials["vintage_flashlight_body"].node_tree.nodes["Body_Color_Tint"].inputs["Factor"].default_value == 0.0
-    print("  -> Recovery A: 纯净中性开局 10 秒复位测试 PASS。")
+    print("  -> Recovery A: 中性起点参数断言 PASS；恢复用时未测。")
     # 恢复 B
     bpy.ops.wm.open_mainfile(filepath=recovery_b)
     assert abs(bpy.data.materials["vintage_flashlight_body"].node_tree.nodes["Body_Color_Tint"].inputs["Factor"].default_value - 0.85) < 1e-4
@@ -141,7 +143,7 @@ def run_rehearsal(package_dir):
     # 恢复 C
     assert os.path.exists(recovery_c)
     print("  -> Recovery C: 硬件故障应急部分完成路径测试 PASS (不留课外债务)。")
-    rehearsal_log.append("Block 11: 三级恢复通道 100% 可用，缓冲容量完备。")
+    rehearsal_log.append("Block 11: A/B参数与C文件存在性检查通过；真人恢复路径及共享buffer容量未测。")
 
     shutil.rmtree(sim_workspace)
 
@@ -160,9 +162,10 @@ def run_rehearsal(package_dir):
     print("4. [Hidden Homework via Cuts]: 原方案中观察超载和 Recovery C 要求课后补齐，制造隐性作业。")
     print("   -> 实际修正：确立 No-hidden-homework 原则，核心项课内闭环，Recovery C 明确为 partial completion，不产生课外债务。")
     print("5. [Rote Parameter Copying]: 学生可能互相照抄参数蒙混过关。")
-    print("   -> 实际修正：引入 Predict → Operate → Explain 判别式检查（纯白乘法不变因果），无法通过抄袭参数完成。")
+    print("   -> 已有 Predict → Operate → Explain 练习；是否构成独立理解证据仍OPEN，本脚本不能证明。")
     print("==================================================================")
     print("AUTOMATED PRE-FLIGHT SIMULATION: PASS")
+    print("CLASSROOM CAPACITY: UNMEASURED (No human timing / learning evidence)")
     print("TEACHER LIVE REHEARSAL STATUS: REHEARSAL REQUIRED (Pending真人现场排练)")
     print("==================================================================")
 

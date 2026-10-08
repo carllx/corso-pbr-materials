@@ -63,12 +63,14 @@
 
 ### 3.1 Stage 1: Week 1 教学实施包（已验收基线，严格对齐可执行教学包）
 
+> **#35证据边界**：下列STRONG表示既有来源覆盖，不能解读为学生学习、操作耗时或160分钟容量已验证。当前材料级试走与尚缺的真人证据见GAP-W01-CAP及P §7.3；不因本轮时间缺口改写外部物理知识来源。
+
 | 知识单元 ID 与名称 | 学生端学习目标与教学用途 | 主要一手证据指针 (Primary Evidence Pointer) | 实践演示参考 (Practice / Demo) | 教师精读/观看指针 (Teacher Read / Watch) | 证据类型 | 覆盖状态 | 已知局限与客观边界 | 当前定性 | 下一步建议研究关键词与领域 |
 | :--- | :--- | :--- | :--- | :--- | :---: | :---: | :--- | :---: | :--- |
-| **KU-W01-1**<br>课程全景导入与材质认知<br>(Orientation & Perception) | 建立 9 周能力发展预期与认知，区分物理固有属性与环境光影/附着脏污；破除“调参数靠猜、反光即金属”等初学者误区 | • Dinur (2026) Ch 1 (pp. 9–21)<br>• Week 1 package Block 1 (Orientation 15min) & Block 2 (15min) | 手电筒实物参考图剖析（区分 5 项视觉现象的物理因果归属） | Dinur (2026) Ch 1; Week 1 Executable Package v0.1 §1.2 LO1 | `DIRECT SOURCE FACT` + `PROJECT INFERENCE` | **`STRONG`** | 15 分钟导学严格遵循占位段规范，不预设未经验证的考核比例与微观物理细节 | `required` | 3D material course orientation, cognitive scaffolding |
+| **KU-W01-1**<br>课程全景导入与材质认知<br>(Orientation & Perception) | 建立 9 周能力发展预期与认知，区分物理固有属性与环境光影/附着脏污；破除“调参数靠猜、反光即金属”等初学者误区 | • Dinur (2026) Ch 1 (pp. 9–21)<br>• Week 1 package Block 1 (Orientation 15min) & Block 2 (15min) | 手电筒实物参考图剖析（主体外壳与高光光斑2项核心，后三项课堂讨论） | Dinur (2026) Ch 1; Week 1 Executable Package v0.1 §1.2 LO1 | `DIRECT SOURCE FACT` + `PROJECT INFERENCE` | **`STRONG`** | 导学五要素已在P Block1落实；15分钟仍为PLAN BUDGET，不预设未经验证的考核比例 | `required` | 3D material course orientation, cognitive scaffolding |
 | **KU-W01-2**<br>材质属性与光影解构基石<br>(Property vs Lighting Decomposition) | 建立“材质固有属性 vs 外部光影”因果观念，识别高光光斑与表面阴影为外部环境光照结果，不得作为 Base Color 固有属性（剥离假高光与假阴影） | • Dinur (2026) Ch 5 (pp. 57–68)<br>• Week 1 package Block 2 (Observation & Decomposition) | 手电筒曲面高光光斑（外部光源反射）与 Base Color 固有属性剥离演示 | The PBR Guide (2018) Part 1 (教师背景与 W2 路由：Energy Conservation p. 30, 微表面 pp. 24–27, 菲涅尔 pp. 30–32, 导体/绝缘体 pp. 33–37 不下放 W1 学生端); Dinur (2026) Ch 5 | `DIRECT SOURCE FACT` | **`STRONG`** | W1 学生端以光影解构（SEE vs IS）为度，严禁下放微观能量守恒公式或微表面 GGX 参数；原理性推导留待后续周次 | `required` | PBR light decomposition, intrinsic material vs illumination |
 | **KU-W01-3**<br>预置外壳涂装变体调节<br>(Scaffolded Base Color Tint) | 在预置节点中检视并调节外壳固有色（Base Color Tint），完成“检视 $\to$ 调节 $\to$ 反馈 $\to$ 修订”闭环，验证受保护区零污染 | • Week 1 package Block 5 & 6 (Option B Scaffolded Shader Editor)<br>• The PBR Guide (2018) Part 2 (Base Color albedo, pp. 50–52) | Slot 2 (`vintage_flashlight_body`) 中检视 `Body_Color_Tint`，调节 Factor 与 Color B 实施外壳变体 | Week 1 Package v0.1 §2.2 (教师背景与 W2/W5 路由：线性空间 Part 1 pp. 38–39, 通道组装 CORE42 `texturing-c04-l16` [topic summary: 连接 PBR 图像贴图与通道组装]) | `DIRECT SOURCE FACT` + `PROJECT INFERENCE` | **`STRONG`** | 坚决执行 Option B 支架策略：W1 学生严禁从零新建节点连线（B = DEFER, NOT OMIT）；严密色彩空间打包留待后续 | `required` | scaffolded shader editor, inspect adjust feedback revise |
-| **KU-W01-4**<br>视口环境与数据持久化验证<br>(Material Preview & Persistence) | 掌握 Material Preview 材质预览模式下的中性环境光自检，在课内完成“保存工程 $\to$ 完全退出 Blender 进程 $\to$ 重新打开”数据持久化验证 | • Week 1 package Block 8 (§1.2 LO3, §2.3)<br>• Dinur (2026) Ch 11 (pp. 113–130)<br>• Blender 5.2 Manual: Viewport Shading | Starter 资产在固定机位 (`Cam_Obs`) 与 Material Preview 下观察，完全退出进程重开验证持久化 | Week 1 Package v0.1 §2.3; Dinur (2026) Ch 11 | `COURSE PRECEDENT` + `PROJECT INFERENCE` | **`STRONG`** | Material Preview 内置环境作为中性观察基准，不等同于多环境 LookDev 演播室渲染评测 | `required` | Viewport Shading Material Preview, Blender process persistence |
+| **KU-W01-4**<br>视口环境与数据持久化验证<br>(Material Preview & Persistence) | 掌握 Material Preview 材质预览模式下的中性环境光自检，在课内完成“保存工程 $\to$ 完全退出 Blender 进程 $\to$ 重新打开”数据持久化验证 | • Week 1 package Block 9 (§1.2 LO3, §2.3)<br>• Dinur (2026) Ch 11 (pp. 113–130)<br>• Blender 5.2 Manual: Viewport Shading | Starter 资产在固定机位 (`Cam_Obs`) 与 Material Preview 下观察，完全退出进程重开验证持久化 | Week 1 Package v0.1 §2.3; Dinur (2026) Ch 11 | `COURSE PRECEDENT` + `PROJECT INFERENCE` | **`STRONG`** | Material Preview 内置环境作为中性观察基准，不等同于多环境 LookDev 演播室渲染评测 | `required` | Viewport Shading Material Preview, Blender process persistence |
 
 ---
 
@@ -123,6 +125,13 @@
 ```
 
 ### 4.1 缺口明细卡片清单
+
+#### [GAP-W01-CAP] Week 1 课堂节奏与容量（Issue #35）
+- **类型/状态**：`PROJECT INFERENCE / CLASSROOM CAPACITY UNMEASURED`。2026-10-08材料级试走已完成，真人教师/学生计时均未执行，不能判为内容不足或实际过载。
+- **当前指针**：P §3.1–3.3验证法、§7.3已填事件表、§10.1生产门槛；H任务B2–4、C与Recovery。记录只在P维护，本条只路由。
+- **关键发现**：黑白试验到调色的当前态断言错误；已提示答案的独立证据风险；Recovery B预置起点与本人决定混淆；收件/画廊/抽检的教师时段归属未闭环。文字澄清已做，真实路径仍待复验。
+- **闭环证据**：同修订H+真实Starter/Recovery/关键视觉，具名身份与环境的事件起止、等待/求助、反馈修订及保存/实际接收证据；一次相关恢复分支。教师试讲不替代学生耗时，小样本不替代35/17人课堂。
+- **阻断范围**：受影响PPT页面的高成本生产及课堂容量结论。既有REHEARSAL、DELIVERY、SUBMISSION、TARGET-LAB门禁独立保留，不新增第五份教学SSOT。
 
 #### [GAP-W02-PED] W2 节点网络初学者认知负荷与脚手架设计缺口
 - **缺口分类**：`PEDAGOGY GAP`
@@ -224,7 +233,7 @@
 1. **光学物理与 Principled BSDF v2 参数语义**：由 Adobe PBR Guide (2018) Part 1 (pp. 18–40) & Part 2 (pp. 45–63) 与 OpenPBR v1.1.1 规范形成双重锁死，定义清晰，无概念争议；
 2. **硬表面材质分层与程序化噪波构建**：由 CORE42 `texturing-c05/c07` 与 Shah (2022) Ch 3–6 提供极为详尽的课时时码、节点接法与分层因果逻辑先例；
 3. **视口外观开发 (LookDev) 与中性环境照明**：由 Dinur (2026) Ch 11 与 CORE42 工业车间 HDRI 流程提供扎实的观察与自检支撑；
-4. **W1 教学包课时结构**：已由 Course Owner 验收锁定（`TEACHER ACCEPTED WITH DELTAS`），包含开局 15 分钟导学占位，逻辑闭环。
+4. **W1 教学包课时结构**：已由 Course Owner 验收锁定（`TEACHER ACCEPTED WITH DELTAS`），包含已落实的五要素导学提纲；160分钟结构仍为PLAN BUDGET，课堂容量未实测（GAP-W01-CAP）。
 
 ### 5.3 真正的承重缺口与决策分流 (Load-Bearing Gaps & Action Backlog)
 
@@ -238,6 +247,7 @@
 - **`[GAP-W08-FEED]`**：W8 单师 35 人工作室流动讲评漏斗机制。
 
 #### 分流 3：阻断周课件包发布的受控技术探针（机房现场 Runtime Probes）
+- **`[GAP-W01-CAP]`**：Week 1真实片段/恢复计时与教师时段归属；先按P §7.3首个缺口局部试走，不以文献或脚本预设分钟替代。
 - **`[GAP-W05-GUI] / [PENDING GATE 01]`**：Blender 5.2 Texture Paint 局部绘制与防丢件探针；
 - **`[GAP-W06-TRANS] / [GATE-ASSET-02]`**：Antique Ceramic Vase 01 零摩擦 `.blend` 模板加载与评测探针；
 - **`[GAP-ASSET-FLASHLIGHT] / [GATE-ASSET-01]`**：Vintage Flashlight 网格曲率与 M6/M7 承载性切片解构；
