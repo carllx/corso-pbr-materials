@@ -1,11 +1,11 @@
 # Week 1 可执行 160 分钟教学包 (Week 1 Executable Teaching Package v0.1)
 
-> **执行工单**：GitHub Issue #11 (WU2), GitHub Issue #15 (WU2B — Option B Teacher Delta), GitHub Issue #32 (WU — Week 1 Go-Live Correction, Source Review & Rehearsal)  
-> **上游依据**：GitHub Issue #9 (WU1 运行时切片通过), GitHub Issue #14 (Course Owner Review Gate), GitHub Issue #28 (`docs/research/week1-9-teaching-evidence-map.md` KU-W01-1..4)  
+> **执行工单**：GitHub Issue #11 (WU2), GitHub Issue #15 (WU2B — Option B Teacher Delta), GitHub Issue #32 (WU — Week 1 Go-Live Correction), GitHub Issue #35 (Capacity Preflight), GitHub Issue #37 (Week 1 Front-Half Realignment & Native Geometry Warmup)  
+> **上游依据**：GitHub Issue #9 (WU1 运行时切片通过), GitHub Issue #14 (Course Owner Review Gate), GitHub Issue #28 (`docs/research/week1-9-teaching-evidence-map.md` KU-W01-1..4), `course-design-ledger.md` (2026-10-09 Accepted Decision)  
 > **交付物定位**：供单名教师面向 35 人/17 人大班真实执教的 Week 1 完整教学实施方案、本地资产清单、160 分钟排课预算、教师标准答案与恢复兜底规范  
 > **测试运行时**：Blender 5.2.2 LTS (macOS Darwin 24.6.0 Apple Silicon)  
-> **判定结论 (Status)**：**TEACHER-ACCEPTED BASELINE WITH OPEN VALIDATION — PPT PRODUCTION HOLD**  
-> **2026-10-08 / Issue #35**：本次完成材料级有界试走，真实 Starter/Handout 计时试走尚未执行，160 分钟保持 `PLAN BUDGET`。当前结果、证据边界和生产门槛见 §3.1–3.3、§7.3、§10.1。既有教学采纳不等于课堂容量已验证。
+> **判定结论 (Status)**：**TEACHER-ACCEPTED BASELINE WITH OPEN VALIDATION — PPT PRODUCTION HOLD / CLASSROOM CAPACITY UNMEASURED**  
+> **2026-10-09 / Issue #37 变更说明**：本版落实 Course Owner 2026-10-09 决策：确立“一条主线、两类素材职责”；在 B3 引入极简原生几何体热身（首次上机提前至约第 30 分钟），降低初学者门槛与视口手感障碍；分层讲解 UI（热身仅讲基础视口导航与材质入口，手电筒正式任务才引入 Shading 工作区与 Shader Editor）；概念导入先直观再应用；消减开场知识测验与观察重叠；严禁示范污染学生独立判断；坚决保护手电筒主线、Option B 预置节点与课内闭环核心。160 分钟总预算与各环节时间仍为 `PLAN BUDGET`（PROPOSED / RUNTIME REQUIRED）。
 
 ---
 
@@ -14,17 +14,21 @@
 ### 1.1 教学定位
 Week 1 是《三维数字材质制作》的第一堂实践课。本周不追求复杂的材质网络构建，而聚焦于**破除初学者将“三维材质”误解为“二维手绘贴图”的固有心智模型**。课程通过实物观察解构、数字观察环境定位，以及在预置资产上完成一次小而可见的材质决策与反馈修订，确立 PBR 材质创作的基本因果律与工程纪律。
 
-依据 Issue #14 / #15 / #32 教学规范收敛结论，本方案坚决贯彻 **Option B (Scaffolded Shader Editor / 预连节点支架式入口)**：学生在预置好的调色链路中执行“检视 $\to$ 判别式预测与操作 $\to$ 调节 $\to$ 反馈 $\to$ 修订”闭环，严禁在第一周要求学生自行新建节点与连线（B = DEFER, NOT OMIT）。
+依据 Issue #14 / #15 / #32 及 **Issue #37 教师决策**，本方案确立以下结构原则：
+1. **一条主线、两类素材职责**：低复杂度原生球体/立方体用于视觉原理的最小直观解释与 Blender 基本手感操作热身；Poly Haven **Vintage Flashlight** 严格保留为第一周正式材质观察/改色案例及 W1–W6 有界混合拓扑连续性载体；W7–W9 独立期末资产边界保持不变；
+2. **更早进入 Blender**：学生在约第 30 分钟亲手添加、选中、移动/缩放少量原生几何体，认识 3D Viewport、Outliner、基础对象属性/材料入口、视口导航与 Material Preview；教师提供最小预设环境与基础材质。热身**不单独评分、不提交、不要求精确复刻老师场景**；
+3. **分层讲解 UI**：几何体热身只讲位置和基本手感；正式手电筒任务才引入 Shading 工作区、Shader Editor、材质槽及预连 `Body_Color_Tint`。保持 **Option B (Scaffolded Shader Editor / 预连节点支架式入口)**：W1 不要求学生创建/接线节点（B = DEFER, NOT OMIT），将延后能力路由到 #13；
+4. **单教师大班与保护核心**：坚决保护材料观察和独立判断、学生一次可见手电筒材质决策、反馈 $\to$ 针对性修订、保存 $\to$ 完全退出 $\to$ 重开持久化、轻量提交仍可在课堂内完成；不得通过隐藏课后债务吸收超时。
 
 ### 1.2 预期可观察成效集合 (Observable Outcomes)
 学完 Week 1 课程后，学生应能独立展现以下四项行为成效：
-1. **[LO1 观察解构] 区分固有属性与光影表象**：能审视工业资产参考图，理解视觉表象是由材质微表面、几何形态、环境光照与观察视角耦合产生；独立填写决策卡，将表象解构为物理材质属性（Base Color, Roughness, Metallic），并严格剥离外部光源光斑与外部投影（核心：Base Color 绝不含高光与假阴影）；
+1. **[LO1 观察解构] 区分固有属性与光影表象**：能审视工业资产参考图与三维视口，理解视觉表象是由材质微表面、几何形态、环境光照与观察视角耦合产生；独立填写决策卡，将表象解构为物理材质属性（Base Color, Roughness, Metallic），并严格剥离外部光源光斑与外部投影（核心记忆锚点：“高光会跑，别把它画死在 Base Color 里”）；
 2. **[LO2 材质决策与修订闭环] 判别式理解与单一可见动作**：
    - 掌握有界色彩叠加调节（Bounded Color Adjustment）的数学与色彩原理，通过一个 **`Predict → Operate → Explain`** 判别式检查（理解纯白为 Multiply 中性元、染色保留底层纹理的因果机制）；
    - 在预置材质槽中检视预置链路（`Body_Color_Tint`），调节混合强度 Factor 与目标色 Color B 完成一次外壳涂装变体；
    - 在课堂反馈后，完成对同一决定的针对性修订，并记录“初次决策 / 接收反馈 / 修订动作”三字段闭环证据；
 3. **[工程/LO3 预备性证据] 局部保护与数据持久化**：在完成外壳修改的同时，确保受保护部件（玻璃镜片、反光碗、机械螺栓）零污染；在课堂内完成工程保存、完全退出 Blender 进程并重新打开，验证修改 100% 完整持久化；
-4. **[轻量化证据交付]**：独立提交 1 份结构化决策卡（含观察表、判别式检查与修订三字段）与 1 张标准机位视口截图，源工程本地保留以备抽查。
+4. **[轻量化证据交付]**：独立提交 1 份结构化决策卡（含观察表、判别式检查与修订三字段）与 1 张标准机位视口截图，源工程本地保留以备抽查。原生几何体热身不产生额外提交工件。
 
 ### 1.3 教师专用标准参考答案 (Teacher Answer Key — 严禁下发给学生)
 学生端任务单（`docs/research/week1-student-handout-v0.1.md`）为纯净填空卡，以下参考答案仅供教师投屏讲评与批阅参照。  
@@ -79,15 +83,17 @@ Week 1 是《三维数字材质制作》的第一堂实践课。本周不追求�
 
 | 目录 / 角色 | 文件名 | 规格与状态 | 来源与构建方式 |
 | :--- | :--- | :--- | :--- |
+| **`warmup/` (热身工程，新增)** | `W1_Warmup_Geometry_Starter.blend` | ~150 KB，内置原生 UV Sphere 与 Cube，默认 Material Preview (中性 HDRI)，基础 Material 槽与默认 Principled BSDF | 由确定性脚本自动生成，供第 30 分钟视口导航与材质初探，不评分、不提交 |
 | **`starter/` (学生开局)** | `W1_Starter_Vintage_Flashlight.blend` | 2.1 MB，3 槽完备，预连中性 `Body_Color_Tint` 节点，全屏幕预设 Material Preview 与 `Cam_Obs`，贴图全内置打包 (Pack All) | 由官方资产经确定性 Python 脚本切分 Slot 2、预接调色节点、打包贴图并校准各屏幕视口生成 |
 | **`recovery/` (恢复 A)** | `W1_Recovery_A_Starter.blend` | 2.1 MB，纯净预连中性开局备份 | 同 Starter，供操作彻底做崩的学生回到原始起点（实际恢复用时待测） |
-| **`recovery/` (恢复 B)** | `W1_Recovery_B_Post_Edit.blend` | 2.1 MB，已完成首次材质决策检查点 | 内置已调好的 `Body_Color_Tint` (Multiply 0.85, 军绿)，供掉队者跳关进入反馈与修订 |
+| **`recovery/` (恢复 B)** | `W1_Recovery_B_Post_Edit.blend` | 2.1 MB，已完成首次材质决策检查点 | 内置已调好的 `Body_Color_Tint` (Multiply 0.85, 军绿)，供掉队者跳关进入反馈与修订（如实标注借用起点） |
 | **`recovery/` (恢复 C)** | `W1_Recovery_C_Reference_View.png` | 2.2 MB，标准机位渲染图 (1920x1080) | 教师参考效果图，**极端设备故障时的应急部分完成路径** |
 | **`reference/` (教师参考)** | `W1_Reference_Result.blend` | 2.1 MB，包含反馈修订后的终态参数 | Factor=0.80，颜色纯度与明度经微调优化后的最终工程 |
 | **`textures/` (共享贴图)** | `vintage_flashlight_*.{jpg,exr,png}` | 5 张 1K 贴图，共约 1.9 MB | 官方 Poly Haven 原生贴图，作为外部独立文件同步保存备查 |
 
-> **确定性重构指令 (Deterministic Rebuild)**：在目标 Blender 5.2 LTS 环境下，运行仓库持久化脚本 [`tools/teaching/build_week1_teaching_package.py`](file:///Users/yamlam/Documents/GitHub/corso-pbr-materials/tools/teaching/build_week1_teaching_package.py)，即可从 Poly Haven 官方原版资产全自动确定性重构出上述全部教学工程与参考图像：
+> **确定性重构指令 (Deterministic Rebuild)**：在目标 Blender 5.2 LTS 环境下，运行仓库持久化脚本 [`tools/teaching/build_week1_teaching_package.py`](file:///Users/yamlam/Documents/GitHub/corso-pbr-materials/tools/teaching/build_week1_teaching_package.py) 与 [`tools/teaching/scaffold_week1_geometry_warmup.py`](file:///Users/yamlam/Documents/GitHub/corso-pbr-materials/tools/teaching/scaffold_week1_geometry_warmup.py)：
 > ```bash
+> "/Applications/Blender 5.2.2 LTS.app/Contents/MacOS/Blender" -b --python tools/teaching/scaffold_week1_geometry_warmup.py
 > "/Applications/Blender 5.2.2 LTS.app/Contents/MacOS/Blender" -b --python tools/teaching/build_week1_teaching_package.py
 > ```
 > **生命周期与运行时验证指令 (Lifecycle & Runtime Verification)**：
@@ -100,22 +106,49 @@ Week 1 是《三维数字材质制作》的第一堂实践课。本周不追求�
 ## 3. 真实 160 分钟规划预算 (160-Minute Planning Budget)
 
 > [!IMPORTANT]
-> **预算属性声明**：以下 160 分钟分配为**教学设计计划预算 (PLAN BUDGET)**，非实测学生时间。现有自动化前飞、历史 GUI 点检与规划推断不能替代真人走课或学生计时；本次不变更各 Block 分钟数。**坚决落实 No-hidden-homework 原则，超时裁剪优先移除 optional/次要讨论，不切核心学习，不将课堂超时转化为课后债务**。
+> **预算属性与 Issue #37 变更声明**：  
+> 以下 160 分钟分配为**教学设计计划预算 (PLAN BUDGET)**，各 Block 分钟数与上机节点属于 **`PROPOSED / RUNTIME REQUIRED`**，非实测学生时间。现有自动化前飞、历史 GUI 点检不能替代真人走课或学生计时。  
+> **核心结构调整（Issue #37 accepted delta）**：  
+> 1. **首次上机提前**：由原第 85 分钟大幅提前至约第 30 分钟（Block 3 极简几何体热身），破除初学者开场枯坐，快速建立视口导航手感与光影直观认知；  
+> 2. **开场去测验**：消减原 5 分钟开场知识摸底，避免与后段观察重叠；保留全景导学（15 分钟），压缩冗余讲解；  
+> 3. **分层 UI 教学**：Block 3 仅讲 3D 视口、Outliner、对象变换与基础材质入口（Material Preview）；Block 5 引入手电筒时才正式切入 Shading 工作区、Shader Editor 与 `Body_Color_Tint` 节点；  
+> 4. **示范防污染**：教师示范采用独立物体/参考图，不直接剧透手电筒观察答案或同题判别式结论；  
+> 5. **坚决落实 No-hidden-homework 原则**：超时裁剪优先移除 optional/次要讨论，不切核心学习，不将课堂超时转化为课后债务。
 
 | 模块序号 | 教学环节与活动 (Block / Activity) | 计划预算 (Plan Budget) | 教师动作 (Teacher Actions) | 学生动作 (Student Actions) | 阶段产出与达成证据 | 超时裁剪规则 (Overrun / Cut Rule) |
 | :---: | :--- | :---: | :--- | :--- | :--- | :--- |
-| **Block 1** | **课程整体介绍与基线摸底**<br>(Course Orientation & Baseline Diagnostic) | **20 min**<br>(15 min Orientation +<br>5 min Diagnostic) | 前 15 分钟进行《三维数字材质制作》全景介绍（**Teacher-facing Orientation 完整讲授内容**）：<br>1) **演进轨迹 (Trajectory)**：聚焦材质与纹理创作（非建模全流程）。W1 观察解构固有色 $\to$ W2 节点拓扑与电介质/金属 $\to$ W3 法线/表面微扰动 $\to$ W4 程序化噪波与空间遮罩 $\to$ W5 UV、图像接入与视口绘制 $\to$ W6 清漆与跨载体近迁移 $\to$ W7–W9 独立新资产综合创作；<br>2) **结构模型 (Case Structure)**：以老式军工手电筒为 W1–W6 核心主干，辅以雕像与花瓶代表性微案例进行针对性校验，防止频繁换资产造成软件摩擦；<br>3) **作业练习 (Assignment & Practice)**：坚持课内极轻决策卡 ＋ 视口截图闭环，源工程保存在机房备查，杜绝课外无解作业；<br>4) **期末期望 (Final-Project Expectation)**：W7–W9 彻底解耦手电筒，下发全新独立资产，考核独立材质规划与 LookDev 交付；<br>5) **考核原则 (Grading Framework Principles)**：以物理因果准确性、材质层次与工程规范为准绳，不以主观审美偏好定分；具体平时与期末成绩比例由学院教务系统统筹核定公布。<br>后 5 分钟组织 3 问极简基线摸底（三维经验、着色器经验、PBR 认知；强调摸底仅用于调节语速，不计入考核分）。 | 聆听整门课程宏观定位与考核框架原则，建立 9 周学习心理预期；登录机房工作站，在任务单中快速勾选 3 项基线问题。 | 建立全课宏观框架预期；摸排班级三维软件与认知基线，建立机房纪律意识。 | 若开机缓慢，课程介绍紧扣核心里程碑在 12 分钟内收拢，基线摸底缩减为 1 分钟举手摸底，压缩至 20 分钟内切入下一环节。 |
-| **Block 2** | **概念讲解与物理-视觉解构示范**<br>(Concept & Decomposition Demo) | **15 min** | 投屏实物参考图，剖析四大通道；示范“如何区分材质固有属性 vs 环境光影/表面污渍”，剖析多重物理因果，聚焦 Base Color 严格剥离假高光与假阴影。明确指出 Transmission ≠ Alpha。 | 聆听并记录核心概念；对照投屏辨识手电筒表面的高光与固有色。 | 建立光影剥离意识（LO1 雏形）。 | 若互动过长，裁剪次要细节解释，仅聚焦 Base Color 与高光光斑的光影剥离，严格在 15 分钟内结束。 |
-| **Block 3** | **学生动手：参考观察与解构填表**<br>(Student Observation & Decomposition) | **20 min** | 巡视指导，观察学生在任务单上的填表情况；重点抽查主体外壳与高光光斑两项核心必答项。 | 审视参考图与手电筒部件，独立填写任务单中的《观察与物理解构决策卡》。 | **LO1 核心证据**：完成决策卡（区分视觉现象与物理因果归属）。 | **No-hidden-homework 规则**：若观察拖沓，教师倒计时提示“优先完成主体外壳与高光光斑两栏必答”，后三项作为教师口头收拢，**坚决不留课后补齐债务**。 |
-| **Block 4** | **全班共性诊断与清单核对**<br>(Whole-class Common Diagnosis) | **15 min** | 收集并投屏 2 份具有代表性偏差的观察卡，开展全班公开诊断；强调多物理因果解构，避免死板单一归因；澄清 Transmission 与 Alpha 的本质区别。 | 对照教师投屏与标准自查清单，订正自己的决策卡。 | 纠偏错误认知，固化“光影/脏污剥离”概念。 | 若诊断展开过深，只点评 1 个最典型高光混淆案例，控制在 10 分钟内切入软件实操。 |
-| **Block 5** | **教师示范：极简定向与首个有界动作**<br>(Minimum Orientation & Bounded Action Demo) | **15 min** | 投屏演示打开 Starter，展示 Material Preview 与 Slot 2；指认预置节点链路；讲解 Multiply 正片叠底与 Factor 滑块的有界调色原理（强调非真实涂层厚度）；现场演示 `Predict → Operate → Explain` 检查并调配军绿变体；复位为初始中性态交接给学生。 | 观看演示，指认 Shading 工作区、预置链路与两处调节靶点，建立数据流与固有色概念。 | 掌握在预置框架下检视节点并实施单一材质调配的操作链路。 | 严禁扩充额外节点搭建知识；仅聚焦预连节点的两项参数调节，坚决在 15 分钟内结束。 |
-| **Block 6** | **学生实操：判别式思考与首个材质决策**<br>(Student Practice: Predict & Material Action) | **25 min** | 巡回指导，监督学生独立完成 Predict → Operate → Explain 判别式检查；引导学生在 Slot 2 检视预置链路并调整 Factor 与 Color B；分发 Recovery B 给试色纠结或卡顿超 5 分钟者。 | 完成判别式预测与验证，记录一句话解释；在 Slot 2 检视节点，将 Factor 调至 0.85，在 Color B 选取涂装参考色，填写字段 1。 | **LO2 核心证据**：完成判别式解释，外壳呈现可见颜色变体，受保护区完好，记录初次决策参数。 | **超时即截断**：20 分钟未调出满意色彩者强制锁定当前色；误操作或卡顿超 5 分钟者直接下发 Recovery B 跳关。 |
-| **Block 7** | **现场分层巡视反馈与抽检**<br>(Roaming Feedback & Mid-point Check) | **10 min** | 快速巡视全班屏幕；抓取常见风格偏离（如色彩荧光过饱和像现代塑料玩具、改错材质槽）进行 3 分钟全班口头广播点拨；引导历史风格参考对齐（不误称为物理违规）。 | 停手听取反馈，在决策卡记录所听到的共性反馈要点（填写字段 2）。 | 获取课内即时反馈，识别修改方向。 | 取消个别细致答疑，改为 3 分钟统一广播指导，确保留出完整的学生修订时间。 |
-| **Block 8** | **学生受控修订：优化同个材质决策**<br>(Student Revision on the SAME Decision) | **15 min** | 提示学生聚焦修订当前决策：在拾色器中降低饱和度、微调明度与 Factor（如 0.85 $\to$ 0.80）；记录修订动作与改进理由（字段 3）。 | 针对教师反馈，微调 Mix 节点参数或颜色纯度，完成修订并在决策卡填写字段 3。 | **LO2 终极闭环**：形成初次决策 $\to$ 接收反馈 $\to$ 修订动作完整闭环。 | 若前序超时，本环节缩减为 10 分钟，只要求微调滑块，不推倒重来。 |
-| **Block 9** | **工程保存、退出重启持久化验证**<br>(Save, Quit & Reopen Verification) | **10 min** | 指导学生规范命名保存工程；**监督全班必须执行“完全退出软件并重开”**的持久化核验。 | 执行 `File -> Save As`；完全退出 Blender 进程；重新双击打开，确认节点、参数与贴图完整。 | **工程/LO3 预备性证据**：保全数据与验证重开完整性。 | **坚决不裁剪此环节**；若时间受压，优先压缩 Block 10 收尾与 Block 11 缓冲。 |
-| **Block 10** | **轻量交付与全课收尾**<br>(Submission & Wrap-up) | **5 min** | 发布作业上传通道；快速强调 PBR 核心因果与下周预告；指导学生提交决策卡与截图。 | 提交决策卡 ＋ 1 张视口截图；将 `.blend` 保存在本机目录备查。 | 完成全员证据归档，建立课后审计备查源。 | 取消任何作品展示与反思，直接进行扫码交卷与本地工程保存确认，控制在 5 分钟内完成。 |
-| **Block 11** | **显式缓冲与极端恢复容量**<br>(Explicit Buffer & Recovery Capacity) | **10 min** | 协助个别机器故障或严重卡顿学生恢复工程；处理机房技术突发状况。 | 顺利完成者可微调材质观察角度；掉队者在教师协助下完成基础截图。 | **兜底容灾**：吸收课堂偶发性时间膨胀，保障全班达标率。 | **完全弹性**：若前序零延误，用作优秀作业展评与 W2 预告；若有延误，完全被前序吸收。 |
-| **总计** | **全课 11 模块总时长** | **160 min** | **严格等于 160 分钟** | **严格等于 160 分钟** | **涵盖 LO1/LO2/LO3 全部最低可观察成效** | **每环节具备明确保护核心与降级路径** |
+| **Block 1** | **课程导学与全局图景**<br>(Course Orientation & Big Picture) | **15 min**<br>(PROPOSED) | 进行《三维数字材质制作》全景介绍（导学五要素）：<br>1) 演进轨迹 (W1 固有色 $\to$ W2 节点与材质分类 $\to$ W3 法线 $\to$ W4 程序化噪波 $\to$ W5 UV贴图绘制 $\to$ W6 清漆与微案例 $\to$ W7–W9 独立期末大作业)；<br>2) 案例主线 (手电筒为主道具，雕像/花瓶为微案例)；<br>3) 练习体系 (课内轻量决策卡+视口截图闭环，零课后债务)；<br>4) 期末期望 (解耦手电筒，独立材质 LookDev)；<br>5) 考核原则 (物理因果与工程规范优先，非主观审美)。<br>强调保护核心与机房纪律，不组织独立开场测验。 | 聆听课程全局定位与考核框架原则，建立 9 周学习预期；登录机房工作站，就位准备。 | 建立全课宏观框架认知；消除考核焦虑与课后作业负担预期。 | 若开机慢，精炼压缩案例展开，紧扣里程碑与零课外作业原则，12 分钟内收拢。 |
+| **Block 2** | **PBR 直观概念导入与视觉原理**<br>(Intuitive PBR Concepts & Visual Principles) | **15 min**<br>(PROPOSED) | 1) 游戏/影视 PBR 用途与简短视觉悬念；<br>2) 4 个标准术语及大白话：Base Color (固有色)、Roughness (粗糙度/反光散不散)、Metallic (金属度/非黑即白)、Normal (法线/假装有凹凸)；<br>3) 识别光照/视角 vs 材质：核心记忆锚点“**高光会跑，别把它画死在 Base Color 里**”；<br>4) 直观辨析 Transmission (透光折射，如玻璃) vs Alpha (表面遮罩/镂空)。<br>**示范防污染纪律**：教师使用非手电筒参考图（如木球、光滑瓷片）示范，**绝不直接示范手电筒外壳部件**，保护学生独立判断空间。 | 聆听并记录 4 大英文术语大白话；理解光照/视角与材质的区别；领会“高光会跑”核心因果。 | 建立 PBR 基础因果心智模型（区分光照与固有属性）。 | 若互动提问较多，仅强调 Base Color 剥离高光与 4 术语，12 分钟内结束。 |
+| **Block 3** | **极简原生几何体热身与视口初探**<br>(Native Geometry Warmup & Viewport Hands-on) | **20 min**<br>(PROPOSED) | **学生首次接触 Blender（约第 30 分钟）**：<br>1) 指导学生打开极简预设工程 `W1_Warmup_Geometry_Starter.blend`；<br>2) 认识 3D Viewport (视口导航：旋转/平移/缩放)、Outliner (大纲视图对象树)、基础变换 (G/R/S)；<br>3) 认识 Material 属性面板入口，切换到 Material Preview (解释内置环境 HDRI)；<br>4) **灯光行为明确**：Material Preview 默认不启用 Scene Lights，明确告知学生无需调场景灯，避免误区；<br>5) 亲手转动视口，观察球体上的高光随着视角旋转而滑动（实证验证“高光会跑”）；尝试微调 Principled BSDF 的 Base Color 与 Roughness。<br>**纪律声明**：热身不评分、不提交、不强制复刻教师布局。 | 亲手在 3D Viewport 中添加/选中球体与立方体，练习视口导航三键客；在 Material 面板改动基础颜色与粗糙度；旋转视口亲眼观察高光移动。 | **首次操作掌控感**：消除对 Blender 界面的陌生感，直观实机验证“高光会跑”。 | 若添加物体遇阻，教师提示“只看默认预置球体即可”，跳过额外快捷键，15 分钟内切出。 |
+| **Block 4** | **手电筒主案例观察与物理因果解构**<br>(Flashlight Observation & Causal Decomposition) | **20 min**<br>(PROPOSED) | 投屏手电筒多视角参考图，引导学生转入正式案例；<br>巡视指导学生独立填写《任务单 任务 A：观察与物理解构决策卡》；<br>重点保障：主体外壳 (固有色) 与外壳高光光斑 (光照与视角耦合) 两项核心必答；<br>对灯头透镜、反光碗做 2 分钟全班提点收拢（吸收原 B4 共性诊断，不单列 15 分钟冗长诊断）。 | 审视手电筒实物参考图，独立填写任务单中的决策卡；辨识主体外壳墨绿固有色与高光斑的光影归属。 | **LO1 核心证据**：完成任务 A 决策卡（区分固有属性与光照表象）。 | **No-hidden-homework 规则**：优先闭环前两项核心必答，后三项由教师口头提点，坚决不留课外债务。 |
+| **Block 5** | **正式手电筒任务导入与分层 UI**<br>(Flashlight Task Introduction & Layered UI) | **15 min**<br>(PROPOSED) | **正式手电筒任务分层导入**：<br>1) 指导学生打开 `W1_Starter_Vintage_Flashlight.blend`；<br>2) **引入 Shading 工作区与 Shader Editor**：指认材质槽 Slot 2 (`vintage_flashlight_body`)；<br>3) 指认预连的 `Body_Color_Tint` 节点（Multiply 模式）；<br>4) 讲解有界调色数学原理（相乘正片叠底，强调不是真实喷漆厚度）；<br>5) 演示一次 Factor 与 Color B 调节控件，**严禁回答同题判别式检查的最终结论**；演示后复位为初始中性态交接给学生。 | 打开手电筒工程，确认处于 Shading 工作区与 Cam_Obs；定位 Slot 2 与 `Body_Color_Tint` 节点，理解数据流向。 | 掌握在 Option B 预置框架下定位材质槽与检视节点的操作路径。 | 严禁扩充节点搭建；仅聚焦预连节点控件，严格在 15 分钟内结束。 |
+| **Block 6** | **手电筒首次材质决策与判别式改色**<br>(Student Practice: Predict & Material Action) | **25 min**<br>(PROPOSED) | 巡回指导，监督学生独立完成 `Predict → Operate → Explain` 判别式检查（纯白乘法不变，纯黑乘法变黑）；<br>**交接纪律**：提示学生完成白/黑测试后，将节点恢复为中性基准态，再开始军工风格改色；<br>引导学生将 Factor 调至 0.85 并在 Color B 选定目标色，填写字段 1；<br>对试色严重纠结或卡顿超 5 分钟者下发 Recovery B 跳关。 | 独立完成判别式预测、实操与因果解释；将节点恢复基准后调节 Factor 与 Color B，完成首次涂装决策并在决策卡填写字段 1。 | **LO2 核心证据**：完成判别式解释，外壳呈现可见颜色变体，受保护区完好，记录初次决策参数。 | **超时即截断**：20 分钟未调出满意色彩者强制锁定当前色；误操作或卡顿超 5 分钟者直接下发 Recovery B 跳关。 |
+| **Block 7** | **现场分层巡视反馈与抽检**<br>(Roaming Feedback & Mid-point Check) | **10 min**<br>(PROPOSED) | 快速巡视全班屏幕；抓取常见风格偏离（如色彩荧光过饱和像现代塑料玩具、改错材质槽）进行 3 分钟全班口头广播点拨；引导历史风格参考对齐（不误称为物理违规）。 | 停手听取反馈，在决策卡记录所听到的共性反馈要点（填写字段 2）。 | 获取课内即时反馈，识别修改方向。 | 取消个别细致答疑，改为 3 分钟统一广播指导，确保留出完整的学生修订时间。 |
+| **Block 8** | **学生受控修订：优化同个材质决策**<br>(Student Revision on the SAME Decision) | **15 min**<br>(PROPOSED) | 提示学生聚焦修订当前决策：在拾色器中降低饱和度、微调明度与 Factor（如 0.85 $\to$ 0.80）；记录修订动作与改进理由（字段 3）。 | 针对教师反馈，微调 Mix 节点参数或颜色纯度，完成修订并在决策卡填写字段 3。 | **LO2 终极闭环**：形成初次决策 $\to$ 接收反馈 $\to$ 修订动作完整闭环。 | 若前序超时，本环节缩减为 10 分钟，只要求微调滑块，不推倒重来。 |
+| **Block 9** | **工程保存、退出重启持久化验证**<br>(Save, Quit & Reopen Verification) | **10 min**<br>(PROPOSED) | 指导学生规范命名保存工程；**监督全班必须执行“完全退出软件并重开”**的持久化核验。 | 执行 `File -> Save As`；完全退出 Blender 进程；重新双击打开，确认节点、参数与贴图完整。 | **工程/LO3 预备性证据**：保全数据与验证重开完整性。 | **坚决不裁剪此环节**；若时间受压，优先压缩 Block 10 收尾与 Block 11 缓冲。 |
+| **Block 10** | **轻量交付与全课收尾**<br>(Submission & Wrap-up) | **5 min**<br>(PROPOSED) | 发布作业上传通道；快速强调 PBR 核心因果与下周预告；指导学生提交决策卡与截图。明确教师批阅与收件通道不混占时间。 | 提交决策卡 ＋ 1 张视口截图；将 `.blend` 保存在本机目录备查。 | 完成全员证据归档，建立课后审计备查源。 | 取消任何作品展示与反思，直接进行扫码交卷与本地工程保存确认，控制在 5 分钟内完成。 |
+| **Block 11** | **显式缓冲与极端恢复容量**<br>(Explicit Buffer & Recovery Capacity) | **10 min**<br>(PROPOSED) | 协助个别机器故障或严重卡顿学生恢复工程；处理机房技术突发状况。 | 顺利完成者可微调材质观察角度；掉队者在教师协助下完成基础截图。 | **兜底容灾**：吸收课堂偶发性时间膨胀，保障全班达标率。 | **完全弹性**：若前序零延误，用作优秀作业展评与 W2 预告；若有延误，完全被前序吸收。 |
+| **总计** | **全课 11 模块总时长** | **160 min** | **严格等于 160 分钟 (PLAN BUDGET)** | **严格等于 160 分钟 (PLAN BUDGET)** | **涵盖 LO1/LO2/LO3 全部最低可观察成效** | **每环节具备明确保护核心与降级路径** |
+
+---
+
+### 3.4 教学 Block 极轻 PPT 投影与 Presenter Notes 记忆锚点 (Lightweight PPT Projection)
+
+在活动设计阶段，每个教学 Block 仅关联极轻 PPT 投影（候选页数非冻结、单页单一 takeaway、教师一句记忆锚点、Notes 意图），后续平滑进入单线 Markdown Slide Draft：
+
+| 模块序号 | 教学环节 | 候选页数 (非冻结) | 页面单一 Takeaway / 学生可见核心 | 教师一句记忆锚点 (Memory Anchor) | Presenter Notes 核心意图 (解释/误区/转场) |
+| :---: | :--- | :---: | :--- | :--- | :--- |
+| **Block 1** | 课程导学与全局图景 | 2 页 | P1: 9周材质演进轨迹与手电筒主干<br>P2: 课内闭环交付与零课外作业承诺 | “课内闭环改色与保存，不留课后无解作业。” | 解释 9 周里程碑；澄清考核以物理因果和工程规范为准，消除初学者焦虑。 |
+| **Block 2** | PBR 直观概念导入 | 3 页 | P3: PBR 为什么真实与 4 个术语大白话<br>P4: 旋转视角看光影：高光会跑<br>P5: 透光折射 (Transmission) vs 表面透明遮罩 (Alpha) | “高光会跑，别把它画死在 Base Color 里。” | 直观悬念导入；强调高光斑是光源与视角耦合产物；示范用独立道具，不泄露手电筒答案。 |
+| **Block 3** | 原生几何体热身 | 2 页 | P6: 视口手感三键客与 Material Preview<br>P7: 几何体小实验：亲眼看高光移动 | “几何体练手感，不打分不提交，转动视口看高光。” | 降低 Blender 门槛；澄清 Material Preview 默认不启用场景灯，无需调灯；实测验证高光滑动。 |
+| **Block 4** | 手电筒观察与解构 | 2 页 | P8: 手电筒实物解构：外壳颜色是哪来的？<br>P9: 因果解构自查清单 (外壳 vs 高光) | “两项核心课内闭环，教师示范不剧透答案。” | 引导独立填表；重点抓主体外壳固有色与高光斑光影归属；后三项提点收拢，零课后债务。 |
+| **Block 5** | 正式手电筒任务导入 | 2 页 | P10: 分层进入 Shading 工作区与 Slot 2<br>P11: `Body_Color_Tint` 节点两处调节靶点 | “分层进 Shading，节点已预接好，只动预设调色器。” | 解释 Option B 预置支架；讲解 Multiply 数学相乘不是物理漆层；控件示范不泄露判别式答案。 |
+| **Block 6** | 手电筒判别式改色 | 2 页 | P12: 判别式挑战：Multiply 乘纯白/乘纯黑<br>P13: 你的第一个材质决策：外壳选色 | “预测-操作-解释，改色前先复位基准，记录真实决策。” | 监督独立判别式思考；强调做完白/黑测试后复位基准态再选色；卡顿超 5 分钟下发 Recovery B。 |
+| **Block 7** | 巡视反馈与抽检 | 1 页 | P14: 巡视共性点拨：军工质感与饱和度控制 | “广播反馈抓共性，不占学生修订时间。” | 针对荧光塑料感做 3 分钟集中点拨；引导历史风格对齐，不把审美偏好说成物理违规。 |
+| **Block 8** | 受控修订 | 1 页 | P15: 针对性微调：同一决策的优化证据 | “围绕反馈做微调，三字段记录真实改进。” | 指导微调 Factor 与拾色器；完成“决策-反馈-修订”闭环；强调不推倒重来。 |
+| **Block 9** | 保存退出重开 | 1 页 | P16: 数据安全生命线：完全退出并重启重开 | “保存之后真退出，重开确认贴图参数在。” | 强调工程规范；监督全员完全退出进程再重开，排除资产丢失隐患。 |
+| **Block 10** | 轻量交付与收尾 | 1 页 | P17: 今日交付清单：决策卡 ＋ 标准截图 | “极轻双联提交，工程源文件本机存盘备查。” | 指导极简提交；下周预告；明确收件与教师批阅不混占课内时间。 |
+| **Block 11** | 显式缓冲与恢复 | 1 页 | P18: 备用缓冲与三级容灾通道 | “全课共享十分钟，三级梯队保全员通关。” | 解释 Recovery A/B/C 用途；吸收全课偶发延误；保证单师大班课内闭环。 |
 
 ---
 
@@ -161,10 +194,11 @@ Week 1 是《三维数字材质制作》的第一堂实践课。本周不追求�
 为维护上述保护核心的一致性，出现延误时，严格按以下顺序从外向内削减非核心环节，**严禁将课内未完内容推迟为课后作业**：
 1. **首裁 1 (削减 Block 11)**：完全压缩 10 分钟显式缓冲时间；
 2. **首裁 2 (削减 Block 10)**：取消收尾讲评与交流，将 5 分钟的 Block 10 压缩为纯粹的 1–2 分钟扫码交卷与本地工程保存确认；
-3. **首裁 3 (削减 Block 3 讨论)**：若观察耗时过长，仅要求学生完成主体外壳与高光斑两项核心必答，后三项由教师口头 1 分钟提点收拢，不作为课后必做任务；
-4. **首裁 4 (削减 Block 6 试色)**：自由试色延误超 20 分钟者，直接由教师统一下发军绿标准色参数完成达标；
-5. **首裁 5 (下发 Recovery B)**：试色严重卡顿或操作受阻超 5 分钟者，强制调用 Recovery B 跳关进入微调与反馈修订；
-6. **首裁 6 (缩短互评)**：取消学生之间的同桌互查，改为教师集中 3 分钟广播讲评。
+3. **首裁 3 (削减 Block 3 几何体热身非核心操作)**：若学生添加几何体或寻找面板卡顿，教师广播提示“直接使用预置好的默认球体”，跳过复杂的物体变换与参数微调，保护后续手电筒主线时间；
+4. **首裁 4 (削减 Block 4 讨论)**：若观察耗时过长，仅要求学生完成主体外壳与高光斑两项核心必答，后三项由教师口头 1 分钟提点收拢，不作为课后必做任务；
+5. **首裁 5 (削减 Block 6 试色)**：自由试色延误超 20 分钟者，直接由教师统一下发军绿标准色参数完成达标；
+6. **首裁 6 (下发 Recovery B)**：试色严重卡顿或操作受阻超 5 分钟者，强制调用 Recovery B 跳关进入微调与反馈修订（如实标注借用起点）；
+7. **首裁 7 (缩短互评)**：取消学生之间的同桌互查，改为教师集中 3 分钟广播讲评。
 
 ---
 
@@ -190,6 +224,8 @@ Week 1 是《三维数字材质制作》的第一堂实践课。本周不追求�
           ▼ 现场或课后打开源工程核查 Slot 2 节点拓扑与面指派
 [源工程本地留存]
   └── 学生本地保留 W1_Flashlight_[学号].blend，作为后续周次审计与复查源
+[热身工程无需提交]
+  └── W1_Warmup_Geometry_Starter.blend 仅供课堂手感练习，不产生评分与交付工件
 ```
 
 ### 5.2 证据核验对照表
@@ -211,14 +247,17 @@ Week 1 是《三维数字材质制作》的第一堂实践课。本周不追求�
 
 | English Canonical Term | 中文大白话解释 | Visible-effect Cue (视口可见线索) | 教学定位与纪律 |
 | :--- | :--- | :--- | :--- |
-| **Material Preview** | **材质预览模式**：Blender 视口使用 EEVEE 引擎配合内置 HDRI 环境贴图提供中性预览光照（本项目 Starter 预置中性棚拍 HDRI 视口预设） | 3D 视口呈现柔和均匀反射与光照，无需手动打光即可看清模型细节 | W1 规范观察基准，杜绝因无灯光导致的视口全黑 |
+| **Material Preview** | **材质预览模式**：Blender 视口使用 EEVEE 引擎配合内置 HDRI 环境贴图提供中性预览光照（默认不启用场景灯光） | 3D 视口呈现柔和均匀反射与光照，无需手动打光即可看清模型细节 | W1 规范观察基准，避免因误删场景灯导致全黑；明确无需调场景灯 |
+| **Base Color** | **基础颜色 (固有色)**：物体材质表面本身的反射颜色，大白话“剥离所有光影后的原本颜色” | 表现为外壳墨绿漆面或金属底色，表面绝对不含任何光源光斑 | PBR 核心因果纪律，核心记忆锚点：“高光会跑，别把它画死在 Base Color 里” |
+| **Roughness** | **粗糙度**：微观表面微起伏程度，大白话“表面糙不糙、反光散不散” | 数值低时高光锐利如镜面，数值高时反光模糊漫散为哑光感 | 决定微表面光线漫散程度，W1 直观滑块体验 |
+| **Metallic** | **金属度**：材料导体属性，大白话“是不是金属（非黑即白）” | 金属度为 1 时呈现金属反光（无漫反射固有色），金属度为 0 时呈现绝缘体塑料/涂层质感 | 绝缘体 vs 导体界线，W1 直观认知，精确公式 W2 展开 |
+| **Normal** | **法线**：表面微观朝向，大白话“不用加面数，假装表面有凹凸” | 视口中呈现螺纹、接缝等微观起伏细节，但物体轮廓边缘仍保持平滑 | W1 仅建立“假装有凹凸”概念，W3 深入烘焙与微扰动 |
 | **Shader Editor** | **着色器编辑器**：屏幕下方组装与控制材质逻辑的蓝图窗口 | 展现为由彩色连线互相链接的功能方块网图 | W1 认识其为材质逻辑承载地，不做从零连线 |
-| **Node** | **节点**：着色器中的独立功能功能块（如 `Body_Color_Tint`） | 一个个具有左侧输入与右侧输出的矩形控制盒 | W1 只需识别其为局部调色功能单元 |
+| **Node** | **节点**：着色器中的独立功能块（如 `Body_Color_Tint`） | 一个个具有左侧输入与右侧输出的矩形控制盒 | W1 只需识别其为局部调色功能单元 |
 | **Connection / Data Flow** | **连接与数据流 (概念性)**：节点间由连线承载的数据流动（从左往右输出流入输入） | 贴图颜色通过连线流向 Mix 节点，运算后注入着色器端口 | 仅作概念理解，严禁学生在 W1 动手排查连线或重定向 |
-| **Base Color** | **基础颜色 (固有色)**：物体材质表面本身的反射颜色 | 表现为外壳墨绿漆面或金属底色，表面绝对不含任何光源光斑 | PBR 核心因果纪律，严禁混入外部高光与假阴影 |
-| **Multiply** | **相乘 (正片叠底)**：将两路颜色数值逐通道相乘的色彩混合模式 | 乘以纯白 $(1,1,1)$ 完全不变，乘以目标色在保留底层纹理的同时产生有界染色 | 数学叠加运算，非物理涂层 |
+| **Multiply** | **相乘 (正片叠底)**：将两路颜色数值逐通道相乘的色彩混合模式 | 乘以纯白 $(1,1,1)$ 完全不变，乘以目标色在保留底层纹理的同时产生有界染色 | 数学叠加运算，非真实涂层厚度 |
 | **Factor** | **混合因子 (影响程度)**：控制相乘混合影响强度的 0.0 到 1.0 滑块 | 拖动滑块时，外壳从“无染色原底色 (0.0)”平滑渐变到“完全相乘染色 (1.0)” | **有界色彩叠加调节 (Bounded Color Adjustment)**，严禁误导为真实物理涂层厚度 |
-| **Transmission vs Alpha** | **透射 vs 表面透明遮罩**：透射为光线穿透折射介质（玻璃）；Alpha 控制表面不透明度与透明遮罩（surface transparency / opacity masking） | 玻璃呈现屈光折射与透明通透，Alpha 表现为表面局部透明度变化与遮罩控制 | 严格区分光学透射与贴图遮罩通道 |
+| **Transmission vs Alpha** | **透射 vs 表面透明遮罩**：透射为光线穿透折射介质（玻璃）；Alpha 控制表面不透明度与透明遮罩（打洞/镂空） | 玻璃呈现屈光折射与透明通透，Alpha 表现为表面局部镂空遮罩控制 | 严格区分光学透射与贴图遮罩通道，直观辨析公式不展开 |
 
 ---
 
@@ -349,23 +388,23 @@ flowchart TD
 ### **STATUS: PPT PRODUCTION HOLD / CLASSROOM CAPACITY UNMEASURED**
 *(严格遵循纪律：真人排练与真实机房通道未现场验证前，不宣称 W1 GO-LIVE READY；严禁自行声明 FIELD VALIDATED)*
 
-### 10.1 本轮结果传播与 PPT Production Gate
+### 10.1 本轮结果传播与 PPT Production Gate (Issue #37 Realignment Propagation)
 
 验证表/节奏规则只在本文件维护。H承接学生动作，E承接证据/缺口路由，Markdown Slide Draft属于单一PPT制作链；不新增长期节奏报告、Spine、独立Notes或第五份教学SSOT。
 
-| 既有落点 | 本批回写/后续传播 | 需要重验的最小链路 |
+| 既有落点 | 本批回写/后续传播 (Issue #37) | 需要重验的最小链路 |
 | --- | --- | --- |
-| Teaching Package | §3保留预算并加入标准，§5.2显露时间归属，§6标明恢复身份，§7.3保存此次观察，§10限定门禁 | 受影响状态交接、恢复、反馈/收件时段 |
-| Student Handout | B3去掉错误当前态，字段1及Recovery B如实标注预置起点，A去掉未经实测的10秒保证；不新增必交表 | 真实H B2–4连续执行及一次Recovery B，再接C |
-| Teaching Evidence Map | KU-W01-1更新已完成导学/2项核心观察；KU-W01-4改指Block9；增加GAP-W01-CAP，STRONG仅表示来源覆盖 | 指针/来源边界检查，不重做W2–W9研究 |
-| Markdown Slide Draft + Notes | 当前基线未提供活动稿，本轮只映射，不假称已改页。后续B5–6页暴露“看/做/停”与当前起点，B7–8页留反馈/修订停留，B9–10页留保存/提交检查；Visual真实材料未到用TODO，拟现场操作用LIVE且注明尚未验证，不标READY | 用Visible / Visual / Notes / Trace结构；Trace引用P相应Block、H任务及KU。Notes引用同一预算/共享buffer，不能另造分钟数或泄露独立检查答案 |
-| 脚本/资产消费者 | 前飞脚本仅去掉伪计时/学习通过输出；未改变Starter/Recovery构建、几何或贴图；Lifecycle的样例文本不能充当学生答卷 | 本轮只检查脚本语法/输出语义；Blender运行保持未复跑，若后续改变教学题目须连同硬编码样例/断言再查 |
+| **Teaching Package** | §1/§2 确立双素材职责与分层UI，§3 重构 Block 1–6（首上机提至 B3，160min 保持 PLAN BUDGET），增设 §3.4 极轻 PPT 投影与 Notes 意图，§4.2 适配剪裁序列，§5.3 增补 4 术语与记忆锚点 | 几何体热身与手电筒工程交接、白/黑测试后状态复位、时段归属 |
+| **Student Handout** | 增加原生几何体视口初探指导（免打分不提交），任务 A 保持两项核心观察，任务 B 细化分层 UI 与 B3 状态复位指导；如实标注 Recovery B 起点 | 真实学生热身 $\to$ 观察 $\to$ 判别式 $\to$ 改色 $\to$ 退出重开连续执行 |
+| **Teaching Evidence Map** | KU-W01-1 映射至导学与 PBR 概念；KU-W01-2 增加几何体视口热身与手电筒观察双素材映射；KU-W01-3 映射 B5–B6 判别式与改色；KU-W01-4 映射 Block 9 持久化 | 指针/来源边界检查，保持与 Ledger/P/H 语义强一致 |
+| **Markdown Slide Draft + Notes** | 依据 §3.4 维护 18 页极轻候选草案；B1–B3 页直观导入与热身，B4–B6 页手电筒观察与改色，B7–B11 页反馈修订与交付；严格遵守 `Visible / Visual / Notes / Trace` 与 `READY / TODO / LIVE` | Trace 映射 P/H/KU；Notes 仅记记忆锚点与转场意图，不造平行知识权威 |
+| **脚本/资产消费者** | 新增 `tools/teaching/scaffold_week1_geometry_warmup.py`；更新 `rehearse_week1_continuous.py` 适应新 Block 1–11 结构与容量未测纪律 | 脚本语法、构建输出与静态属性核查；Blender 运行标明环境边界 |
 
-| Production Gate条件 | 当前判定与依据 |
+| Production Gate条件 | 当前判定与依据 (Issue #37) |
 | --- | --- |
-| 保护核心、任务/证据结构无会改页的未决项 | **OPEN**：#32五项教师决定仍在，尤其题目揭示与Recovery证据 |
-| 真实H+Starter+关键视觉走通代表性路径及恢复 | **NOT RUN / HOLD**：本次只有材料级检查，真实资产与真人未到位 |
-| 主要切换与时间归属可交接、假设明确 | **PARTIAL**：预算/事件归属已列，收件/画廊/救援时段待决，耗时未测 |
-| P/H/E/关键视觉属于同一修订 | **PARTIAL**：文字修改同批；实际分发包、截图/活动稿未与此修订配套试走 |
+| 保护核心、任务/证据结构无会改页的未决项 | **ADVANCED / PENDING VERIFICATION**：Issue #37 已锁定教学方向与 B1–B11 候选结构；防污染、分层 UI 与交接规则已确立 |
+| 真实H+Starter+关键视觉走通代表性路径及恢复 | **PROTOTYPE RUN / HOLD**：新增几何体原型已构建；真实资产/机房连续试走仍待现场闭环 |
+| 主要切换与时间归属可交接、假设明确 | **PARTIAL**：160 分钟仍为计划预算；B3 首次上机时间与各环节分钟数标明 PROPOSED / RUNTIME REQUIRED |
+| P/H/E/关键视觉属于同一修订 | **PASS (This Revision)**：本批 P/H/E/Ledger 及原型脚本同批对齐，无语义漂移 |
 
-**允许继续**：围绕已知失败点做低成本材料澄清、真实截图/操作探针和稳定页面草稿。**暂不授予 `PPT PRODUCTION GATE CANDIDATE`**，不进入依赖未决任务/视觉的高成本精修。局部真人试走通过后，只能对该片段放行；完整PPT生产还需上表条件成立。生产放行也不关闭§8的真人连续排练、分发、提交、目标Windows与FIELD VALIDATION要求。
+**生产放行判定**：保持 **`PPT PRODUCTION HOLD`**，**授权开展基于 Markdown Slide Draft 的极轻原型与关键视觉探针**。严禁提前进入高成本美术精修或制作最终 PPT。真实机房 Windows 环境、真人学生计时与全员分发/提交网络通道仍保持对应 REQUIRED 门禁。

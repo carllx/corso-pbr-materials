@@ -34,7 +34,7 @@
   - 确立了 Vintage Flashlight（~11K tris，`ADAPT_CANDIDATE`）、Antique Ceramic Vase 01（~9K tris，`REUSE_CANDIDATE`）、Classical Bust（高低模对，`ADAPT_MICRO_ONLY`）与历史资产（`REFERENCE_ONLY`）的资产事实基准；
   - 明确高低模从零全流程烘焙在机房面临显著教学摩擦，不可作为默认全员实操（具体实操深度待排课与机房验证确定）；近迁移练习需具备流程隔离。
 - **Week 1 教学实施包已验收锁定（Issue #11 / #15 / #14）**：
-  - Week 1 的 160 分钟教学结构（包含开局 15 分钟课程整体介绍）已被 Course Owner 验收锁定（`TEACHER ACCEPTED WITH DELTAS`），**本工单绝不重新打开 Week 1，不向 Week 1 插入新的微实验**。
+  - Week 1 的 160 分钟教学结构已被 Course Owner 验收锁定（`TEACHER ACCEPTED WITH DELTAS`）。*(注：历史锁定中关于“不向 Week 1 插入新微实验”的规则，已被 2026-10-09 Issue #37 决议局部替代 `PARTIALLY SUPERSEDED by Issue #37 accepted delta`：允许引入极简原生几何体热身以降低初学者门槛，但仍坚决禁止插入复杂的古典石膏像或第二套完整案例，手电筒主线与 Option B 保持不变)*。
 
 ### 1.3 兄弟工单同级约束 (Sibling Constraint: Issue #21 / PR #25)
 - **实时导出与外部查看器状态**：最新审阅裁决为 **`CONTENT PASS / RUNTIME GATE REMAINS OPEN`**；
@@ -90,7 +90,7 @@
 
 ### 3.3 选项 C（有限主案例 + 有界微案例）的平衡逻辑与微观纪律
 - **互补平衡**：以手电筒为贯穿主干，保障因果分层与受控修改的打磨深度；以轻量微案例定向弥补 M1 与 M2 盲区；
-- **消除 Week 1 干扰**：严格尊重已锁定的 Week 1 结构（15 分钟导引 + 基础练习），**不得在 Week 1 插入石膏微实验**。古典石膏胸像的法线与剪影对比微实验仅作为 **W3 或之后的候选安排窗口 (Candidate Placement Window)**；
+- **消除 Week 1 干扰**：严格尊重已锁定的 Week 1 结构（导引 + 几何体热身 + 手电筒基础练习，详见 Issue #37），**古典石膏胸像等复杂微实验绝不提前至 Week 1**。古典石膏胸像的法线与剪影对比微实验仅作为 **W3 或之后的候选安排窗口 (Candidate Placement Window)**；
 - **W6 课时建议与流程隔离**：
   - `[PLANNING RECOMMENDATION / ESTIMATE]` 建议 W6 单节 160 分钟面授进行明确的阶段切分：前半段以预置模板进行花瓶近迁移测试（建议规划估算约 40–50 分钟），完成三分类因果判断后即刻归档；后半段集中推进主干练习总成与期末项目导引；
   - 该课时切分仅作为规划建议估算，具体时间分配留待后续排课草案综合阶段与 Course Owner 审定，严禁在课堂中让两套资产无序穿插。
