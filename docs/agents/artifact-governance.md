@@ -106,12 +106,30 @@ Use this loop for lesson preparation and revisions:
 
 Do not require two complete review meetings, a complete rough deck, or a fixed number of prototype rounds when a narrower test can answer the live question.
 
-### Prototype fidelity follows the risk
+### Teacher-expert engagement: global picture first, then sharp questions
 
-Low cost does not mean fake content.
+To avoid micro-checkpoint fatigue and respect human instructional expertise:
+- **Lead with the whole board**: In each round, present the overarching lesson goals, current progress stage, full 160-minute chain, and protected non-negotiable core first, establishing a clear macro perspective.
+- **Isolate 2–3 sharp experiential questions**: The Agent handles mechanical details autonomously and surfaces only 2–3 sharp risk questions that strictly rely on the teacher's classroom intuition (e.g., *When do students first touch the software? Where is the highest friction point? Where will queues form in a 35-student single-teacher class? What gets cut first if time overflows?*).
+- **Decision vs runtime status**: Teacher verbal responses are expert risk assessments and decision inputs, not automatic `VERIFIED` runtime facts. Record them as `TEACHER ACCEPTED`, with affected software/timing aspects marked `PROPOSED` or `RUNTIME REQUIRED`. Avoid repeatedly asking "do you agree?" on routine items.
 
-- Keep decoration, typography polish, animation, and nonessential image hunting low fidelity until the teaching structure is stable enough for production.
-- Use **real** or already verified material early whenever the material itself is part of the learning task, evidence, or operation: software controls, important reference images, observation contrasts, task prompts, file/recovery behavior.
+### Lightweight PPT projection at activity design stage
+
+During curriculum and activity restructuring, attach only a lightweight slide projection per block before any deck authoring:
+- Non-frozen candidate slide count (e.g., 1–2 slides, explicitly flexible);
+- Single primary takeaway / visible student takeaway per slide;
+- One-sentence teacher memory anchor;
+- Presenter Notes intent (core clarification, common student misconception, or transition cue).
+
+Do not draft full verbatim lecture scripts or premature visual layout polish. Once the activity sequence stabilizes, transition smoothly into the single Markdown Slide Draft lineage.
+
+### Prototype fidelity and cheapest adequate expression by human intervention cost
+
+Low cost does not mean fake content, nor does it mean avoiding images entirely:
+- **Evaluate cost by actual human intervention required**: AI text-to-image is inexpensive for conceptual, atmospheric, or metaphorical illustrations where technical veracity is not load-bearing.
+- **Strict prohibition on faking runtime/technical reality**: AI generation must never be used to fabricate Blender UI, shader node graphs, parameter states, or student manipulation outcomes. All software controls, node connections, and material responses must be backed by real Blender/IDE deterministic captures or actual files.
+- **Agent-assisted web reference discovery**: For real-world material comparisons or photo references, provide directly searchable Google keywords, exact origin URLs, and licensing status. Prioritize Agent automated search and filtering to minimize manual teacher searching.
+- **Stop condition**: Stop visual iteration when students can reliably understand the concept and make independent judgment. Do not upgrade to animations, advanced lighting setups, or high-touch graphic polish unless pedagogy strictly requires it. Visual aesthetics cannot substitute for physical or software truthfulness.
 - A prototype may be disposable or may evolve into the final deck, but there must be only **one active editable slide lineage**. Do not maintain separate prototype and final decks in parallel.
 
 ### Markdown Slide Draft as the low-cost visual prototype
