@@ -66,10 +66,11 @@ def run_rehearsal(package_dir):
     # --- Block 3: 原生几何体热身与视口初探 (20 min) ---
     print("\n[Block 3] 原生几何体热身与视口初探 (20 min, PROPOSED)")
     print("  -> [提前上机] 学生在约第 30 分钟首次进入 Blender，亲手接触 3D Viewport 与 Outliner。")
-    print("  -> 视口导航三键客练习 (旋转/平移/缩放)；在球体与立方体上直观验证高光随视角滑动。")
-    print("  -> [关键纪律] Material Preview 模式默认不依赖场景灯光，明确无需调整场景灯。")
+    print("  -> 最小动手动作：亲手添加 UV Sphere、位移摆放、在 Material 面板下拉指派预置材质 Mat_Warmup_Sphere。")
+    print("  -> 视口导航三键客练习 (旋转/平移/缩放)；在球体与立方体上直观验证高光随视角滑动；备用隐藏球体容灾。")
+    print("  -> [关键纪律] Material Preview 模式默认不依赖场景灯光 (use_scene_lights=False)，明确无需调整场景灯。")
     print("  -> 热身不评分、不提交、不强制复刻教师布局。")
-    rehearsal_log.append("Block 3: 原生几何体热身降低初始门槛；Material Preview 灯光行为明确；学生用时未测。")
+    rehearsal_log.append("Block 3: 原生几何体热身亲手添加与指派预置材质；Material Preview 灯光行为明确；学生用时未测。")
 
     # --- Block 4: 手电筒主案例观察与物理因果解构 (20 min) ---
     print("\n[Block 4] 手电筒主案例观察与物理因果解构 (20 min, PROPOSED)")
@@ -94,8 +95,9 @@ def run_rehearsal(package_dir):
         print("  -> [模拟状态] Starter 节点状态设定为纯净中性基准 (Factor=0.0, Color B 纯白)。")
     rehearsal_log.append("Block 5: 分层引入 Shading；控件示范不泄露判别式答案；交接状态中性。")
 
-    # --- Block 6: 学生实操：判别式改色与首个材质决策 (25 min) ---
+    # --- Block 6: 学生实操：判别式改色与首个材质决策 (25 min, PROPOSED) ---
     print("\n[Block 6] 学生实操：判别式改色与首个材质决策 (25 min, PROPOSED)")
+    print("  -> 判别式检查：2.1 基础跟进练习 (纯白/纯黑) + 2.2 独立迁移判别挑战 (中灰相乘等比压暗因果，排除提示污染)。")
     sim_workspace = tempfile.mkdtemp(prefix="w1_rehearsal_student_")
     student_blend = os.path.join(sim_workspace, "W1_Flashlight_2026999.blend")
     
@@ -113,8 +115,8 @@ def run_rehearsal(package_dir):
         bpy.ops.wm.save_mainfile()
         print("  -> [Blender 探针] 学生完成判别式测试，复位状态后选定橄榄军绿 (Factor=0.85)。")
     else:
-        print("  -> [模拟状态] 模拟学生执行纯白/纯黑测试后，显式复位基准态并完成军绿改色。")
-    rehearsal_log.append("Block 6: 判别式检查后落实显式状态复位；参数修改与字段1填写。")
+        print("  -> [模拟状态] 模拟学生执行纯白/纯黑测试与独立迁移判别后，显式复位基准态并完成军绿改色。")
+    rehearsal_log.append("Block 6: 判别式跟进与独立迁移后落实显式状态复位；参数修改与字段1填写。")
 
     # --- Block 7: 现场分层巡视反馈与抽检 (10 min) ---
     print("\n[Block 7] 现场分层巡视反馈与抽检 (10 min, PROPOSED)")

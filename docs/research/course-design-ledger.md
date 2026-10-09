@@ -45,7 +45,7 @@
   - 决议状态 (2026-10-09)：**`TEACHER ACCEPTED — REALIGN WEEK 1 FRONT-HALF (PROPOSED TIMING / RUNTIME REQUIRED FOR CAPACITY & ASSETS)`**
   - **核心判定与设计原则**：
     1. **一条主线、两类素材职责**：低复杂度原生球体/立方体用于视觉原理的最小直观解释与 Blender 基本手感操作热身；Poly Haven **Vintage Flashlight** 严格保留为第一周正式材质观察/改色案例及 W1–W6 有界混合拓扑连续性载体；W7–W9 独立期末资产边界保持不变；
-    2. **更早进入 Blender**：学生亲手添加、选中、移动/缩放少量原生几何体，认识 3D Viewport、Outliner、基础对象属性/材料入口、视口导航与 Material Preview；热身**不单独评分、不提交、不要求精确复刻老师场景**；灯光行为明确：Material Preview 下默认不依赖 Scene Lights，避免让学生调场景灯光；
+    2. **更早进入 Blender**：学生执行最小主动操作（亲手添加 UV Sphere、位移摆放、在 Material 属性下拉直接指派预置材质 `Mat_Warmup_Sphere`，并设置 2 分钟卡壳隐藏备用球体 fallback），认识 3D Viewport、Outliner、基础材质入口、视口导航与 Material Preview；热身**不单独评分、不提交、不要求精确复刻老师场景**；灯光行为明确：Material Preview 下默认不依赖 Scene Lights (use_scene_lights=False)，避免让学生调场景灯光；
     3. **分层讲解 UI**：几何体热身只讲基础视口导航与对象材质入口；正式手电筒任务才引入 Shading 工作区、Shader Editor、材质槽与预连 `Body_Color_Tint`。保持 Option B 预置节点方案，学生不连线不建节点；
     4. **概念导入先直观再应用**：游戏/数字内容 PBR 用途与视觉悬念 $\to$ 4 个英文标准术语（Base Color, Roughness, Metallic, Normal）及大白话 $\to$ 识别光照/视角与材质的区别 $\to$ 迁移到手电筒部位。“高光会跑，别把它画死在 Base Color 里”作为核心记忆锚点；Transmission vs Alpha 直观辨析；
     5. **开场不做知识测验**：消减开场 5 分钟摸底测试，直接通过 PPT 导入与几何体热身观察；保留后段 `Predict → Operate → Explain` 判别式学习证据；
