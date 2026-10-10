@@ -72,11 +72,23 @@ def build_and_verify_with_bpy(output_dir):
     bpy.ops.object.shade_smooth()
     fallback_sphere.data.materials.append(mat_sphere)
 
-    # 将备用球体移至备用集合并默认隐藏
+    # 将备用球体移至备用集合并默认通过视口眼睛图标隐藏 (hide_set(True))
+    # 注意：hide_viewport (全局禁用/Monitor) 保持 False，确保学生在 Outliner 点亮眼睛图标 (或按 Alt+H) 即可直接恢复显示
     bpy.context.scene.collection.objects.unlink(fallback_sphere)
     fallback_col.objects.link(fallback_sphere)
-    fallback_sphere.hide_viewport = True
-    fallback_sphere.hide_render = True
+    fallback_sphere.hide_viewport = False
+    fallback_sphere.hide_set(True)
+    fallback_sphere.hide_render = False
+
+    # 针对性探针断言：验证初始隐藏与恢复链路
+    assert fallback_sphere.hide_get() is True, "备用球体未处于 hide_set(True) 视口眼睛隐藏状态"
+    assert fallback_sphere.hide_viewport is False, "备用球体不应设置全局 hide_viewport=True，否则 Outliner 眼睛图标无法恢复"
+    # 模拟学生点击 Outliner 眼睛图标
+    fallback_sphere.hide_set(False)
+    assert fallback_sphere.hide_get() is False, "模拟点亮眼睛图标后未能恢复显示状态"
+    # 恢复隐藏状态供保存
+    fallback_sphere.hide_set(True)
+    assert fallback_sphere.hide_get() is True, "备用球体未能重新置为隐藏状态"
 
     # 4. 创建观察机位 (Camera)
     bpy.ops.object.camera_add(location=(0.0, -5.0, 2.5), rotation=(1.15, 0.0, 0.0))
@@ -113,7 +125,7 @@ def build_and_verify_with_bpy(output_dir):
 
     print(f"[PASS] 参照对象创建成功: {cube.name} (s=1.6, Roughness=0.6)")
     print(f"[PASS] 预置材质创建成功: {mat_sphere.name} (Roughness=0.3, fake_user=True)")
-    print(f"[PASS] 容灾备用对象就绪: {fallback_sphere.name} (隐藏状态: viewport={fallback_sphere.hide_viewport})")
+    print(f"[PASS] 容灾备用对象就绪: {fallback_sphere.name} (视口眼睛隐藏: hide_get={fallback_sphere.hide_get()}, 全局视口启用: hide_viewport={fallback_sphere.hide_viewport})")
     print(f"[PROBE EVIDENCE (Local macOS Blender 5.2.2 LTS)] 3D 视口 Material Preview 属性真实采得: use_scene_lights={shading_probes[0]['use_scene_lights']}")
     print("  -> 行为依据：Material Preview 默认使用内置 HDRI，不启用场景灯，场景光源移动不改变该视口光照。")
     print("  -> 证据边界限制：交互式高光随视角滑动与场景灯动态无关性属于 INTERACTIVE RUNTIME REHEARSAL REQUIRED。")
@@ -144,7 +156,7 @@ def verify_statically(output_dir):
         "asset_name": "W1_Warmup_Geometry_Starter.blend",
         "pre_existing_objects": ["Warmup_Cube", "Cam_Warmup", "Light_Warmup_Sun"],
         "student_action_object": "Warmup_Sphere (亲手 Shift+A 添加并移动)",
-        "fallback_object": "Warmup_Sphere_Fallback (备用集合中隐藏，2分钟卡壳容灾)",
+        "fallback_object": "Warmup_Sphere_Fallback (备用集合中通过眼睛图标隐藏 hide_set(True)，保持 hide_viewport=False，2分钟卡壳容灾)",
         "pre_configured_materials": {
             "Mat_Warmup_Sphere": {"Roughness": 0.3, "Metallic": 0.0, "BaseColor_Channels": 4, "Purpose": "预置在材质库供学生在下拉框中选择指派"},
             "Mat_Warmup_Cube": {"Roughness": 0.6, "Metallic": 0.0, "BaseColor_Channels": 4, "Purpose": "预置在场景中作为磨砂粗糙度对比参照"}
@@ -171,7 +183,12 @@ def main():
     parser = argparse.ArgumentParser(description="Week 1 Geometry Warmup Scaffold")
     parser.add_argument("--output-dir", default=".scratch/teaching_package_w1/warmup",
                         help="Output directory for warmup blend")
-    args, unknown = parser.parse_known_args()
+    argv = sys.argv
+    if "--" in argv:
+        argv = argv[argv.index("--") + 1:]
+    else:
+        argv = sys.argv[1:]
+    args, unknown = parser.parse_known_args(argv)
 
     output_dir = os.path.abspath(args.output_dir)
 

@@ -58,8 +58,16 @@ def test_geometry_warmup_discipline_and_responsibilities():
         # 验证最小主动动作与职责对齐：亲手添加球体与指派预置材质
         assert "UV Sphere" in c or "球体" in c
         assert "Mat_Warmup_Sphere" in c or "预置材质" in c
-        # 验证容灾 fallback 机制存在
+        # 验证容灾 fallback 机制存在且操作明确为点亮眼睛图标
         assert "Fallback" in c or "备用" in c
+        assert "眼睛" in c or "Eye" in c
+
+    # 验证脚手架脚本契约：必须采用 hide_set(True) 视口眼睛隐藏，严禁设置全局 hide_viewport=True
+    scaffold_path = os.path.join(REPO_ROOT, "tools/teaching/scaffold_week1_geometry_warmup.py")
+    scaffold_code = read_file(scaffold_path)
+    assert "hide_set(True)" in scaffold_code
+    assert "hide_viewport = False" in scaffold_code
+    assert "fallback_sphere.hide_viewport = True" not in scaffold_code
 
 def test_anti_hint_pollution_and_transfer_challenge():
     """验证消除提示污染：区分跟进练习与无剧透的独立迁移判别挑战"""
@@ -92,14 +100,29 @@ def test_evidence_map_pointers():
     assert "高光会跑" in content
 
 def test_supersession_discipline():
-    """验证旧限制已在拥有位置标注 supersession"""
+    """验证旧限制已在拥有位置标注 supersession，且 §7.3 状态协调有效区分设计取代与未实测容量"""
     ledger_content = read_file(LEDGER_PATH)
     topo_content = read_file(TOPOLOGY_PATH)
+    pkg_content = read_file(PACKAGE_PATH)
 
     assert "SUPERSEDED" in ledger_content or "superseded" in ledger_content
     assert "Issue #37" in ledger_content
     assert "Issue #37" in topo_content
     assert "PARTIALLY SUPERSEDED" in topo_content or "superseded" in topo_content
+
+    # 验证 Package §7.3 状态协调与未实测容量边界保留
+    assert "DESIGN SUPERSEDED BY ISSUE #37" in pkg_content
+    assert "STUDENT RUNTIME EVIDENCE REQUIRED" in pkg_content
+    assert "REAL-HUMAN CAPACITY UNMEASURED" in pkg_content
+    assert "TARGET-LAB WINDOWS RUNTIME REQUIRED" in pkg_content
+
+def test_no_local_absolute_paths_in_teaching_package():
+    """验证教学包及核心材料中无本机绝对路径链接 (如 file:///Users)"""
+    pkg_content = read_file(PACKAGE_PATH)
+    handout_content = read_file(HANDOUT_PATH)
+
+    assert "file:///Users" not in pkg_content, "教学包中包含本机 file:///Users 绝对路径！"
+    assert "file:///Users" not in handout_content, "学生手册中包含本机 file:///Users 绝对路径！"
 
 def test_governance_prep_discipline_and_slide_projection():
     """验证备课治理规范与极轻 PPT 投影（应急 Buffer 不设独立投影页）"""
