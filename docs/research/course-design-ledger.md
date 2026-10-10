@@ -34,16 +34,23 @@
     3. **证据属性说明**：CORE42 后续外部语料审计未发现足以改变路线的冲突（`NO CONTRADICTION FOUND`），直接正向强化了 W1–W6 聚焦微案例配合复合主道具的教学组织证据；CORE42 是外部验证凭据（Reported with Provenance），而非该 Course Owner 决策本身的产生来源。
 - **Week 1 教学实施包与教师验收决议 (Week 1 Executable Package & Teacher Review / Issues #11, #15, #14)**：
   - 决议状态 (2026-10-01)：**`TEACHER ACCEPTED WITH DELTAS — APPLY BOUNDED CORRECTIONS THEN USE AS BASELINE`**
+    *(注：其中关于“W1 技术链路零变动/禁止新微实验”及原 B1–B4 迟滞上机节奏，已被 2026-10-09 Issue #37 决议部分替代 PARTIALLY SUPERSEDED)*
   - **决议事实与有界修正 (Bounded Correction)**：
     - 教师与 Course Owner 正式认可 Week 1 教学设计方案及 160 分钟课时节奏，附带一项有界修正：第一周开局显式预留 **15 分钟课程整体介绍 (Course Orientation)** 占位段；
     - **占位段规范**：内容后续由全课权威设计回填，最终覆盖 W1–W9 演进轨迹、后八周教学结构、作业练习体系、期末项目期望及考核评价框架原则；现阶段不编造或冻结任何具体成绩比例；
-    - **课时重分配 (严格等于 160 分钟)**：
-      - Block 1: 20 min (15 min Orientation + 5 min 入学摸底)；
-      - Block 2: 15 min (概念与光影剥离示范聚焦)；
-      - Block 10: 5 min (轻量交付与收尾)；
-      - 其余模块 (Block 3–9, 11) 严格保持不变；
-    - **核心实践循环与技术链路零变动**：坚决保护“材质动作 $\to$ 现场反馈 $\to$ 受控修订 $\to$ 保存退出重开持久化 $\to$ 缓冲容灾”完整循环；不改动 Blender 5.2.2 LTS 运行时、Starter 资产或材质交互逻辑；
+    - **课时重分配 (历史记录，现已由 Issue #37 替代)**：原 Block 1: 20 min (15 min Orientation + 5 min 入学摸底)；Block 2: 15 min；Block 10: 5 min；
+    - **核心实践循环保持**：坚决保护“材质动作 $\to$ 现场反馈 $\to$ 受控修订 $\to$ 保存退出重开持久化 $\to$ 缓冲容灾”完整循环；
     - **门禁纪律**：本工单仅完成有界修正并作为后续基线，**严禁启动后续 W1–W9 v0.3 重排，不提前解除 Issue #13 阻塞**。
+- **Week 1 前半段教学重构决议：几何体热身与手电筒主线对齐 (Issue #37 / 2026-10-09)**：
+  - 决议状态 (2026-10-09)：**`TEACHER ACCEPTED — REALIGN WEEK 1 FRONT-HALF (PROPOSED TIMING / RUNTIME REQUIRED FOR CAPACITY & ASSETS)`**
+  - **核心判定与设计原则**：
+    1. **一条主线、两类素材职责**：低复杂度原生球体/立方体用于视觉原理的最小直观解释与 Blender 基本手感操作热身；Poly Haven **Vintage Flashlight** 严格保留为第一周正式材质观察/改色案例及 W1–W6 有界混合拓扑连续性载体；W7–W9 独立期末资产边界保持不变；
+    2. **更早进入 Blender**：学生执行最小主动操作（亲手添加 UV Sphere、位移摆放、在 Material 属性下拉直接指派预置材质 `Mat_Warmup_Sphere`，并设置 2 分钟卡壳隐藏备用球体 fallback），认识 3D Viewport、Outliner、基础材质入口、视口导航与 Material Preview；热身**不单独评分、不提交、不要求精确复刻老师场景**；灯光行为明确：Material Preview 下默认不依赖 Scene Lights (use_scene_lights=False)，避免让学生调场景灯光；
+    3. **分层讲解 UI**：几何体热身只讲基础视口导航与对象材质入口；正式手电筒任务才引入 Shading 工作区、Shader Editor、材质槽与预连 `Body_Color_Tint`。保持 Option B 预置节点方案，学生不连线不建节点；
+    4. **概念导入先直观再应用**：游戏/数字内容 PBR 用途与视觉悬念 $\to$ 4 个英文标准术语（Base Color, Roughness, Metallic, Normal）及大白话 $\to$ 识别光照/视角与材质的区别 $\to$ 迁移到手电筒部位。“高光会跑，别把它画死在 Base Color 里”作为核心记忆锚点；Transmission vs Alpha 直观辨析；
+    5. **开场不做知识测验**：消减开场 5 分钟摸底测试，直接通过 PPT 导入与几何体热身观察；保留后段 `Predict → Operate → Explain` 判别式学习证据；
+    6. **单教师大班与保护核心**：160 分钟为总计划预算（PLAN BUDGET），重构 Block 1–6 候选分钟分配并明确超时优先剪裁规则（Cut Rules）；坚决保护材料观察、学生独立决策、反馈修订、保存退出重开持久化及轻量交付课内闭环；禁止通过隐性课后作业吸收超时；
+    7. **旧规则替代确认 (Supersession Notice)**：正式替代 2026-10-01 决议中关于“Week 1 零技术链路变动 / 禁止新微实验”的静态限制（仅针对几何体热身）；手电筒主线和 Option B 保护核心继续有效。
 
 ---
 
