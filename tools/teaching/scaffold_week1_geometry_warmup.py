@@ -73,7 +73,7 @@ def build_and_verify_with_bpy(output_dir):
     fallback_sphere.data.materials.append(mat_sphere)
 
     # 将备用球体移至备用集合并默认通过视口眼睛图标隐藏 (hide_set(True))
-    # 注意：hide_viewport (全局禁用/Monitor) 保持 False，确保学生在 Outliner 点亮眼睛图标 (或按 Alt+H) 即可直接恢复显示
+    # 注意：hide_viewport (全局禁用/Monitor) 保持 False，确保学生在 Outliner 点亮眼睛图标即可直接恢复显示
     bpy.context.scene.collection.objects.unlink(fallback_sphere)
     fallback_col.objects.link(fallback_sphere)
     fallback_sphere.hide_viewport = False

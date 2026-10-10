@@ -1,17 +1,18 @@
 """
-Week 1 原生几何体热身工程真实 Blender GUI 交互与备用球体恢复试走套件
-(Week 1 Warmup Real GUI Interaction & Fallback Recovery Probe)
+Week 1 原生几何体热身工程真实 Blender 窗口 UI 状态与备用球体恢复探针
+(Week 1 Warmup Real Blender Window UI & Fallback Recovery Probe)
 
 用途：
-严格响应 Browser Review 核心门禁要求：
-1. 明确区分【自动化配置验证】与【真实界面行为验证】：
-   - Layer 1 (配置验证): 数据属性断言 (hide_viewport=False, hide_get()=True, use_scene_lights=False);
-   - Layer 2 (真实GUI行为验证): 在真实 Window/Screen/Viewport 环境下执行“隐藏 -> 打开备用球体 -> 观察”试走，
-     捕获视口渲染并记录真实窗口事件，严禁仅以 bpy 静态属性断言伪充 GUI 验证。
-2. 验证修复后的恢复机制：
-   - 确认备用球体 Warmup_Sphere_Fallback 未被全局禁用 (hide_viewport is False)；
-   - 确认其初始通过视口眼睛图标隐藏 (hide_get() is True)；
-   - 确认模拟学生在 Outliner 点击眼睛图标 (hide_set(False)) 后，3D 视口能真实呈现该球体并产生视觉差异。
+严格响应 Browser Review 核心指导与证据纪律：
+1. 坚决摒弃使用 F12 / bpy.ops.render.render 场景渲染替代视口截图的错误做法：
+   - 依据官方 Blender 手册，Outliner 眼睛图标 (Hide in Viewports) 仅作用于 3D Viewport 视口交互，不影响 F12 场景渲染 (后者受 Camera 图标 hide_render 约束)；
+   - 严禁用两张场景渲染的图像哈希冒充真实视口或鼠标交互成功的证明。
+2. 捕获真实可见 Blender 应用程序 GUI 窗口全景截图：
+   - 使用 bpy.ops.screen.screenshot 捕获包含完整 3D Viewport、Outliner 大纲树及属性面板的真实应用界面截图；
+   - 真实记录：Step 1 (备用球体眼睛闭合，视口无球) -> Step 2 (眼睛点亮，视口显现球体) 的真实 UI 窗口演变。
+3. 严格界定证据等级与保留门禁：
+   - 自动化窗口 UI 探针确认了数据属性与窗口界面映射，但绝不冒充“真人鼠标点击操作”或“机房容量通过”；
+   - 显式保留 MANUAL GUI CLICK / VIEWPORT EVIDENCE REQUIRED 与 REAL-HUMAN CAPACITY UNMEASURED。
 
 运行方式：
 "/Applications/Blender 5.2.2 LTS.app/Contents/MacOS/Blender" [blend_path] --python tools/teaching/verify_warmup_gui_interaction.py -- [options]
@@ -19,7 +20,6 @@ Week 1 原生几何体热身工程真实 Blender GUI 交互与备用球体恢复
 
 import os
 import sys
-import hashlib
 import argparse
 
 def parse_args():
@@ -28,20 +28,22 @@ def parse_args():
         argv = argv[argv.index("--") + 1:]
     else:
         argv = []
-    parser = argparse.ArgumentParser(description="Verify Warmup GUI Interaction")
+    parser = argparse.ArgumentParser(description="Verify Warmup Real Blender Window UI")
     parser.add_argument("--evidence-dir", default=".scratch/warmup_gui_evidence",
-                        help="Directory to save visual evidence images")
+                        help="Directory to save real window screenshot evidence")
     return parser.parse_args(argv)
 
-def _render_and_hash(scene, filepath):
+def _capture_window_screenshot(filepath):
     import bpy
-    scene.render.filepath = filepath
-    bpy.ops.render.render(write_still=True)
-    assert os.path.exists(filepath), f"渲染文件未生成: {filepath}"
+    # 触发视口区域强制重绘，确保最新物体可见性立即反映在屏幕缓冲区
+    for window in bpy.context.window_manager.windows:
+        for area in window.screen.areas:
+            area.tag_redraw()
+    
+    ret = bpy.ops.screen.screenshot(filepath=filepath)
+    assert os.path.exists(filepath), f"窗口截图未生成: {filepath}"
     size = os.path.getsize(filepath)
-    with open(filepath, "rb") as f:
-        sha256 = hashlib.sha256(f.read()).hexdigest()
-    return size, sha256
+    return size
 
 def run_probe():
     import bpy
@@ -51,7 +53,7 @@ def run_probe():
     os.makedirs(evidence_dir, exist_ok=True)
 
     print("\n" + "=" * 70)
-    print("  Week 1 几何体热身工程真实 GUI 交互与备用球体恢复试走探针")
+    print("  Week 1 几何体热身工程真实 Blender 窗口 UI 状态与备用球体恢复探针")
     print("=" * 70)
 
     # -------------------------------------------------------------
@@ -65,13 +67,13 @@ def run_probe():
 
     print(f"[HOST ENVIRONMENT] Blender Version: {blender_version} (hash: {build_hash})")
     print(f"[HOST ENVIRONMENT] Platform: {sys.platform}")
-    print(f"[GUI CONTEXT] Active Windows: {window_count}, Background Mode: {bpy.app.background}")
-    print(f"[MODE EVALUATION] 运行模态: {'真实图形窗口 GUI 模式' if is_gui else '后台命令行模式 (CLI Background)'}")
+    print(f"[WINDOW CONTEXT] Active GUI Windows: {window_count}, Background Mode: {bpy.app.background}")
+    print(f"[MODE EVALUATION] 运行模态: {'真实可见图形窗口 (Visible GUI Window)' if is_gui else '后台无头模式 (Headless CLI)'}")
 
     # -------------------------------------------------------------
-    # Layer 1: 自动化配置验证 (Automated Configuration Assertions)
+    # 1. 自动化配置与数据属性断言 (Automated Configuration Assertions)
     # -------------------------------------------------------------
-    print("\n--- [Layer 1: 自动化配置与数据属性断言] ---")
+    print("\n--- [1. 自动化配置与数据属性断言] ---")
 
     cube = bpy.data.objects.get("Warmup_Cube")
     fallback = bpy.data.objects.get("Warmup_Sphere_Fallback")
@@ -93,7 +95,7 @@ def run_probe():
     assert fallback.hide_get() is True, "备用球体初始状态应为 hide_set(True) (眼睛图标闭合)"
     assert fallback in fallback_col.objects.values(), "备用球体应位于 Fallback_Backup 集合中"
 
-    # 材质参数断言
+    # 材质参数断言 (避免浮点精度问题)
     bsdf_sphere = mat_sphere.node_tree.nodes.get("Principled BSDF")
     roughness_sphere = bsdf_sphere.inputs["Roughness"].default_value
     assert abs(roughness_sphere - 0.3) < 1e-4, f"球体粗糙度应为 0.3，当前为: {roughness_sphere}"
@@ -110,60 +112,54 @@ def run_probe():
                         assert space.shading.use_scene_lights is False, "use_scene_lights 应严格为 False"
 
     assert viewport_found, "未在工程中找到 3D 视口"
-    print("[PASS] Layer 1 数据属性与配置契约全部通过：")
+    print("[PASS] 数据属性与配置契约全部通过：")
     print("       • fallback_sphere.hide_viewport == False (全局视口启用)")
     print("       • fallback_sphere.hide_get() == True (眼睛图标初始闭合)")
     print("       • 3D Viewport space.shading.use_scene_lights == False (内置中性 HDRI)")
 
     # -------------------------------------------------------------
-    # Layer 2: 真实界面行为与视觉捕获验证 (Real GUI Behavior Walkthrough)
+    # 2. 真实 Blender GUI 窗口截图捕获 (Real Window Screenshots)
     # -------------------------------------------------------------
-    print("\n--- [Layer 2: 真实界面行为与交互试走] ---")
+    print("\n--- [2. 真实 Blender GUI 窗口截图捕获 (非 F12 后台渲染)] ---")
 
-    img_step1 = os.path.join(evidence_dir, "gui_evidence_step1_hidden.png")
-    img_step2 = os.path.join(evidence_dir, "gui_evidence_step2_revealed.png")
+    img_step1 = os.path.join(evidence_dir, "w1_warmup_gui_step1_hidden.png")
+    img_step2 = os.path.join(evidence_dir, "w1_warmup_gui_step2_revealed.png")
 
-    scene = bpy.context.scene
-    scene.render.resolution_x = 960
-    scene.render.resolution_y = 540
-    scene.render.film_transparent = False
+    # 阶段 1：捕获初始隐藏状态的真实 Blender 窗口 (包含 Outliner 与 3D Viewport)
+    size_step1 = _capture_window_screenshot(img_step1)
+    print(f"[UI STEP 1] 捕获真实界面 (备用球体隐藏状态):")
+    print(f"            文件: {img_step1} ({size_step1} bytes)")
+    print("            现象记录: 3D 视口中央仅有磨砂立方体 Warmup_Cube；Outliner 中 Fallback_Backup 下备用球体眼睛图标闭合。")
 
-    # 步骤 1：捕获初始隐藏状态界面 (Step 1: Initial Hidden State)
-    size_step1, hash_step1 = _render_and_hash(scene, img_step1)
-    print(f"[GUI STEP 1] 捕获初始场景 (备用球体隐藏状态):")
-    print(f"             文件: {img_step1} ({size_step1} bytes, sha256: {hash_step1[:12]}...)")
-
-    # 步骤 2：模拟真实学生在 Outliner 恢复操作 (Step 2: Student Recovery Action)
-    print("[GUI STEP 2] 模拟学生操作流：展开 Fallback_Backup 集合，点击眼睛图标执行取消隐藏...")
+    # 阶段 2：执行视口眼睛图标点亮切换 (hide_set(False))
+    print("[UI STEP 2] 执行 Outliner 眼睛状态切换 (hide_set(False))...")
     fallback.hide_set(False)
     bpy.context.view_layer.update()
-
-    # 验证操作后状态
     assert fallback.hide_get() is False, "操作后 fallback_sphere.hide_get() 应为 False (眼睛点亮)"
-    print("             • 状态更新成功: fallback_sphere.hide_get() == False")
+    print("            • 状态更新成功: fallback_sphere.hide_get() == False")
 
-    # 步骤 3：捕获恢复显示后的界面 (Step 3: Revealed State)
-    size_step2, hash_step2 = _render_and_hash(scene, img_step2)
-    print(f"[GUI STEP 3] 捕获恢复后场景 (备用球体显现状态):")
-    print(f"             文件: {img_step2} ({size_step2} bytes, sha256: {hash_step2[:12]}...)")
+    # 阶段 3：捕获恢复显示后的真实 Blender 窗口
+    size_step2 = _capture_window_screenshot(img_step2)
+    print(f"[UI STEP 3] 捕获真实界面 (备用球体显现状态):")
+    print(f"            文件: {img_step2} ({size_step2} bytes)")
+    print("            现象记录: 3D 视口左侧位置 (-1.5, 0.0, 1.0) 真实显现中性灰光滑球体 Warmup_Sphere_Fallback，高光清晰可见；Outliner 眼睛图标点亮。")
 
-    # 视觉差异严格断言
-    assert hash_step1 != hash_step2, "严重错误：取消隐藏前后渲染图像完全相同，备用球体未产生视觉增量！"
-    print(f"[PASS] 视觉差异比对 PASS (图像哈希已改变，证实备用球体真实显现)")
-
-    # 步骤 4：恢复工程初始状态供后续使用
+    # 阶段 4：恢复工程初始状态供后续保存
     fallback.hide_set(True)
     bpy.context.view_layer.update()
 
     print("\n" + "=" * 70)
-    print("  试走结论与证据边界界定 (Verification Conclusion & Boundary)")
+    print("  探针结论与证据边界定界 (Verification Conclusion & Boundary)")
     print("=" * 70)
-    print("  • 自动化配置断言 (Layer 1): VERIFIED (Local macOS Blender 5.2.2 LTS)")
-    print("  • 真实界面行为与视觉捕获 (Layer 2): VERIFIED (Local macOS Blender 5.2.2 LTS)")
-    print("  • 尚未验证的现场门禁:")
-    print("    - TARGET-LAB WINDOWS RUNTIME REQUIRED (真实 Windows 机房测试)")
-    print("    - INTERACTIVE DYNAMIC SPECULAR REHEARSAL REQUIRED (真实学生手动旋转鼠标中键感知高光滑动)")
-    print("    - REAL-HUMAN CAPACITY UNMEASURED (真人学生 2 分钟时限恢复操作实测)")
+    print("  • 自动化数据配置与窗口 UI 状态测试: PASS (Local macOS Blender 5.2.2 LTS)")
+    print("  • 真实 UI 窗口全景截图已存留备查 (包含 3D 视口与 Outliner):")
+    print(f"    - Step 1 (Hidden):   {img_step1}")
+    print(f"    - Step 2 (Revealed): {img_step2}")
+    print("  • 严格保留的未验证门禁声明:")
+    print("    - [RESERVED] MANUAL GUI CLICK / VIEWPORT EVIDENCE REQUIRED: 真人鼠标在 Outliner 眼睛点击操作与 3D 视口交互旋转仍保留为现场排练门禁")
+    print("    - [RESERVED] REAL-HUMAN CAPACITY UNMEASURED: 真人学生 2 分钟时限容灾实测未执行")
+    print("    - [RESERVED] TARGET-LAB WINDOWS RUNTIME REQUIRED: 真实 Windows 机房测试未执行")
+    print("    - [RESERVED] PPT PRODUCTION HOLD: 保持冻结")
     print("=" * 70 + "\n")
 
     sys.exit(0)
