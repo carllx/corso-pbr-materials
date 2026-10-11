@@ -198,7 +198,7 @@ def build_package(source_dir, output_dir):
 
     mix_node = nodes.new(type='ShaderNodeMix')
     mix_node.name = "Body_Color_Tint"
-    mix_node.label = "Body Color Tint"
+    mix_node.label = "Mix (外壳调色)"
     mix_node.data_type = 'RGBA'
     mix_node.blend_type = 'MULTIPLY'
     mix_node.inputs['Factor'].default_value = 0.0

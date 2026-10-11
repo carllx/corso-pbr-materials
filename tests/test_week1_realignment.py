@@ -138,3 +138,33 @@ def test_governance_prep_discipline_and_slide_projection():
     # 验证应急 Buffer (Block 11) 不强制占独立投影页
     assert "Block 11" in pkg_content
     assert "0 页" in pkg_content or "不设独立页" in pkg_content
+
+def test_teacher_trial_round1_corrections():
+    """验证第一轮教师试走反馈后的联动修正：Shade Smooth、B2->B5桥接、Mix 原生标签及 Multiply 白色特性"""
+    pkg_content = read_file(PACKAGE_PATH)
+    handout_content = read_file(HANDOUT_PATH)
+    ledger_content = read_file(LEDGER_PATH)
+    evidence_content = read_file(EVIDENCE_MAP_PATH)
+
+    # 1. 热身 Shade Smooth
+    assert "平滑着色" in handout_content and "Shade Smooth" in handout_content
+    assert "平滑着色" in pkg_content and "Shade Smooth" in pkg_content
+
+    # 2. B2 -> B5 概念到 Shader Editor 界面桥接
+    assert "30 秒" in pkg_content and "桥接" in pkg_content
+    assert "Principled BSDF" in handout_content
+    assert "30 秒概念到界面桥接" in handout_content
+
+    # 3. 节点标签规范与称谓对齐
+    assert "Mix (外壳调色)" in pkg_content or "Mix (外壳调色 / Body_Color_Tint)" in pkg_content
+    assert "Mix (外壳调色 / Body_Color_Tint)" in handout_content
+
+    # 4. Multiply 纯白特性说明
+    assert "乘法中性元" in pkg_content
+    assert "绝非软件卡死" in handout_content or "绝非软件卡死" in pkg_content
+
+    # 5. 台账与证据地图同步
+    assert "Teacher Trial Round 1 Audit" in ledger_content
+    assert "PROPOSED / IN TRIAL / GATE OPEN" in ledger_content
+    assert "Shade Smooth" in evidence_content
+
