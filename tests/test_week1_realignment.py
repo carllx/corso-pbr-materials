@@ -163,8 +163,12 @@ def test_teacher_trial_round1_corrections():
     assert "乘法中性元" in pkg_content
     assert "绝非软件卡死" in handout_content or "绝非软件卡死" in pkg_content
 
-    # 5. 台账与证据地图同步
+    # 5. 台账与证据地图同步与证据属性区分
     assert "Teacher Trial Round 1 Audit" in ledger_content
-    assert "PROPOSED / IN TRIAL / GATE OPEN" in ledger_content
+    assert "TEACHER-REPORTED" in ledger_content
+    assert "TECHNICAL FACT" in ledger_content
+    assert "CURRENT DESIGN DECISION" in ledger_content
+    assert "IN TRIAL / UNMEASURED / GATE OPEN" in ledger_content
     assert "Shade Smooth" in evidence_content
+
 

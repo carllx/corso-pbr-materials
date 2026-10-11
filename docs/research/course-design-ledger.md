@@ -131,29 +131,32 @@
 
 ## 5. Week 1 教师试走反馈（Round 1）审计与联动修订记录 (Teacher Trial Round 1 Audit)
 
-> **审计背景**：基于真实 Blender 5.2.2 LTS 环境及教师桌面实测文件夹（`Week1-Teacher-Trial`），汇总首轮教师试走暴露的问题、已确认技术事实、教学设计联动修订与尚待教师最终决策事项。保留证据属性，不将中间推论混同为最终事实。
+> **审计与证据溯源说明**：  
+> 本节记录基于 2026-10-10 本地教师单人试走反馈记录（本地试走工作区归档于 `~/Desktop/Week1-Teacher-Trial-Round1-Archive`，教师试讲/试走记录由项目教师口头与现场笔记反馈给出）。  
+> 严格区分 **`TEACHER-REPORTED` (教师口头/现场反馈事实)**、**`TECHNICAL FACT` (经技术复核的确定性事实)** 与 **`PROJECT INFERENCE` (教学法推论与设计修订)**，不将口头体验伪造为多样本现场实测或独立目击验证。
 
-### 5.1 教师实测发现的问题与技术/教学事实确认
+### 5.1 教师试走反馈、事实判定与联动修订
 
 1. **Multiply ＋ 纯白色运算行为**：
-   - **教师实测现象**：拖动 Factor 滑块时外壳完全不发生颜色变化，容易误判为软件卡死或节点失效；
-   - **技术事实判定 (`VERIFIED / DIRECT SOURCE FACT`)**：在数学正片叠底（Multiply）运算中，纯白色 $(1.0, 1.0, 1.0)$ 是乘法的中性元（$C \times 1 = C$）。当插槽 B 颜色为纯白色时，无论 Factor 取何值，运算输出均与原底色完全一致，这是完全正常的数学与图形运算行为；
-   - **修订动作**：在 Handout、Teaching Package 与教师指引中明确校正指导语言，消除“软件失灵”误解，作为引导学生进行纯白/纯黑对比预测的核心教学契机。
+   - **教师试走反馈 (`TEACHER-REPORTED`)**：教师在实测调节中反馈拖动 Factor 滑块时外壳完全不发生颜色变化，直观体验易产生“软件卡死或节点失灵”的误判；
+   - **技术事实判定 (`TECHNICAL FACT / VERIFIED`)**：在数学正片叠底（Multiply）运算中，纯白色 $(1.0, 1.0, 1.0)$ 是乘法的中性元（$C \times 1 = C$）。当插槽 B 颜色为纯白色时，无论 Factor 取何值，运算输出与原底色完全一致，这是确定性的物理与数学运算规律；
+   - **教学修订 (`PROJECT INFERENCE`)**：在 Handout、Teaching Package 与教师指引中明确校正指导语言：保护 2.1 的 Predict-before-answer 顺序（学生先预测再实操），在 Explain 解释与排错提示中明确纯白不变色是正常运算，消除“软件失灵”误解。
 2. **节点命名与原生术语混淆**：
-   - **教师实测现象**：自定义节点标签 `Body Color Tint` 容易让初学者误以为是 Blender 内置的原生节点类型；
-   - **规范事实判定 (`PROJECT INFERENCE / CONVENTION`)**：代码内部保持稳定索引键 `mix_node.name = "Body_Color_Tint"`（确保自动化测试与 bpy 脚本兼容），界面展示标签规范为 `mix_node.label = "Mix (外壳调色)"`（原生术语居前，中文提示在后）；材料统一称呼为 `Mix 节点（外壳调色 / Body_Color_Tint）`。
-3. **Block 2 $\to$ Block 5 概念到界面的知识过渡不足**：
-   - **教学认知事实**：Block 2 讲授了 Base Color、Roughness、Metallic、Normal 四大概念，Block 5 切入 Shading 工作区时直接面对复杂的 Principled BSDF 节点网络，存在认知断层；
-   - **修订动作**：在 Block 5 增设“30 秒概念到界面视觉桥接”——指导学生首先指认 Principled BSDF 的前几个插槽正是 B2 讲的 4 大概念，并明确告知“今天只调节流入 Base Color 的小节点，不动 BSDF 主体”，降低认知负荷。
-4. **热身球体刻面与价值感不足**：
-   - **实测现象**：`Shift + A` 原生添加的 UV Sphere 默认为 Flat Shading，刻面明显，高光呈方块状，与右侧磨砂立方体的高光对比不够圆润精致；
-   - **修订动作**：在 Handout 与指引中增加 1 步顺手操作：“右键点击球体 $\to$ 选择「平滑着色 (Shade Smooth)」”，2 秒消除棱角，显著提升“高光会跑”的视觉质感。
+   - **教师试走反馈 (`TEACHER-REPORTED`)**：教师指出初学者容易将自定义英文标签 `Body Color Tint` 误以为是 Blender 内置的原生节点类型，增加手册检索困惑；
+   - **规范事实判定 (`TECHNICAL FACT / CONVENTION`)**：代码内部保持稳定索引键 `mix_node.name = "Body_Color_Tint"`（确保自动化测试与 bpy 脚本兼容），界面展示标签规范为 `mix_node.label = "Mix (外壳调色)"`（原生类型名居前，中文提示在后）；材料统一称呼为 `Mix 节点（外壳调色 / Body_Color_Tint）`。
+3. **Block 2 $\to$ Block 5 概念到界面的知识过渡与 Principled BSDF 插槽视读**：
+   - **教学认知反馈 (`TEACHER-REPORTED`)**：教师反馈从 B2 四大概念进入 B5 Shading 工作区时，面对中央 Principled BSDF 着色器网络存在认知断层；
+   - **界面实测事实 (`TECHNICAL FACT`)**：在真实 Blender 5.2.2 LTS 中，Principled BSDF 顶部默认可见输入插槽主要为 `Base Color`、`Metallic`、`Roughness`，而 `Normal` 插槽位于着色器靠下方独立面板中；
+   - **教学修订 (`PROJECT INFERENCE`)**：在 Block 5 增设可选 30 秒概念桥接（控制在既有 15 分钟预算内），引导学生建立从 B2 到 Principled BSDF 顶部可见核心插槽（Base Color / Metallic / Roughness）的直观映射，并说明 Normal 作为微观凹凸在下方独立区域且今天不动，明确“今天只调连入 Base Color 的调色小盒子”，降低认知负荷。
+4. **热身球体刻面与平滑着色**：
+   - **教师试走反馈 (`TEACHER-REPORTED`)**：教师反馈 `Shift + A` 原生添加的 UV Sphere 默认为 Flat Shading，刻面棱角明显，高光呈方块状，与右侧磨砂立方体的高光对比不够圆润精致；
+   - **教学修订 (`PROJECT INFERENCE`)**：在 Handout 与指引中增加可选的“右键 $\to$ 平滑着色 (Shade Smooth)”微润色步骤，使高光圆润聚拢；明确该步骤为**可选提升项 (Optional / Cuttable)**，时间紧迫可跳过，不强制增加零基础学生的必要上机门槛。
 
 ### 5.2 教学方案定位与待决事项 (Decisions & Open Items)
 
-- **Option B 预置节点方案状态**：
-  - 当前定位为 **`PROPOSED / IN TRIAL / GATE OPEN`**；
-  - 暂以方案 B（补充必要界面桥接，保留预连接节点有限操作）为前进方向；严禁擅自冻结为“已验证成功”；若后续大班容量或理解验证仍不通过，再行评估方案 C。
+- **Option B 预置节点方案权威定位**：
+  - **当前设计权威**：Option B 预置节点脚手架（预连节点、学生调参）为**当前已由课程负责人确认采纳的教学设计决策 (CURRENT DESIGN DECISION per Issue #37)**；
+  - **实测与容量状态**：其在 35 人/17 人大班真实课堂中的理解达成与时间容量保持 **`IN TRIAL / UNMEASURED / GATE OPEN`**；若后续大班真人容量或理解验证出现过载/失效，再评估方案 C。
 - **待教师最终决策事项 (Pending Teacher Disposition)**：
   1. 手电筒初始构图与 Shading 工作区入口是否需要进一步微调视口相机或预置布局；
   2. 极简几何体热身（Block 3）在大班实际排课中是否确实能够在 15–20 分钟内闭环且不挤压后段手电筒时间（需真人课堂实测样本）；
@@ -161,4 +164,5 @@
 
 ---
 *本台账随课程调研与设计推进持续更新，归档于 `docs/research/course-design-ledger.md`。*
+
 
