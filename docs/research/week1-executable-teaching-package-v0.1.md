@@ -24,8 +24,8 @@ Week 1 是《三维数字材质制作》的第一堂实践课。本周不追求�
 学完 Week 1 课程后，学生应能独立展现以下四项行为成效：
 1. **[LO1 观察解构] 区分固有属性与光影表象**：能审视工业资产参考图与三维视口，理解视觉表象是由材质微表面、几何形态、环境光照与观察视角耦合产生；独立填写决策卡，将表象解构为物理材质属性（Base Color, Roughness, Metallic），并严格剥离外部光源光斑与外部投影（核心记忆锚点：“高光会跑，别把它画死在 Base Color 里”）；
 2. **[LO2 材质决策与修订闭环] 判别式理解与单一可见动作**：
-   - 掌握有界色彩叠加调节（Bounded Color Adjustment）的数学与色彩原理，通过一个 **`Predict → Operate → Explain`** 判别式检查（理解纯白为 Multiply 中性元、染色保留底层纹理的因果机制）；
-   - 在预置材质槽中检视预置链路（`Body_Color_Tint`），调节混合强度 Factor 与目标色 Color B 完成一次外壳涂装变体；
+   - 掌握有界色彩叠加调节（Bounded Color Adjustment）的数学与色彩原理，通过一个 **`Predict → Operate → Explain`** 判别式检查（理解 Color 模式只替换色相/饱和度并完整保留明暗细节、以及去色/白色输入下的因果机制）；
+   - 在预置材质槽中检视预置两级遮罩管线（`Mix (外壳调色)`），调节混合强度 Factor 与目标色 Color B 完成一次外壳涂装变体；
    - 在课堂反馈后，完成对同一决定的针对性修订，并记录“初次决策 / 接收反馈 / 修订动作”三字段闭环证据；
 3. **[工程/LO3 预备性证据] 局部保护与数据持久化**：在完成外壳修改的同时，确保受保护部件（玻璃镜片、反光碗、机械螺栓）零污染；在课堂内完成工程保存、完全退出 Blender 进程并重新打开，验证修改 100% 完整持久化；
 4. **[轻量化证据交付]**：独立提交 1 份结构化决策卡（含观察表、判别式检查与修订三字段）与 1 张标准机位视口截图，源工程本地保留以备抽查。原生几何体热身不产生额外提交工件。
@@ -61,13 +61,13 @@ Week 1 是《三维数字材质制作》的第一堂实践课。本周不追求�
 ### 2.2 教学接缝划分与 Starter 决策 (Teaching Seam)
 - **几何与材质接缝划分**：将主体外壳（Main Body Shell，由 812 面下底壳与 650 面顶盖组成，共 **1,462 面**）预置为独立材质槽 **Slot 2 (`vintage_flashlight_body`)**；
 - **Option B 预置节点接缝与有界色彩调节 (Bounded Color Adjustment)**：
-  - 在 Slot 2 中预先串联好 **`Body_Color_Tint`** 节点（`ShaderNodeMix`，数据类型 `RGBA`，模式 `Multiply`，初始 `Factor=0.0`，插槽 `B` 颜色为纯白色 `(1.0, 1.0, 1.0, 1.0)`）；
+  - 在 Slot 2 中预先串联好两级遮罩管线：学生交互主节点 **`Body_Color_Tint`**（`ShaderNodeMix`，数据类型 `RGBA`，模式 `COLOR`，初始 `Factor=0.0`），配合底层预置的 `Paint_Mask_Ramp` 漆面遮罩与 `Metal_Protection_Filter` 金属保护滤网；
   - **技术语义精准纠偏**：
-    - Blender Mix Color 节点的 Multiply 模式数学公式为：$Result = (1 - Factor) \times A + Factor \times (A \times B)$；
-    - 当 Factor=0.0 时，无论 B 为何色，输出均严格等于原贴图 A；
-    - 当 Factor>0.0 时，原贴图 A 与颜色 B 逐通道相乘，实现原图基础上的**有界色彩叠加调节 (Bounded Color Adjustment)**；
-    - **严正纠偏**：Multiply 与 Factor 属于着色器中的数学色彩叠加手段，**绝对不是物理世界中的“涂层厚度”或“喷漆覆盖率”**！真实物理涂层属于多层 BRDF（如 Clearcoat 或带 Mask 的层级材质混合），在 W1 必须准确讲授为“基于现有纹理的有界调色”，杜绝错误心智模型；
-  - **实机测定视觉中性保障**：在 Blender 5.2.2 LTS 实机测定，Factor=0.0 结合 Multiply 与纯白色，与官方原版资产像素差严格为 0.0（Max pixel diff = 0.0000），确保学生开局处于预期的无调色中性原版状态；
+    - Blender Mix Color 节点的 Color 模式将目标色彩的色相与饱和度赋予底图，保留底图的明暗反差与表面划痕；配合底层由 Metallic 贴图派生的 `Paint_Mask_Ramp` 漆面遮罩与 `Metal_Protection_Filter` 金属保护滤网，实现仅针对非金属红色底漆的**有界色彩叠加调节 (Bounded Color Adjustment)**，同时 100% 保护裸露金属；
+    - 当 Factor=0.0 时，输出完全等于原贴图 A；
+    - 当 Factor>0.0 时，油漆区域呈现目标色彩，金属区域完全透传原始贴图；
+    - **严正纠偏**：节点调色属于着色器中的数学色彩叠加手段，**绝对不是物理世界中的“涂层厚度”或“喷漆覆盖率”**！真实物理涂层属于多层 BRDF（如 Clearcoat 或带 Mask 的层级材质混合），在 W1 必须准确讲授为“基于现有纹理的有界调色”，杜绝错误心智模型；
+  - **实机测定视觉中性保障**：在 Blender 5.2.2 LTS 实机测定，Factor=0.0 两级遮罩调色管线与官方原版资产像素差严格为 0.0（Max pixel diff = 0.0000），确保学生开局处于预期的无调色中性原版状态；
 - **为什么不让学生在 W1 自己做选面或建节点连线 (B = DEFER, NOT OMIT)**：
   - 避免初学者陷入快捷键盲区、数据类型报错与端口错连调试，保护核心的“观察解构与材质因果决策”时间。
 
@@ -84,11 +84,11 @@ Week 1 是《三维数字材质制作》的第一堂实践课。本周不追求�
 | 目录 / 角色 | 文件名 | 规格与状态 | 来源与构建方式 |
 | :--- | :--- | :--- | :--- |
 | **`warmup/` (热身工程，新增)** | `W1_Warmup_Geometry_Starter.blend` | ~110 KB，预置磨砂对比立方体 `Warmup_Cube` 与预置材质 `Mat_Warmup_Sphere`，内置隐藏备用球体 `Warmup_Sphere_Fallback` (2分钟卡壳容灾，在大纲视图展开 `Fallback_Backup` 点亮眼睛图标 Eye 恢复显示)，默认 Material Preview (中性 HDRI)，供学生亲手添加球体与下拉指派材质，不评分、不提交 | 由确定性脚本自动生成并在本地真实 Blender 5.2.2 LTS 下实测通过，供第 30 分钟视口导航与材质初探 |
-| **`starter/` (学生开局)** | `W1_Starter_Vintage_Flashlight.blend` | 2.1 MB，3 槽完备，预连中性 `Body_Color_Tint` 节点，全屏幕预设 Material Preview 与 `Cam_Obs`，贴图全内置打包 (Pack All) | 由官方资产经确定性 Python 脚本切分 Slot 2、预接调色节点、打包贴图并校准各屏幕视口生成 |
+| **`starter/` (学生开局)** | `W1_Starter_Vintage_Flashlight.blend` | 2.1 MB，3 槽完备，预连两级遮罩管线并处于 Factor=0.0 中性态，全屏幕预设 Material Preview 与 `Cam_Obs`，贴图全内置打包 (Pack All) | 由官方资产经确定性 Python 脚本切分 Slot 2、预接调色节点、打包贴图并校准各屏幕视口生成 |
 | **`recovery/` (恢复 A)** | `W1_Recovery_A_Starter.blend` | 2.1 MB，纯净预连中性开局备份 | 同 Starter，供操作彻底做崩的学生回到原始起点（实际恢复用时待测） |
-| **`recovery/` (恢复 B)** | `W1_Recovery_B_Post_Edit.blend` | 2.1 MB，已完成首次材质决策检查点 | 内置已调好的 `Body_Color_Tint` (Multiply 0.85, 军绿)，供掉队者跳关进入反馈与修订（如实标注借用起点） |
+| **`recovery/` (恢复 B)** | `W1_Recovery_B_Post_Edit.blend` | 2.1 MB，已完成首次材质决策检查点 | 内置已调好的 `Body_Color_Tint` (Color 0.85, 偏艳草绿初选起点)，供掉队者跳关进入反馈与修订（如实标注借用起点） |
 | **`recovery/` (恢复 C)** | `W1_Recovery_C_Reference_View.png` | 2.2 MB，标准机位渲染图 (1920x1080) | 教师参考效果图，**极端设备故障时的应急部分完成路径** |
-| **`reference/` (教师参考)** | `W1_Reference_Result.blend` | 2.1 MB，包含反馈修订后的终态参数 | Factor=0.80，颜色纯度与明度经微调优化后的最终工程 |
+| **`reference/` (教师参考)** | `W1_Reference_Result.blend` | 2.1 MB，包含反馈修订后的优化终态参数 | Factor=0.80，针对教师讲评反馈降低饱和度并微调明度后的沉稳橄榄绿工程（与 Recovery B 形成明确反馈修订差异） |
 | **`textures/` (共享贴图)** | `vintage_flashlight_*.{jpg,exr,png}` | 5 张 1K 贴图，共约 1.9 MB | 官方 Poly Haven 原生贴图，作为外部独立文件同步保存备查 |
 
 > **确定性重构指令 (Deterministic Rebuild)**：在目标 Blender 5.2 LTS 环境下，运行仓库持久化脚本 [`tools/teaching/build_week1_teaching_package.py`](../../tools/teaching/build_week1_teaching_package.py) 与 [`tools/teaching/scaffold_week1_geometry_warmup.py`](../../tools/teaching/scaffold_week1_geometry_warmup.py)：
@@ -142,8 +142,8 @@ Week 1 是《三维数字材质制作》的第一堂实践课。本周不追求�
 | **Block 2** | PBR 直观概念导入 | 3 页 | P3: PBR 为什么真实与 4 个术语大白话<br>P4: 旋转视角看光影：高光会跑<br>P5: 透光折射 (Transmission) vs 表面透明遮罩 (Alpha) | “高光会跑，别把它画死在 Base Color 里。” | 直观悬念导入；强调高光斑是光源与视角耦合产物；示范用独立道具，不泄露手电筒答案。 |
 | **Block 3** | 原生几何体热身 | 2 页 | P6: 视口手感三键客与 Material Preview<br>P7: 几何体小实验：亲手添加并看高光移动 | “几何体练手感，不打分不提交，转动视口看高光。” | 降低 Blender 门槛；澄清 Material Preview 默认不启用场景灯，无需调灯；实测验证高光滑动。 |
 | **Block 4** | 手电筒观察与解构 | 2 页 | P8: 手电筒实物解构：外壳颜色是哪来的？<br>P9: 因果解构自查清单 (外壳 vs 高光) | “两项核心课内闭环，教师示范不剧透答案。” | 引导独立填表；重点抓主体外壳固有色与高光斑光影归属；后三项提点收拢，零课后债务。 |
-| **Block 5** | 正式手电筒任务导入 | 2 页 | P10: 分层进入 Shading 工作区与 Slot 2<br>P11: `Body_Color_Tint` 节点两处调节靶点 | “分层进 Shading，节点已预接好，只动预设调色器。” | 解释 Option B 预置支架；讲解 Multiply 数学相乘不是物理漆层；控件示范不泄露判别式答案。 |
-| **Block 6** | 手电筒判别式改色 | 2 页 | P12: 判别式挑战：Multiply 乘纯白/乘纯黑与中灰独立迁移<br>P13: 你的第一个材质决策：外壳选色 | “预测-操作-解释，改色前先复位基准，记录真实决策。” | 监督独立判别式思考；强调做完白/黑测试后复位基准态再选色；卡顿超 5 分钟下发 Recovery B。 |
+| **Block 5** | 正式手电筒任务导入 | 2 页 | P10: 分层进入 Shading 工作区与 Slot 2<br>P11: `Mix (外壳调色)` 节点两处调节靶点与只读保护框 | “分层进 Shading，节点已预接好，只动预设调色器，保护区勿动。” | 解释 Option B 预置支架与保护区框；讲解 Color 模式只改色相饱和度并保留底漆细节；控件示范不泄露自主检查答案。 |
+| **Block 6** | 手电筒判别式改色 | 2 页 | P12: 操作检查挑战：纯白输入与去色特性观察<br>P13: 你的第一个材质决策：外壳选色 | “预测-操作-解释，改色前先完成自主检查，记录真实决策。” | 引导自主操作检查与特性观察；强调做完特性验证后选定目标色；卡顿超 5 分钟下发 Recovery B。 |
 | **Block 7** | 巡视反馈与抽检 | 1 页 | P14: 巡视共性点拨：军工质感与饱和度控制 | “广播反馈抓共性，不占学生修订时间。” | 针对荧光塑料感做 3 分钟集中点拨；引导历史风格对齐，不把审美偏好说成物理违规。 |
 | **Block 8** | 受控修订 | 1 页 | P15: 针对性微调：同一决策的优化证据 | “围绕反馈做微调，三字段记录真实改进。” | 指导微调 Factor 与拾色器；完成“决策-反馈-修订”闭环；强调不推倒重来。 |
 | **Block 9** | 保存退出重开 | 1 页 | P16: 数据安全生命线：完全退出并重启重开 | “保存之后真退出，重开确认贴图参数在。” | 强调工程规范；监督全员完全退出进程再重开，排除资产丢失隐患。 |
@@ -234,7 +234,7 @@ Week 1 是《三维数字材质制作》的第一堂实践课。本周不追求�
 
 | 证据类型 | 提交形态 | 教师核验方式 | 预期批阅负荷 | 达标判定标准 (Pass Criteria) |
 | :--- | :--- | :--- | :--- | :--- |
-| **观察、判别式与修订决策卡** | 任务单纸面填写 / 在线问卷 | 课内抽查 2 份共性讲评，其余课后批量扫视 | 5 分钟 (课内) + 10 分钟 (课外) | 表 A 区分光斑非固有色；判别式解释理解纯白相乘不变因果；三字段体现微调过程。 |
+| **观察、判别式与修订决策卡** | 任务单纸面填写 / 在线问卷 | 课内抽查 2 份共性讲评，其余课后批量扫视 | 5 分钟 (课内) + 10 分钟 (课外) | 表 A 区分光斑非固有色；判别式解释理解 Color 模式纯白/去色特性因果与裸金属遮罩保护；三字段体现微调过程。 |
 | **标准机位视口截图** | 单张 PNG 图像 (标准命名) | 教学平台缩略图平铺视图 (Gallery View) 快速浏览 | 5–8 分钟 (35 人全览) | 主筒身呈现明显色彩变体；反光碗仍为金属，玻璃透明透光，无洋红报错。 |
 | **工程源文件 (`.blend`)** | 学生机房本地留存 | **不作课堂全员打开**；仅抽检 15% 或针对疑问截图调阅 | 抽检每份 1 分钟 | 打开后 Slot 2 包含完整的 Mix 节点，贴图打包完整无丢失，Slot 0 与 Slot 1 面数与节点无篡改。 |
 
@@ -291,18 +291,18 @@ flowchart TD
 | 点检环节 | 界面实际表现与验证事实 | 与 Handout 匹配状态 | 教师注意事项 |
 | :--- | :--- | :---: | :--- |
 | **1. 打开 Starter 文件** | 双击打开，3D 视口默认激活 **Material Preview (材质预览)**，全屏幕机位自动锁定在 `Cam_Obs`。材质面板默认选中 Slot 2 (`vintage_flashlight_body`)。 | `[VERIFIED]` 吻合 | 学生开箱立即可见材质与锁定视角，无需手动寻找切换着色球。 |
-| **2. 检视预连节点链路** | 切换到顶部 `Shading` 工作区，下方 Shader Editor 中 `Body_Color_Tint` 节点处于高亮激活状态，清晰可见预置好的 `vintage_flashlight_diff` $\to$ `Body_Color_Tint` (Multiply, Factor=0.0, 纯白) $\to$ `Base Color`。 | `[VERIFIED]` 吻合 | 节点网络已预先接通且目标节点高亮选中，学生开箱无需新建节点或连线。 |
+| **2. 检视预连节点链路** | 切换到顶部 `Shading` 工作区，下方 Shader Editor 中 `Mix (外壳调色)` 节点处于高亮激活状态，清晰可见预置好的 `vintage_flashlight_diff` $\to$ `Body_Color_Tint` (COLOR, Factor=0.0, 纯白) $\to$ 两级级联 `Base Color`，且保护节点已被 Frame 框选归拢。 | `[VERIFIED]` 吻合 | 节点网络已预先接通且目标节点高亮选中，学生开箱无需新建节点或连线。 |
 | **3. 判别式检查验证** | Color B 设为纯白时滑动 Factor 视口完全不变；设为纯黑且 Factor=1.0 时外壳变黑但高光光斑完好；因果解释准确。 | `[VERIFIED]` 吻合 | 历史控件行为可用；独立理解仍须区分是否已听过答案，见§7.3。 |
-| **4. 调节参数与视口响应** | 将 `Body_Color_Tint` 节点的 `Factor` 滑块拖动至 0.85，并在插槽 `B` 颜色块选取军绿色，3D 视口中外壳瞬间呈现有界色彩叠加变体效果，反光碗与玻璃完全零变动。 | `[VERIFIED]` 吻合 | 视口实时响应，色彩决策明显，保护区完全不受影响。 |
+| **4. 调节参数与视口响应** | 将 `Body_Color_Tint` 节点的 `Factor` 滑块拖动至 0.85，并在插槽 `B` 颜色块选取草绿色，3D 视口中外壳瞬间呈现有界色彩叠加变体效果，反光碗与玻璃完全零变动，裸金属完整保留冷峻银灰。 | `[VERIFIED]` 吻合 | 视口实时响应，色彩决策明显，保护区完全不受影响。 |
 | **5. 保存与隔离路径重开** | 执行 `File -> Save As` 保存；彻底退出 Blender 进程并在无外部依赖的隔离路径下重开（isolated-path / dependency-isolated reopen on verified macOS host），视口、相机机位、`Body_Color_Tint` 调节参数 100% 持久化，内置打包贴图完整加载。 | `[VERIFIED (macOS)]` 吻合 | 隔离重开持久化流程顺畅，用时约 15 秒。 |
-| **6. 打开 Recovery B** | 双击打开 `W1_Recovery_B_Post_Edit.blend`，视口直接呈现调好的军绿色，`Body_Color_Tint` 已预置 Factor=0.85 与军绿色，可直接用于反馈讲评与微调。 | `[VERIFIED]` 吻合 | 跳关检查点完备有效。 |
+| **6. 打开 Recovery B** | 双击打开 `W1_Recovery_B_Post_Edit.blend`，视口直接呈现调好的草绿色，`Body_Color_Tint` 已预置 Factor=0.85 与草绿色，可直接用于反馈讲评与微调。 | `[VERIFIED]` 吻合 | 跳关检查点完备有效。 |
 
 ### 7.2 运行时与全生命周期自动化断言 (Automated Runtime & Lifecycle Assertions)
 通过端到端生命周期验证套件 [`tools/teaching/verify_week1_lifecycle.py`](../../tools/teaching/verify_week1_lifecycle.py) 与前飞模拟套件 [`tools/teaching/rehearse_week1_continuous.py`](../../tools/teaching/rehearse_week1_continuous.py) 完成了全量断言测试：
 - **断言 1**：核心文件存在性核验（Starter / Recovery A/B/C / Reference 全部就绪） (`PASS`)；
 - **断言 2**：Starter 材质槽面数分配严格精确（Slot 0=3765, Slot 1=56, Slot 2=1462） (`PASS`)；
 - **断言 3**：全部工作区屏幕（包括 Layout 与 Shading）3D 视口均处于 Material Preview 且锁定 `Cam_Obs` 机位 (`PASS`)；
-- **断言 4**：Slot 2 中 `Body_Color_Tint` (Multiply, Factor=0.0, 纯白) 连线完整、选中聚焦且处于 active 状态 (`PASS`)；
+- **断言 4**：Slot 2 中 `Body_Color_Tint` (COLOR, Factor=0.0, 纯白) 连线完整、选中聚焦且处于 active 状态，保护节点归入 Frame 框选 (`PASS`)；
 - **断言 5**：全部 5 张 1K 贴图均完成内嵌打包（Packed File True，分辨率 1024x1024） (`PASS`)；
 - **断言 6**：Recovery B 跳关检查点包含已完成的初次决策（Factor=0.85 军绿） (`PASS`)；
 - **断言 7**：全生命周期端到端对齐模拟（`receive -> modify -> save -> submit Card+PNG -> isolated-path reopen .blend & read pixels`）：学生实际交付物（决策卡与视口 PNG）完整无误，抽检源工程在隔离路径重开（isolated-path / dependency-isolated reopen on verified macOS host）节点参数 100% 持久化、贴图零丢失、像素完整可读、保护槽零污染 (`PASS`)；
@@ -398,7 +398,7 @@ flowchart TD
 ## 10. 最终状态声明 (Go-Live Gate Status)
 
 根据 GitHub Issue #32 契约与 Browser Review 要求，本教学包门禁对齐状态如下：
-1. **承重知识与一手文献审核**：`PASS`（Dinur 2026, PBR Guide 2018, Blender 5.2 Manual；Multiply/Factor 纠正为有界色彩调节，Transmission ≠ Alpha 精确界定，观察解构重构为多物理因果耦合分析，不把审美偏好伪装成物理违规）；
+1. **承重知识与一手文献审核**：`PASS`（Dinur 2026, PBR Guide 2018, Blender 5.2 Manual；Color/Factor 纠正为有界色彩调节，Transmission ≠ Alpha 精确界定，观察解构重构为多物理因果耦合分析，不把审美偏好伪装成物理违规）；
 2. **学生指令与最终分发包**：`PARTIAL / LOCAL REVALIDATION REQUIRED`（历史控件点检保留；§7.3发现的连续状态交接及本批H澄清尚待真实文件试走）；
 3. **Starter / Recovery 可用性**：`PASS`（macOS 宿主实测完备，已声明安全 fallback）；
 4. **提交契约与生命周期完整性**：历史工程检查保留；真人按H保存/退出、获取实际截图、完成真实收件通道仍为 `SUBMISSION PATH REQUIRED`，脚本生成Card+PNG不能关闭该门禁；

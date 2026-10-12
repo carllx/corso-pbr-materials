@@ -199,5 +199,36 @@ def test_paint_mask_recolor_pipeline():
     assert "视觉问题驱动 Blend Mode 选择" in pkg_content and "视觉问题驱动 Blend Mode 选择" in ledger_content
     assert "代码驱动材质" in pkg_content and "代码驱动材质" in ledger_content
 
+def test_recovery_reference_feedback_differentiation():
+    """验证 Recovery B (初选草绿) 与 Reference (优化沉稳橄榄绿) 终态存在显著反馈修订差异 (Delta 1)"""
+    pkg_content = read_file(PACKAGE_PATH)
+    handout_content = read_file(HANDOUT_PATH)
+
+    # 1. Handout 中示范三字段明确体现草绿 0.85 -> 橄榄绿/降低饱和度 0.80 的反馈改进
+    assert "草绿" in handout_content
+    assert "鲜艳草绿色" in handout_content or "草绿，Factor=0.85" in handout_content
+    assert "色彩饱和度过高像现代塑料外壳" in handout_content or "像现代塑料外壳" in handout_content
+    assert "降低饱和度并微调明度" in handout_content and "Factor 调至 0.80" in handout_content
+
+    # 2. Package 中明确记录 Recovery B 为初选草绿起点，Reference 为反馈优化终态
+    assert "草绿" in pkg_content
+    assert "沉稳橄榄绿" in pkg_content or "优化橄榄绿" in pkg_content
+
+def test_no_multiply_teaching_contract_residue():
+    """验证实际生效的教学包和学生任务单中彻底消除旧版 Multiply 教学契约残留 (Delta 2)"""
+    pkg_content = read_file(PACKAGE_PATH)
+    handout_content = read_file(HANDOUT_PATH)
+
+    # 1. 学生任务单中不应存在任何生效的 Multiply 指令或说明
+    assert "Multiply" not in handout_content, "Handout 中仍残留旧版 Multiply！"
+
+    # 2. 教学包中仅允许在 Week 2 指针回顾历史对比中提及 Multiply，生效执行条款中不得作为 W1 机制
+    # 检查 Block 5, Block 6, §5.2, §7.1, §7.2, §10 均无 Multiply 作为生效调节器
+    b5_b6_section = pkg_content.split("### 3.4 教学 Block 极轻 PPT 投影")[1].split("### 3.1 课堂节奏")[0]
+    assert "Multiply" not in b5_b6_section, "Package 表 3.4 中仍残留 Multiply！"
+
+    lo_section = pkg_content.split("### 1.2 预期可观察成效")[1].split("### 1.3 教师专用标准参考答案")[0]
+    assert "Multiply" not in lo_section, "Package LO2 中仍残留 Multiply！"
+
 
 

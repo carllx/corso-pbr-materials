@@ -82,7 +82,7 @@ def run_rehearsal(package_dir):
     # --- Block 5: 正式手电筒任务导入与分层 UI (15 min) ---
     print("\n[Block 5] 正式手电筒任务导入与分层 UI (15 min, PROPOSED)")
     print("  -> 分层 UI：此时正式引入 Shading 工作区、Shader Editor、材质槽 Slot 2 与 Body_Color_Tint 节点。")
-    print("  -> 解释 Multiply 运算原理（有界色彩调节，非物理喷漆厚度）。")
+    print("  -> 解释 Color 模式与两级遮罩运算原理（有界色彩调节，保留明暗细节并保护金属）。")
     print("  -> 演示一次控件调节，严禁回答同题判别式检查结论；演示后复位为中性态交接。")
     if HAS_BPY and os.path.exists(starter_blend):
         bpy.ops.wm.open_mainfile(filepath=starter_blend)

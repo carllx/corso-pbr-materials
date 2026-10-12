@@ -3,11 +3,11 @@ Week 1 教学资产包确定性构建脚本 (Week 1 Teaching Package Determinist
 
 用途：
 从 Poly Haven 官方原版 Vintage Flashlight 资产（1K 分辨率）出发，
-确定性重构出符合 Week 1 教学要求的完整资产包 (Option B Scaffolded Shader Editor 方案)：
-- Starter: 预置 Slot 2 (vintage_flashlight_body, 1,462面)，预连 Body Color Tint 节点并保持视觉中性开局状态 (Multiply, Factor=0.0, Color B=(1,1,1,1))，支持有界色彩叠加调节 (Bounded Color Adjustment)，全屏幕锁定机位 Cam_Obs 与 Material Preview，贴图全内置封包 (Pack All) 保障分发与提交生命周期；
-- Recovery A: 预连节点的纯净中性开局备份；
-- Recovery B: 内置已完成首次材质决策（Multiply 0.85 军绿变体）的跳关检查点；
-- Recovery C & Reference: 统一光照源下的参考工程与效果截图 (Recovery C 应急部分完成参考图)。
+确定性重构出符合 Week 1 教学要求的完整资产包 (Option B Scaffolded Shader Editor 方案，两级遮罩管线)：
+- Starter: 预置 Slot 2 (vintage_flashlight_body, 1,462面)，预连两级遮罩调色管线并保持视觉中性开局状态 (Color 模式, Factor=0.0)，支持有界色彩叠加调节 (Bounded Color Adjustment)，全屏幕锁定机位 Cam_Obs 与 Material Preview，贴图全内置封包 (Pack All) 保障分发与提交生命周期；
+- Recovery A: 预连节点的纯净中性开局备份 (Factor=0.0)；
+- Recovery B: 内置已完成首次材质决策（草绿初选变体 Factor=0.85）的跳关检查点；
+- Reference: 教师讲评反馈优化后的沉稳军绿终态 (Factor=0.80, 降饱和沉稳橄榄绿) 与效果截图 (Recovery C 应急部分完成参考图)。
 
 使用方式 (在 Blender 5.2 LTS 环境下运行)：
 blender -b --python tools/teaching/build_week1_teaching_package.py -- [可选参数]
@@ -218,7 +218,7 @@ def build_package(source_dir, output_dir):
     mix_node.data_type = 'RGBA'
     mix_node.blend_type = 'COLOR'
     mix_node.inputs['Factor'].default_value = 0.0 # 初始 Factor=0.0，像素级绝对 100% 原始红漆开局
-    mix_node.inputs[7].default_value = (0.28, 0.62, 0.18, 1.0) # 预置橄榄军绿色拾色器
+    mix_node.inputs[7].default_value = (0.22, 0.65, 0.15, 1.0) # 预置初次草绿色拾色器
     mix_node.location = (bsdf.location.x - 560, bsdf.location.y + 150)
     links.new(diff_img.outputs['Color'], mix_node.inputs[6])
 
@@ -235,6 +235,13 @@ def build_package(source_dir, output_dir):
     links.new(mix_node.outputs['Result'], mix_protect.inputs[7]) # B: 学生改色结果
     links.new(mix_protect.outputs['Result'], bsdf.inputs['Base Color'])
 
+    # 4. 关键易区分性保障：创建 NodeFrame 将预置遮罩与保护滤网归拢，与学生主节点清晰隔离
+    frame_protect = nodes.new(type='NodeFrame')
+    frame_protect.name = "Frame_Teacher_Protected"
+    frame_protect.label = "【教师预置保护区 / 只读勿动】"
+    mask_ramp.parent = frame_protect
+    mix_protect.parent = frame_protect
+
     # --- 生成 Starter 与 Recovery A (预连节点、中性开局状态 Factor=0.0) ---
     bpy.ops.wm.save_as_mainfile(filepath=starter_blend)
     configure_viewport_and_textures()
@@ -242,21 +249,21 @@ def build_package(source_dir, output_dir):
     shutil.copyfile(starter_blend, recovery_a_blend)
     print(f"已生成 Recovery A: {recovery_a_blend}")
 
-    # --- 生成 Recovery B (已完成首个材质决策检查点: Factor=0.85 军绿色) ---
+    # --- 生成 Recovery B (跳关检查点: 模拟初次决策稍微偏艳的草绿色 Factor=0.85) ---
     mix_node.inputs['Factor'].default_value = 0.85
-    mix_node.inputs[7].default_value = (0.28, 0.62, 0.18, 1.0) # 军绿色
+    mix_node.inputs[7].default_value = (0.22, 0.65, 0.15, 1.0) # 模拟学生初选草绿色
 
     bpy.ops.wm.save_as_mainfile(filepath=recovery_b_blend)
     configure_viewport_and_textures()
-    print(f"已生成 Recovery B (完成初次决策检查点): {recovery_b_blend}")
+    print(f"已生成 Recovery B (完成初次决策跳关检查点): {recovery_b_blend}")
 
-    # --- 生成 Reference Result (优化微调后终态: Factor 0.85 军绿色) ---
-    mix_node.inputs['Factor'].default_value = 0.85
-    mix_node.inputs[7].default_value = (0.28, 0.62, 0.18, 1.0)
+    # --- 生成 Reference Result (优化微调后终态: 针对反馈降饱和微调明度后的沉稳橄榄军绿 Factor=0.80) ---
+    mix_node.inputs['Factor'].default_value = 0.80
+    mix_node.inputs[7].default_value = (0.28, 0.48, 0.22, 1.0) # 降饱和优化后的历史沉稳橄榄绿 (Olive Drab)
 
     bpy.ops.wm.save_as_mainfile(filepath=reference_blend)
     configure_viewport_and_textures()
-    print(f"已生成 Reference Result: {reference_blend}")
+    print(f"已生成 Reference Result (反馈优化终态): {reference_blend}")
 
     # --- 渲染生成参考图与 Recovery C 降级图 ---
     # 利用与 Material Preview 相同的 studio/forest 环境 HDRI 提供视觉一致的参考图

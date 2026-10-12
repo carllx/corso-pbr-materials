@@ -95,14 +95,28 @@ def run_verification(package_dir):
         assert img.size[0] == 1024 and img.size[1] == 1024, f"贴图分辨率异常: {img.name} {img.size}"
     print(f"[PASS] 全部 5 张 1K 贴图均完成内嵌打包 (Packed File True)。")
 
-    # 3. 检查 Recovery B 跳关检查点
+    # 3. 检查 Recovery B 跳关检查点与 Reference 参考终态 (两者参数必须具有明确反馈修订差异)
     bpy.ops.wm.open_mainfile(filepath=recovery_b)
     rec_body = bpy.data.materials.get("vintage_flashlight_body")
     rec_mix = rec_body.node_tree.nodes.get("Body_Color_Tint")
     assert rec_mix is not None, "Recovery B 缺少 Body_Color_Tint 节点"
     assert abs(rec_mix.inputs["Factor"].default_value - 0.85) < 1e-4, f"Recovery B Factor 不符: {rec_mix.inputs['Factor'].default_value}"
-    assert rec_mix.inputs[7].default_value[0] < 0.5, "Recovery B 颜色应为军绿色"
-    print("[PASS] Recovery B 跳关检查点参数核验通过 (Factor=0.85 军绿)。")
+    assert rec_mix.inputs[7].default_value[1] > 0.6, "Recovery B 颜色应为相对鲜艳的草绿色"
+    rec_f = rec_mix.inputs["Factor"].default_value
+    rec_col = list(rec_mix.inputs[7].default_value)
+
+    bpy.ops.wm.open_mainfile(filepath=reference_blend)
+    ref_body = bpy.data.materials.get("vintage_flashlight_body")
+    ref_mix = ref_body.node_tree.nodes.get("Body_Color_Tint")
+    assert ref_mix is not None, "Reference 缺少 Body_Color_Tint 节点"
+    assert abs(ref_mix.inputs["Factor"].default_value - 0.80) < 1e-4, f"Reference Factor 应为微调后的 0.80: {ref_mix.inputs['Factor'].default_value}"
+    assert ref_mix.inputs[7].default_value[1] < rec_col[1], "Reference 颜色应为降饱和沉稳橄榄绿 (比 Recovery B 纯度低)"
+    ref_f = ref_mix.inputs["Factor"].default_value
+    ref_col = list(ref_mix.inputs[7].default_value)
+
+    # 严密断言：Reference 与 Recovery B 绝不意外相同
+    assert abs(ref_f - rec_f) > 0.01 or abs(ref_col[1] - rec_col[1]) > 0.05, "Reference 与 Recovery B 参数意外相同！"
+    print(f"[PASS] Recovery B (初选草绿 F={rec_f:.2f}) 与 Reference (优化沉稳橄榄绿 F={ref_f:.2f}) 参数显著差异核验通过。")
 
     # 4. 全生命周期端到端对齐模拟 (Primary Submission: Decision Card + PNG; Audit: Isolated-path .blend reopen)
     print("\n--- 启动全生命周期端到端对齐测试 ---")
@@ -122,7 +136,7 @@ def run_verification(package_dir):
         
         # 实施首次决策与微调
         s_mix.inputs["Factor"].default_value = 0.80
-        s_mix.inputs[7].default_value = (0.28, 0.62, 0.18, 1.0) # 调好的军绿
+        s_mix.inputs[7].default_value = (0.28, 0.48, 0.22, 1.0) # 调好的沉稳橄榄绿
         bpy.ops.wm.save_mainfile()
         print("  - 学生在本地完成工程修改并保存 (.blend 留存备查)")
 
@@ -135,8 +149,8 @@ def run_verification(package_dir):
         with open(submitted_card, "w", encoding="utf-8") as f:
             f.write("# 学生决策卡 (2026001)\n")
             f.write("任务 A: 主体外壳=固有色, 高光光斑=外部光影(非固有色), 透镜=Transmission透射\n")
-            f.write("任务 B Predict-Operate-Explain: 纯白相乘不变因果已验证\n")
-            f.write("字段 1: 草绿 Factor 0.85; 字段 2: 颜色过艳像塑料玩具; 字段 3: 降饱和微调 Factor 0.80 沉稳军绿\n")
+            f.write("任务 B: 漆面改色与金属遮罩保护已验证，纯白去色特性已记录\n")
+            f.write("字段 1: 草绿 Factor 0.85; 字段 2: 颜色过艳像塑料玩具; 字段 3: 降饱和微调 Factor 0.80 沉稳橄榄绿\n")
         assert os.path.exists(submitted_card), "决策卡生成失败"
 
         # 2) 生成标准机位视口截图
