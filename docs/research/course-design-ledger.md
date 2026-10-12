@@ -163,6 +163,48 @@
   3. 教学材料 PDF 与图文版的排版优化（已确认列为后续呈现改进，不阻塞本次教学逻辑与资产工程验证）。
 
 ---
+
+## 6. Week 1 手电筒漆面遮罩可行性与两级管线决议 (Paint Mask & Two-Stage Recoloring Pipeline)
+
+> **决策与证据溯源说明**：  
+> 本节记录 2026-10-12 基于课程负责人 (Course Owner) 在真实 Blender 5.2.2 LTS GUI 实测对照后的权威决定与 IDE 技术验证结果。严格遵守 `AGENTS.md` 证据纪律，区分 `TEACHER ACCEPTED`、`TECHNICAL FACT / VERIFIED` 与 `PROJECT INFERENCE`。
+
+### 6.1 教师实测问题与权威决策 (Teacher Disposition per 2026-10-12 Review)
+
+1. **混合模式局限性实测 (`TEACHER-REPORTED / VERIFIED`)**：
+   - `Multiply`：绿色乘入原始红色旧漆后，外壳明显压暗发黑发焦，无法自由替换为军绿或目标明快色彩；
+   - `Mix`：Factor=1.0 时虽然能替换为目标颜色，但原始底漆的微观明暗反差与磨损划痕细节被完全抹平，呈现扁平塑料感；
+   - `Color`：能够改变漆面色相与饱和度并保留明暗质感，但由于缺乏分区，原本属于银灰色的磨损划痕与裸露金属同样出现严重绿色偏色；
+   - **结论**：单靠切换 Blending Mode 无法充分解决真实工业旧漆改色问题。
+2. **课程负责人权威决定 (`TEACHER ACCEPTED`)**：
+   - Week 1 手电筒案例应尽可能**只改变漆面颜色，坚决保留裸露金属的合理表现与银灰色泽**；
+   - **预置遮罩与保护管线**：遮罩与必要保护逻辑由教师预置，学生端继续维持 Option B 的极低认知负荷边界（不建节点、不接线、不画 Mask，只操作 1 个主调色节点的 2 个原生控件）；
+   - 该决定改变的是 Option B 内部技术实现，不取消 Option B 的低认知负荷教学边界。
+
+### 6.2 资产事实与技术验证 (`TECHNICAL FACT / VERIFIED`)
+
+1. **贴图数据分布实测**：
+   - 原版 Substance PBR 资产严格遵循导体/绝缘体物理法则：红色漆面区域 Metallic 数值在 `[0.00, 0.02]` (中位数 0.000)，裸露金属/划痕区域 Metallic 数值在 `[0.50, 1.00]` (中位数 0.749)，过渡带在 `[0.15, 0.45]`；
+   - **结论**：原有资产数据完全足以可靠区分漆面与裸金属，无需重新人工手绘 Mask，更无需重新展开 UV！
+2. **两级原生级联管线 (Two-Stage Pipeline)**：
+   - 阶段 1：学生主交互节点 `Body_Color_Tint`（类型 `ShaderNodeMix`，Blend Type 为 `COLOR`，初始 Factor=0.0，Color B 预置军绿色）；
+   - 阶段 2：预置只读金属保护滤网 `Metal_Protection_Filter`（类型 `ShaderNodeMix`，Blend Type 为 `MIX`，Factor 由 `ColorRamp` 漆面遮罩驱动，A 端接原贴图保护金属，B 端接学生改色结果）；
+3. **定量验证指标**：
+   - **中性开局与中性恢复**：Factor=0.0 时，全车与原版 baseline 绝对最大像素差为 0（100% 像素级零偏差恢复）；
+   - **漆面改色**：漆面鲜明呈现军绿、深蓝或铁灰，局部纹理方差稳定在 1.17（明暗质感与微观划痕完整保留）；
+   - **裸金属保护**：改色前后裸金属区域 RGB 变化量 < 2.8 个灰度级，绝无绿色偏色，银灰色泽与高光金属感完美稳固。
+
+### 6.3 教学适配与 Predict-Operate-Explain 升级 (`PROJECT INFERENCE`)
+
+1. **认知负荷保持**：学生依然只面对单个高亮激活的 `Mix (外壳调色)` 节点，操作控件仍为 2 个（Factor 滑块从 0.0 拖到 0.85，拾色器选颜色），完全维持 Block 5-6 的 15/25 分钟预算；
+2. **判别题升级**：
+   - 2.1 基础跟进：预测拖动 Factor 时红漆变色而边缘银灰金属受保护；实操验证；解释 Metallic 遮罩分区原理（呼应 B2 金属概念）；
+   - 2.2 独立迁移：判别 Factor 拉回 0.0 即可一键中性出厂复位；判别 Color 模式下纯白色输入（饱和度 0）会导致漆面去色变成灰度漆面；
+3. **Week 2 教学取向指针记录 (`TEACHER ACCEPTED`)**：
+   - 教师已接受决定：Week 2 以视觉问题驱动 Blend Mode 选择（Multiply/Screen/Overlay/Color），通过少量直观数学示例建立颜色计算与未来代码驱动材质之间的联系。
+
+---
 *本台账随课程调研与设计推进持续更新，归档于 `docs/research/course-design-ledger.md`。*
+
 
 

@@ -189,42 +189,69 @@ def build_package(source_dir, output_dir):
         bpy.ops.file.pack_all()
         bpy.ops.wm.save_mainfile()
 
-    # --- 在 Slot 2 (vintage_flashlight_body) 中预置并连好 Mix Color 调色节点 ---
+    # --- 在 Slot 2 (vintage_flashlight_body) 中预置两级遮罩调色管线 ---
+    # 核心目标：漆面独立改色 + 裸露金属保护 + 原有磨损细节保留 + 学生极简操作
     nodes = mat_body.node_tree.nodes
     links = mat_body.node_tree.links
 
     diff_img = [n for n in nodes if n.type == 'TEX_IMAGE' and 'diff' in n.image.name.lower()][0]
+    metal_img = [n for n in nodes if n.type == 'TEX_IMAGE' and 'metal' in n.image.name.lower()][0]
     bsdf = [n for n in nodes if n.type == 'BSDF_PRINCIPLED'][0]
 
+    # 1. 预置漆面遮罩 (Paint Mask): 利用 PBR 资产中天然准确的 Metallic 贴图进行阈值切分
+    # 漆面 (Metallic < 0.15) 输出 1.0 (白)，裸金属/磨损 (Metallic > 0.45) 输出 0.0 (黑)
+    mask_ramp = nodes.new(type='ShaderNodeValToRGB')
+    mask_ramp.name = "Paint_Mask_Ramp"
+    mask_ramp.label = "漆面遮罩 (预置/勿动)"
+    mask_ramp.color_ramp.elements[0].position = 0.15
+    mask_ramp.color_ramp.elements[0].color = (1, 1, 1, 1)
+    mask_ramp.color_ramp.elements[1].position = 0.45
+    mask_ramp.color_ramp.elements[1].color = (0, 0, 0, 1)
+    mask_ramp.location = (bsdf.location.x - 560, bsdf.location.y - 200)
+    links.new(metal_img.outputs['Color'], mask_ramp.inputs['Fac'])
+
+    # 2. 学生交互核心节点: Mix (外壳调色)
+    # Blend Type 采用 COLOR 模式：完整保留底漆原有的明暗微观反差与划痕纹理
     mix_node = nodes.new(type='ShaderNodeMix')
     mix_node.name = "Body_Color_Tint"
     mix_node.label = "Mix (外壳调色)"
     mix_node.data_type = 'RGBA'
-    mix_node.blend_type = 'MULTIPLY'
-    mix_node.inputs['Factor'].default_value = 0.0
-    mix_node.inputs[7].default_value = (1.0, 1.0, 1.0, 1.0) # 中性纯白，初始状态像素级零偏差
-    mix_node.location = (bsdf.location.x - 300, bsdf.location.y + 100)
-
+    mix_node.blend_type = 'COLOR'
+    mix_node.inputs['Factor'].default_value = 0.0 # 初始 Factor=0.0，像素级绝对 100% 原始红漆开局
+    mix_node.inputs[7].default_value = (0.28, 0.62, 0.18, 1.0) # 预置橄榄军绿色拾色器
+    mix_node.location = (bsdf.location.x - 560, bsdf.location.y + 150)
     links.new(diff_img.outputs['Color'], mix_node.inputs[6])
-    links.new(mix_node.outputs['Result'], bsdf.inputs['Base Color'])
 
-    # --- 生成 Starter 与 Recovery A (预连节点、中性开局状态) ---
+    # 3. 预置金属保护滤网: Mix (裸金属保护滤网 / 预置勿动)
+    # Factor 由漆面遮罩驱动：漆面 (Mask=1.0) 采纳学生改色结果 (B)；裸金属/划痕 (Mask=0.0) 100% 透传原始贴图 (A)
+    mix_protect = nodes.new(type='ShaderNodeMix')
+    mix_protect.name = "Metal_Protection_Filter"
+    mix_protect.label = "金属保护滤网 (预置/勿动)"
+    mix_protect.data_type = 'RGBA'
+    mix_protect.blend_type = 'MIX'
+    mix_protect.location = (bsdf.location.x - 260, bsdf.location.y + 100)
+    links.new(mask_ramp.outputs['Color'], mix_protect.inputs['Factor'])
+    links.new(diff_img.outputs['Color'], mix_protect.inputs[6]) # A: 原版贴图 (保护金属)
+    links.new(mix_node.outputs['Result'], mix_protect.inputs[7]) # B: 学生改色结果
+    links.new(mix_protect.outputs['Result'], bsdf.inputs['Base Color'])
+
+    # --- 生成 Starter 与 Recovery A (预连节点、中性开局状态 Factor=0.0) ---
     bpy.ops.wm.save_as_mainfile(filepath=starter_blend)
     configure_viewport_and_textures()
-    print(f"已生成 Starter (预连中性节点并打包贴图): {starter_blend}")
+    print(f"已生成 Starter (预连两级遮罩管线并打包贴图): {starter_blend}")
     shutil.copyfile(starter_blend, recovery_a_blend)
     print(f"已生成 Recovery A: {recovery_a_blend}")
 
-    # --- 生成 Recovery B (已完成首个材质决策检查点: Multiply 0.85 军绿色) ---
+    # --- 生成 Recovery B (已完成首个材质决策检查点: Factor=0.85 军绿色) ---
     mix_node.inputs['Factor'].default_value = 0.85
-    mix_node.inputs[7].default_value = (0.32, 0.58, 0.22, 1.0) # 军绿色
+    mix_node.inputs[7].default_value = (0.28, 0.62, 0.18, 1.0) # 军绿色
 
     bpy.ops.wm.save_as_mainfile(filepath=recovery_b_blend)
     configure_viewport_and_textures()
     print(f"已生成 Recovery B (完成初次决策检查点): {recovery_b_blend}")
 
-    # --- 生成 Reference Result (优化微调后终态: Factor 0.80) ---
-    mix_node.inputs['Factor'].default_value = 0.80
+    # --- 生成 Reference Result (优化微调后终态: Factor 0.85 军绿色) ---
+    mix_node.inputs['Factor'].default_value = 0.85
     mix_node.inputs[7].default_value = (0.28, 0.62, 0.18, 1.0)
 
     bpy.ops.wm.save_as_mainfile(filepath=reference_blend)

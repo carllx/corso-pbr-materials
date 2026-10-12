@@ -68,17 +68,24 @@ def run_verification(package_dir):
                         assert s.region_3d.view_perspective == "CAMERA", f"Screen [{screen.name}] 视角非 CAMERA: {s.region_3d.view_perspective}"
     print("[PASS] 全部工作区屏幕 3D 视口均处于 Material Preview 且锁定 Cam_Obs 相机机位。")
 
-    # 检查 Slot 2 节点网络
+    # 检查 Slot 2 节点网络 (两级遮罩管线)
     mat_body = obj.material_slots[2].material
     mix_node = mat_body.node_tree.nodes.get("Body_Color_Tint")
     assert mix_node is not None, "未在 Slot 2 中找到 Body_Color_Tint 节点"
-    assert mix_node.blend_type == "MULTIPLY", f"混合模式非 MULTIPLY: {mix_node.blend_type}"
+    assert mix_node.blend_type == "COLOR", f"学生主混合模式非 COLOR: {mix_node.blend_type}"
     assert abs(mix_node.inputs["Factor"].default_value - 0.0) < 1e-4, "初始 Factor 应为 0.0"
     col_b = mix_node.inputs[7].default_value
-    assert (abs(col_b[0] - 1.0) < 1e-4 and abs(col_b[1] - 1.0) < 1e-4 and abs(col_b[2] - 1.0) < 1e-4), "初始 Color B 应为纯白"
+    assert col_b[1] > col_b[0], "初始 Color B 应为预置军绿色"
     assert mix_node.select, "Body_Color_Tint 节点未处于选中状态"
     assert mat_body.node_tree.nodes.active == mix_node, "Body_Color_Tint 节点未处于 active 状态"
-    print("[PASS] Body_Color_Tint 节点链路、Multiply 参数与选中聚焦状态核验通过。")
+
+    # 检查预置遮罩与金属保护滤网
+    mask_ramp = mat_body.node_tree.nodes.get("Paint_Mask_Ramp")
+    assert mask_ramp is not None, "未在 Slot 2 中找到 Paint_Mask_Ramp 遮罩节点"
+    mix_protect = mat_body.node_tree.nodes.get("Metal_Protection_Filter")
+    assert mix_protect is not None, "未在 Slot 2 中找到 Metal_Protection_Filter 金属保护滤网"
+    assert mix_protect.blend_type == "MIX", f"保护滤网混合模式非 MIX: {mix_protect.blend_type}"
+    print("[PASS] Body_Color_Tint (COLOR)、Paint_Mask_Ramp 与 Metal_Protection_Filter 两级管线核验通过。")
 
     # 检查贴图打包状态 (Pack All)
     packed_images = [img for img in bpy.data.images if img.name != "Render Result"]

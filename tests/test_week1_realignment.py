@@ -75,7 +75,7 @@ def test_anti_hint_pollution_and_transfer_challenge():
     pkg_content = read_file(PACKAGE_PATH)
 
     assert "独立迁移判别" in handout_content or "Transfer" in handout_content
-    assert "中灰" in handout_content or "0.5" in handout_content
+    assert "去色" in handout_content or "出厂" in handout_content or "原始红色外观" in handout_content
     assert "独立迁移" in pkg_content or "迁移判别" in pkg_content
 
 def test_layered_ui_and_option_b():
@@ -159,12 +159,12 @@ def test_teacher_trial_round1_corrections():
     assert "Mix (外壳调色)" in pkg_content
     assert "Mix (外壳调色)" in handout_content
 
-    # 4. Multiply 纯白特性说明与预测保护 (术语表与示范无纯白剧透，解释在操作后)
-    assert "绝非软件卡死" in handout_content or "绝非软件卡死" in pkg_content
+    # 4. 漆面改色、遮罩保护与预测保护 (术语表与示范无答案剧透，解释在操作后)
+    assert "绝非软件失灵" in handout_content or "绝非软件失灵" in pkg_content or "绝非软件卡死" in ledger_content
     assert "中性元" in ledger_content
-    # 验证术语表中 Multiply 未包含纯白不变泄露
+    # 验证术语表中未包含独立迁移预测泄露
     term_section = handout_content.split("#### 本周核心概念与有界术语")[1].split("### 步骤 1")[0]
-    assert "纯白" not in term_section, "Handout 术语表中提前泄露了纯白预测答案！"
+    assert "黑白灰油漆" not in term_section, "Handout 术语表中提前泄露了独立迁移答案！"
 
     # 5. 台账与证据地图同步与证据属性区分
     assert "Teacher Trial Round 1 Audit" in ledger_content
@@ -174,5 +174,30 @@ def test_teacher_trial_round1_corrections():
     assert "IN TRIAL / UNMEASURED / GATE OPEN" in ledger_content
     assert "Shade Smooth" in evidence_content
     assert "Block 4 (Flashlight 20min)" in evidence_content
+
+def test_paint_mask_recolor_pipeline():
+    """验证手电筒漆面遮罩与两级级联管线契约 (Color Mode + Paint Mask)"""
+    pkg_content = read_file(PACKAGE_PATH)
+    handout_content = read_file(HANDOUT_PATH)
+    ledger_content = read_file(LEDGER_PATH)
+    evidence_content = read_file(EVIDENCE_MAP_PATH)
+
+    # 1. 漆面遮罩与金属保护滤网
+    assert "Paint Mask" in handout_content and "Paint Mask" in pkg_content
+    assert "金属保护" in handout_content and "金属保护" in pkg_content
+    assert "Metal_Protection_Filter" in pkg_content or "金属保护滤网" in pkg_content
+    assert "Paint_Mask_Ramp" in pkg_content or "漆面遮罩" in pkg_content
+
+    # 2. Color 混合模式与 Predict-Operate-Explain 升级
+    assert "COLOR" in pkg_content or "颜色模式" in pkg_content
+    assert "Predict" in handout_content and "Operate" in handout_content and "Explain" in handout_content
+    assert "银灰色" in handout_content and "冷峻" in handout_content
+
+    # 3. 台账第 6 节与 Week 2 教学取向记录
+    assert "Paint Mask & Two-Stage Recoloring Pipeline" in ledger_content
+    assert "WEEK 2 PEDAGOGICAL ORIENTATION POINTER" in pkg_content
+    assert "视觉问题驱动 Blend Mode 选择" in pkg_content and "视觉问题驱动 Blend Mode 选择" in ledger_content
+    assert "代码驱动材质" in pkg_content and "代码驱动材质" in ledger_content
+
 
 
