@@ -150,18 +150,21 @@ def test_teacher_trial_round1_corrections():
     assert "平滑着色" in handout_content and "Shade Smooth" in handout_content
     assert "平滑着色" in pkg_content and "Shade Smooth" in pkg_content
 
-    # 2. B2 -> B5 概念到 Shader Editor 界面桥接
-    assert "30 秒" in pkg_content and "桥接" in pkg_content
+    # 2. B2 -> B5 概念到 Shader Editor 界面桥接 (必要教学交接)
+    assert "必要桥接" in pkg_content or "必要桥接" in handout_content
     assert "Principled BSDF" in handout_content
-    assert "30 秒概念到界面桥接" in handout_content
+    assert "Base Color" in handout_content and "Metallic" in handout_content and "Roughness" in handout_content
 
-    # 3. 节点标签规范与称谓对齐
-    assert "Mix (外壳调色)" in pkg_content or "Mix (外壳调色 / Body_Color_Tint)" in pkg_content
-    assert "Mix (外壳调色 / Body_Color_Tint)" in handout_content
+    # 3. 节点标签规范与称谓对齐 (学生端优先使用 Mix (外壳调色))
+    assert "Mix (外壳调色)" in pkg_content
+    assert "Mix (外壳调色)" in handout_content
 
-    # 4. Multiply 纯白特性说明
-    assert "乘法中性元" in pkg_content
+    # 4. Multiply 纯白特性说明与预测保护 (术语表与示范无纯白剧透，解释在操作后)
     assert "绝非软件卡死" in handout_content or "绝非软件卡死" in pkg_content
+    assert "中性元" in ledger_content
+    # 验证术语表中 Multiply 未包含纯白不变泄露
+    term_section = handout_content.split("#### 本周核心概念与有界术语")[1].split("### 步骤 1")[0]
+    assert "纯白" not in term_section, "Handout 术语表中提前泄露了纯白预测答案！"
 
     # 5. 台账与证据地图同步与证据属性区分
     assert "Teacher Trial Round 1 Audit" in ledger_content
@@ -170,5 +173,6 @@ def test_teacher_trial_round1_corrections():
     assert "CURRENT DESIGN DECISION" in ledger_content
     assert "IN TRIAL / UNMEASURED / GATE OPEN" in ledger_content
     assert "Shade Smooth" in evidence_content
+    assert "Block 4 (Flashlight 20min)" in evidence_content
 
 
