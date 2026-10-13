@@ -166,6 +166,10 @@ def build_package(source_dir, output_dir):
                         if s.type == 'VIEW_3D':
                             s.shading.type = 'MATERIAL'
                             s.region_3d.view_perspective = 'CAMERA'
+                elif a.type == 'NODE_EDITOR':
+                    for s in a.spaces:
+                        if s.type == 'NODE_EDITOR' and mat_body and mat_body.node_tree:
+                            s.node_tree = mat_body.node_tree
 
         # 确保 Body_Color_Tint 节点在着色器编辑器中被唯一选中且激活
         if mat_body and mat_body.node_tree:
@@ -189,7 +193,7 @@ def build_package(source_dir, output_dir):
         bpy.ops.file.pack_all()
         bpy.ops.wm.save_mainfile()
 
-    # --- 在 Slot 2 (vintage_flashlight_body) 中预置两级遮罩调色管线 ---
+    # --- 在 Slot 2 (vintage_flashlight_body) 中预置两级遮罩调色管线与清晰分层布局 ---
     # 核心目标：漆面独立改色 + 裸露金属保护 + 原有磨损细节保留 + 学生极简操作
     nodes = mat_body.node_tree.nodes
     links = mat_body.node_tree.links
@@ -197,9 +201,15 @@ def build_package(source_dir, output_dir):
     diff_img = [n for n in nodes if n.type == 'TEX_IMAGE' and 'diff' in n.image.name.lower()][0]
     metal_img = [n for n in nodes if n.type == 'TEX_IMAGE' and 'metal' in n.image.name.lower()][0]
     bsdf = [n for n in nodes if n.type == 'BSDF_PRINCIPLED'][0]
+    output_node = [n for n in nodes if n.type == 'OUTPUT_MATERIAL'][0]
 
-    # 1. 预置漆面遮罩 (Paint Mask): 利用 PBR 资产中天然准确的 Metallic 贴图进行阈值切分
-    # 漆面 (Metallic < 0.15) 输出 1.0 (白)，裸金属/磨损 (Metallic > 0.45) 输出 0.0 (黑)
+    # 将 BSDF 与 Material Output 整体向右平移，为中间学生操作区与保护区腾出宽阔空间 (x: 100~640)
+    bsdf.location = (760.0, 380.0)
+    bsdf.width = 240.0
+    output_node.location = (1080.0, 380.0)
+    output_node.width = 140.0
+
+    # 1. 预置漆面遮罩 (Paint Mask): 利用 Metallic 贴图进行阈值切分 (归入教师保护区)
     mask_ramp = nodes.new(type='ShaderNodeValToRGB')
     mask_ramp.name = "Paint_Mask_Ramp"
     mask_ramp.label = "漆面遮罩 (预置/勿动)"
@@ -207,11 +217,34 @@ def build_package(source_dir, output_dir):
     mask_ramp.color_ramp.elements[0].color = (1, 1, 1, 1)
     mask_ramp.color_ramp.elements[1].position = 0.45
     mask_ramp.color_ramp.elements[1].color = (0, 0, 0, 1)
-    mask_ramp.location = (bsdf.location.x - 560, bsdf.location.y - 200)
+    mask_ramp.width = 240.0
+    mask_ramp.location = (100.0, 140.0)
     links.new(metal_img.outputs['Color'], mask_ramp.inputs['Fac'])
 
-    # 2. 学生交互核心节点: Mix (外壳调色)
-    # Blend Type 采用 COLOR 模式：完整保留底漆原有的明暗微观反差与划痕纹理
+    # 2. 预置金属保护滤网: Mix (裸金属保护滤网 / 预置勿动)
+    # Factor 由遮罩驱动：漆面 (Mask=1.0) 采纳学生改色 (B)；裸金属/划痕 (Mask=0.0) 透传原始贴图 (A)
+    mix_protect = nodes.new(type='ShaderNodeMix')
+    mix_protect.name = "Metal_Protection_Filter"
+    mix_protect.label = "金属保护滤网 (预置/勿动)"
+    mix_protect.data_type = 'RGBA'
+    mix_protect.blend_type = 'MIX'
+    mix_protect.width = 220.0
+    mix_protect.location = (420.0, 220.0)
+    links.new(mask_ramp.outputs['Color'], mix_protect.inputs['Factor'])
+    links.new(diff_img.outputs['Color'], mix_protect.inputs[6]) # A: 原版贴图 (保护金属)
+    links.new(mix_protect.outputs['Result'], bsdf.inputs['Base Color'])
+
+    # 归入【教师预置保护区 / 只读勿动】Frame (深灰色冷调沉稳区，紧凑封闭在下半部)
+    frame_protect = nodes.new(type='NodeFrame')
+    frame_protect.name = "Frame_Teacher_Protected"
+    frame_protect.label = "【教师预置保护区 / 只读勿动】"
+    frame_protect.label_size = 20
+    frame_protect.use_custom_color = True
+    frame_protect.color = (0.22, 0.22, 0.25)
+    mask_ramp.parent = frame_protect
+    mix_protect.parent = frame_protect
+
+    # 3. 学生交互核心节点: Mix (外壳调色) (高置视觉中心、拉宽面板、显明步骤指示)
     mix_node = nodes.new(type='ShaderNodeMix')
     mix_node.name = "Body_Color_Tint"
     mix_node.label = "Mix (外壳调色)"
@@ -219,28 +252,19 @@ def build_package(source_dir, output_dir):
     mix_node.blend_type = 'COLOR'
     mix_node.inputs['Factor'].default_value = 0.0 # 初始 Factor=0.0，像素级绝对 100% 原始红漆开局
     mix_node.inputs[7].default_value = (0.22, 0.65, 0.15, 1.0) # 预置初次草绿色拾色器
-    mix_node.location = (bsdf.location.x - 560, bsdf.location.y + 150)
+    mix_node.width = 260.0 # 充分加宽节点，便于学生直接看清并调节 Factor 滑块与 Color B 颜色
+    mix_node.location = (100.0, 560.0)
     links.new(diff_img.outputs['Color'], mix_node.inputs[6])
-
-    # 3. 预置金属保护滤网: Mix (裸金属保护滤网 / 预置勿动)
-    # Factor 由漆面遮罩驱动：漆面 (Mask=1.0) 采纳学生改色结果 (B)；裸金属/划痕 (Mask=0.0) 100% 透传原始贴图 (A)
-    mix_protect = nodes.new(type='ShaderNodeMix')
-    mix_protect.name = "Metal_Protection_Filter"
-    mix_protect.label = "金属保护滤网 (预置/勿动)"
-    mix_protect.data_type = 'RGBA'
-    mix_protect.blend_type = 'MIX'
-    mix_protect.location = (bsdf.location.x - 260, bsdf.location.y + 100)
-    links.new(mask_ramp.outputs['Color'], mix_protect.inputs['Factor'])
-    links.new(diff_img.outputs['Color'], mix_protect.inputs[6]) # A: 原版贴图 (保护金属)
     links.new(mix_node.outputs['Result'], mix_protect.inputs[7]) # B: 学生改色结果
-    links.new(mix_protect.outputs['Result'], bsdf.inputs['Base Color'])
 
-    # 4. 关键易区分性保障：创建 NodeFrame 将预置遮罩与保护滤网归拢，与学生主节点清晰隔离
-    frame_protect = nodes.new(type='NodeFrame')
-    frame_protect.name = "Frame_Teacher_Protected"
-    frame_protect.label = "【教师预置保护区 / 只读勿动】"
-    mask_ramp.parent = frame_protect
-    mix_protect.parent = frame_protect
+    # 归入【学生核心操作区】Frame (高饱和青绿提示框，醒目标明双操作步序)
+    frame_student = nodes.new(type='NodeFrame')
+    frame_student.name = "Frame_Student_Workspace"
+    frame_student.label = "【学生核心操作区】步骤: ① 调大 Factor 滑块 ➔ ② 点击 B 颜色色块选色"
+    frame_student.label_size = 22
+    frame_student.use_custom_color = True
+    frame_student.color = (0.16, 0.38, 0.22)
+    mix_node.parent = frame_student
 
     # --- 生成 Starter 与 Recovery A (预连节点、中性开局状态 Factor=0.0) ---
     bpy.ops.wm.save_as_mainfile(filepath=starter_blend)

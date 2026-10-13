@@ -230,5 +230,27 @@ def test_no_multiply_teaching_contract_residue():
     lo_section = pkg_content.split("### 1.2 预期可观察成效")[1].split("### 1.3 教师专用标准参考答案")[0]
     assert "Multiply" not in lo_section, "Package LO2 中仍残留 Multiply！"
 
+def test_shader_editor_layout_usability_and_frame_isolation():
+    """验证 Shader Editor 布局可用性、双 Frame 隔离及无重叠几何空间契约"""
+    build_script_path = os.path.join(REPO_ROOT, "tools/teaching/build_week1_teaching_package.py")
+    code = read_file(build_script_path)
+
+    # 1. 验证双 Frame 分区设计：学生操作区与教师保护区显式隔离
+    assert "Frame_Student_Workspace" in code
+    assert "Frame_Teacher_Protected" in code
+    assert "Body_Color_Tint" in code
+    assert "Paint_Mask_Ramp" in code
+    assert "Metal_Protection_Filter" in code
+
+    # 2. 验证操作步序与关键控件宽度提示
+    assert "mix_node.parent = frame_student" in code
+    assert "mask_ramp.parent = frame_protect" in code
+    assert "mix_protect.parent = frame_protect" in code
+    assert "mix_node.width = 260.0" in code or "mix_node.width >= 240" in code
+
+    # 3. 验证主 Principled BSDF 右移以腾出充足走线与操作空间
+    assert "bsdf.location = (760.0" in code or "bsdf.location.x >= 700" in code
+
+
 
 
