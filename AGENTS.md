@@ -26,6 +26,20 @@ Repository-level file-growth and context-budget guidance across code, research M
 - Do not mechanically fragment cohesive artifacts solely to satisfy line counts.
 - Refer to `docs/agents/artifact-governance.md` for current repository-specific placement guidance.
 
+## Collaborative Lesson Preparation Discipline
+
+Teacher-facing lesson preparation is **decision-driven, not document-driven**.
+
+- Keep the existing authority split: the Teaching Evidence Map routes evidence and research gaps; the executable Teaching Package owns weekly teaching contract and runtime/cut/recovery logic; the Student Handout owns the student task interface; the PPT with embedded Presenter Notes owns classroom presentation.
+- **Do not create a fifth long-lived teaching SSOT** merely to make discussion easier. A teacher discussion view may be generated from existing authorities, but it must be rebuildable, source-versioned, disposable, and must not contain unique decisions.
+- Present the global teaching picture first, then ask 2–3 sharp experiential risk questions (first hands-on moment, hardest friction point, single-teacher bottleneck/queue, cut priorities) instead of micro-checkpoint fatigue. Teacher statements represent expert decision/risk inputs; record them as Teacher Accepted / Proposed / Runtime Required, not automatic VERIFIED.
+- For each teaching block, attach only a lightweight PPT projection: non-frozen candidate slide count, single takeaway per slide, one-sentence teacher memory anchor, and Presenter Notes intent (explanation/misconception/transition). Do not draft verbatim scripts or polish slides prematurely.
+- Evaluate cheapest adequate expression by true human intervention cost: AI text-to-image is cheap for conceptual/atmospheric illustration, but strictly prohibited from faking Blender UI, shader nodes, parameter states, or student results (which require real Blender/IDE deterministic captures); for real-world references, provide directly searchable Google keywords, exact provenance, and license info, prioritizing Agent retrieval to reduce teacher burden. Stop when students can reliably understand and judge; avoid nonessential animation or decorative polish.
+- Decision-verification-propagation loop: supersede obsolete rules explicitly at owning authorities rather than stacking conflicting guidance; propagate accepted changes immediately in-place; decouple prototype/slide walkthroughs from target-lab runtime evidence.
+- Cross-agent ref reconciliation: when Browser or IDE creates a repository commit/PR that can affect another active Work Unit's authority or files, the other side must compare/reconcile against the newer authoritative ref before final delivery. A clean textual merge is not proof of semantic compatibility; avoid unqualified force pushes.
+
+Detailed artifact lifecycle and change-propagation guidance lives in `docs/agents/artifact-governance.md`.
+
 ## Curriculum Evidence Discipline
 
 任何会影响课程内容、周次排定、教学深度、能力要求、案例选择或考核设计的承重课程主张（load-bearing curriculum claim），必须明确标注其依据属性，严禁无 pointer 静默写成事实。

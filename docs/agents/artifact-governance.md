@@ -63,6 +63,162 @@ When temporary mitigations are introduced (such as a temporary freeze, no-growth
 
 ---
 
+## Teacher Preparation Views, PPT Production, and Change Propagation
+
+The course repository uses several artifacts because they serve different audiences and validation duties. Efficiency comes from controlling **authority and propagation**, not from forcing every artifact to be textually unique.
+
+### Authority and presentation responsibilities
+
+- **Teaching Evidence Map**: authority for evidence routing, coverage/gap status, and source/decision boundaries. It is not the teacher's day-to-day preparation dashboard.
+- **Executable Teaching Package**: authority for the weekly teaching contract: outcomes, protected/cuttable core, activity order and plan budget, teacher/student actions, evidence requirements, answer boundaries, recovery, and runtime gates.
+- **Student Handout**: authority for what students actually read, fill in, operate, and submit. Its task semantics must remain compatible with the Teaching Package.
+- **PPT + embedded Presenter Notes**: the single classroom presentation artifact. Visible slides own page-level expression, visuals, reveal order, and activity prompts. Notes own page-level speaking cues, transitions, misconceptions, demo cues, and necessary pointers.
+- **Teacher discussion view / prototype copy**: no authority. It is a rebuildable projection of current authorities for a specific discussion or validation question.
+
+Literal duplication is sometimes necessary for usability. The invariant is that duplicated rules must have one clear owner and must not become independently maintained policy.
+
+### No fifth teaching SSOT
+
+Do not create a long-lived Teacher Preparation Spine, parallel Notes document, YAML/JSON curriculum database, or other registry solely to reduce teacher reading load unless live evidence demonstrates that the additional system reduces net maintenance cost.
+
+A temporary teacher view is allowed only when it:
+- can be regenerated from existing authority artifacts;
+- identifies the source revision it reflects;
+- contains no unique decision or policy;
+- is overwritten or discarded when its validation purpose is complete.
+
+If unique content accumulates in the temporary view, first move that content to the correct authority before continuing.
+
+### Decision-driven preparation loop
+
+Use this loop for lesson preparation and revisions:
+
+1. **Locate the authority** for the proposed change.
+2. **Make or obtain the teaching decision** at the correct authority boundary.
+3. **Choose the cheapest adequate validation** for the uncertainty:
+   - structure/order -> a compact block view or short walkthrough;
+   - student task wording/evidence -> the real Handout;
+   - software interaction -> the real Starter/Recovery asset;
+   - visual discrimination -> the real reference image or verified screenshot;
+   - page flow/explanation -> a few rough slides or a page sequence.
+4. **Propagate the accepted decision immediately** to affected consumers.
+5. **Revalidate only the affected chain** unless the change alters the full lesson architecture.
+
+Do not require two complete review meetings, a complete rough deck, or a fixed number of prototype rounds when a narrower test can answer the live question.
+
+### Teacher-expert engagement: global picture first, then sharp questions
+
+To avoid micro-checkpoint fatigue and respect human instructional expertise:
+- **Lead with the whole board**: In each round, present the overarching lesson goals, current progress stage, full 160-minute chain, and protected non-negotiable core first, establishing a clear macro perspective.
+- **Isolate 2–3 sharp experiential questions**: The Agent handles mechanical details autonomously and surfaces only 2–3 sharp risk questions that strictly rely on the teacher's classroom intuition (e.g., *When do students first touch the software? Where is the highest friction point? Where will queues form in a 35-student single-teacher class? What gets cut first if time overflows?*).
+- **Decision vs runtime status**: Teacher verbal responses are expert risk assessments and decision inputs, not automatic `VERIFIED` runtime facts. Record them as `TEACHER ACCEPTED`, with affected software/timing aspects marked `PROPOSED` or `RUNTIME REQUIRED`. Avoid repeatedly asking "do you agree?" on routine items.
+
+### Lightweight PPT projection at activity design stage
+
+During curriculum and activity restructuring, attach only a lightweight slide projection per block before any deck authoring:
+- Non-frozen candidate slide count (e.g., 1–2 slides, explicitly flexible);
+- Single primary takeaway / visible student takeaway per slide;
+- One-sentence teacher memory anchor;
+- Presenter Notes intent (core clarification, common student misconception, or transition cue).
+
+Do not draft full verbatim lecture scripts or premature visual layout polish. Once the activity sequence stabilizes, transition smoothly into the single Markdown Slide Draft lineage.
+
+### Prototype fidelity and cheapest adequate expression by human intervention cost
+
+Low cost does not mean fake content, nor does it mean avoiding images entirely:
+- **Evaluate cost by actual human intervention required**: AI text-to-image is inexpensive for conceptual, atmospheric, or metaphorical illustrations where technical veracity is not load-bearing.
+- **Strict prohibition on faking runtime/technical reality**: AI generation must never be used to fabricate Blender UI, shader node graphs, parameter states, or student manipulation outcomes. All software controls, node connections, and material responses must be backed by real Blender/IDE deterministic captures or actual files.
+- **Agent-assisted web reference discovery**: For real-world material comparisons or photo references, provide directly searchable Google keywords, exact origin URLs, and licensing status. Prioritize Agent automated search and filtering to minimize manual teacher searching.
+- **Stop condition**: Stop visual iteration when students can reliably understand the concept and make independent judgment. Do not upgrade to animations, advanced lighting setups, or high-touch graphic polish unless pedagogy strictly requires it. Visual aesthetics cannot substitute for physical or software truthfulness.
+- A prototype may be disposable or may evolve into the final deck, but there must be only **one active editable slide lineage**. Do not maintain separate prototype and final decks in parallel.
+
+### Markdown Slide Draft as the low-cost visual prototype
+
+When a slide prototype is useful, the preferred default is a lightweight Markdown draft that remains part of the **single active PPT production lineage**, not a fifth curriculum authority.
+
+Use the minimum semantic structure:
+
+```md
+# <slide title>
+
+## Visible
+What students should actually see/read.
+
+## Visual
+status: READY | TODO | LIVE
+type: observation-reference | runtime-screenshot | conceptual-diagram | navigation | live-demo
+
+<embedded image, concrete visual requirement, or live-demo instruction>
+
+## Notes
+Page-level teacher speaking/transition/demo cues only.
+
+## Trace
+P: <Teaching Package block/section>
+H: <Handout task/step if applicable>
+E: <Evidence Map KU if applicable>
+```
+
+Rules:
+- **READY**: the real/verified image exists and should be embedded directly in Markdown with a repository-relative or otherwise controlled path.
+- **TODO**: the image does not yet exist; specify what must be visible, the intended source, and any truthfulness constraint. Do not use vague "image here" placeholders for load-bearing visuals.
+- **LIVE**: the correct teaching move is to switch to the real software/demo rather than fabricate a static slide image. The slide may simply hold the student attention state or action instruction.
+- Use real or verified visuals early for software controls, observation judgments, material comparisons, recovery behavior, and other visuals that are themselves part of the learning input or evidence. AI-generated or decorative imagery must not impersonate runtime/UI/evidence.
+- Annotated PNG/SVG derived from a real screenshot/reference is acceptable when labels, arrows, crops, or callouts are needed. The annotation should clarify the verified source rather than recreate it from imagination.
+- The draft may contain multiple page types: **Concept**, **Observation**, **Activity**, and **Live Demo / Hold**. Do not force every block into a title-plus-bullets lecture layout, and do not require every Teaching Package block to have a dedicated slide.
+- Markdown is the cheapest review surface, not a commitment to Marp, Slidev, Quarto, or any final renderer. Tool choice for the production deck should be delayed until the visual/layout needs justify it.
+- Once the Production Gate is passed, either evolve this draft into the single final slide-editing lineage or deliberately hand it off to the chosen production source. Do not maintain a parallel Markdown truth and independently edited final deck without a clear one-way ownership transition.
+
+### Production gate vs. go-live gate
+
+A lesson may enter final PPT/Notes production when:
+- protected learning requirements and student tasks are understood well enough that no known dispute would change the page/task architecture;
+- the representative high-risk task path has been walked using the actual student/asset materials relevant to that path;
+- the teacher can account for the major see/listen/do/fill/submit transitions and identify remaining timing assumptions as plan estimates;
+- the relevant Teaching Package, Handout, critical visuals/assets, and known pointers belong to the same revision.
+
+This gate authorizes production effort only. It does **not** establish classroom readiness. Existing runtime, delivery, submission, rehearsal, accessibility, and field-validation gates remain independent.
+
+### Minimal change-propagation model
+
+Agents should classify a change by meaning, then update only semantically dependent artifacts:
+
+| Change type | Owning location | Typical dependent consumers | Minimum revalidation |
+| --- | --- | --- | --- |
+| Teaching decision: add/remove/deepen a concept, task, outcome, evidence requirement | Project Authority and/or Teaching Package | Handout; related PPT/Notes; Evidence Map only if evidence/decision boundary changes; code/assets only when their behavior/assertions depend on the decision | Student can still produce intended evidence; timing/recovery still coherent |
+| Timing/order/cut/recovery | Teaching Package | Notes pacing; Handout step/recovery wording; PPT reveal/transition order; Evidence Map pointers when block anchors change | Affected block plus its entry/exit transitions |
+| Implementation: control name, parameter, path, asset/version | Asset/code + Teaching Package interface text | Handout operation; related screenshots/PPT/Notes; source/version pointers when applicable | Real operation, save/reopen/recovery path affected by the change |
+| Presentation-only: layout, crop, equivalent phrasing, typography | Active PPT/Notes editing source | Usually none | Projected readability and unchanged meaning/reveal order |
+| Evidence/source correction | Evidence Map / verified source pointer | Only consumers that use the corrected claim; related assertions | Claim-pointer consistency plus affected teaching fragment |
+| Validation-state change | Existing gate/evidence location in Teaching Package or tracker | Operational hints/fallbacks in Handout/Notes when affected | Corrected runtime/delivery path; unrelated validation remains valid |
+
+For each accepted substantive change, the Agent should leave a short review trace in the active Issue/PR or commit message containing:
+**decision/status | semantic change | affected artifacts | deliberately unchanged artifacts + why | evidence requiring revalidation**.
+
+### Cross-agent repository reconciliation
+
+Browser-side and IDE-side repository mutations are allowed, but each mutation creates a potential dependency event for other active work.
+
+- A Browser repository change should use an explicit branch/PR or otherwise expose a concrete ref; do not rely on chat memory as the synchronization mechanism.
+- Every active IDE/Browser mission should retain its starting/base SHA. Before final delivery, compare that base and its authority inputs against newer relevant refs.
+- If another active Work Unit changed overlapping authority or dependent artifacts, fetch/compare and reconcile before declaring the mission complete, even when Git reports no textual conflict.
+- **No textual conflict != no semantic drift.** A stale branch can remain mechanically mergeable while implementing superseded teaching rules.
+- Ordinary non-fast-forward protection prevents some direct overwrites, but it does not protect against stale branches, generated-file replacement, semantic regressions, or unqualified force pushes.
+- Avoid `git push --force` for shared work. If history repair is genuinely required, use an explicit lease/expected-head discipline and first inspect the remote head.
+- The human should authorize meaning and direction, not manually transport commits between agents. Agents should communicate concrete refs and perform the reconciliation themselves.
+
+### Supersession and retirement discipline
+
+When a newer teacher decision replaces an older project choice:
+- mark the older choice as superseded in the current Issue/PR or edit the owning authority so only one active rule remains;
+- remove obsolete downstream wording and stale pointers rather than preserving competing variants;
+- do not rewrite historical audit reports merely to hide that a prior decision once existed;
+- keep unresolved proposals explicitly non-authoritative until accepted.
+
+Current teacher-preparation decisions should live in the active project authority plus these durable Agent rules; they should not be copied into an additional teaching manual.
+
+---
+
 ## Legacy Aggregate: `docs/research/source-native-knowledge-index.md` (~1,356 lines)
 
 - **Status & Nature**: Legacy aggregate containing source-native evidence for Shah, The PBR Guide, Dinur, and RTR4 (Batches 1–4) with recognized structural risk due to size and multi-source accumulation.

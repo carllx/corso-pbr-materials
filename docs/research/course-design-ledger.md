@@ -34,16 +34,23 @@
     3. **证据属性说明**：CORE42 后续外部语料审计未发现足以改变路线的冲突（`NO CONTRADICTION FOUND`），直接正向强化了 W1–W6 聚焦微案例配合复合主道具的教学组织证据；CORE42 是外部验证凭据（Reported with Provenance），而非该 Course Owner 决策本身的产生来源。
 - **Week 1 教学实施包与教师验收决议 (Week 1 Executable Package & Teacher Review / Issues #11, #15, #14)**：
   - 决议状态 (2026-10-01)：**`TEACHER ACCEPTED WITH DELTAS — APPLY BOUNDED CORRECTIONS THEN USE AS BASELINE`**
+    *(注：其中关于“W1 技术链路零变动/禁止新微实验”及原 B1–B4 迟滞上机节奏，已被 2026-10-09 Issue #37 决议部分替代 PARTIALLY SUPERSEDED)*
   - **决议事实与有界修正 (Bounded Correction)**：
     - 教师与 Course Owner 正式认可 Week 1 教学设计方案及 160 分钟课时节奏，附带一项有界修正：第一周开局显式预留 **15 分钟课程整体介绍 (Course Orientation)** 占位段；
     - **占位段规范**：内容后续由全课权威设计回填，最终覆盖 W1–W9 演进轨迹、后八周教学结构、作业练习体系、期末项目期望及考核评价框架原则；现阶段不编造或冻结任何具体成绩比例；
-    - **课时重分配 (严格等于 160 分钟)**：
-      - Block 1: 20 min (15 min Orientation + 5 min 入学摸底)；
-      - Block 2: 15 min (概念与光影剥离示范聚焦)；
-      - Block 10: 5 min (轻量交付与收尾)；
-      - 其余模块 (Block 3–9, 11) 严格保持不变；
-    - **核心实践循环与技术链路零变动**：坚决保护“材质动作 $\to$ 现场反馈 $\to$ 受控修订 $\to$ 保存退出重开持久化 $\to$ 缓冲容灾”完整循环；不改动 Blender 5.2.2 LTS 运行时、Starter 资产或材质交互逻辑；
+    - **课时重分配 (历史记录，现已由 Issue #37 替代)**：原 Block 1: 20 min (15 min Orientation + 5 min 入学摸底)；Block 2: 15 min；Block 10: 5 min；
+    - **核心实践循环保持**：坚决保护“材质动作 $\to$ 现场反馈 $\to$ 受控修订 $\to$ 保存退出重开持久化 $\to$ 缓冲容灾”完整循环；
     - **门禁纪律**：本工单仅完成有界修正并作为后续基线，**严禁启动后续 W1–W9 v0.3 重排，不提前解除 Issue #13 阻塞**。
+- **Week 1 前半段教学重构决议：几何体热身与手电筒主线对齐 (Issue #37 / 2026-10-09)**：
+  - 决议状态 (2026-10-09)：**`TEACHER ACCEPTED — REALIGN WEEK 1 FRONT-HALF (PROPOSED TIMING / RUNTIME REQUIRED FOR CAPACITY & ASSETS)`**
+  - **核心判定与设计原则**：
+    1. **一条主线、两类素材职责**：低复杂度原生球体/立方体用于视觉原理的最小直观解释与 Blender 基本手感操作热身；Poly Haven **Vintage Flashlight** 严格保留为第一周正式材质观察/改色案例及 W1–W6 有界混合拓扑连续性载体；W7–W9 独立期末资产边界保持不变；
+    2. **更早进入 Blender**：学生执行最小主动操作（亲手添加 UV Sphere、位移摆放、在 Material 属性下拉直接指派预置材质 `Mat_Warmup_Sphere`，并设置 2 分钟卡壳隐藏备用球体 fallback），认识 3D Viewport、Outliner、基础材质入口、视口导航与 Material Preview；热身**不单独评分、不提交、不要求精确复刻老师场景**；灯光行为明确：Material Preview 下默认不依赖 Scene Lights (use_scene_lights=False)，避免让学生调场景灯光；
+    3. **分层讲解 UI**：几何体热身只讲基础视口导航与对象材质入口；正式手电筒任务才引入 Shading 工作区、Shader Editor、材质槽与预连 `Body_Color_Tint`。保持 Option B 预置节点方案，学生不连线不建节点；
+    4. **概念导入先直观再应用**：游戏/数字内容 PBR 用途与视觉悬念 $\to$ 4 个英文标准术语（Base Color, Roughness, Metallic, Normal）及大白话 $\to$ 识别光照/视角与材质的区别 $\to$ 迁移到手电筒部位。“高光会跑，别把它画死在 Base Color 里”作为核心记忆锚点；Transmission vs Alpha 直观辨析；
+    5. **开场不做知识测验**：消减开场 5 分钟摸底测试，直接通过 PPT 导入与几何体热身观察；保留后段 `Predict → Operate → Explain` 判别式学习证据；
+    6. **单教师大班与保护核心**：160 分钟为总计划预算（PLAN BUDGET），重构 Block 1–6 候选分钟分配并明确超时优先剪裁规则（Cut Rules）；坚决保护材料观察、学生独立决策、反馈修订、保存退出重开持久化及轻量交付课内闭环；禁止通过隐性课后作业吸收超时；
+    7. **旧规则替代确认 (Supersession Notice)**：正式替代 2026-10-01 决议中关于“Week 1 零技术链路变动 / 禁止新微实验”的静态限制（仅针对几何体热身）；手电筒主线和 Option B 保护核心继续有效。
 
 ---
 
@@ -121,4 +128,83 @@
 3. **正式执行课表排定与冻结**：待 Issue #22（期末大作业架构设计）确立、相关前置门禁核销后，启动综合生成《Week 1–9 排课草案 v0.4》，并依规提交 Course Owner 审定冻结。
 
 ---
+
+## 5. Week 1 教师试走反馈（Round 1）审计与联动修订记录 (Teacher Trial Round 1 Audit)
+
+> **审计与证据溯源说明**：  
+> 本节记录基于 2026-10-10 本地教师单人试走反馈记录（本地试走工作区归档于 `~/Desktop/Week1-Teacher-Trial-Round1-Archive`，教师试讲/试走记录由项目教师口头与现场笔记反馈给出）。  
+> 严格区分 **`TEACHER-REPORTED` (教师口头/现场反馈事实)**、**`TECHNICAL FACT` (经技术复核的确定性事实)** 与 **`PROJECT INFERENCE` (教学法推论与设计修订)**，不将口头体验伪造为多样本现场实测或独立目击验证。
+
+### 5.1 教师试走反馈、事实判定与联动修订
+
+1. **Multiply ＋ 纯白色运算行为**：
+   - **教师试走反馈 (`TEACHER-REPORTED`)**：教师在实测调节中反馈拖动 Factor 滑块时外壳完全不发生颜色变化，直观体验易产生“软件卡死或节点失灵”的误判；
+   - **技术事实判定 (`TECHNICAL FACT / VERIFIED`)**：在数学正片叠底（Multiply）运算中，纯白色 $(1.0, 1.0, 1.0)$ 是乘法的中性元（$C \times 1 = C$）。当插槽 B 颜色为纯白色时，无论 Factor 取何值，运算输出与原底色完全一致，这是确定性的物理与数学运算规律；
+   - **教学修订 (`PROJECT INFERENCE`)**：在 Handout、Teaching Package 与教师指引中明确校正指导语言：保护 2.1 的 Predict-before-answer 顺序（学生先预测再实操），在 Explain 解释与排错提示中明确纯白不变色是正常运算，消除“软件失灵”误解。
+2. **节点命名与原生术语混淆**：
+   - **教师试走反馈 (`TEACHER-REPORTED`)**：教师指出初学者容易将自定义英文标签 `Body Color Tint` 误以为是 Blender 内置的原生节点类型，增加手册检索困惑；
+   - **规范事实判定 (`TECHNICAL FACT / CONVENTION`)**：代码内部保持稳定索引键 `mix_node.name = "Body_Color_Tint"`（确保自动化测试与 bpy 脚本兼容），界面展示标签规范为 `mix_node.label = "Mix (外壳调色)"`（原生类型名居前，中文提示在后）；材料统一称呼为 `Mix 节点（外壳调色 / Body_Color_Tint）`。
+3. **Block 2 $\to$ Block 5 概念到界面的知识过渡与 Principled BSDF 插槽视读**：
+   - **教学认知反馈 (`TEACHER-REPORTED`)**：教师反馈从 B2 四大概念进入 B5 Shading 工作区时，面对中央 Principled BSDF 着色器网络存在认知断层；
+   - **界面实测事实 (`TECHNICAL FACT`)**：在真实 Blender 5.2.2 LTS 中，Principled BSDF 顶部默认可见输入插槽主要为 `Base Color`、`Metallic`、`Roughness`，而 `Normal` 插槽位于着色器靠下方独立面板中；
+   - **教学修订 (`PROJECT INFERENCE`)**：在 Block 5 增设可选 30 秒概念桥接（控制在既有 15 分钟预算内），引导学生建立从 B2 到 Principled BSDF 顶部可见核心插槽（Base Color / Metallic / Roughness）的直观映射，并说明 Normal 作为微观凹凸在下方独立区域且今天不动，明确“今天只调连入 Base Color 的调色小盒子”，降低认知负荷。
+4. **热身球体刻面与平滑着色**：
+   - **教师试走反馈 (`TEACHER-REPORTED`)**：教师反馈 `Shift + A` 原生添加的 UV Sphere 默认为 Flat Shading，刻面棱角明显，高光呈方块状，与右侧磨砂立方体的高光对比不够圆润精致；
+   - **教学修订 (`PROJECT INFERENCE`)**：在 Handout 与指引中增加可选的“右键 $\to$ 平滑着色 (Shade Smooth)”微润色步骤，使高光圆润聚拢；明确该步骤为**可选提升项 (Optional / Cuttable)**，时间紧迫可跳过，不强制增加零基础学生的必要上机门槛。
+
+### 5.2 教学方案定位与待决事项 (Decisions & Open Items)
+
+- **Option B 预置节点方案权威定位**：
+  - **当前设计权威**：Option B 预置节点脚手架（预连节点、学生调参）为**当前已由课程负责人确认采纳的教学设计决策 (CURRENT DESIGN DECISION per Issue #37)**；
+  - **实测与容量状态**：其在 35 人/17 人大班真实课堂中的理解达成与时间容量保持 **`IN TRIAL / UNMEASURED / GATE OPEN`**；若后续大班真人容量或理解验证出现过载/失效，再评估方案 C。
+- **待教师最终决策事项 (Pending Teacher Disposition)**：
+  1. 手电筒初始构图与 Shading 工作区入口是否需要进一步微调视口相机或预置布局；
+  2. 极简几何体热身（Block 3）在大班实际排课中是否确实能够在 15–20 分钟内闭环且不挤压后段手电筒时间（需真人课堂实测样本）；
+  3. 教学材料 PDF 与图文版的排版优化（已确认列为后续呈现改进，不阻塞本次教学逻辑与资产工程验证）。
+
+---
+
+## 6. Week 1 手电筒漆面遮罩可行性与两级管线决议 (Paint Mask & Two-Stage Recoloring Pipeline)
+
+> **决策与证据溯源说明**：  
+> 本节记录 2026-10-12 基于课程负责人 (Course Owner) 在真实 Blender 5.2.2 LTS GUI 实测对照后的权威决定与 IDE 技术验证结果。严格遵守 `AGENTS.md` 证据纪律，区分 `TEACHER ACCEPTED`、`TECHNICAL FACT / VERIFIED` 与 `PROJECT INFERENCE`。
+
+### 6.1 教师实测问题与权威决策 (Teacher Disposition per 2026-10-12 Review)
+
+1. **混合模式局限性实测 (`TEACHER-REPORTED / VERIFIED`)**：
+   - `Multiply`：绿色乘入原始红色旧漆后，外壳明显压暗发黑发焦，无法自由替换为军绿或目标明快色彩；
+   - `Mix`：Factor=1.0 时虽然能替换为目标颜色，但原始底漆的微观明暗反差与磨损划痕细节被完全抹平，呈现扁平塑料感；
+   - `Color`：能够改变漆面色相与饱和度并保留明暗质感，但由于缺乏分区，原本属于银灰色的磨损划痕与裸露金属同样出现严重绿色偏色；
+   - **结论**：单靠切换 Blending Mode 无法充分解决真实工业旧漆改色问题。
+2. **课程负责人权威决定 (`TEACHER ACCEPTED`)**：
+   - Week 1 手电筒案例应尽可能**只改变漆面颜色，坚决保留裸露金属的合理表现与银灰色泽**；
+   - **预置遮罩与保护管线**：遮罩与必要保护逻辑由教师预置，学生端继续维持 Option B 的极低认知负荷边界（不建节点、不接线、不画 Mask，只操作 1 个主调色节点的 2 个原生控件）；
+   - 该决定改变的是 Option B 内部技术实现，不取消 Option B 的低认知负荷教学边界。
+
+### 6.2 资产事实与技术验证 (`TECHNICAL FACT / VERIFIED`)
+
+1. **贴图数据分布实测**：
+   - 原版 Substance PBR 资产严格遵循导体/绝缘体物理法则：红色漆面区域 Metallic 数值在 `[0.00, 0.02]` (中位数 0.000)，裸露金属/划痕区域 Metallic 数值在 `[0.50, 1.00]` (中位数 0.749)，过渡带在 `[0.15, 0.45]`；
+   - **结论**：原有资产数据完全足以可靠区分漆面与裸金属，无需重新人工手绘 Mask，更无需重新展开 UV！
+2. **两级原生级联管线 (Two-Stage Pipeline)**：
+   - 阶段 1：学生主交互节点 `Body_Color_Tint`（类型 `ShaderNodeMix`，Blend Type 为 `COLOR`，初始 Factor=0.0，Color B 预置军绿色）；
+   - 阶段 2：预置只读金属保护滤网 `Metal_Protection_Filter`（类型 `ShaderNodeMix`，Blend Type 为 `MIX`，Factor 由 `ColorRamp` 漆面遮罩驱动，A 端接原贴图保护金属，B 端接学生改色结果）；
+3. **定量验证指标**：
+   - **中性开局与中性恢复**：Factor=0.0 时，全车与原版 baseline 绝对最大像素差为 0（100% 像素级零偏差恢复）；
+   - **漆面改色**：漆面鲜明呈现军绿、深蓝或铁灰，局部纹理方差稳定在 1.17（明暗质感与微观划痕完整保留）；
+   - **裸金属保护**：改色前后裸金属区域 RGB 变化量 < 2.8 个灰度级，绝无绿色偏色，银灰色泽与高光金属感完美稳固。
+
+### 6.3 教学适配与 Predict-Operate-Explain 升级 (`PROJECT INFERENCE`)
+
+1. **认知负荷保持**：学生依然只面对单个高亮激活的 `Mix (外壳调色)` 节点，操作控件仍为 2 个（Factor 滑块从 0.0 拖到 0.85，拾色器选颜色），完全维持 Block 5-6 的 15/25 分钟预算；
+2. **判别题升级**：
+   - 2.1 基础跟进：预测拖动 Factor 时红漆变色而边缘银灰金属受保护；实操验证；解释 Metallic 遮罩分区原理（呼应 B2 金属概念）；
+   - 2.2 独立迁移：判别 Factor 拉回 0.0 即可一键中性出厂复位；判别 Color 模式下纯白色输入（饱和度 0）会导致漆面去色变成灰度漆面；
+3. **Week 2 教学取向指针记录 (`TEACHER ACCEPTED`)**：
+   - 教师已接受决定：Week 2 以视觉问题驱动 Blend Mode 选择（Multiply/Screen/Overlay/Color），通过少量直观数学示例建立颜色计算与未来代码驱动材质之间的联系。
+
+---
 *本台账随课程调研与设计推进持续更新，归档于 `docs/research/course-design-ledger.md`。*
+
+
+

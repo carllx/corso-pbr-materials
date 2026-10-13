@@ -3,11 +3,11 @@ Week 1 教学资产包确定性构建脚本 (Week 1 Teaching Package Determinist
 
 用途：
 从 Poly Haven 官方原版 Vintage Flashlight 资产（1K 分辨率）出发，
-确定性重构出符合 Week 1 教学要求的完整资产包 (Option B Scaffolded Shader Editor 方案)：
-- Starter: 预置 Slot 2 (vintage_flashlight_body, 1,462面)，预连 Body Color Tint 节点并保持视觉中性开局状态 (Factor=0.0, Color B=(1,1,1,1))，锁定机位与 Material Preview；
-- Recovery A: 预连节点的纯净中性开局备份；
-- Recovery B: 内置已完成首次材质决策（Multiply 0.85 军绿）的跳关检查点；
-- Recovery C & Reference: 统一光照源下的参考工程与效果截图。
+确定性重构出符合 Week 1 教学要求的完整资产包 (Option B Scaffolded Shader Editor 方案，两级遮罩管线)：
+- Starter: 预置 Slot 2 (vintage_flashlight_body, 1,462面)，预连两级遮罩调色管线并保持视觉中性开局状态 (Color 模式, Factor=0.0)，支持有界色彩叠加调节 (Bounded Color Adjustment)，全屏幕锁定机位 Cam_Obs 与 Material Preview，贴图全内置封包 (Pack All) 保障分发与提交生命周期；
+- Recovery A: 预连节点的纯净中性开局备份 (Factor=0.0)；
+- Recovery B: 内置已完成首次材质决策（草绿初选变体 Factor=0.85）的跳关检查点；
+- Reference: 教师讲评反馈优化后的沉稳军绿终态 (Factor=0.80, 降饱和沉稳橄榄绿) 与效果截图 (Recovery C 应急部分完成参考图)。
 
 使用方式 (在 Blender 5.2 LTS 环境下运行)：
 blender -b --python tools/teaching/build_week1_teaching_package.py -- [可选参数]
@@ -158,13 +158,27 @@ def build_package(source_dir, output_dir):
     bpy.context.scene.render.engine = 'BLENDER_EEVEE'
 
     def configure_viewport_and_textures():
-        # 设置视口首屏默认使用 Material Preview 且锁定相机视角
-        for a in bpy.context.screen.areas:
-            if a.type == 'VIEW_3D':
-                for s in a.spaces:
-                    if s.type == 'VIEW_3D':
-                        s.shading.type = 'MATERIAL'
-                        s.region_3d.view_perspective = 'CAMERA'
+        # 确保所有屏幕 (包括 Layout 与 Shading 工作区) 的 3D 视口均处于 Material Preview 且锁定相机机位
+        for screen in bpy.data.screens:
+            for a in screen.areas:
+                if a.type == 'VIEW_3D':
+                    for s in a.spaces:
+                        if s.type == 'VIEW_3D':
+                            s.shading.type = 'MATERIAL'
+                            s.region_3d.view_perspective = 'CAMERA'
+                elif a.type == 'NODE_EDITOR':
+                    for s in a.spaces:
+                        if s.type == 'NODE_EDITOR' and mat_body and mat_body.node_tree:
+                            s.node_tree = mat_body.node_tree
+
+        # 确保 Body_Color_Tint 节点在着色器编辑器中被唯一选中且激活
+        if mat_body and mat_body.node_tree:
+            for n in mat_body.node_tree.nodes:
+                n.select = False
+            if mix_node:
+                mix_node.select = True
+                mat_body.node_tree.nodes.active = mix_node
+
         # 修正相对路径
         for img in bpy.data.images:
             if not img.name or img.name == 'Render Result':
@@ -173,49 +187,107 @@ def build_package(source_dir, output_dir):
             img.filepath = f"//../textures/{base}"
             abs_p = bpy.path.abspath(img.filepath)
             assert os.path.exists(abs_p), f"贴图未找到: {abs_p}"
+
+        # 关键生命周期保障：打包全部贴图资源到 .blend 文件内部 (Pack All)
+        # 确保学生另存为或提交到无 ../textures/ 的任何路径时，贴图零丢失、绝不报洋红
+        bpy.ops.file.pack_all()
         bpy.ops.wm.save_mainfile()
 
-    # --- 在 Slot 2 (vintage_flashlight_body) 中预置并连好 Mix Color 调色节点 ---
+    # --- 在 Slot 2 (vintage_flashlight_body) 中预置两级遮罩调色管线与清晰分层布局 ---
+    # 核心目标：漆面独立改色 + 裸露金属保护 + 原有磨损细节保留 + 学生极简操作
     nodes = mat_body.node_tree.nodes
     links = mat_body.node_tree.links
 
     diff_img = [n for n in nodes if n.type == 'TEX_IMAGE' and 'diff' in n.image.name.lower()][0]
+    metal_img = [n for n in nodes if n.type == 'TEX_IMAGE' and 'metal' in n.image.name.lower()][0]
     bsdf = [n for n in nodes if n.type == 'BSDF_PRINCIPLED'][0]
+    output_node = [n for n in nodes if n.type == 'OUTPUT_MATERIAL'][0]
 
+    # 将 BSDF 与 Material Output 整体向右平移，为中间学生操作区与保护区腾出宽阔空间 (x: 100~640)
+    bsdf.location = (760.0, 380.0)
+    bsdf.width = 240.0
+    output_node.location = (1080.0, 380.0)
+    output_node.width = 140.0
+
+    # 1. 预置漆面遮罩 (Paint Mask): 利用 Metallic 贴图进行阈值切分 (归入教师保护区)
+    mask_ramp = nodes.new(type='ShaderNodeValToRGB')
+    mask_ramp.name = "Paint_Mask_Ramp"
+    mask_ramp.label = "漆面遮罩 (预置/勿动)"
+    mask_ramp.color_ramp.elements[0].position = 0.15
+    mask_ramp.color_ramp.elements[0].color = (1, 1, 1, 1)
+    mask_ramp.color_ramp.elements[1].position = 0.45
+    mask_ramp.color_ramp.elements[1].color = (0, 0, 0, 1)
+    mask_ramp.width = 240.0
+    mask_ramp.location = (100.0, 140.0)
+    links.new(metal_img.outputs['Color'], mask_ramp.inputs['Fac'])
+
+    # 2. 预置金属保护滤网: Mix (裸金属保护滤网 / 预置勿动)
+    # Factor 由遮罩驱动：漆面 (Mask=1.0) 采纳学生改色 (B)；裸金属/划痕 (Mask=0.0) 透传原始贴图 (A)
+    mix_protect = nodes.new(type='ShaderNodeMix')
+    mix_protect.name = "Metal_Protection_Filter"
+    mix_protect.label = "金属保护滤网 (预置/勿动)"
+    mix_protect.data_type = 'RGBA'
+    mix_protect.blend_type = 'MIX'
+    mix_protect.width = 220.0
+    mix_protect.location = (420.0, 220.0)
+    links.new(mask_ramp.outputs['Color'], mix_protect.inputs['Factor'])
+    links.new(diff_img.outputs['Color'], mix_protect.inputs[6]) # A: 原版贴图 (保护金属)
+    links.new(mix_protect.outputs['Result'], bsdf.inputs['Base Color'])
+
+    # 归入【教师预置保护区 / 只读勿动】Frame (深灰色冷调沉稳区，紧凑封闭在下半部)
+    frame_protect = nodes.new(type='NodeFrame')
+    frame_protect.name = "Frame_Teacher_Protected"
+    frame_protect.label = "【教师预置保护区 / 只读勿动】"
+    frame_protect.label_size = 20
+    frame_protect.use_custom_color = True
+    frame_protect.color = (0.22, 0.22, 0.25)
+    mask_ramp.parent = frame_protect
+    mix_protect.parent = frame_protect
+
+    # 3. 学生交互核心节点: Mix (外壳调色) (高置视觉中心、拉宽面板、显明步骤指示)
     mix_node = nodes.new(type='ShaderNodeMix')
     mix_node.name = "Body_Color_Tint"
-    mix_node.label = "Body Color Tint"
+    mix_node.label = "Mix (外壳调色)"
     mix_node.data_type = 'RGBA'
-    mix_node.blend_type = 'MULTIPLY'
-    mix_node.inputs['Factor'].default_value = 0.0
-    mix_node.inputs[7].default_value = (1.0, 1.0, 1.0, 1.0) # 中性纯白，初始状态像素级零偏差
-    mix_node.location = (bsdf.location.x - 300, bsdf.location.y + 100)
-
+    mix_node.blend_type = 'COLOR'
+    mix_node.inputs['Factor'].default_value = 0.0 # 初始 Factor=0.0，像素级绝对 100% 原始红漆开局
+    mix_node.inputs[7].default_value = (0.22, 0.65, 0.15, 1.0) # 预置初次草绿色拾色器
+    mix_node.width = 260.0 # 充分加宽节点，便于学生直接看清并调节 Factor 滑块与 Color B 颜色
+    mix_node.location = (100.0, 560.0)
     links.new(diff_img.outputs['Color'], mix_node.inputs[6])
-    links.new(mix_node.outputs['Result'], bsdf.inputs['Base Color'])
+    links.new(mix_node.outputs['Result'], mix_protect.inputs[7]) # B: 学生改色结果
 
-    # --- 生成 Starter 与 Recovery A (预连节点、中性开局状态) ---
+    # 归入【学生核心操作区】Frame (高饱和青绿提示框，醒目标明双操作步序)
+    frame_student = nodes.new(type='NodeFrame')
+    frame_student.name = "Frame_Student_Workspace"
+    frame_student.label = "【学生核心操作区】步骤: ① 调大 Factor 滑块 ➔ ② 点击 B 颜色色块选色"
+    frame_student.label_size = 22
+    frame_student.use_custom_color = True
+    frame_student.color = (0.16, 0.38, 0.22)
+    mix_node.parent = frame_student
+
+    # --- 生成 Starter 与 Recovery A (预连节点、中性开局状态 Factor=0.0) ---
     bpy.ops.wm.save_as_mainfile(filepath=starter_blend)
     configure_viewport_and_textures()
-    print(f"已生成 Starter (预连中性节点): {starter_blend}")
+    print(f"已生成 Starter (预连两级遮罩管线并打包贴图): {starter_blend}")
     shutil.copyfile(starter_blend, recovery_a_blend)
     print(f"已生成 Recovery A: {recovery_a_blend}")
 
-    # --- 生成 Recovery B (已完成首个材质决策检查点: Multiply 0.85 军绿色) ---
+    # --- 生成 Recovery B (跳关检查点: 模拟初次决策稍微偏艳的草绿色 Factor=0.85) ---
     mix_node.inputs['Factor'].default_value = 0.85
-    mix_node.inputs[7].default_value = (0.32, 0.58, 0.22, 1.0) # 军绿色
+    mix_node.inputs[7].default_value = (0.22, 0.65, 0.15, 1.0) # 模拟学生初选草绿色
 
     bpy.ops.wm.save_as_mainfile(filepath=recovery_b_blend)
     configure_viewport_and_textures()
-    print(f"已生成 Recovery B (完成初次决策检查点): {recovery_b_blend}")
+    print(f"已生成 Recovery B (完成初次决策跳关检查点): {recovery_b_blend}")
 
-    # --- 生成 Reference Result (优化微调后终态: Factor 0.80) ---
+    # --- 生成 Reference Result (优化微调后终态: 针对反馈降饱和微调明度后的沉稳橄榄军绿 Factor=0.80) ---
     mix_node.inputs['Factor'].default_value = 0.80
-    mix_node.inputs[7].default_value = (0.28, 0.62, 0.18, 1.0)
+    mix_node.inputs[7].default_value = (0.28, 0.48, 0.22, 1.0) # 降饱和优化后的历史沉稳橄榄绿 (Olive Drab)
 
     bpy.ops.wm.save_as_mainfile(filepath=reference_blend)
     configure_viewport_and_textures()
-    print(f"已生成 Reference Result: {reference_blend}")
+    print(f"已生成 Reference Result (反馈优化终态): {reference_blend}")
 
     # --- 渲染生成参考图与 Recovery C 降级图 ---
     # 利用与 Material Preview 相同的 studio/forest 环境 HDRI 提供视觉一致的参考图
