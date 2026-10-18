@@ -77,9 +77,13 @@ The course repository uses several artifacts because they serve different audien
 
 Literal duplication is sometimes necessary for usability. The invariant is that duplicated rules must have one clear owner and must not become independently maintained policy.
 
-### No fifth teaching SSOT
+### No fifth teaching SSOT and external view boundaries (Notion / Voice)
 
 Do not create a long-lived Teacher Preparation Spine, parallel Notes document, YAML/JSON curriculum database, or other registry solely to reduce teacher reading load unless live evidence demonstrates that the additional system reduces net maintenance cost.
+
+- **External interactive views (Notion / Voice / Dictation)**: Notion boards, live web views, and voice-transcribed dictation notes serve strictly as high-fluidity **editable interaction views (Scratchpad / Projection)** to facilitate human-agent dialogue. They hold zero independent curriculum authority.
+- **Reconciliation and back-propagation requirement**: Any teaching decision, scope modification, pedagogical feedback, or asset change surfaced via Notion or voice notes must be ingested, normalized, and committed back to the four authoritative repository artifacts (`Teaching Evidence Map`, `Executable Teaching Package`, `Student Handout`, `PPT + Presenter Notes`).
+- **Disposability invariant**: Once accepted decisions and evidence are back-propagated to Git authority, external interactive views are completely disposable, rebuildable, and must never drift into an unversioned parallel truth.
 
 A temporary teacher view is allowed only when it:
 - can be regenerated from existing authority artifacts;
@@ -111,7 +115,12 @@ Do not require two complete review meetings, a complete rough deck, or a fixed n
 To avoid micro-checkpoint fatigue and respect human instructional expertise:
 - **Lead with the whole board**: In each round, present the overarching lesson goals, current progress stage, full 160-minute chain, and protected non-negotiable core first, establishing a clear macro perspective.
 - **Isolate 2–3 sharp experiential questions**: The Agent handles mechanical details autonomously and surfaces only 2–3 sharp risk questions that strictly rely on the teacher's classroom intuition (e.g., *When do students first touch the software? Where is the highest friction point? Where will queues form in a 35-student single-teacher class? What gets cut first if time overflows?*).
-- **Decision vs runtime status**: Teacher verbal responses are expert risk assessments and decision inputs, not automatic `VERIFIED` runtime facts. Record them as `TEACHER ACCEPTED`, with affected software/timing aspects marked `PROPOSED` or `RUNTIME REQUIRED`. Avoid repeatedly asking "do you agree?" on routine items.
+- **One judgment per turn**: Within each dialogue turn, converge on and lock **exactly one load-bearing instructional judgment** (e.g., confirming the first hands-on moment, choosing the primary overrun cut target, or approving a recovery strategy). Avoid cascading multi-clause question bundles that invite fragmented or ambiguous confirmations.
+- **Dynamic tracking and correction assimilation**: Teacher verbal or written corrections are recorded as expert decision inputs (`TEACHER ACCEPTED`), while affected technical assertions remain `PROPOSED` or `RUNTIME REQUIRED` until verified by code/runtime probes. When the teacher corrects a pedagogical preference, pacing assumption, or asset choice:
+  1. Record the statement as a timestamped decision entry in the active Issue/PR or Ledger;
+  2. Map the correction to its single owning authority artifact;
+  3. Propagate changes downstream using the minimal change-propagation model;
+  4. Explicitly mark the prior rule as superseded. Avoid repeatedly asking "do you agree?" on routine items.
 
 ### Lightweight PPT projection at activity design stage
 
@@ -216,6 +225,13 @@ When a newer teacher decision replaces an older project choice:
 - keep unresolved proposals explicitly non-authoritative until accepted.
 
 Current teacher-preparation decisions should live in the active project authority plus these durable Agent rules; they should not be copied into an additional teaching manual.
+
+### Curriculum route neutrality: pedagogical governance vs. implementation disposition
+
+This collaborative lesson preparation discipline governs human-agent interaction workflows, authority boundaries, and evidence fidelity; it remains strictly neutral regarding software platform choices.
+
+- **Pending implementation disposition**: The existing repository-developed **Blender-first probe and prototype baseline** and Guangzhou Software Institute's historical **Substance 3D Painter-first courseware assets** represent coexisting operational candidates. Their eventual integration, precedence, or migration path belongs strictly to the **formal course offering implementation decision (Course Offering Disposition)**.
+- **Anti-smuggling invariant**: No agent, workflow rule, or governance document may silently alter, lock, or disguise the curriculum software route under the guise of preparation methodology. Decisions altering software primacy must be explicitly decreed by the Course Owner and recorded as authoritative project milestones.
 
 ---
 
