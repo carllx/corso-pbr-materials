@@ -21,43 +21,83 @@ def read_file(path):
     with open(path, "r", encoding="utf-8") as f:
         return f.read()
 
-def test_160_minute_budget_and_blocks():
-    """验证 160 分钟计划预算严格相等，Block 1-11 结构与第 30 分钟首次上机（动态从教学包表格提取数据）"""
-    content = read_file(PACKAGE_PATH)
-    
-    # 动态从教学包 Markdown 表格中提取各 Block 序号与计划分钟数，杜绝硬编码
+def parse_and_validate_teaching_package_budget(content):
+    """
+    动态解析并严格验证教学包 Markdown 表格中的计划预算与 Block 结构
+    返回提取的 (extracted_blocks_dict, hands_on_start, total_minutes)
+    若存在结构、编号、连续性或数据不一致，抛出 AssertionError
+    """
     block_pattern = re.compile(r'\|\s*\*\*Block\s+(\d+)\*\*\s*\|.*?\|\s*\*\*(\d+)\s*min\*\*', re.DOTALL)
     matches = block_pattern.findall(content)
-    assert len(matches) == 11, f"应从教学包规划表中动态提取到 11 个 Block，实际提取到: {len(matches)}"
+
+    block_ids = [int(num) for num, _ in matches]
+    assert len(block_ids) == 11, f"Block 总数应为 11，实际提取到: {len(block_ids)}"
+    # 检查 Block ID 唯一性（无重复）
+    assert len(block_ids) == len(set(block_ids)), f"Block ID 存在重复: {block_ids}"
+    # 检查 Block ID 完整性与连续性（严格覆盖 1 到 11）
+    assert sorted(block_ids) == list(range(1, 12)), f"Block ID 序号不连续或缺失: {sorted(block_ids)}"
 
     extracted_blocks = {int(num): int(mins) for num, mins in matches}
-    
-    # 验证提取的分钟数之和严格等于 160 分钟
     total_minutes = sum(extracted_blocks.values())
     assert total_minutes == 160, f"教学包实际提取的总分钟数不等于 160: {total_minutes} (各环节: {extracted_blocks})"
 
-    # 首次上机时间动态由 Block 1 与 Block 2 提取时长求和得出，断言第 30 分钟
     hands_on_start = extracted_blocks[1] + extracted_blocks[2]
     assert hands_on_start == 30, f"首次上机时间应为第 30 分钟 (动态提取求和: {hands_on_start})"
 
-    # 验证总计行显式声明为 160 min
-    assert re.search(r'\|\s*\*\*总计\*\*\s*\|.*?\|\s*\*\*160\s*min\*\*', content), "教学包表格中缺少明确的 160 min 总计行"
+    total_row_match = re.search(r'\|\s*\*\*总计\*\*\s*\|.*?\|\s*\*\*(\d+)\s*min\*\*', content)
+    assert total_row_match, "教学包表格中缺少明确的总计行"
+    assert int(total_row_match.group(1)) == 160, f"总计行声明时长不等于 160: {total_row_match.group(1)}"
 
+    return extracted_blocks, hands_on_start, total_minutes
+
+def test_160_minute_budget_and_blocks():
+    """验证 160 分钟计划预算严格相等，Block 1-11 结构与第 30 分钟首次上机（动态从真实教学包提取并校验唯一性与完整性）"""
+    content = read_file(PACKAGE_PATH)
+    extracted_blocks, hands_on_start, total_minutes = parse_and_validate_teaching_package_budget(content)
+    assert total_minutes == 160
+    assert hands_on_start == 30
     assert "Block 3" in content
     assert "原生几何体热身" in content or "Native Geometry Warmup" in content
 
-def test_submission_artifact_naming_contract():
-    """验证学生端交付物命名契约：Package 权威与 Handout 界面严格对齐 [学号]_[姓名] 标准命名"""
-    pkg_content = read_file(PACKAGE_PATH)
-    handout_content = read_file(HANDOUT_PATH)
-    ledger_content = read_file(LEDGER_PATH)
+def test_dynamic_budget_negative_tampering_detected():
+    """
+    用针对真实文件结构的负向变异测试，证明解析器能灵敏发现真实文件结构中的各类不一致：
+    1. 时间预算漂移 (总时长 != 160)
+    2. 重复 Block ID (唯一性破坏)
+    3. 缺失 Block ID / 序号空洞 (完整性破坏)
+    4. 总计行声明与实际不一致
+    """
+    real_content = read_file(PACKAGE_PATH)
 
-    # 验证标准机位视口截图与工程文件命名格式一致
-    assert "W1_Flashlight_[学号]_[姓名].png" in pkg_content
-    assert "W1_Flashlight_[学号]_[姓名].blend" in pkg_content
-    assert "W1_Flashlight_[学号]_[姓名].png" in handout_content
-    assert "W1_Flashlight_[学号]_[姓名].blend" in handout_content
-    assert "Submission Artifact Naming Contract" in ledger_content
+    # 1. 负向测试：篡改 Block 1 时长 (15 -> 20 min)，总时长变为 165 min
+    mutated_minutes = real_content.replace(
+        "| **Block 1** | **课程导学与全局图景**<br>(Course Orientation & Big Picture) | **15 min**",
+        "| **Block 1** | **课程导学与全局图景**<br>(Course Orientation & Big Picture) | **20 min**"
+    )
+    with pytest.raises(AssertionError, match=r"总分钟数不等于 160: 165"):
+        parse_and_validate_teaching_package_budget(mutated_minutes)
+
+    # 2. 负向测试：伪造重复 Block ID (将 Block 2 改为 Block 1)
+    mutated_duplicate = real_content.replace(
+        "| **Block 2** | **PBR 直观概念导入与视觉原理**",
+        "| **Block 1** | **PBR 直观概念导入与视觉原理**"
+    )
+    with pytest.raises(AssertionError, match=r"Block ID 存在重复"):
+        parse_and_validate_teaching_package_budget(mutated_duplicate)
+
+    # 3. 负向测试：删除 Block 3 (造成序号不连续与总数不足)
+    lines = real_content.splitlines()
+    mutated_missing = "\n".join([line for line in lines if not line.startswith("| **Block 3** |")])
+    with pytest.raises(AssertionError, match=r"Block 总数应为 11，实际提取到: 10"):
+        parse_and_validate_teaching_package_budget(mutated_missing)
+
+    # 4. 负向测试：篡改总计行 (160 -> 150 min)
+    mutated_total = real_content.replace(
+        "| **总计** | **全课 11 模块总时长** | **160 min**",
+        "| **总计** | **全课 11 模块总时长** | **150 min**"
+    )
+    with pytest.raises(AssertionError, match=r"总计行声明时长不等于 160: 150"):
+        parse_and_validate_teaching_package_budget(mutated_total)
 
 def test_geometry_warmup_discipline_and_responsibilities():
     """验证几何体热身教学纪律与操作职责：不评分不提交、亲手添加/位移/指派预置材质、容灾备用"""

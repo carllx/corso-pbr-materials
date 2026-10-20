@@ -83,15 +83,15 @@ Literal duplication is sometimes necessary for usability. The invariant is that 
 
 Do not treat "four documents" as a sacred or fixed SSOT count, nor create a long-lived Teacher Preparation Spine, parallel Notes document, YAML/JSON curriculum database, or other extraneous registry solely to reduce teacher reading load unless live evidence demonstrates that the additional system reduces net maintenance cost.
 
-- **External interactive views (Notion / Voice / Dictation)**: Notion boards, live web views, and voice-transcribed dictation notes serve strictly as high-fluidity **editable interaction views (Scratchpad / Projection)** to facilitate human-agent dialogue. They hold zero independent curriculum authority.
-- **Reconciliation and selective back-propagation requirement**: Any teaching decision, scope modification, pedagogical feedback, or asset change surfaced via Notion or voice notes must be ingested, normalized, and committed back to the **specific owning repository authority for that information category**, and thence propagated only to truly dependent consumers per the minimal change-propagation model. **Teaching changes never mechanically require modifying all documents.**
-- **Disposability invariant**: Once accepted decisions and evidence are back-propagated to Git authority, external interactive views are completely disposable, rebuildable, and must never drift into an unversioned parallel truth.
+- **External interactive views (Notion / Voice / Dictation)**: Notion boards, live web views, and voice-transcribed dictation notes serve as high-fluidity **editable interaction views and scratchpads** to facilitate human-agent dialogue. They hold zero independent curriculum authority.
+- **Persistence of pending items vs. authority back-propagation**: Teacher questions, exploratory critiques, brain dumps, and pending to-do items may naturally persist in Notion across preparation cycles; there is no mandate to forcefully or immediately delete Notion scratchpad content. The invariant is authority separation: Notion notes remain exploratory (`TEACHER PROPOSED` / discussion items). Whenever a teaching decision is formally accepted, it must be codified and back-propagated to the **specific owning repository authority for that information category** (and thence to affected consumers per the minimal change-propagation model), preventing Notion from becoming an unversioned, drifting parallel truth.
+- **Teaching changes never mechanically require modifying all documents.** Changes are committed only to the owning authority and its semantically dependent consumers.
 
-A temporary teacher view is allowed only when it:
+A temporary teacher view is allowed when it:
 - can be regenerated from existing authority artifacts;
 - identifies the source revision it reflects;
-- contains no unique decision or policy;
-- is overwritten or discarded when its validation purpose is complete.
+- contains no unique uncommitted decision or policy;
+- maintains scratchpad discussions freely, but retires or marks items reconciled once formal Git decisions are committed.
 
 If unique content accumulates in the temporary view, first move that content to the correct authority before continuing.
 
@@ -117,7 +117,7 @@ Do not require two complete review meetings, a complete rough deck, or a fixed n
 To avoid micro-checkpoint fatigue and respect human instructional expertise:
 - **Lead with the whole board**: In each round, present the overarching lesson goals, current progress stage, full 160-minute chain, and protected non-negotiable core first, establishing a clear macro perspective.
 - **Isolate 2–3 sharp experiential questions**: The Agent handles mechanical details autonomously and surfaces only 2–3 sharp risk questions that strictly rely on the teacher's classroom intuition (e.g., *When do students first touch the software? Where is the highest friction point? Where will queues form in a 35-student single-teacher class? What gets cut first if time overflows?*).
-- **One judgment per turn**: Within each dialogue turn, converge on and lock **exactly one load-bearing instructional judgment** (e.g., confirming the first hands-on moment, choosing the primary overrun cut target, or approving a recovery strategy). Avoid cascading multi-clause question bundles that invite fragmented or ambiguous confirmations.
+- **"One judgment per turn" as preferred dialogue strategy**: Prioritize converging on one load-bearing instructional judgment per dialogue turn when structuring agent inquiries (e.g., confirming the first hands-on moment, choosing the primary overrun cut target, or approving a recovery strategy) to avoid cognitive overload and multi-clause question bundles. However, this is a preferred conversation strategy, not an inflexible decree: do not force a decision when the teacher is exploring or requesting more data, and welcome multi-point teacher feedback—if the teacher raises multiple observations, critiques, or preferences at once, disaggregate and track them individually rather than rejecting or compressing them into a single choice.
 - **Teacher proposals vs. formal acceptance**: Teacher statements during exploratory dialogue or lesson preparation represent expert risk inputs and suggestions. **A teacher's proposed opinion, preference, or critique is initially recorded as `TEACHER PROPOSED`, and does not automatically equal formal acceptance (`TEACHER ACCEPTED`).** Only when the teacher or course owner explicitly confirms, decides, or signs off on a resolution does it become `TEACHER ACCEPTED`. Affected technical assertions remain `PROPOSED` or `RUNTIME REQUIRED` until verified by code/runtime probes.
 - **Dynamic tracking and minimal propagation**: When an accepted teacher decision updates a pedagogical preference, pacing assumption, or asset choice:
   1. Record the statement as a timestamped decision entry in the active Issue/PR or Ledger (Owning Authority for project decisions);
