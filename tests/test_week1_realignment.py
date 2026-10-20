@@ -22,28 +22,42 @@ def read_file(path):
         return f.read()
 
 def test_160_minute_budget_and_blocks():
-    """验证 160 分钟计划预算严格相等，Block 1-11 结构与第 30 分钟首次上机"""
+    """验证 160 分钟计划预算严格相等，Block 1-11 结构与第 30 分钟首次上机（动态从教学包表格提取数据）"""
     content = read_file(PACKAGE_PATH)
-    blocks = [
-        ("Block 1", 15),
-        ("Block 2", 15),
-        ("Block 3", 20),
-        ("Block 4", 20),
-        ("Block 5", 15),
-        ("Block 6", 25),
-        ("Block 7", 10),
-        ("Block 8", 15),
-        ("Block 9", 10),
-        ("Block 10", 5),
-        ("Block 11", 10),
-    ]
-    total_minutes = sum(m for _, m in blocks)
-    assert total_minutes == 160, f"总分钟数不等于 160: {total_minutes}"
+    
+    # 动态从教学包 Markdown 表格中提取各 Block 序号与计划分钟数，杜绝硬编码
+    block_pattern = re.compile(r'\|\s*\*\*Block\s+(\d+)\*\*\s*\|.*?\|\s*\*\*(\d+)\s*min\*\*', re.DOTALL)
+    matches = block_pattern.findall(content)
+    assert len(matches) == 11, f"应从教学包规划表中动态提取到 11 个 Block，实际提取到: {len(matches)}"
 
-    hands_on_start = 15 + 15
-    assert hands_on_start == 30, f"首次上机时间应为第 30 分钟: {hands_on_start}"
+    extracted_blocks = {int(num): int(mins) for num, mins in matches}
+    
+    # 验证提取的分钟数之和严格等于 160 分钟
+    total_minutes = sum(extracted_blocks.values())
+    assert total_minutes == 160, f"教学包实际提取的总分钟数不等于 160: {total_minutes} (各环节: {extracted_blocks})"
+
+    # 首次上机时间动态由 Block 1 与 Block 2 提取时长求和得出，断言第 30 分钟
+    hands_on_start = extracted_blocks[1] + extracted_blocks[2]
+    assert hands_on_start == 30, f"首次上机时间应为第 30 分钟 (动态提取求和: {hands_on_start})"
+
+    # 验证总计行显式声明为 160 min
+    assert re.search(r'\|\s*\*\*总计\*\*\s*\|.*?\|\s*\*\*160\s*min\*\*', content), "教学包表格中缺少明确的 160 min 总计行"
+
     assert "Block 3" in content
     assert "原生几何体热身" in content or "Native Geometry Warmup" in content
+
+def test_submission_artifact_naming_contract():
+    """验证学生端交付物命名契约：Package 权威与 Handout 界面严格对齐 [学号]_[姓名] 标准命名"""
+    pkg_content = read_file(PACKAGE_PATH)
+    handout_content = read_file(HANDOUT_PATH)
+    ledger_content = read_file(LEDGER_PATH)
+
+    # 验证标准机位视口截图与工程文件命名格式一致
+    assert "W1_Flashlight_[学号]_[姓名].png" in pkg_content
+    assert "W1_Flashlight_[学号]_[姓名].blend" in pkg_content
+    assert "W1_Flashlight_[学号]_[姓名].png" in handout_content
+    assert "W1_Flashlight_[学号]_[姓名].blend" in handout_content
+    assert "Submission Artifact Naming Contract" in ledger_content
 
 def test_geometry_warmup_discipline_and_responsibilities():
     """验证几何体热身教学纪律与操作职责：不评分不提交、亲手添加/位移/指派预置材质、容灾备用"""

@@ -204,6 +204,30 @@
    - 教师已接受决定：Week 2 以视觉问题驱动 Blend Mode 选择（Multiply/Screen/Overlay/Color），通过少量直观数学示例建立颜色计算与未来代码驱动材质之间的联系。
 
 ---
+
+## 7. Week 1 交付物命名规范与决策传播闭环 (Submission Artifact Naming Contract & Minimal Propagation)
+
+> **决策与状态定界说明**：  
+> 本节记录 2026-10-19 教师备课交互中的建议与采纳闭环，演示“教师提出建议 (`TEACHER PROPOSED`) $\to$ 教学组确认采纳 (`TEACHER ACCEPTED`) $\to$ 权威来源修改 $\to$ 识别受影响下游材料 $\to$ 最小同步 $\to$ 自动化验证”的标准链路。
+
+### 7.1 教师交互建议与采纳结论
+1. **教师现场反馈 (`TEACHER PROPOSED`)**：
+   - 教师提出：在单教师面对 35 人/17 人大班收件与平台画廊缩略图（Gallery View）极速批阅（5–8 分钟）时，仅使用学号（如 `W1_Flashlight_[学号].png`）难以快速核对学生本人与考勤，跨班混交时极易产生归档混淆；建议增加姓名后缀。
+2. **决策确认 (`TEACHER ACCEPTED`)**：
+   - 采纳该建议，统一学生交付截图与本地留存工程命名为 `W1_Flashlight_[学号]_[姓名].png` 与 `W1_Flashlight_[学号]_[姓名].blend`（例如：`W1_Flashlight_20230101_张三.png`）；
+   - 该变更属于实施契约规范微调，不破坏 160 分钟时间预算与 LO1–LO3 达成标准。
+
+### 7.2 变更传播与受影响材料识别 (Minimal Propagation)
+- **权威来源 (Owning Authority)**：
+  - [week1-executable-teaching-package-v0.1.md](file:///Users/yamlam/Documents/GitHub/corso-pbr-materials/docs/research/week1-executable-teaching-package-v0.1.md)：§5.1 极轻双联提交图示与 §5.2 证据核验表；
+- **受影响下游材料 (Semantically Affected Consumer)**：
+  - [week1-student-handout-v0.1.md](file:///Users/yamlam/Documents/GitHub/corso-pbr-materials/docs/research/week1-student-handout-v0.1.md)：页首交付物声明与任务 C（步骤 1 保存工程、步骤 3 截取单张证据）；
+- **刻意不修改材料及理由 (Deliberately Unchanged Artifacts)**：
+  - `Teaching Evidence Map`：**不修改**。因为学术证据、PBR 光学原理与 KU-W01-1..4 指针完全不受学生命名格式的影响；
+  - `tools/teaching/build_week1_teaching_package.py`：**不修改**。脚本只构建预置 Starter/Recovery 资产，不涉及学生保存文件逻辑；
+  - PPT 投影大纲 (Table 3.4)：候选页数保持 17 页不变，单页单一 Takeaway 不变。
+
+---
 *本台账随课程调研与设计推进持续更新，归档于 `docs/research/course-design-ledger.md`。*
 
 

@@ -69,7 +69,9 @@ The course repository uses several artifacts because they serve different audien
 
 ### Authority and presentation responsibilities
 
+Teaching knowledge is partitioned by information category, where each category has a single owning authority (Single Owning Authority):
 - **Teaching Evidence Map**: authority for evidence routing, coverage/gap status, and source/decision boundaries. It is not the teacher's day-to-day preparation dashboard.
+- **Course Design Ledger**: authority for cross-lesson architectural decisions, scope baselines, milestone tracking, and supersessions.
 - **Executable Teaching Package**: authority for the weekly teaching contract: outcomes, protected/cuttable core, activity order and plan budget, teacher/student actions, evidence requirements, answer boundaries, recovery, and runtime gates.
 - **Student Handout**: authority for what students actually read, fill in, operate, and submit. Its task semantics must remain compatible with the Teaching Package.
 - **PPT + embedded Presenter Notes**: the single classroom presentation artifact. Visible slides own page-level expression, visuals, reveal order, and activity prompts. Notes own page-level speaking cues, transitions, misconceptions, demo cues, and necessary pointers.
@@ -77,12 +79,12 @@ The course repository uses several artifacts because they serve different audien
 
 Literal duplication is sometimes necessary for usability. The invariant is that duplicated rules must have one clear owner and must not become independently maintained policy.
 
-### No fifth teaching SSOT and external view boundaries (Notion / Voice)
+### Single owning authority per information category and external view boundaries (Notion / Voice)
 
-Do not create a long-lived Teacher Preparation Spine, parallel Notes document, YAML/JSON curriculum database, or other registry solely to reduce teacher reading load unless live evidence demonstrates that the additional system reduces net maintenance cost.
+Do not treat "four documents" as a sacred or fixed SSOT count, nor create a long-lived Teacher Preparation Spine, parallel Notes document, YAML/JSON curriculum database, or other extraneous registry solely to reduce teacher reading load unless live evidence demonstrates that the additional system reduces net maintenance cost.
 
 - **External interactive views (Notion / Voice / Dictation)**: Notion boards, live web views, and voice-transcribed dictation notes serve strictly as high-fluidity **editable interaction views (Scratchpad / Projection)** to facilitate human-agent dialogue. They hold zero independent curriculum authority.
-- **Reconciliation and back-propagation requirement**: Any teaching decision, scope modification, pedagogical feedback, or asset change surfaced via Notion or voice notes must be ingested, normalized, and committed back to the four authoritative repository artifacts (`Teaching Evidence Map`, `Executable Teaching Package`, `Student Handout`, `PPT + Presenter Notes`).
+- **Reconciliation and selective back-propagation requirement**: Any teaching decision, scope modification, pedagogical feedback, or asset change surfaced via Notion or voice notes must be ingested, normalized, and committed back to the **specific owning repository authority for that information category**, and thence propagated only to truly dependent consumers per the minimal change-propagation model. **Teaching changes never mechanically require modifying all documents.**
 - **Disposability invariant**: Once accepted decisions and evidence are back-propagated to Git authority, external interactive views are completely disposable, rebuildable, and must never drift into an unversioned parallel truth.
 
 A temporary teacher view is allowed only when it:
@@ -116,10 +118,11 @@ To avoid micro-checkpoint fatigue and respect human instructional expertise:
 - **Lead with the whole board**: In each round, present the overarching lesson goals, current progress stage, full 160-minute chain, and protected non-negotiable core first, establishing a clear macro perspective.
 - **Isolate 2–3 sharp experiential questions**: The Agent handles mechanical details autonomously and surfaces only 2–3 sharp risk questions that strictly rely on the teacher's classroom intuition (e.g., *When do students first touch the software? Where is the highest friction point? Where will queues form in a 35-student single-teacher class? What gets cut first if time overflows?*).
 - **One judgment per turn**: Within each dialogue turn, converge on and lock **exactly one load-bearing instructional judgment** (e.g., confirming the first hands-on moment, choosing the primary overrun cut target, or approving a recovery strategy). Avoid cascading multi-clause question bundles that invite fragmented or ambiguous confirmations.
-- **Dynamic tracking and correction assimilation**: Teacher verbal or written corrections are recorded as expert decision inputs (`TEACHER ACCEPTED`), while affected technical assertions remain `PROPOSED` or `RUNTIME REQUIRED` until verified by code/runtime probes. When the teacher corrects a pedagogical preference, pacing assumption, or asset choice:
-  1. Record the statement as a timestamped decision entry in the active Issue/PR or Ledger;
-  2. Map the correction to its single owning authority artifact;
-  3. Propagate changes downstream using the minimal change-propagation model;
+- **Teacher proposals vs. formal acceptance**: Teacher statements during exploratory dialogue or lesson preparation represent expert risk inputs and suggestions. **A teacher's proposed opinion, preference, or critique is initially recorded as `TEACHER PROPOSED`, and does not automatically equal formal acceptance (`TEACHER ACCEPTED`).** Only when the teacher or course owner explicitly confirms, decides, or signs off on a resolution does it become `TEACHER ACCEPTED`. Affected technical assertions remain `PROPOSED` or `RUNTIME REQUIRED` until verified by code/runtime probes.
+- **Dynamic tracking and minimal propagation**: When an accepted teacher decision updates a pedagogical preference, pacing assumption, or asset choice:
+  1. Record the statement as a timestamped decision entry in the active Issue/PR or Ledger (Owning Authority for project decisions);
+  2. Map the change to its single owning authority artifact (e.g. Teaching Package for weekly runtime/recovery; Handout for student UI);
+  3. Propagate changes downstream using the minimal change-propagation model—updating only semantically dependent consumers, without mechanically modifying unaffected documents;
   4. Explicitly mark the prior rule as superseded. Avoid repeatedly asking "do you agree?" on routine items.
 
 ### Lightweight PPT projection at activity design stage
