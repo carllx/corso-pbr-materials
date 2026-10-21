@@ -21,11 +21,10 @@
   - 覆盖两个独立教学班：GR2102-1（35 人）与 GR2102-3（17 人），单教师现场主讲；
   - 完成有界影响分析报告（`course-offering-impact-analysis-2026-2027-1.md`），明确 9 周用于解除下游交付与 LookDev 挤压，释放主资产反馈打磨空间，严禁借周次扩张新内容；
   - 历史草案存档：`week1-8-conditional-planning-draft-v0.1.md` 标记为**历史条件性规划草案 (Historical Conditional Draft)**；
-- **当前规划前沿 (Current Frontier)**：**`Teacher Review Rebaseline`**
-  - **#19 Case Topology Closeout**：完成案例拓扑 Join 实证审计与决策收口；
-  - **Accepted W1–W6 Bounded Hybrid**：Course Owner 正式接受 W1–W6 采用有限主案例 + 有界代表性微案例混合模型；
-  - **Fixed W7–W9 New-Final Boundary**：锁定 W1–W6 基础演练与 W7–W9 全新期末大作业彻底解耦的宏观边界；
-  - **Next Dependencies**：下一阶段严格依赖于 **Issue #22（期末大作业架构设计）**，待其完成后方可启动并综合生成 **Week 1–9 排课草案 v0.4**（注：v0.4 尚未生成，严禁标记为完成）。
+- **当前规划前沿 (Current Frontier — 2026-10-21 更新)**：**`Painter-first Execution Mainline (Issue #40)`**
+  - **主线切换裁定**：2026-10-21 Course Owner 权威裁定本学期（2026-2027-1）正式以广州软件学院 GR2102 既有九讲 Substance 3D Painter 方案为当前执行主线，由 **Issue #40** 承载（第一讲 MeetMat 教师审查版与后八讲低分辨率依赖对照）；
+  - **Blender 备选路线保全**：原 Blender-first 路线及已验收决策（#19 案例拓扑收口、#37 几何体热身、W1–W6 混合模型、W7–W9 独立期末解耦边界）作为历史有效记录完整保留，定位为未来可恢复备选路线（Restorable Alternative Baseline），历史记录不删除、不改写；
+  - **Next Dependencies**：当前阶段依赖于 Issue #40 教学草案与低分辨率对照的教师审查闭环；机房目标 PC 实机探针；教材双层定性落实；Issue #39 培养方案适用性门禁保持独立跟踪。
 - **课程负责人决策记录 (Course Owner Decision Record — 2026-10-03)**：
   - **决策结论**：**`TEACHER ACCEPTED — USE BOUNDED HYBRID AS W1–W6 TOPOLOGY BASELINE`**
   - **核心判定**：
@@ -122,19 +121,20 @@
 
 ---
 
-## 7. 学期主线切换与双路线协作治理决议 (Course Offering Implementation Disposition: Painter Mainline & Blender Restorable Baseline)
+## 5. 学期主线切换与双路线协作治理决议 (Course Offering Implementation Disposition: Painter Mainline & Blender Restorable Baseline) <a id="section-7"></a><a id="第-7-节"></a>
 
 > **决策与证据溯源说明**：  
-> 本节记录 2026-10-21 课程负责人 (Course Owner) 关于 2026-2027-1 学期实操教学路线的权威裁定。严格遵循 `AGENTS.md` 证据纪律与历史保全原则，记录路线切换、备用路线指针、跨路线复用边界、第一讲实机门禁以及学院选用教材核验结论。
+> 本节记录 2026-10-21 课程负责人 (Course Owner) 关于 2026-2027-1 学期实操教学路线的权威裁定。严格遵循 `AGENTS.md` 证据纪律与历史保全原则，记录路线切换、备用路线指针、跨路线复用边界、第一讲实机门禁以及学院选用教材核验结论。  
+> *(注：本节承载 2026-10-21 路线裁定，在前期部分讨论与工单中曾被称为“第 7 节 / Section 7”，现顺接第 4 节规范统一为第 5 节；历史与工单引用自动映射并兼容至本节。)*
 
-### 7.1 课程负责人决议背景与裁定事实 (Course Owner Decision Record — 2026-10-21)
+### 5.1 课程负责人决议背景与裁定事实 (Course Owner Decision Record — 2026-10-21)
 1. **决策结论**：**`TEACHER ACCEPTED — SUBSTANCE 3D PAINTER AS CURRENT SEMESTER MAINLINE`**
 2. **核心判定**：
    - **执行主线切换**：本学期（2026-2027-1）正式以广州软件学院现有 GR2102 九讲 Substance 3D Painter 方案作为当前实际执行与备课主线；
    - **历史有效性与非改写纪律**：此前研发的 Blender-first 课程方案在其研发阶段具有完全合法性与技术闭环，历史记录完整保留，不作历史抹除或掩盖；
    - **备选路线定位**：Blender-first 方案作为未来可恢复备选路线（Restorable Alternative Baseline）完整保全，后续可随时根据教务或机房条件恢复。
 
-### 7.2 Blender-first 备用路线可恢复资产与 Git 引用索引 (Blender Restorable Alternative Lineage & Pointers)
+### 5.2 Blender-first 备用路线可恢复资产与 Git 引用索引 (Blender Restorable Alternative Lineage & Pointers)
 为保障备选路线完整可恢复，且遵循“不复制文件、不机械新建分支、不关闭/删除现有 PR”原则，建立如下 Git 指针索引：
 
 - **核心 Draft PR 与工单分支**：
@@ -149,7 +149,7 @@
   - `744b9e28414b1fea6bd1318dc904223258d662ea`: 教师交互边界完善、动态预算解析与负向测试套件；
   - `e5ed611fd4a4545330bb7e3da4defe65aa3a8bee`: 仓库 `main` 分支基线。
 
-### 7.3 跨路线知识复用边界 (Cross-Route Pedagogical Boundary & Non-Transferable Operations)
+### 5.3 跨路线知识复用边界 (Cross-Route Pedagogical Boundary & Non-Transferable Operations)
 在切换至 Painter 主线后，严格贯彻“方法与原理可复用、软件专有操作严禁机械移植”边界：
 
 1. **允许并推荐复用的内容 (Portable Pedagogical Principles & Theory)**：
@@ -163,11 +163,11 @@
    - **视口与交互快捷键**：Blender 3D 视口三键客、`Shift+A` 加物体、`G/R/S` 变换手感（Painter 使用 Alt+左/中/右键视口导航、Shift+右键旋转 HDRI 环境光）；
    - **特定数据结构**：Blender 材质槽 (Material Slots) 映射规则（Painter 使用 Texture Set 纹理集列表）。
 
-### 7.4 Painter 第一讲落地执行与实机门禁 (Week 1 MeetMat Runtime Gate — RUNTIME REQUIRED)
+### 5.4 Painter 第一讲落地执行与实机门禁 (Week 1 MeetMat Runtime Gate — RUNTIME REQUIRED)
 针对切换后第 1 讲（MeetMat 入门）：
-1. **第 1 讲核心知识焦点**：Painter 界面布局、Texture Set (纹理集) 概念、视口导航与环境光照旋转、图层堆栈 (Layer Stack) 与填充图层 (Fill Layer)、基础通道 (Base Color / Roughness / Metallic)、材质球指派与基础贴图导出。
+1. **第 1 讲核心知识焦点与计划预算**：Painter 界面布局、Texture Set (纹理集) 概念、视口导航与环境光照旋转、图层堆栈 (Layer Stack) 与填充图层 (Fill Layer)、基础通道 (Base Color / Roughness / Metallic)、材质球指派与基础贴图导出。**160 分钟单班面授时间严格定界为计划预算 (PLAN BUDGET)，非已实测容量**，实际耗时与大班节奏须经现场机房教学闭环。
 2. **实机验证门禁状态 (`RUNTIME REQUIRED / OPEN`)**：
-   - 所有关于 MeetMat 在 Painter 内部的交互演示步骤，当前在本地开发机处于 `RUNTIME REQUIRED / UNVERIFIED ON LOCAL HOST`（因本地开发环境未部署该商业应用）；
+   - 所有关于 MeetMat 在 Painter 内部的交互演示步骤、白模或工程素材导出、贴图导出及保存退出重开持久化，当前在本地开发机处于 `RUNTIME REQUIRED / UNVERIFIED ON LOCAL HOST`（因本地开发环境未部署该商业应用）；
    - 必须在真实目标机房 PC 上完成 GUI 交互探针测试，方可宣称通过；
 3. **最小必要备课与机房实机验证清单 (Minimal Lab Verification Checklist)**：
    - **Gate A-1 (环境与授权核查)**：核实机房工作站安装的 Substance 3D Painter 确切版本，确认显存与驱动正常；
@@ -176,22 +176,24 @@
    - **Gate A-4 (保存与重开持久化)**：实测保存为 `.spp` 工程，完全退出 Painter 进程重开验证持久化；
    - **Gate A-5 (轻量交付通道测试)**：测试学生导出 1 张视口快照或标准贴图包的收件可行性。
 
-### 7.5 课程负责人决策权威 vs 学校正式教学大纲适用性双轨定界
+### 5.5 课程负责人决策权威 vs 学校正式教学大纲适用性双轨定界
 - **实操执行 vs 培养方案适用性定界**：
   - **轨 1（学期教学执行）**：Course Owner 裁定 Painter 主线即日起生效，指导当下备课与机房排课；
   - **轨 2（教务合规与培养方案）**：Issue #39 暴露的培养方案学时差异、课程代码差异、4 学时 PBR 综合实验定位，以及本学期 2026 秋授课班级正式执行的教学大纲版本，**继续保持 `UNRESOLVED / GATE OPEN` 门禁**；
 - **纪律红线**：课程负责人的务实主线选择，**绝不臆测或伪称学校教务部门已完成正式审批或大纲勘误**；正式大纲状态待教务部门正式文件回执后方可核销。
 
-### 7.6 学院选用教材核验结论与双层定性收敛 (2026-10-21)
-1. **教材核实与版本确认**：
-   - 清华大学出版社 郑琳编著《Substance 3D Painter游戏贴图绘制与材质制作》（第一版，2024年2月第1版/3月印刷，ISBN: 978-7-302-65667-8，CIP: 2024-048666）；
+### 5.6 学院选用教材核验结论与双层定性收敛 (2026-10-21)
+1. **教材核实与版权页事实**：
+   - **书目信息**：清华大学出版社 郑琳 编著《Substance 3D Painter游戏贴图绘制与材质制作》；
+   - **版次与印次**：2024 年 2 月第 1 版，2024 年 8 月第 2 次印刷（重印；审批表登记出版日期为 2024-03-01）；
+   - **书号与登记**：ISBN 978-7-302-65667-8，中国国家版本馆 CIP 数据核字 (2024) 第 048666 号；
    - 实测 138 物理页数字化成果在本地受控介质完成核验闭环，确认为学院审批表所列同一版本。
 2. **双层定性与边界定界**：
-   - **行政身份**：教务合规维度的选用教材；审批表记载大纲覆盖率 75% 属教务申报估计值，非科学测定值；负责人明确填报享有教学增删权；
-   - **教学角色**：定性为“中文学生速查伴读手册与参数词典 (Chinese Student Companion)”；全书基于 8.3 (2022/2023) 编写，属第三方个人专著，**绝非 Adobe 官方技术规范**；版本差异以 AdobeDocs 活体源与机房探针为准；
+   - **行政与选用身份**：学院教务归档《教材选用审批表》列名的选用教材；审批表记载大纲覆盖率 75% 属教务申报估计值，非逐项实测值；审批表实际记载的教学增删与案例融合安排为“根据课程时长、学生水平适当增删，融合实践案例，增加实践时间”；其实际教务适用性门禁仍由 Issue #39 独立跟踪；
+   - **教学角色**：定性为“中文学生速查伴读手册与参数词典 (Chinese Student Companion)”；全书基于 8.3 (2022/2023) 编写，属第三方个人教学专著，**绝非 Adobe 官方技术规范**；版本差异以 AdobeDocs 活体源与机房探针为准；
    - **课程取舍界限**：全书 85.8% 字符集中于第 1~2 章，第 3~5 章案例依赖未随书附带资产与微课二维码；教材未覆盖的 UV 展开、烘焙与 Blender/Arnold 跨软件连接属于课程底层支撑与输出出口，“教材未覆盖”绝不等于“课程应删除”。
 
-### 7.7 GitHub 执行路线对齐、工单承载与交付成果
+### 5.7 GitHub 执行路线对齐、工单承载与交付成果
 1. **工单承载**：当前学期 Painter-first 实施主线由 **[Issue #40](https://github.com/carllx/corso-pbr-materials/issues/40)** 承载（标签 `ready-for-human`，关联 #1、#13、#22、#39）；
 2. **核心交付物落位**：
    - **第一讲教师审查版教学草案**：[`docs/research/painter-week1-meetmat-teaching-draft-v0.1.md`](painter-week1-meetmat-teaching-draft-v0.1.md)；

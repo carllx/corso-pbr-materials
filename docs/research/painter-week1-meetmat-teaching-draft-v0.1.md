@@ -3,7 +3,8 @@
 > **治理与元数据规范 (Governance & Status)**：  
 > - **课程代码与名称**：GR2102《三维数字材质制作》（广州软件学院 2026–2027-1 学期）  
 > - **授课班级**：GR2102-1（35 人）/ GR2102-3（17 人）  
-> - **课时标准**：4 节连堂，每小节 40 分钟，**单班净面授时长严格为 160 分钟**  
+> - **课时标准与容量定界**：4 节连堂，每小节 40 分钟，**计划预算严格为 160 分钟 (PLAN BUDGET)**；非已实测容量，真实课堂耗时与节奏须经机房现场实地闭环  
+> - **实机门禁状态**：**`RUNTIME REQUIRED / UNVERIFIED ON LOCAL HOST`**（MeetMat 示范操作、快照导出及保存重开持久化流程，在本地未部署该商业软件的宿主上保持开放门禁）  
 > - **承载工单**：[Issue #40](https://github.com/carllx/corso-pbr-materials/issues/40)（父工单 [Roadmap #1](https://github.com/carllx/corso-pbr-materials/issues/1)）  
 > - **路线定位**：**当前学期执行主线 (Current Execution Mainline)**；以学校既有第 1 讲 PPT 课件及官方 `MeetMat` 为起点  
 > - **状态**：`PROPOSED / FOR TEACHER REVIEW`（教师审查版草案；不制作正式 PPT、不设正式计分平时作业、不擅自冻结考核比例）  
@@ -79,7 +80,10 @@
 
 ---
 
-## 3. 教师操作示范准确步骤 (Step-by-Step Instructor Demo)
+## 3. 教师操作示范准确步骤 (Step-by-Step Instructor Demo — RUNTIME REQUIRED)
+
+> [!IMPORTANT]
+> **运行时门禁说明 (`RUNTIME REQUIRED / OPEN`)**：以下示范步骤系依据官方工作流规范设计。因本地宿主未部署 Painter 独立应用，所有按钮、快捷键、截图导出与持久化重开流程，在本地严格保持为 `RUNTIME REQUIRED / UNVERIFIED ON LOCAL HOST`，必须在开课前于真实机房目标 PC 上完成实机探针验证。
 
 建议分为两段演示（各 15–20 分钟），中间穿插学生跟随动手，避免长时被动记忆。
 
@@ -166,7 +170,7 @@
 
 ## 5. 160 分钟候选节奏、超时剪裁与反馈方法 (Timing, Cut Rules & Feedback)
 
-### 5.1 候选时间切片预算 (160 分钟全景)
+### 5.1 候选时间切片计划预算 (160 分钟全景 / PLAN BUDGET，非已实测容量)
 
 | 阶段 | 建议时间 | 活动主题 | 教师活动 | 学生活动 | 产出与检查点 |
 | :---: | :---: | :--- | :--- | :--- | :--- |
