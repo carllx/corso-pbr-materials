@@ -240,5 +240,27 @@
    - **客观因果证据**：评估重点严格定界为**学生对材质选择理由与物理通道映射的因果解释能力**，坚决杜绝单纯以最终作品“是否漂亮”等主观审美偏好作为评判标准；
    - **实机运行门禁保持 (`RUNTIME REQUIRED`)**：Painter 界面交互、工程保存与重开持久化流程保持目标机房实操 PC 的现场验证门禁。
 
+### 5.10 第一讲教师 GUI 试走操作卡与 PPT 逐页草案准备 (Teacher GUI Walkthrough & Slide Skeleton — 2026-10-21)
+
+为支持授课教师尽快在实机开展 MeetMat 最小闭环试走，并为后续 PPT 课件生产准备可用结构（不等待 160 分钟真实大班容量测量），确立以下交付物与端侧边界：
+
+1. **核心交付物落位**：
+   - **教师最小 GUI 试走操作卡与极简反馈模板**：[`docs/research/painter-week1-teacher-gui-walkthrough-guide.md`](painter-week1-teacher-gui-walkthrough-guide.md)
+     - 提炼 8 步教师最小试走操作（载入 Sample $\to$ 导航与光照旋转 $\to$ Head 锁定 $\to$ 底层黄色塑料与 Roughness $\to$ 覆盖层 $\to$ 黑色遮罩画笔开窗与 X 键擦除 $\to$ B 键单通道核验与截图 $\to$ 另存为 .spp 退出重启重开验证）；
+     - 每步均具备预期画面、常见操作卡点 (Gotchas) 与最小恢复办法 (Recovery Steps)，未经验证项标记为 `RUNTIME REQUIRED`；
+     - 提供一次操作试走的最小反馈模板（3 分钟可填，记录版本、通断、主要卡点、约略耗时，不要求测满 160 分钟）；
+   - **第一讲 Markdown 幻灯片逐页草案骨架**：[`docs/research/painter-week1-slide-draft-skeleton.md`](painter-week1-slide-draft-skeleton.md)
+     - 18 页精炼幻灯片逐页骨架，严格映射 8 大 Block 时间切片候选预算；
+     - 彻底剔除旧课件 P7 违规考勤分（严格遵循教务大纲平时 50% = 表现 20% + 作业 30%）与 P11–P17 念诵 7 页宣传册废话；
+     - 严格收敛于 Head 双层塑料材质与黑遮罩，前移首次动手体验至开课第 30 分钟窗口；
+     - 提供逐页教学目标、讲述提示 (Speaker Notes)、学生操作与期望观察、郑琳教材/PBR Guide 证据指针，以及 10 张实机试走需补拍的高清截图占位符清单；保持 Markdown 骨架形态，不直接生成正式二进制 PPT。
+2. **端侧宿主边界与 SSOT 治理声明 (Host Boundary & SSOT Notice)**：
+   - **访问能力核查**：经系统核查，当前 IDE 端侧环境未配置 Whimsical 九讲白板或 Notion 第一讲备课工作台的 API Token、专用 CLI 或 MCP 插件，无法从端侧直接程序化读取私有云端白板或备课台数据；
+   - **不构成执行阻塞**：该端侧宿主边界不构成对本次 GUI 试走交付与 PPT 草稿准备的阻塞；
+   - **SSOT 唯一性铁律**：严格遵守 `AGENTS.md` 规范，以 **GitHub 仓库为全课程教学决策的唯一真实数据源 (Single Source of Truth, SSOT)**；严禁在外部平台新建替代库，严禁复制代码或私有受限素材至外部平台。
+3. **实机验证与大班容量门禁保持 (`RUNTIME REQUIRED / OPEN`)**：
+   - 教师试走操作卡与 PPT 骨架已具备交付条件；
+   - 按钮响应、各版本 Painter 样本完整性、快捷键行为与退出重开持久化，继续保持机房实操 PC 的现场验证门禁。
+
 ---
 *本台账随课程调研与设计推进持续更新，归档于 `docs/research/course-design-ledger.md`。*
