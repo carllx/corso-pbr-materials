@@ -46,4 +46,10 @@ Repository-level file-growth and context-budget guidance across code, research M
 **智能体工作流守则 (Agent Discovery Rule)**：  
 在进行任何课程规划、大纲编写、教学设计或代码审查前，智能体**必须首先查阅 `docs/research/week1-9-teaching-evidence-map.md` 中的对应条目**，严格贯彻“现有证据优先 (Existing Evidence First)”，严禁仅凭模型记忆或通用常识脑补课程内容。详细素材治理与消费链路见 `docs/methods/source-material-governance.md`。
 
+**当代艺术引导教学决策指针 (Contemporary Art Guidance Decision Pointer)**：  
+Course Owner 于 2026-10-21 权威采纳“艺术引导 → 技术支撑 → 创作表达 → 作品验证”四步闭环（`TEACHER ACCEPTED`）。任何涉及材质创作理念与意图表达的课程设计智能体必须遵循以下红线与门禁：
+1. **技术主体与资源定位**：PBR 与 Substance 3D Painter 技术学习仍是课程主体；当代艺术仅作为材质观察、创作判断与表达意图的引导资源，严禁独立增设艺术史或纯理论教学单元；
+2. **三不红线**：严禁因此改变学院既有九讲顺序、严禁增加必修软件功能、严禁修改正式考核标准；
+3. **首讲试点与推广门禁**：第一讲 MeetMat 材质身份对比提升学生观察解释能力属于待验证假设（`PROJECT INFERENCE / VALIDATION PENDING`），严格限定为第一讲有界试点，未经教师审查与真实课堂验证闭环，严禁向后续课次推广。完整决策边界与门禁依据见 [`docs/research/course-design-ledger.md` §5.9](docs/research/course-design-ledger.md)。
+
 

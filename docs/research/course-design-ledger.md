@@ -24,7 +24,8 @@
 - **当前规划前沿 (Current Frontier — 2026-10-21 更新)**：**`Painter-first Execution Mainline (Issue #40)`**
   - **主线切换裁定**：2026-10-21 Course Owner 权威裁定本学期（2026-2027-1）正式以广州软件学院 GR2102 既有九讲 Substance 3D Painter 方案为当前执行主线，由 **Issue #40** 承载（第一讲 MeetMat 教师审查版与后八讲低分辨率依赖对照）；
   - **Blender 备选路线保全**：原 Blender-first 路线及已验收决策（#19 案例拓扑收口、#37 几何体热身、W1–W6 混合模型、W7–W9 独立期末解耦边界）作为历史有效记录完整保留，定位为未来可恢复备选路线（Restorable Alternative Baseline），历史记录不删除、不改写；
-  - **Next Dependencies**：当前阶段依赖于 Issue #40 教学草案与低分辨率对照的教师审查闭环；机房目标 PC 实机探针；教材双层定性落实；Issue #39 培养方案适用性门禁保持独立跟踪。
+  - **当代艺术引导原则与验证假设纳入**：确立“艺术引导 → 技术支撑 → 创作表达 → 作品验证”原则 (`TEACHER ACCEPTED`)；PBR 与 Painter 仍为主体，艺术作为观察判断引导资源（非艺术史单元），不改变九讲、软件与考核；第一讲 MeetMat 材质身份对比促成观察解释能力提升假设保持为待验证状态 (`PROJECT INFERENCE / VALIDATION PENDING`)，设置严格首讲验证门禁（详见 §5.9）；
+  - **Next Dependencies**：当前阶段依赖于 Issue #40 教学草案与低分辨率对照的教师审查闭环；第一讲 MeetMat 教学草案与验证假设审查；机房目标 PC 实机探针；教材双层定性落实；Issue #39 培养方案适用性门禁保持独立跟踪。
 - **课程负责人决策记录 (Course Owner Decision Record — 2026-10-03)**：
   - **决策结论**：**`TEACHER ACCEPTED — USE BOUNDED HYBRID AS W1–W6 TOPOLOGY BASELINE`**
   - **核心判定**：
@@ -212,6 +213,26 @@
 4. **容量定界、时间切片与实施路径推荐**：
    - **时间切片候选预算**：160 分钟计划预算严格闭环（Block 1: 15m $\to$ Block 2: 15m $\to$ Block 3 首次动手: 20m $\to$ Block 4: 15m $\to$ Block 5: 25m $\to$ Block 6: 20m $\to$ Block 7: 35m $\to$ Block 8 保存重开: 15m）；首次 Roughness 上手前移至第 30 分钟窗口，保存退出重开持久化预留 8–10 分钟保护时间；所有分钟数均为**候选计划预算 (`CANDIDATE PLAN BUDGET`)**，未经大班现场容量实测；
    - **开局实施路径推荐**：对比预置 Starter 与从零建层，**建议路径 B（基于官方内置 MeetMat Sample，引导学生从零建立图层）作为全员主干路径**（减少网络分发摩擦、规避跨版本工程冲突、建立底层图层心智）；将预置 Starter 作为极个别机器卡壳学生的 Tier 3 救急保底资产；两条路径均保留目标机房实操 PC 的现场验证门禁 (`RUNTIME REQUIRED`)。
+
+---
+### 5.9 当代艺术引导材质创作教学原则与验证假设 (Contemporary Art Guidance Principles & Validation Hypothesis — 2026-10-21)
+
+1. **教师已接受教学原则 (`TEACHER ACCEPTED`)**：
+   - **四步认知闭环**：教学全流程遵循**“艺术引导 → 技术支撑 → 创作表达 → 作品验证”**的递进逻辑；
+   - **技术主体原则**：PBR 物理光学原理与 Substance 3D Painter 的工业级技术学习仍是课程的绝对主体，坚守物理可信性与工业标准制作规范；
+   - **引导资源定位**：当代艺术仅作为材质观察、创作判断与表达意图的引导资源（启发学生从“被动按参数”走向“主动赋予物体材质身份”），**绝非独立增加艺术史或纯理论教学单元**；
+   - **四项边界红线 (Guardrails)**：
+     1. 不因此改变学院既定九讲教学周历与主题顺序；
+     2. 不因此增加必修软件功能或增加额外工具链要求；
+     3. 不因此修改教务归档的正式考核与评分标准（平时 50% 与期末 50% 架构不变，不冻结未决分值）；
+     4. 不新增独立长期单一事实来源 (SSOT) 文档，本台账即为统一决策依据。
+2. **待验证假设 (`PROJECT INFERENCE / VALIDATION PENDING`)**：
+   - **假设命题**：在第一讲 MeetMat 中，通过对比相同模型的不同材质身份，引导学生解释材料选择如何改变物体的意义，可能提高学生自主进行材质选择、观察和解释的能力；
+   - **证据属性定界**：该效果属于项目教学法推论与待验证假设，**尚未经真实课堂验证 (`UNVERIFIED IN REAL CLASSROOM / PENDING CLASSROOM VERIFICATION`)**，严禁未经实证即宣称为既定教学成果。
+3. **适用范围与推进门禁 (Bounded Scope & Rollout Gate)**：
+   - **适用范围严格受限**：仅在第一讲 MeetMat 作为**有界验证候选 (Bounded Validation Candidate)** 试点，严格在既有 160 分钟计划预算内消化，不增加课堂总时间；
+   - **首讲闭环推广门禁 (`GATE: PENDING W1 VERIFICATION BEFORE ROLLOUT`)**：第一讲教学设计必须经由教师审查并完成真实大班课堂验证闭环后，方可由课程负责人评估决定是否向后续课次推广；未闭环前坚决不向 W2–W9 泛化扩散；
+   - **学生学习证据定界**：评估与核验指标必须聚焦于**学生对材质的选择、视觉观察和因果解释能力**（如能否在轻量材质决策卡中清楚解释材料选择如何赋予物体特定意义及其与 PBR 物理通道设置的因果映射），而非单纯看学生最终作品“是否漂亮”的主观审美评价。
 
 ---
 *本台账随课程调研与设计推进持续更新，归档于 `docs/research/course-design-ledger.md`。*
