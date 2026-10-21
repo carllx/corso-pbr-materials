@@ -64,6 +64,8 @@
 
 ### 3.1 Stage 1: Week 1 教学实施包（已验收基线，严格对齐可执行教学包）
 
+> **执行路线分流提示 (2026-10-21)**：此处 KU-W01-1~4 系 **Blender-first 备选路线**之 Week 1 历史实施基线（完整保留备用）。当前 2026 秋季学期主线任务已重定向为 **Substance 3D Painter 既有九讲执行主线 (Issue #40)**；第一讲主线 MeetMat 实施设计详见 [painter-week1-meetmat-teaching-draft-v0.1.md](painter-week1-meetmat-teaching-draft-v0.1.md)，对应教材检索路由详见 [textbook-source-map.md](textbook-source-map.md) §2.6。
+
 | 知识单元 ID 与名称 | 学生端学习目标与教学用途 | 主要一手证据指针 (Primary Evidence Pointer) | 实践演示参考 (Practice / Demo) | 教师精读/观看指针 (Teacher Read / Watch) | 证据类型 | 覆盖状态 | 已知局限与客观边界 | 当前定性 | 下一步建议研究关键词与领域 |
 | :--- | :--- | :--- | :--- | :--- | :---: | :---: | :--- | :---: | :--- |
 | **KU-W01-1**<br>课程全景导入与材质认知<br>(Orientation & Perception) | 建立 9 周能力发展预期与认知，区分物理固有属性与环境光影/附着脏污；破除“调参数靠猜、反光即金属”等初学者误区 | • Dinur (2026) Ch 1 (pp. 9–21)<br>• Week 1 package Block 1 (Orientation 15min) & Block 2 (15min) | 手电筒实物参考图剖析（区分 5 项视觉现象的物理因果归属） | Dinur (2026) Ch 1; Week 1 Executable Package v0.1 §1.2 LO1 | `DIRECT SOURCE FACT` + `PROJECT INFERENCE` | **`STRONG`** | 15 分钟导学严格遵循占位段规范，不预设未经验证的考核比例与微观物理细节 | `required` | 3D material course orientation, cognitive scaffolding |
