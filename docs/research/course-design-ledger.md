@@ -206,11 +206,12 @@
    - 裁定第一讲打破先讲理论后上机的模式，采用**“视觉观察 → 必要界面认识 → 教师示范 → 学生操作 → 理论解释 → 独立应用”**六步认知递进顺序；
 2. **全员核心保底任务边界 (`TEACHER ACCEPTED`)**：
    - 严格收敛于 **MeetMat `Head` 部位的基础材质属性 (BaseColor/Roughness/Metallic)、双层 Fill Layer、Black Mask 开窗绘制，以及 `.spp` 规范保存与退出重开持久化**；
-3. **非必经目标剔除 (`TEACHER ACCEPTED`)**：
-   - 明确 `Body`/`Base` 扩展、Smart Materials 智能材质、生成器 (Generators) 和 Iray 渲染器**不属于第一讲全员必经目标**，降级为后续周次或课外自愿拓展；
-4. **容量定界与实施路径推荐**：
-   - 160 分钟时间切片**严格保持为候选计划预算 (`CANDIDATE PLAN BUDGET`)**，未经大班现场容量实测；
-   - **开局实施路径推荐**：对比预置 Starter 与从零建层，**强烈推荐路径 B（基于官方内置 MeetMat Sample，引导学生从零建立图层）作为全员主干路径**（零版本风险、零网络分发丢包、建立底层图层心智）；将预置 Starter 作为极个别机器卡壳学生的 Tier 3 救急保底资产。
+3. **非必经目标剔除与后续阶梯承接 (`TEACHER ACCEPTED` / `CANDIDATE BRIDGING`)**：
+   - 明确 `Body`/`Base` 扩展、Smart Materials 智能材质、生成器 (Generators) 和 Iray 渲染器**不属于第一讲全员必经目标**；
+   - **延后知识承接规划 (候选建议)**：Smart Materials 与 Generators 在 W2（塑料案例）进行候选认识与轻量观察，在 W4（金属做旧）深入拆解图层与 Mesh Maps 因果关系并产出修改证据；Iray 保持为后续周次成果展示的条件性候选，绝不设为全员必修或强制截图工具；周次与容量均待教师最终审定；
+4. **容量定界、时间切片与实施路径推荐**：
+   - **时间切片候选预算**：160 分钟计划预算严格闭环（Block 1: 15m $\to$ Block 2: 15m $\to$ Block 3 首次动手: 20m $\to$ Block 4: 15m $\to$ Block 5: 25m $\to$ Block 6: 20m $\to$ Block 7: 35m $\to$ Block 8 保存重开: 15m）；首次 Roughness 上手前移至第 30 分钟窗口，保存退出重开持久化预留 8–10 分钟保护时间；所有分钟数均为**候选计划预算 (`CANDIDATE PLAN BUDGET`)**，未经大班现场容量实测；
+   - **开局实施路径推荐**：对比预置 Starter 与从零建层，**建议路径 B（基于官方内置 MeetMat Sample，引导学生从零建立图层）作为全员主干路径**（减少网络分发摩擦、规避跨版本工程冲突、建立底层图层心智）；将预置 Starter 作为极个别机器卡壳学生的 Tier 3 救急保底资产；两条路径均保留目标机房实操 PC 的现场验证门禁 (`RUNTIME REQUIRED`)。
 
 ---
 *本台账随课程调研与设计推进持续更新，归档于 `docs/research/course-design-ledger.md`。*
