@@ -295,10 +295,13 @@
    - **后八讲低分辨率依赖对照**：[`docs/research/painter-courseware-dependency-contrast-w2-w9.md`](painter-courseware-dependency-contrast-w2-w9.md)
      - 梳理 9 讲能力递进线（消除换预设的机械重复）；
      - 提出 3 次平时作业（W2 塑料、W4 金属、W7 次表面）于 160 分钟课内独立完成的候选落位方案（待教师审定）；
-     - 落实 W7–W9 全新独立综合期末大作业宏观解耦边界（质量优先+简短说明与过程证据）；
-     - 彻底剥离 Maya Quad Draw 人脸拓扑，确立 UV/拓扑的干净资产预置支撑角色；
+     - 梳理 W7–W9 综合期末大作业候选边界（质量优先+简短说明与过程证据，Issue #22 待定）；
+     - 支撑技术（UV/拓扑/烘焙）坚决防止反客为主，实操深度保持候选（剥离复杂肌肉拓扑超载负荷，资产预置为主）；
      - 评估第三方连接环境（建议 Blender 作为主要实操出口，Maya/Arnold 作为演示/选做候选，规避机房授权水印风险）；
      - 安排第 6 讲或第 9 讲轻量级 Blender-only 节点对照候选，仅作视野拓展不设为考核。
+3. **事实探针结论与最小纠偏 (2026-10-21)**：
+   - **官方 API 规范确认**：依据 2026-09-17 官方 `layerstack` API 文档，更正关于无法脚本创建 Fill Layer 与 Mask 的错误判断，确认现代 Painter 技术上已支持；同时维持“目标机房实际软件版本与脚本运行时未经实机验证 (`RUNTIME GATE OPEN`)”的门禁；
+   - **第二讲 `.spp` 复用定位更正**：明确不建议直接作为学生 Starter（规避向下兼容报错与认知倒错），但完整保留其作为教师备课参考成品及开课前通过 GUI 提取干净白模 (`File -> Export Mesh`) 的可能，待机房真实 GUI 验证 (`PENDING GUI VERIFICATION`)。
 
 ---
 *本台账随课程调研与设计推进持续更新，归档于 `docs/research/course-design-ledger.md`。*
