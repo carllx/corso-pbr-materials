@@ -9,7 +9,8 @@
 > - **W1–W6**：课程负责人正式采纳的“有限主案例 + 有界代表性微案例模型”（`TEACHER ACCEPTED — BOUNDED HYBRID`），具体排课周次与分钟数**尚未冻结 (NOT YET FROZEN)**；
 > - **Normal Bake / 高低模石膏对**：活跃教学候选 (`Active Teaching Candidate`)，其实操组织形式保持未决 (`UNRESOLVED / CONDITIONAL`)；
 > - **W7–W9**：全新独立综合期末大作业 (`New Comprehensive Final Project`)，其具体架构、任务书与交付规范权威归属于 **Issue #22**，当前条目均为输入性候选；
-> - **排课草案 v0.4**：**尚未生成 (NOT YET GENERATED)**，严禁在本工单中提前排定。
+> - **排课草案 v0.4**：**尚未生成 (NOT YET GENERATED)**，严禁在本工单中提前排定；
+> - **执行主线重定向说明 (2026-10-21)**：依据 Course Owner 权威决议，本学期以广州软件学院 Substance 3D Painter 既有九讲为当前执行主线（由 Issue #40 承载）；本文件作为 Blender-first 完整备选路线的实证路由基线予以完整保留；关于 Painter 主线的逐讲证据映射详见 [legacy-courseware-source-pedagogical-audit.md](legacy-courseware-source-pedagogical-audit.md) 与 [painter-courseware-dependency-contrast-w2-w9.md](painter-courseware-dependency-contrast-w2-w9.md)；选用教材郑琳 2024 版第一版实测证据详见 [textbook-source-map.md](textbook-source-map.md)。
 
 ---
 
