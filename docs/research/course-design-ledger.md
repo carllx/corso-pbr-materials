@@ -280,6 +280,26 @@
   - **轨 2（教务合规与培养方案）**：Issue #39 暴露的 2024/2026 培养方案学时差异（12 理论 + 24 实践 vs 18 理论 + 18 实践）、课程代码差异（GR2102 vs GR2018）、4 学时 PBR 综合实验定位，以及本学期 2026 秋授课班级（GR2102-1 / GR2102-3）正式执行的教学大纲版本，**继续保持 `UNRESOLVED / GATE OPEN` 门禁**；
 - **纪律红线**：课程负责人的务实主线选择，**绝不臆测或伪称学校教务部门已完成正式审批或大纲勘误**；正式大纲状态待教务部门正式文件回执后方可核销。
 
+### 7.6 GitHub 执行路线对齐、工单承载与交付成果 (2026-10-21)
+1. **GitHub 工单映射与路线重定向**：
+   - **Roadmap #1**：发表 Frontier Override 评论，正式重定向 Active Frontier 至 Painter-first 主线，明确旧 Blender 路线历史归档为可恢复备用路线；
+   - **Issue #13**：发表 Route Lineage 评论，明确记录原 Blender-first v0.4 综合工作在历史 PR #18 处归档保全，历史记录不作静默篡改；
+   - **创建新工单 [Issue #40](https://github.com/carllx/corso-pbr-materials/issues/40)**：作为当前学期 Painter-first 实施主线的承载工单（`Implementation — Painter-first 主线启动：第一讲 MeetMat 教师审查版与后八讲低分辨率依赖对照`），标签 `ready-for-human`，关联 #1、#13、#22、#39；
+2. **核心成果物落位**：
+   - **第一讲教师审查版教学草案**：[`docs/research/painter-week1-meetmat-teaching-draft-v0.1.md`](painter-week1-meetmat-teaching-draft-v0.1.md)
+     - 涵盖课程整体介绍 (Orientation 15min)、PBR 核心物理通道的生活化直观比喻与科学边界；
+     - 包含 MeetMat 准确操作示范步骤（界面/视口三键客/Shift+右键光照旋转/Texture Set/Fill Layer/Black Mask/Smart Material/Iray）；
+     - 160 分钟单班节奏预算、3 条硬性超时剪裁规则 (Cut Rules)、四级反馈漏斗与 No-hidden-homework 原则；
+     - 学生轻量三字段材质决策卡、保存退出重开持久化验证与三级机房容灾梯队；
+     - 暴露并纠正原课件考勤分 10% 冲突，学时口径差异保持待核。
+   - **后八讲低分辨率依赖对照**：[`docs/research/painter-courseware-dependency-contrast-w2-w9.md`](painter-courseware-dependency-contrast-w2-w9.md)
+     - 梳理 9 讲能力递进线（消除换预设的机械重复）；
+     - 锁定 3 次平时作业（W2 塑料、W4 金属、W7 次表面）于 160 分钟课内独立完成；
+     - 锁定 W7–W9 全新独立综合期末大作业边界（质量优先+简短说明与过程证据）；
+     - 彻底剥离 Maya Quad Draw 人脸拓扑，确立 UV/拓扑的干净资产预置支撑角色；
+     - 评估第三方连接环境（建议 Blender 作为主要实操出口，Maya/Arnold 作为演示/选做，规避机房授权水印风险）；
+     - 安排第 6 讲或第 9 讲轻量级 Blender-only 节点对照，仅作视野拓展不设为考核。
+
 ---
 *本台账随课程调研与设计推进持续更新，归档于 `docs/research/course-design-ledger.md`。*
 
