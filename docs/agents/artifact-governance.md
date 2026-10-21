@@ -229,12 +229,14 @@ When a newer teacher decision replaces an older project choice:
 
 Current teacher-preparation decisions should live in the active project authority plus these durable Agent rules; they should not be copied into an additional teaching manual.
 
-### Curriculum route neutrality: pedagogical governance vs. implementation disposition
+### Curriculum route disposition: Painter execution mainline and Blender restorable alternative
 
-This collaborative lesson preparation discipline governs human-agent interaction workflows, authority boundaries, and evidence fidelity; it remains strictly neutral regarding software platform choices.
+This collaborative lesson preparation discipline governs human-agent interaction workflows, authority boundaries, and evidence fidelity; software platform primacy has been authoritatively decreed:
 
-- **Pending implementation disposition**: The existing repository-developed **Blender-first probe and prototype baseline** and Guangzhou Software Institute's historical **Substance 3D Painter-first courseware assets** represent coexisting operational candidates. Their eventual integration, precedence, or migration path belongs strictly to the **formal course offering implementation decision (Course Offering Disposition)**.
-- **Anti-smuggling invariant**: No agent, workflow rule, or governance document may silently alter, lock, or disguise the curriculum software route under the guise of preparation methodology. Decisions altering software primacy must be explicitly decreed by the Course Owner and recorded as authoritative project milestones.
+- **Current semester execution mainline**: Per Course Owner disposition (2026-10-21), Guangzhou Software Institute's historical **Substance 3D Painter-first courseware assets** serve as the active teaching and preparation mainline for the current semester (beginning with Week 1 MeetMat).
+- **Blender-first restorable alternative baseline**: The repository's thoroughly probed and verified **Blender-first curriculum assets, tests, and Draft PRs** are completely preserved as a restorable alternative route (Future Restorable Alternative Baseline) via Git pointers; historical records remain valid for their phase and are not rewritten.
+- **Cross-route knowledge boundary**: PBR optical physics, pedagogical scaffolds (Predict-Operate-Explain, lightweight decision cards, recovery ladders, 160-minute pacing control), and outcome-driven assessment apply to both routes; however, Blender-specific Shader Editor nodes and hotkeys must not be mechanically transplanted into Painter.
+- **Institutional syllabus gating separation**: The Course Owner's operational mainline choice is distinct from formal institutional syllabus approval; curriculum discrepancies identified in Issue #39 remain gated until authoritative registrar confirmation is received.
 
 ---
 
