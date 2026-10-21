@@ -201,5 +201,16 @@
    - **学院旧课件认知审计**：[`docs/research/legacy-courseware-source-pedagogical-audit.md`](legacy-courseware-source-pedagogical-audit.md)；
    - **自动化能力与资产复用探针**：[`docs/research/painter-automation-and-asset-reuse-probe.md`](painter-automation-and-asset-reuse-probe.md)。
 
+### 5.8 第一讲教师决定收敛与教学顺序确立 (Teacher Acceptance Record — 2026-10-21)
+1. **教学组织顺序决议 (`TEACHER ACCEPTED`)**：
+   - 裁定第一讲打破先讲理论后上机的模式，采用**“视觉观察 → 必要界面认识 → 教师示范 → 学生操作 → 理论解释 → 独立应用”**六步认知递进顺序；
+2. **全员核心保底任务边界 (`TEACHER ACCEPTED`)**：
+   - 严格收敛于 **MeetMat `Head` 部位的基础材质属性 (BaseColor/Roughness/Metallic)、双层 Fill Layer、Black Mask 开窗绘制，以及 `.spp` 规范保存与退出重开持久化**；
+3. **非必经目标剔除 (`TEACHER ACCEPTED`)**：
+   - 明确 `Body`/`Base` 扩展、Smart Materials 智能材质、生成器 (Generators) 和 Iray 渲染器**不属于第一讲全员必经目标**，降级为后续周次或课外自愿拓展；
+4. **容量定界与实施路径推荐**：
+   - 160 分钟时间切片**严格保持为候选计划预算 (`CANDIDATE PLAN BUDGET`)**，未经大班现场容量实测；
+   - **开局实施路径推荐**：对比预置 Starter 与从零建层，**强烈推荐路径 B（基于官方内置 MeetMat Sample，引导学生从零建立图层）作为全员主干路径**（零版本风险、零网络分发丢包、建立底层图层心智）；将预置 Starter 作为极个别机器卡壳学生的 Tier 3 救急保底资产。
+
 ---
 *本台账随课程调研与设计推进持续更新，归档于 `docs/research/course-design-ledger.md`。*
