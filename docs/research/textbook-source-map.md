@@ -106,7 +106,7 @@
   - **私有包内部结构 (逻辑相对路径)**：
     - `Substance_3D_Painter_Master.md`：保真机器母本，含全书 138 处规范双轨页码锚点（格式：`<!-- [Page Anchor: 物理页 P | 印刷页 N] -->`；正文偏移规则：物理页 = 印刷页 + 10）；
     - `Substance_3D_Painter_Reader.md` / `chapters_reader/*.md`：按章阅读优化版（富文本清洗，适用于人类速查）；
-    - `images/`：265 张无损 UI 截图切片（统一以 `images/` 或 `../images/` 相对索引）；
+    - `images/`：265 张 JPEG 格式 (`.jpg`) 图书插图与 UI 截图切片（统一以 `images/` 或 `../images/` 相对索引）；
     - `DELIVERY_MANIFEST.md` 与 `CHECKSUMS.sha256`：全量 284 个交付文件完整性防篡改基准；
   - **Agent 检索规范**：必须基于双轨页码锚点与实际 Markdown 正文进行定向追溯；若当前执行环境未挂载或无法访问私有存储介质，严格标注 `ACCESS NOT VERIFIED`，绝不虚构或凭记忆拼凑原文。
 - **来源角色与教学定界**：
