@@ -7,7 +7,9 @@
 > - **端侧宿主边界说明 (Host Boundary Notice)**：  
 >   - 经 IDE 端侧环境系统核查，当前执行环境未配置 Whimsical 或 Notion 的 API Token、专用 CLI 或 MCP 插件，无法从端侧直接程序化读取私有云端白板或备课工作台；  
 >   - 该边界**不构成对本次 GUI 试走交付的阻塞**；项目严格遵循 `AGENTS.md` 规范，以 **GitHub 仓库为唯一教学决策真实数据源 (Single Source of Truth, SSOT)**，不新建外部替代库，不私自复制代码与受限原件。  
-> - **门禁定界**：当前操作卡内未在目标机房实操 PC 端到端核实的按钮文字、弹窗层级与系统快捷键统一标记为 **`RUNTIME REQUIRED`**；教师完成试走并回填反馈表后，方可升级为 `VERIFIED ON TARGET PC`。
+> - **门禁与实测双轨定界 (Two-Track Verification Notice — 2026-10-22)**：  
+>   1. **教师本机实测事实 (macOS / Substance 3D Painter 7.2)**：Course Owner 于 2026-10-22 完成实机初步试走，已打通 Sample 载入、导航与光照旋转、`01_Head` 锁定、底层黄色塑料与 Roughness 调节、第二层深色覆盖、黑色遮罩开窗与擦除、Mesh Maps (`B`) 与 Material (`M`) 模式切换、短英文工程另存为及退出重开持久化验证（`.spp` 约 103MB，主要图层完整恢复）；标记为 **`PASS / PARTIAL ON LOCAL MACOS`**；  
+>   2. **目标机房验证门禁 (Target Windows Lab)**：学校 Windows 机房的实际版本、样本完整性、快捷键响应与大班容量仍处于 **`RUNTIME REQUIRED / OPEN GATE`**；本机实测事实**严禁伪装为学校目标 Windows 机房已验证通过**；教师完成机房实操探针后方可升级为 `VERIFIED ON TARGET PC`。
 
 ---
 
@@ -80,17 +82,19 @@
 
 - **【操作动作 (Action)】**：
   1. 将视线移至软件界面右上方的 **`Texture Set List (纹理集列表)`** 调板；
-  2. 观察列表中存在的 3 个纹理集项：`Head`、`Body`、`Base`；
-  3. 用鼠标单击选中 **`Head`**（确保该行呈现高亮选中状态）；
-  4. 检查下方的 **`Layers (图层)`** 调板，确认当前显示的图层归属于 `Head`。
+  2. 观察列表中存在的 3 个纹理集项：
+     - **真实版本命名实例**：在教师实测的 macOS / Painter 7.2 中，纹理集显示为带数字序号的 **`01_Head`、`02_Body`、`03_Base`**；而在部分其他版本或教学资料中可能显示为不带序号的 `Head`、`Body`、`Base`；**切勿假定所有版本文字一模一样，认准包含 `Head` 的项即可**；
+  3. 用鼠标单击选中包含 **`Head`**（或 `01_Head`）的条目（确保该行呈现高亮选中状态）；
+  4. 检查下方的 **`Layers (图层)`** 调板，确认当前显示的图层归属于头部。
 - **【预期画面 (Expected Screen)】**：
-  - `Head` 保持高亮激活；3D 视口中若有其他部位存在图层，不会混杂到当前的图层堆栈中；第一讲全员任务严格锁定在头部。
+  - `01_Head`（或 `Head`）保持高亮激活；3D 视口中若有其他部位存在图层，不会混杂到当前的图层堆栈中；第一讲全员任务严格锁定在头部。
 - **【常见操作卡点 (Gotchas)】**：
-  - **卡点 3-A**：误留在 `Base` 或 `Body`，在后续建层时画了半天发现头部没有任何变化；
-  - **卡点 3-B**：误点击了纹理集旁边的眼睛图标，导致头部在视口中被直接隐藏。
+  - **卡点 3-A**：误留在 `02_Body` 或 `03_Base`，在后续建层时调参画了半天发现头部没有任何变化；
+  - **卡点 3-B**：误点击了纹理集旁边的眼睛图标，导致头部在视口中被直接隐藏；
+  - **卡点 3-C**：死扣教案字眼找不到纯英文 `Head`，忽略了前面可能带有 `01_` 等版本序号前缀。
 - **【最小恢复办法 (Recovery Steps)】**：
-  - 若头部在视口中消失，重新点击 `Texture Set List` 中 `Head` 旁边的眼睛图标恢复可见；确认当前蓝色/灰色高亮条停在 `Head` 上。
-- **【实机门禁标记】**：`VERIFIED (概念规范)` / `RUNTIME REQUIRED (UI 语言高亮表现)`。
+  - 若头部在视口中消失，重新点击 `Texture Set List` 中带 `Head` 旁边的眼睛图标恢复可见；确认当前蓝色/灰色高亮条停在包含 `Head` 的条目上。
+- **【实机门禁标记】**：`PASS ON MACOS (Painter 7.2 实测识别 01_Head)` / `RUNTIME REQUIRED (目标 Windows 机房实际命名)`。
 - **【教材证据指针】**：`zheng-2024-painter` §2.10 纹理集列表（印刷页 62~65 / 物理页 72~75；图 2.115）。
 
 ---
@@ -98,27 +102,31 @@
 ### Step 4：建立底层黄色塑料填充层与粗糙度参数微调 (Plastic Base & Roughness)
 
 - **【操作动作 (Action)】**：
-  1. 在 `Layers (图层)` 调板上方工具条中，定位并点击 **油漆桶图标（`Add fill layer / 添加填充图层`）**；
+  1. 在 `Layers (图层)` 调板上方工具条中，定位并点击 **油漆桶图标（`Add fill layer / 添加填充图层`）**（**注意**：绝不要点击旁边的毛笔图标 `Add layer`）；
   2. 在新生成的图层上双击文本，重命名为 **`Plastic_Base`**；
-  3. 查看下方 **`Properties: Fill (属性: 填充)`** 调板：
+  3. **【核心检查点】查看下方属性调板顶栏标题 (Properties Title Check)**：
+     - **正确标志**：确认顶栏标题明确显示为 **`Properties - Fill`**（或 `Properties: Fill`）；只有填充层才会显示通道开关矩阵与数值滑块；
+     - **异常报警**：若标题显示为 **`Properties - Paint`** 或 **`Properties - Eraser`**，说明建成了普通绘图层或当前激活了橡皮擦等画笔工具，无法调节整体填充参数；
+  4. 在 `Properties - Fill` 面板中配置物理通道：
      - 在通道开关按钮区（`color`, `metal`, `rough`, `nrm`, `height`），鼠标点击取消激活 **`nrm`** 与 **`height`** 按钮（仅保留 `color`, `metal`, `rough` 三大通道亮起）；
      - 点击 **`baseColor`** 色块，在弹出的拾色器中选择一个明亮柠檬黄（例如 Hue 约 50°，高饱和）；
      - 确认 **`Metallic`** 滑块数值严格保持为 **`0.0`**（电介质绝缘体）；
-     - **执行单一变量 Roughness 因果实验（严格固定视口视角与照明不动）**：
-       - 将视角调整到一个能清晰看到天光高光斑点的固定角度，**松开鼠标并不再旋转光照与视角**；
-       - 先拖动 **`Roughness`** 滑块到 **`0.10`**：观察固定视角下黄色球头表面光斑，高光极其锐利紧凑、边界清晰；
-       - 再逐渐拖动 **`Roughness`** 滑块到 **`0.85`**：在同一固定视角下观察，原锐利高光光斑迅速扩散开散为大面积柔和微弱的哑光漫晕（验证微表面粗糙度对光斑展宽的单一因果影响）；
-       - 最终将 `Roughness` 设定在 **`0.15`** 作为底层光洁塑料底漆质感。
+  5. **执行单一变量 Roughness 因果实验（严格固定视口视角与照明不动）**：
+     - 将视角调整到一个能清晰看到天光高光斑点的固定角度，**松开鼠标并不再旋转光照与视角**；
+     - 先拖动 **`Roughness`** 滑块到 **`0.10`**：观察固定视角下黄色球头表面光斑，高光极其锐利紧凑、边界清晰；
+     - 再逐渐拖动 **`Roughness`** 滑块到 **`0.85`**：在同一固定视角下观察，原锐利高光光斑迅速扩散开散为大面积柔和微弱的哑光漫晕（**实测注意**：0.10 与 0.85 具有极其鲜明的视觉反差；在当前默认照明下，微小中间参数如 0.3 对比 0.4 的肉眼感知相对平缓，教学中务必使用 0.10 vs 0.85 的两极强对比建立因果直观）；
+     - 最终将 `Roughness` 设定在 **`0.15`** 作为底层光洁塑料底漆质感。
 - **【预期画面 (Expected Screen)】**：
   - 3D 视口中 MeetMat 的整个头部呈现明亮黄色；
-  - 固定视角下，Roughness 滑块左右拖动能即时看到高光光斑“聚拢 $\leftrightarrow$ 扩散”的明显反差，且无金属彩色反光。
+  - 固定视角下，Roughness 从 0.10 调到 0.85 即时看到高光光斑“锐利聚拢 $\leftrightarrow$ 柔和漫晕”的鲜明反差，且无金属彩色反光。
 - **【常见操作卡点 (Gotchas)】**：
-  - **卡点 4-A**：误点击了毛笔图标（`Add layer`，添加了普通手绘图层），导致属性调板中没有颜色色块与 Roughness 滑块；
-  - **卡点 4-B**：手滑拉动了 `Metallic` 滑块变成 0.5 灰度，导致黄色塑料呈现诡异的灰暗脏感。
+  - **卡点 4-A（高频经典误区）**：误点击毛笔图标添加了普通图层（Paint Layer），或在左侧工具栏误切了工具，导致属性面板顶栏显示为 `Properties - Eraser` 或 `Properties - Paint`，完全找不到 BaseColor 颜色块与 Roughness 滑块；
+  - **卡点 4-B**：手滑拉动了 `Metallic` 滑块变成 0.5 灰度，导致黄色塑料呈现诡异的灰暗脏感；
+  - **卡点 4-C**：在微调中间参数（如 0.35 调到 0.40）时觉得没有变化而反复拖动（实测事实：当前默认照明下中间微小区间变化不敏感，需大跨度对比）。
 - **【最小恢复办法 (Recovery Steps)】**：
-  - 若建错图层，直接选中该图层按键盘 `Delete` 键删除，重新认准带“油漆桶”图标的填充层新建；
-  - 若 `Metallic` 偏离 0，直接双击输入框手动键入数字 `0` 并回车。
-- **【实机门禁标记】**：`RUNTIME REQUIRED`（核验属性面板中通道按钮的即时开关响应）。
+  - **针对卡点 4-A 的恢复**：若属性面板显示 `Eraser` 或 `Paint`，看图层面板，若该层图标不是“小油漆桶”而是“空白纸张”，直接选中该图层按键盘 `Delete` 键删除，重新点击“油漆桶图标 (`Add fill layer`)”重建；若确实是填充层但误激活了橡皮擦，按键盘单键 `1` 切回画笔或重新单击图层本体；
+  - **针对卡点 4-B 的恢复**：双击 Metallic 数值输入框，手动键入数字 `0` 并回车。
+- **【实机门禁标记】**：`PASS ON MACOS (Painter 7.2 实测通过黄色填充与 Roughness 0.1 vs 0.85 对比)` / `RUNTIME REQUIRED (目标 Windows 机房实际光照与通道响应)`。
 - **【教材证据指针】**：`zheng-2024-painter` §2.9.3 填充图层（印刷页 48 / 物理页 58；图 2.81）。
 
 ---
@@ -140,7 +148,7 @@
   - **卡点 5-A**：新图层被拖到了 `Plastic_Base` 下方，导致视口看不到任何变化。
 - **【最小恢复办法 (Recovery Steps)】**：
   - 鼠标按住 `Face_Mask` 图层向上拖拽，确保其层级位于 `Plastic_Base` 顶层。
-- **【实机门禁标记】**：`VERIFIED (图层层叠原理)`。
+- **【实机门禁标记】**：`PASS ON MACOS (Painter 7.2 实测双层覆盖建立与图层层叠顺序)` / `RUNTIME REQUIRED (目标 Windows 机房)`。
 - **【教材证据指针】**：`zheng-2024-painter` §2.9 图层调板概述（印刷页 46~47 / 物理页 56~57）。
 
 ---
@@ -172,7 +180,7 @@
 - **【最小恢复办法 (Recovery Steps)】**：
   - 鼠标明确点击图层右侧的**黑色遮罩方块**，确认白边框框在遮罩方块上；
   - 检查属性面板最下方颜色，确保只在纯白 (1.0) 与纯黑 (0.0) 之间切换。
-- **【实机门禁标记】**：`RUNTIME REQUIRED`（核验 `Ctrl+右键拖动` 调节笔刷大小与 `X` 键黑白切换在不同系统下的快捷键响应）。
+- **【实机门禁标记】**：`PASS ON MACOS (Painter 7.2 实测 Black Mask 挂载、白色显现与黑色隐藏纠错)` / `RUNTIME REQUIRED (目标 Windows 机房快捷键响应)`。
 - **【教材证据指针】**：`zheng-2024-painter` §2.9.3 遮罩效果（印刷页 51~54 / 物理页 61~64；图 2.88~2.90）。
 
 ---
@@ -180,31 +188,33 @@
 ### Step 7：视口单通道检查与纯净截图保存 (Channel Inspection & Screenshot)
 
 - **【操作动作 (Action)】**：
-  1. **单通道物理核验 (快捷键 C / B / M 语义区分)**：
-     - 将鼠标指针悬停在 3D 视口上，连续按键盘单键 **`C`**（Channel / 材质通道切换），观察视口左上角显示的通道名称在循环切换：
-       - 切到 `BaseColor`：看到黄色底色与深色面罩固有色，表面无任何虚假绘制的高光或阴影；
-       - 切到 `Roughness`：看到微观粗糙度灰度图（底层 0.15 偏深灰，面罩 0.05 接近纯黑）；
-       - 切到 `Metallic`：看到**完全纯黑的画面 (0.0)**，确认绝无灰度杂质；
-     - **特别注意快捷键语义区分**：
-       - 单键 **`C`**：循环查看**材质属性通道** (Material Channels: Base Color, Roughness, Metallic, Normal, Height...)；
-       - 单键 **`B`**：循环查看**网格烘焙贴图** (Mesh Maps: AO, Curvature, Normal, World Space Normal...)；
-       - 单键 **`M`**：返回完整的**复合材质渲染模式** (Material Mode)；
-     - 核验完成后，按键盘单键 **`M`**，将视口恢复为完整的 `Material` 渲染视图；
-  2. **沉浸式视口切换与截图**：
+  1. **明确三类视图的核心观察用途 (M / C / B 语义与模式定界)**：
+     - **【核心基准】`M` (Material 模式 / 复合材质渲染视图)**：
+       - **铁律**：**所有材质外观质量、高光聚散、颜色搭配与整体质感的比较，必须且只能在 `M` (Material) 模式下进行！** 绝不可在单通道或灰度贴图下评判外观；
+       - 实测状态：教师本机实测按 **`M` 键已成功验证**，能随时从其他视图稳妥返回正常彩色材质模式；
+     - **`B` (Mesh Maps 模式 / 网格烘焙贴图视图)**：
+       - 单键 **`B`** 循环查看几何网格贴图（如 Curvature 曲率图、Ambient Occlusion 环境遮蔽图、Normal 法线图等）；
+       - 实测状态：教师本机实测按 **`B` 键已成功验证**，确实能够顺利进入并切换网格贴图视图；
+     - **`C` (Single Channel 模式 / 材质属性通道视图)**：
+       - 单键 **`C`** 循环查看材质物理属性通道（Base Color, Roughness, Metallic...），主要用于物理数据核验（如确认 Metallic 是否为纯黑 0.0）；
+       - 实测状态：**教师本机实测中 `C` 快捷键材质通道循环尚未完成实机验证**（标记为未实测）；
+     - **操作指令**：尝试按 `B` 键查看网格贴图后，**务必按键盘单键 `M` 恢复为 Material 复合材质渲染视图**；
+  2. **沉浸式视口切换与截图（首轮试走选做）**：
      - 按键盘单键 **`F2`**：将视口锁定为纯 3D 视口（隐藏可能并排的 2D UV 视口；注：非截图快捷键）；
      - 按键盘 **`Tab`** 键：临时隐藏界面所有侧边调板与工具栏，进入全屏纯净模型视口；
-     - 使用键盘截图快捷键（Windows: `Win + Shift + S` 或 `PrintScreen`；macOS: `Cmd + Shift + 4`）截取一张 16:9 高清视口图，保存为 `Slide18_SaveAs_Dialog_And_CleanTab.png`；
-     - 再次按 **`Tab`** 键恢复所有操作面板。
+     - 使用系统截图功能（Windows: `Win + Shift + S` 或 `PrintScreen`；macOS: `Cmd + Shift + 4`）截取纯净视口图；
+     - 再次按 **`Tab`** 键恢复所有操作面板；
+     - **首轮试走说明**：首轮试走核心为跑通交互与参数链路，截图未经验证，**不要求教师在首轮拍满 10 张正式截图**。
 - **【预期画面 (Expected Screen)】**：
-  - 按 `C` 键通道切换自如，物理通道数值纯净规范；
-  - `Tab` 键能迅速一键隐藏全界面杂乱控件，留下清晰展示黄色塑料与深色面罩反光对比的成果图。
+  - 按 `B` 键能看到模型自带的灰度烘焙图（如 AO 阴影与曲率白边）；
+  - 按 `M` 键能瞬间回到正常彩色光照复合视口；所有质感判断均以 `M` 视图为准。
 - **【常见操作卡点 (Gotchas)】**：
   - **卡点 7-A**：误把快捷键 `F2` 当成截图按钮，等待软件出图无果；
-  - **卡点 7-B**：误按 `B` 键切换到了 Mesh Maps 网格贴图视图（如 Curvature/AO），导致画面显示异常；
-  - **卡点 7-C**：不知道按 `M` 可以从单通道视口切换回正常材质，卡在黑白通道视图。
+  - **卡点 7-B**：误按 `B` 键切换到了 Mesh Maps 网格贴图视图（如 Curvature/AO），误以为材质丢失或显示异常；
+  - **卡点 7-C**：在黑白通道试图观察材质颜色或高光，导致因视图模式错误而产生误判。
 - **【最小恢复办法 (Recovery Steps)】**：
-  - 误按 `B` 或 `C` 切到单通道时，牢记按字母 **`M`**（Material 缩写），即可瞬间回到正常彩色复合光照材质视口。
-- **【实机门禁标记】**：`RUNTIME REQUIRED`（验证目标机房 Windows 系统自带截图快捷键与软件 Tab 全屏交互）。
+  - 无论处于 `B`（Mesh Maps）还是 `C`（Channel）视图，牢记按字母 **`M`**（Material 缩写），即可瞬间回到正常的彩色复合光照材质视口。
+- **【实机门禁标记】**：`PARTIAL ON MACOS (B键进入Mesh Maps与M键返回Material已实测验证通过；C键材质通道循环与截图流程尚未实测)` / `RUNTIME REQUIRED (目标 Windows 机房)`。
 - **【教材证据指针】**：`zheng-2024-painter` §2.2.1 视图显示模式（印刷页 19 / 物理页 29；图 2.11）。
 
 ---
@@ -212,75 +222,101 @@
 ### Step 8：工程规范另存为、彻底退出 Painter 与重启打开核验 (Persistence Lifecycle)
 
 - **【操作动作 (Action)】**：
-  1. **规范另存为工程**：
-     - 点击菜单 `File -> Save As... (另存为...)`（或按快捷键 `Ctrl + Shift + S`）；
-     - 在弹出的文件保存对话框中，定位至测试工作盘（例如 `D:\GR2102_Test\`）；
-     - 将工程命名为规范格式：`GR2102_W1_TeacherTest_MeetMat.spp`，点击保存；
-     - 观察软件右下角进度条跑完，顶部标题栏显示当前文件名；
+  1. **规范另存为工程（短英文命名推荐）**：
+     - 点击菜单 `File -> Save As... (另存为...)`（快捷键：Windows `Ctrl + Shift + S` / macOS `Cmd + Shift + S`）；
+     - 定位至测试工作目录（Windows 机房：`D:\GR2102_Test\`；macOS 本机：`~/Documents/GR2102/`）；
+     - **【实测避坑推荐】使用键盘直接键入简短英文名称**（如 `W1_MeetMat_Test.spp` 或 `GR2102_W1_Teacher.spp`；杜绝长文件名或复杂中文粘贴失效问题），点击保存；
+     - 观察软件右下角保存进度条走完，顶部标题栏显示当前文件名；
   2. **彻底退出 Painter 进程**：
-     - 点击右上角红叉 `X` 或点击菜单 `File -> Exit (退出)`；
-     - 打开任务管理器（`Ctrl + Shift + Esc`），快速核验 `Adobe Substance 3D Painter.exe` 进程是否已彻底退出，杜绝后台僵尸进程占用显存；
+     - 点击右上角红叉 `X` 或菜单 `File -> Exit`（macOS: `Cmd + Q`）；
+     - 检查任务管理器（Windows: `Ctrl + Shift + Esc`）或活动监视器（macOS），确认 `Adobe Substance 3D Painter` 进程已彻底退出，无后台残留；
   3. **重启打开核验持久化**：
-     - 在文件资源管理器中找到刚才保存的 `GR2102_W1_TeacherTest_MeetMat.spp`；
+     - 在文件资源管理器/访达中找到刚才保存的 `.spp` 文件（实测约 **103MB** 左右）；
      - 鼠标双击该文件重新启动 Painter；
      - 核验打开后的工程：
-       - ① 3D 视口是否保持刚才绘制的黄色塑料与深色面罩？
-       - ② 右上角切换到 `Head`，图层面板中 `Plastic_Base` 与 `Face_Mask`（含黑遮罩）是否完整保留、参数未丢失？
+       - ① 3D 视口是否保持刚才绘制的明黄塑料与深色面罩？
+       - ② 纹理集切换到 `01_Head`（或 `Head`），检查图层面板中 `Plastic_Base` 与 `Face_Mask`（含黑遮罩）是否 100% 完整保留、参数未丢失？
 - **【预期画面 (Expected Screen)】**：
-  - 工程顺利重开，图层结构、遮罩绘制与物理通道参数 100% 完整复原，没有丢失任何笔触或产生材质损坏。
+  - 工程顺利重开，视口无损坏无空白，图层结构、遮罩绘制与物理通道参数完整复原，没有丢失任何笔触或产生材质损坏。
 - **【常见操作卡点 (Gotchas)】**：
   - **卡点 8-A**：保存时未等待进度条走完就强行关机或断电，导致 `.spp` 文件头损坏；
-  - **卡点 8-B**：误点击“保存”覆写了软件默认 sample 原文件（若权限不足会报错拒绝访问）。
+  - **卡点 8-B**：误点击“保存”覆写了软件默认 sample 原文件（若权限不足会报错拒绝访问）；
+  - **卡点 8-C（重要实测卡点）**：在部分系统保存弹窗中，鼠标右键粘贴过长的文件名或中文可能无响应或粘贴失败；
+  - **卡点 8-D**：误以机械的“文件大小是否大于 50MB”作为成功标准。
 - **【最小恢复办法 (Recovery Steps)】**：
-  - 必须使用 `Save As... (另存为)` 保存到学生专用作业盘，绝不直接覆盖 Sample 目录；若重开弹窗报错或文件大小显示为 0KB 则属保存异常中断；以**成功重新打开工程、图层调板中 `Plastic_Base` 与 `Face_Mask`（含黑遮罩）层级结构及参数完整保留**作为有效验证依据（绝不以文件是否超过 50MB 作为判断标准）。
-- **【实机门禁标记】**：`RUNTIME REQUIRED`（机房实机端到端退出与重开持久化探针）。
+  - 若保存弹窗粘贴失灵，直接敲击键盘输入简短英文名（如 `W1_Test.spp`）；必须使用 `Save As...` 保存到独立工作目录，绝不覆盖 Sample 目录；以**成功重新打开工程、图层调板中 `Plastic_Base` 与 `Face_Mask`（含黑遮罩）层级结构及参数完整保留**作为唯一有效恢复判据（实测完整工程约 103MB）。
+- **【实机门禁标记】**：`PASS ON MACOS (Painter 7.2 实测保存约 103MB 短英文 .spp，彻底退出进程后双击重开成功恢复图层与遮罩)` / `RUNTIME REQUIRED (目标 Windows 机房)`。
 - **【教材证据指针】**：`zheng-2024-painter` §2.1.3 保存工程（印刷页 17 / 物理页 27）。
 
 ---
 
-## 2. 教师试走最小反馈模板 (Minimal Walkthrough Feedback Form)
+## 2. 教师试走反馈报告与双轨门禁记录 (Walkthrough Feedback & Two-Track Gates)
 
-> **使用说明**：教师完成上述 8 步试走后，仅需花 **3 分钟** 勾选以下简明表格并记录卡点，回传给 Course Owner 或填入 GitHub Issue #40，即可闭环第一讲实操门禁。**无需测满 160 分钟！**
+### Part A：教师本机实测事实记录 (macOS / Substance 3D Painter 7.2 — 2026-10-22)
 
-```markdown
-### GR2102 第 1 讲教师 GUI 试走反馈报告
+> **现场记录定界**：以下由 Course Owner 于 2026-10-22 在教师开发机完成实机实测记录。**明确仅代表本地 macOS / Painter 7.2 运行事实，严禁误读为目标 Windows 机房已验证通过**。首轮实测核心为跑通操作闭环，**不要求教师拍满 10 张正式截图**。
 
 1. **测试环境与宿主硬件**：
-   - 测试日期：2026-____-____
-   - 软件确切版本：Substance 3D Painter 版本号 __________（如 8.3.0 / 9.1.2 / 10.0 等）
-   - 操作系统：Windows 10 / 11 / macOS __________
-   - 显卡与驱动：NVIDIA RTX __________ (驱动版本：__________)
+   - 测试日期：2026-10-22
+   - 软件确切版本：Adobe Substance 3D Painter 7.2.3 (macOS)
+   - 资产来源：软件官方原生内置示例 `MeetMat`
+   - 宿主操作系统：macOS 15.x
+2. **8 步流程实测通断结果**：
+   | 步骤编号与测试项 | 本机实测结果 | 现场实测核心事实与发现 |
+   | :--- | :---: | :--- |
+   | Step 1: 载入官方 MeetMat 示例 | **PASS** | 成功通过 `File -> Open Sample... -> MeetMat` 打开，视口与网格贴图完备 |
+   | Step 2: 视口导航与 Shift+右键光照 | **PASS** | `Alt+三键` 导航顺畅；`Shift+右键水平拖动` 成功实现环境光照旋转与高光流动 |
+   | Step 3: Texture Set 锁定 Head | **PASS** | 成功识别！真实显示名称带数字前缀：**`01_Head / 02_Body / 03_Base`**，顺利锁定 `01_Head` |
+   | Step 4: 黄色底层塑料与 Roughness | **PASS** | 建立 `Plastic_Base` 填充层；调节 Roughness 0.10 vs 0.85 高光反差鲜明；中间微调变化较平缓 |
+   | Step 5: 第二层深色覆盖填充层 | **PASS** | 成功建立 `Face_Mask` 深蓝黑填充层，核验全头覆盖效果良好 |
+   | Step 6: 黑色遮罩画笔开窗与 X 纠错 | **PASS** | 成功挂载 Black Mask；1 键白画笔开窗显现面罩，X 键黑画笔成功擦除纠错 |
+   | Step 7: 视口通道检查与快照 | **PARTIAL** | **`B` 键实际成功进入 Mesh Maps，`M` 键成功返回 Material；`C` 键材质通道循环及截图未测** |
+   | Step 8: 存为 .spp 退出并重开核验 | **PASS** | **保存短英文名成功，生成约 103MB `.spp`；完全退出软件双击重开，主要图层遮罩完整恢复** |
+   | **首轮试走结论** | **链路闭环** | **全流程核心交互已跑通；Material 模式与图层遮罩生命周期经实机证实可行！** |
+3. **现场排错与经验教训总结 (Gotchas Discovered)**：
+   - ① **图层混淆陷阱**：曾误操作导致 Properties 面板标题显示为 `Properties - Eraser`（而非 `Properties - Fill`），导致找不到通道开关与滑块；通过排查 Layers 属性、删除错误图层并重新认准油漆桶图标添加 Fill Layer 成功恢复；
+   - ② **参数感知特征**：Roughness 0.10（锐利高光）与 0.85（哑光扩散）反差极强；但在当前照明下，部分中间小幅度参数变化肉眼不够明显，教学示范建议主打两极对比；
+   - ③ **保存文件名粘贴失败**：保存对话框粘贴长文件名失败，改为物理键盘直接键入简短纯英文名（如 `W1_Test.spp`）后保存顺利；
+   - ④ **文件大小**：实测 MeetMat 完整工程约 103MB，退出重开图层与参数无损。
 
-2. **8 步流程通断核查表**：
-| 步骤编号与测试项 | 是否走通 (PASS / CONDITIONAL / FAIL) | 约略耗时 | 现场发现卡点或操作异常说明 |
-| :--- | :---: | :---: | :--- |
-| Step 1: 载入官方 MeetMat 示例 | [ ] PASS  [ ] COND  [ ] FAIL | ___ min | |
-| Step 2: 视口导航与 Shift+右键光照 | [ ] PASS  [ ] COND  [ ] FAIL | ___ min | |
-| Step 3: Texture Set 锁定 Head | [ ] PASS  [ ] COND  [ ] FAIL | ___ min | |
-| Step 4: 黄色底层塑料与 Roughness | [ ] PASS  [ ] COND  [ ] FAIL | ___ min | |
-| Step 5: 第二层深色覆盖填充层 | [ ] PASS  [ ] COND  [ ] FAIL | ___ min | |
-| Step 6: 黑色遮罩画笔开窗与 X 纠错 | [ ] PASS  [ ] COND  [ ] FAIL | ___ min | |
-| Step 7: C 键通道检查与 Tab 截图 | [ ] PASS  [ ] COND  [ ] FAIL | ___ min | |
-| Step 8: 存为 .spp 退出并重开核验 | [ ] PASS  [ ] COND  [ ] FAIL | ___ min | |
-| **试走总耗时** | **总计：约 ______ 分钟** | | (仅记录个人操作耗时，不测大班容量) |
+---
 
-3. **需补拍实机高清截图就绪清单 (统一 Shot 01~10 规范编号)**：
-   - [ ] Shot 01 (Slide 05 / Step 1: MeetMat 全貌并框出 Head 区域 / `Slide05_MeetMat_Overview.png`)
-   - [ ] Shot 02 (Slide 06 / Step 2: Painter 4 大面板界面全览 / `Slide06_Essential_UI_4Panels.png`)
-   - [ ] Shot 03 (Slide 07 / Step 2: Shift+右键光照旋转高光位移连拍 / `Slide07_HDRI_Rotation_Demo.jpg`)
-   - [ ] Shot 04 (Step 3: Texture Set 锁定 Head 高亮图 / `Step03_TextureSet_Head_Highlight.png`)
-   - [ ] Shot 05 (Slide 08 / Step 4: Plastic_Base 填充层黄色属性 / `Slide08_Plastic_Base_FillLayer.png`)
-   - [ ] Shot 06 (Slide 09 / Step 4: 固定光照视角下 Roughness 0.1 vs 0.8 对比 / `Slide09_Roughness_HandsOn_SideBySide.png`)
-   - [ ] Shot 07 (Slide 10 / Step 6: Black Mask 挂载与白画笔开窗涂抹 / `Slide10_BlackMask_Painting_Demo.png`)
-   - [ ] Shot 08 (Slide 11 / Step 6: 遮罩绘制与 X 键修边缘连拍 / `Slide11_Mask_Painting_StepByStep.png`)
-   - [ ] Shot 09 (Slide 17 / Step 7: C 键单通道核验 Metallic 纯黑与 BaseColor 对比 / `Slide17_Channel_Inspection_C_Key.png`)
-   - [ ] Shot 10 (Slide 18 / Step 7~8: Tab 纯净视口图与 Save As 规范命名弹窗 / `Slide18_SaveAs_Dialog_And_CleanTab.png`)
+### Part B：学校目标机房 Windows PC 验证核查表 (TARGET LAB — RUNTIME REQUIRED)
 
-4. **核心教学决策建议（教师勾选）**：
-   - 关于学生开局路径：[ ] 赞成官方原生 MeetMat Sample 从零建层   [ ] 建议教师预置 Starter.spp
-   - 关于第 30 分钟动手时机：[ ] 节奏合适，尽早上手体验好   [ ] 觉得仍需前置更多理论
-   - 其他现场反馈：________________________________________________________
+> **使用说明**：以下表格专供授课教师进入学校正式教学机房（Windows PC）时进行实机探针测试与打钩填报，用于核销目标机房实操门禁。
+
+```markdown
+### GR2102 学校目标机房实机验证核查表 (Windows PC)
+
+1. **机房环境与硬件记录**：
+   - 机房编号与测试机器号：机房 __________ / 电脑编号 __________
+   - 软件确切版本：Substance 3D Painter __________ (Windows 64-bit)
+   - 操作系统与显卡：Windows 10/11 __________ / NVIDIA RTX __________
+
+2. **机房 8 步通断核验**：
+| 步骤编号与测试项 | 机房通断状态 | 现场卡点或异常说明 |
+| :--- | :---: | :--- |
+| Step 1: 载入官方 MeetMat 示例 (Open Sample) | [ ] PASS  [ ] FAIL | 样本是否存在于机房安装包中？ |
+| Step 2: 视口导航三键客与 Shift+右键光照 | [ ] PASS  [ ] FAIL | 鼠标中键滚轮与键盘 Shift 响应是否正常？ |
+| Step 3: Texture Set 锁定 Head | [ ] PASS  [ ] FAIL | 机房版本命名是否为 01_Head 或 Head？ |
+| Step 4: 黄色底漆填充层与 Roughness 调节 | [ ] PASS  [ ] FAIL | Properties 标题是否为 Properties - Fill？ |
+| Step 5: 第二层深色覆盖填充层 | [ ] PASS  [ ] FAIL | 图层层叠与全头覆盖是否正常？ |
+| Step 6: 黑色遮罩画笔开窗与 X 纠错 | [ ] PASS  [ ] FAIL | 1 键画笔与 X 键黑白切换快捷键是否响应？ |
+| Step 7: 快捷键 C/B/M 与 Tab 截图 | [ ] PASS  [ ] FAIL | 验证 C 键通道切换与系统截图工具快捷键 |
+| Step 8: 保存短英文 .spp 退出重开持久化 | [ ] PASS  [ ] FAIL | 机房学生盘保存权限与重开图层完好度 |
+
+3. **需补拍实机高清截图就绪清单 (课件生产准备，首轮不要求拍满)**：
+   - [ ] Shot 01 (MeetMat 全貌并框出 Head 区域 / `Slide05_MeetMat_Overview.png`)
+   - [ ] Shot 02 (Painter 4 大面板界面全览 / `Slide06_Essential_UI_4Panels.png`)
+   - [ ] Shot 03 (Shift+右键光照旋转高光位移连拍 / `Slide07_HDRI_Rotation_Demo.jpg`)
+   - [ ] Shot 04 (Texture Set 锁定 Head 高亮图 / `Step03_TextureSet_Head_Highlight.png`)
+   - [ ] Shot 05 (Plastic_Base 填充层黄色属性 / `Slide08_Plastic_Base_FillLayer.png`)
+   - [ ] Shot 06 (Roughness 0.10 vs 0.85 锐利/哑光对比 / `Slide09_Roughness_HandsOn_SideBySide.png`)
+   - [ ] Shot 07 (Black Mask 挂载与白画笔开窗涂抹 / `Slide10_BlackMask_Painting_Demo.png`)
+   - [ ] Shot 08 (遮罩绘制与 X 键修边缘连拍 / `Slide11_Mask_Painting_StepByStep.png`)
+   - [ ] Shot 09 (C 键单通道核验 Metallic 纯黑与 BaseColor 对比 / `Slide17_Channel_Inspection_C_Key.png`)
+   - [ ] Shot 10 (Tab 纯净视口图与 Save As 规范命名弹窗 / `Slide18_SaveAs_Dialog_And_CleanTab.png`)
 ```
 
 ---
-*操作卡编制完成，归档于 `docs/research/painter-week1-teacher-gui-walkthrough-guide.md`。*
+*操作卡与实测报告编制完成，归档于 `docs/research/painter-week1-teacher-gui-walkthrough-guide.md`。*

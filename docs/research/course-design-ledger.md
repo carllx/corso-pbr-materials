@@ -258,9 +258,10 @@
    - **访问能力核查**：经系统核查，当前 IDE 端侧环境未配置 Whimsical 九讲白板或 Notion 第一讲备课工作台的 API Token、专用 CLI 或 MCP 插件，无法从端侧直接程序化读取私有云端白板或备课台数据；
    - **不构成执行阻塞**：该端侧宿主边界不构成对本次 GUI 试走交付与 PPT 草稿准备的阻塞；
    - **SSOT 唯一性铁律**：严格遵守 `AGENTS.md` 规范，以 **GitHub 仓库为全课程教学决策的唯一真实数据源 (Single Source of Truth, SSOT)**；严禁在外部平台新建替代库，严禁复制代码或私有受限素材至外部平台。
-3. **实机验证与大班容量门禁保持 (`RUNTIME REQUIRED / OPEN`)**：
-   - 教师试走操作卡与 PPT 骨架已具备交付条件；
-   - 按钮响应、各版本 Painter 样本完整性、快捷键行为与退出重开持久化，继续保持机房实操 PC 的现场验证门禁。
+3. **教师本机实测事实与双轨门禁定界 (Local Probe & Two-Track Gates — 2026-10-22)**：
+   - **教师本机实测事实 (`PASS / PARTIAL ON LOCAL MACOS`)**：Course Owner 于 2026-10-22 在 macOS / Substance 3D Painter 7.2 环境完成 MeetMat GUI 初步试走。成功验证：打开内置 Sample、视口三键客与环境天光旋转、识别 `01_Head/02_Body/03_Base`、底层黄色填充层与 Roughness 0.10 vs 0.85 锐利/哑光因果反差、第二层深色覆盖、Black Mask 白色显现与黑色隐藏纠错、Mesh Maps (`B`) 与 Material (`M`) 模式切换、短英文工程另存为及退出重开持久化（`.spp` 约 103MB，重开主要图层与遮罩完整保留）；
+   - **现场实测发现与避坑收敛**：发现普通图层与填充层混淆曾导致属性显示 `Properties - Eraser`，确立核查属性标题法则；发现保存对话框长文件名粘贴失败，确立物理键盘输入短英文名规范；确认材质外观评判必须在 Material 模式进行；
+   - **未验证项与目标机房门禁 (`RUNTIME REQUIRED / OPEN GATE`)**：单通道循环快捷键 `C`、系统截图流程、完整通道参数逐项核验及学校目标 Windows 机房的安装版本、样本完整性与大班容量仍处于 `RUNTIME REQUIRED`；**严禁将本地 macOS 实测推论为学校目标 Windows 机房已验证通过**。
 
 ---
 *本台账随课程调研与设计推进持续更新，归档于 `docs/research/course-design-ledger.md`。*
