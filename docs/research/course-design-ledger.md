@@ -21,11 +21,11 @@
   - 覆盖两个独立教学班：GR2102-1（35 人）与 GR2102-3（17 人），单教师现场主讲；
   - 完成有界影响分析报告（`course-offering-impact-analysis-2026-2027-1.md`），明确 9 周用于解除下游交付与 LookDev 挤压，释放主资产反馈打磨空间，严禁借周次扩张新内容；
   - 历史草案存档：`week1-8-conditional-planning-draft-v0.1.md` 标记为**历史条件性规划草案 (Historical Conditional Draft)**；
-- **当前规划前沿 (Current Frontier)**：**`Teacher Review Rebaseline`**
-  - **#19 Case Topology Closeout**：完成案例拓扑 Join 实证审计与决策收口；
-  - **Accepted W1–W6 Bounded Hybrid**：Course Owner 正式接受 W1–W6 采用有限主案例 + 有界代表性微案例混合模型；
-  - **Fixed W7–W9 New-Final Boundary**：锁定 W1–W6 基础演练与 W7–W9 全新期末大作业彻底解耦的宏观边界；
-  - **Next Dependencies**：下一阶段严格依赖于 **Issue #22（期末大作业架构设计）**，待其完成后方可启动并综合生成 **Week 1–9 排课草案 v0.4**（注：v0.4 尚未生成，严禁标记为完成）。
+- **当前规划前沿 (Current Frontier — 2026-10-21 更新)**：**`Painter-first Execution Mainline (Issue #40)`**
+  - **主线切换裁定**：2026-10-21 Course Owner 权威裁定本学期（2026-2027-1）正式以广州软件学院 GR2102 既有九讲 Substance 3D Painter 方案为当前执行主线，由 **Issue #40** 承载（第一讲 MeetMat 教师审查版与后八讲低分辨率依赖对照）；
+  - **Blender 备选路线保全**：原 Blender-first 路线及已验收决策（#19 案例拓扑收口、#37 几何体热身、W1–W6 混合模型、W7–W9 独立期末解耦边界）作为历史有效记录完整保留，定位为未来可恢复备选路线（Restorable Alternative Baseline），历史记录不删除、不改写；
+  - **当代艺术引导原则与验证假设纳入**：确立“艺术引导 → 技术支撑 → 创作表达 → 作品验证”原则 (`TEACHER ACCEPTED`)；PBR 与 Painter 仍为主体，艺术作为观察判断引导资源（非艺术史单元），不改变九讲、软件与考核；第一讲 MeetMat 材质身份对比促成观察解释能力提升假设保持为待验证状态 (`PROJECT INFERENCE / VALIDATION PENDING`)，设置严格首讲验证门禁（详见 §5.9）；
+  - **Next Dependencies**：当前阶段依赖于 Issue #40 教学草案与低分辨率对照的教师审查闭环；第一讲 MeetMat 教学草案与验证假设审查；机房目标 PC 实机探针；教材双层定性落实；Issue #39 培养方案适用性门禁保持独立跟踪。
 - **课程负责人决策记录 (Course Owner Decision Record — 2026-10-03)**：
   - **决策结论**：**`TEACHER ACCEPTED — USE BOUNDED HYBRID AS W1–W6 TOPOLOGY BASELINE`**
   - **核心判定**：
@@ -119,6 +119,149 @@
 1. **LO3 空间局部性 GUI 实操探针测试**：在合适节点组织真实 Blender 5.2 界面下的局部绘制—保存—重开验证，判定是否需触发 Painter 条件性窄对比。
 2. **学校教务管理输入补全**：获取考查课平时/期末成绩比例硬性规定，获取机房 PC 硬件参数与软件预装窗口。
 3. **正式执行课表排定与冻结**：待 Issue #22（期末大作业架构设计）确立、相关前置门禁核销后，启动综合生成《Week 1–9 排课草案 v0.4》，并依规提交 Course Owner 审定冻结。
+
+---
+
+## 5. 学期主线切换与双路线协作治理决议 (Course Offering Implementation Disposition: Painter Mainline & Blender Restorable Baseline) <a id="section-7"></a><a id="第-7-节"></a>
+
+> **决策与证据溯源说明**：  
+> 本节记录 2026-10-21 课程负责人 (Course Owner) 关于 2026-2027-1 学期实操教学路线的权威裁定。严格遵循 `AGENTS.md` 证据纪律与历史保全原则，记录路线切换、备用路线指针、跨路线复用边界、第一讲实机门禁以及学院选用教材核验结论。  
+> *(注：本节承载 2026-10-21 路线裁定，在前期部分讨论与工单中曾被称为“第 7 节 / Section 7”，现顺接第 4 节规范统一为第 5 节；历史与工单引用自动映射并兼容至本节。)*
+
+### 5.1 课程负责人决议背景与裁定事实 (Course Owner Decision Record — 2026-10-21)
+1. **决策结论**：**`TEACHER ACCEPTED — SUBSTANCE 3D PAINTER AS CURRENT SEMESTER MAINLINE`**
+2. **核心判定**：
+   - **执行主线切换**：本学期（2026-2027-1）正式以广州软件学院现有 GR2102 九讲 Substance 3D Painter 方案作为当前实际执行与备课主线；
+   - **历史有效性与非改写纪律**：此前研发的 Blender-first 课程方案在其研发阶段具有完全合法性与技术闭环，历史记录完整保留，不作历史抹除或掩盖；
+   - **备选路线定位**：Blender-first 方案作为未来可恢复备选路线（Restorable Alternative Baseline）完整保全，后续可随时根据教务或机房条件恢复。
+
+### 5.2 Blender-first 备用路线可恢复资产与 Git 引用索引 (Blender Restorable Alternative Lineage & Pointers)
+为保障备选路线完整可恢复，且遵循“不复制文件、不机械新建分支、不关闭/删除现有 PR”原则，建立如下 Git 指针索引：
+
+- **核心 Draft PR 与工单分支**：
+  - **Draft PR #38** (`design/issue-37-week1-geometry-warmup-realignment` @ Head `397b74bd9d2f034b9e73be73034a2a9822dfb80e`): Week 1 前半段几何体热身、分层 UI 与手电筒两级遮罩管线完整实现；
+  - **PR #36** (`research/issue-35-week1-capacity-bounded-trial`): 课堂容量验证方法与时间记录契约；
+  - **PR #34** (`docs/teacher-prep-decision-discipline`): 备课治理与极轻 PPT 投影规范；
+  - **PR #33** (`impl/issue-32-week1-golive` @ `25bfe36`): Week 1 交付门禁与生命周期核验；
+  - **PR #31** (`design/issue-22-final-project-contract`): 期末大作业架构；
+  - **PR #25** (`research/issue-21-realtime-web-material-path`): WebGL/glTF 实时材质交付路径；
+  - **PR #18** (`research/issue-13-week1-9-rebaseline-v0.3`): 历史条件性排课草案；
+- **关键固定提交 SHA**：
+  - `744b9e28414b1fea6bd1318dc904223258d662ea`: 教师交互边界完善、动态预算解析与负向测试套件；
+  - `e5ed611fd4a4545330bb7e3da4defe65aa3a8bee`: 仓库 `main` 分支基线。
+
+### 5.3 跨路线知识复用边界 (Cross-Route Pedagogical Boundary & Non-Transferable Operations)
+在切换至 Painter 主线后，严格贯彻“方法与原理可复用、软件专有操作严禁机械移植”边界：
+
+1. **允许并推荐复用的内容 (Portable Pedagogical Principles & Theory)**：
+   - **光学与 PBR 物理因果**：能量守恒、电介质 vs 导体、微表面粗糙度与高光展宽、“高光会跑，别把它画死在 Base Color 里”核心因果；
+   - **教学交互范式**：`Predict → Operate → Explain` 任务设计；
+   - **轻量决策卡机制**：三字段记录结构（初次决策 $\to$ 接收反馈 $\to$ 修订动作）；
+   - **课堂节奏与容灾**：160 分钟单班节奏预算、四级反馈漏斗、Recovery Ladder A/B/C 三级容灾、超时剪裁规则 (Cut Rules)、No-hidden-homework 原则；
+   - **工程规范评估**：以客观物理因果与图层结构为依据，杜绝纯主观审美打分；软件退出重启持久化验证。
+2. **严禁机械移植的 Blender 专有操作 (Blender-Specific Operations NOT Transferable)**：
+   - **着色器节点网络操作**：Blender Shader Editor, `ShaderNodeMix` 节点, Color 混合模式, ColorRamp, Principled BSDF 插槽直接接线（Painter 依托 Layer Stack、Fill Layer、图层混合模式、Black Mask、Generator / Smart Mask，而非手动连线）；
+   - **视口与交互快捷键**：Blender 3D 视口三键客、`Shift+A` 加物体、`G/R/S` 变换手感（Painter 使用 Alt+左/中/右键视口导航、Shift+右键旋转 HDRI 环境光）；
+   - **特定数据结构**：Blender 材质槽 (Material Slots) 映射规则（Painter 使用 Texture Set 纹理集列表）。
+
+### 5.4 Painter 第一讲落地执行与实机门禁 (Week 1 MeetMat Runtime Gate — RUNTIME REQUIRED)
+针对切换后第 1 讲（MeetMat 入门）：
+1. **第 1 讲核心知识焦点与计划预算**：Painter 界面布局、Texture Set (纹理集) 概念、视口导航与环境光照旋转、图层堆栈 (Layer Stack) 与填充图层 (Fill Layer)、基础通道 (Base Color / Roughness / Metallic)、材质球指派与基础贴图导出。**160 分钟单班面授时间严格定界为计划预算 (PLAN BUDGET)，非已实测容量**，实际耗时与大班节奏须经现场机房教学闭环。
+2. **实机验证门禁状态 (`RUNTIME REQUIRED / OPEN`)**：
+   - 所有关于 MeetMat 在 Painter 内部的交互演示步骤、白模或工程素材导出、贴图导出及保存退出重开持久化，当前在本地开发机处于 `RUNTIME REQUIRED / UNVERIFIED ON LOCAL HOST`（因本地开发环境未部署该商业应用）；
+   - 必须在真实目标机房 PC 上完成 GUI 交互探针测试，方可宣称通过；
+3. **最小必要备课与机房实机验证清单 (Minimal Lab Verification Checklist)**：
+   - **Gate A-1 (环境与授权核查)**：核实机房工作站安装的 Substance 3D Painter 确切版本，确认显存与驱动正常；
+   - **Gate A-2 (MeetMat 资产工程完备性)**：在机房实机打开 MeetMat 初始示例，核验各 Texture Set 正常映射；
+   - **Gate A-3 (干净练习工程制作)**：准备供学生开局的空白/初始工程，杜绝剧透工程下发；
+   - **Gate A-4 (保存与重开持久化)**：实测保存为 `.spp` 工程，完全退出 Painter 进程重开验证持久化；
+   - **Gate A-5 (轻量交付通道测试)**：测试学生导出 1 张视口快照或标准贴图包的收件可行性。
+
+### 5.5 课程负责人决策权威 vs 学校正式教学大纲适用性双轨定界
+- **实操执行 vs 培养方案适用性定界**：
+  - **轨 1（学期教学执行）**：Course Owner 裁定 Painter 主线即日起生效，指导当下备课与机房排课；
+  - **轨 2（教务合规与培养方案）**：Issue #39 暴露的培养方案学时差异、课程代码差异、4 学时 PBR 综合实验定位，以及本学期 2026 秋授课班级正式执行的教学大纲版本，**继续保持 `UNRESOLVED / GATE OPEN` 门禁**；
+- **纪律红线**：课程负责人的务实主线选择，**绝不臆测或伪称学校教务部门已完成正式审批或大纲勘误**；正式大纲状态待教务部门正式文件回执后方可核销。
+
+### 5.6 学院选用教材核验结论与双层定性收敛 (2026-10-21)
+1. **教材核实与版权页事实**：
+   - **书目信息**：清华大学出版社 郑琳 编著《Substance 3D Painter游戏贴图绘制与材质制作》；
+   - **版次与印次**：2024 年 2 月第 1 版，2024 年 8 月第 2 次印刷（重印；审批表登记出版日期为 2024-03-01）；
+   - **书号与登记**：ISBN 978-7-302-65667-8，中国国家版本馆 CIP 数据核字 (2024) 第 048666 号；
+   - 实测 138 物理页数字化成果在本地受控介质完成核验闭环，确认为学院审批表所列同一版本。
+2. **双层定性与边界定界**：
+   - **行政与选用身份**：学院教务归档《教材选用审批表》列名的选用教材；审批表记载大纲覆盖率 75% 属教务申报估计值，非逐项实测值；审批表实际记载的教学增删与案例融合安排为“根据课程时长、学生水平适当增删，融合实践案例，增加实践时间”；其实际教务适用性门禁仍由 Issue #39 独立跟踪；
+   - **教学角色**：定性为“中文学生速查伴读手册与参数词典 (Chinese Student Companion)”；全书基于 8.3 (2022/2023) 编写，属第三方个人教学专著，**绝非 Adobe 官方技术规范**；版本差异以 AdobeDocs 活体源与机房探针为准；
+   - **课程取舍界限**：全书 85.8% 字符集中于第 1~2 章，第 3~5 章案例依赖未随书附带资产与微课二维码；教材未覆盖的 UV 展开、烘焙与 Blender/Arnold 跨软件连接属于课程底层支撑与输出出口，“教材未覆盖”绝不等于“课程应删除”。
+
+### 5.7 GitHub 执行路线对齐、工单承载与交付成果
+1. **工单承载**：当前学期 Painter-first 实施主线由 **[Issue #40](https://github.com/carllx/corso-pbr-materials/issues/40)** 承载（标签 `ready-for-human`，关联 #1、#13、#22、#39）；
+2. **核心交付物落位**：
+   - **第一讲教师审查版教学草案**：[`docs/research/painter-week1-meetmat-teaching-draft-v0.1.md`](painter-week1-meetmat-teaching-draft-v0.1.md)；
+   - **后八讲低分辨率依赖对照**：[`docs/research/painter-courseware-dependency-contrast-w2-w9.md`](painter-courseware-dependency-contrast-w2-w9.md)（平时作业与期末边界保持为候选建议 `CANDIDATE PROPOSAL / PENDING TEACHER DISPOSITION`，未获教师最终冻结）；
+   - **学院旧课件认知审计**：[`docs/research/legacy-courseware-source-pedagogical-audit.md`](legacy-courseware-source-pedagogical-audit.md)；
+   - **自动化能力与资产复用探针**：[`docs/research/painter-automation-and-asset-reuse-probe.md`](painter-automation-and-asset-reuse-probe.md)。
+
+### 5.8 第一讲教师决定收敛与教学顺序确立 (Teacher Acceptance Record — 2026-10-21)
+1. **教学组织顺序决议 (`TEACHER ACCEPTED`)**：
+   - 裁定第一讲打破先讲理论后上机的模式，采用**“视觉观察 → 必要界面认识 → 教师示范 → 学生操作 → 理论解释 → 独立应用”**六步认知递进顺序；
+2. **全员核心保底任务边界 (`TEACHER ACCEPTED`)**：
+   - 严格收敛于 **MeetMat `Head` 部位的基础材质属性 (BaseColor/Roughness/Metallic)、双层 Fill Layer、Black Mask 开窗绘制，以及 `.spp` 规范保存与退出重开持久化**；
+3. **非必经目标剔除与后续阶梯承接 (`TEACHER ACCEPTED` / `CANDIDATE BRIDGING`)**：
+   - 明确 `Body`/`Base` 扩展、Smart Materials 智能材质、生成器 (Generators) 和 Iray 渲染器**不属于第一讲全员必经目标**；
+   - **延后知识承接规划 (候选建议)**：Smart Materials 与 Generators 在 W2（塑料案例）进行候选认识与轻量观察，在 W4（金属做旧）深入拆解图层与 Mesh Maps 因果关系并产出修改证据；Iray 保持为后续周次成果展示的条件性候选，绝不设为全员必修或强制截图工具；周次与容量均待教师最终审定；
+4. **容量定界、时间切片与实施路径推荐**：
+   - **时间切片候选预算**：160 分钟计划预算严格闭环（Block 1: 15m $\to$ Block 2: 15m $\to$ Block 3 首次动手: 20m $\to$ Block 4: 15m $\to$ Block 5: 25m $\to$ Block 6: 20m $\to$ Block 7: 35m $\to$ Block 8 保存重开: 15m）；首次 Roughness 上手前移至第 30 分钟窗口，保存退出重开持久化预留 8–10 分钟保护时间；所有分钟数均为**候选计划预算 (`CANDIDATE PLAN BUDGET`)**，未经大班现场容量实测；
+   - **开局实施路径推荐**：对比预置 Starter 与从零建层，**建议路径 B（基于官方内置 MeetMat Sample，引导学生从零建立图层）作为全员主干路径**（减少网络分发摩擦、规避跨版本工程冲突、建立底层图层心智）；将预置 Starter 作为极个别机器卡壳学生的 Tier 3 救急保底资产；两条路径均保留目标机房实操 PC 的现场验证门禁 (`RUNTIME REQUIRED`)。
+
+---
+### 5.9 当代艺术引导材质创作教学原则与验证假设 (Contemporary Art Guidance Principles & Validation Hypothesis — 2026-10-21)
+
+本节明确界定两层截然不同的教学主张：第一层为**全课程适用的宏观教学原则 (`TEACHER ACCEPTED`)**；第二层为**严格限定于第一讲的待验证具体教学方法 (`PROJECT INFERENCE / VALIDATION PENDING`)**。后续智能体与教学设计严禁混淆二者边界。
+
+1. **全课程适用的艺术引导原则 (`TEACHER ACCEPTED — CURRICULUM-WIDE PRINCIPLE`)**：
+   - **四步认知闭环**：全课程各课次教学组织遵循**“艺术引导 → 技术支撑 → 创作表达 → 作品验证”**的递进逻辑；
+   - **技术主体原则**：PBR 物理光学原理与 Substance 3D Painter 的工业级技术学习仍是课程的**绝对主体**，坚守物理可信性与工业标准制作规范；
+   - **引导资源定位**：当代艺术仅作为材质观察、创作判断与表达意图的引导资源（启发学生从“被动按参数”走向“主动赋予物体材质身份”），**绝非独立增加艺术史或纯理论教学单元**；
+   - **四项边界红线 (Guardrails)**：
+     1. 不因此改变学院既定九讲教学周历与主题顺序；
+     2. 不因此增加必修软件功能或额外工具链要求；
+     3. 不因此修改教务归档的正式考核与评分标准（平时 50% 与期末 50% 架构不变，不冻结未决分值）；
+     4. 不新增独立长期单一事实来源 (SSOT) 文档，本台账即为统一决策依据。
+
+2. **W1 尚待验证、不得提前推广的具体教学方法 (`PROJECT INFERENCE / VALIDATION PENDING — W1 SPECIFIC METHOD`)**：
+   - **具体教学法假设**：在第一讲 MeetMat 中，通过**“一组极其简练的材质身份对比（如玩具塑料 vs 陶土雕像）”**引导学生感知材料改变物体意义，并结合**低负担的“前后观察对照”记录（非额外必修作业）**，可能提升学生自主进行材质选择、观察和解释的能力；
+   - **证据属性定界**：该具体方法属于项目教学法推论与待验证假设，**尚未经真实课堂验证 (`UNVERIFIED IN REAL CLASSROOM / PENDING CLASSROOM VERIFICATION`)**；
+   - **推广门禁 (`GATE: PENDING W1 VERIFICATION BEFORE ROLLOUT`)**：该方法严格限定为第一讲有界试点。只有在真实机房大班完成验证闭环、确证具备正向认知收益且未造成认知过载或时间挤压后，才由课程负责人评估决定是否向后续课次（W2–W9）推广；**未获验证前严禁向后续课次泛化套用**。
+
+3. **低负担实施与证据评价准绳 (Low-Friction Execution & Observable Evidence)**：
+   - **时间预算守恒**：Block 1 艺术引导收敛为 1~2 分钟极简对照，把核心时间坚决保护给现实物理光斑观察与第 30 分钟首次动手（Block 3）；160 分钟仍为**候选计划预算 (`CANDIDATE PLAN BUDGET`)**，未在大班现场实测容量；
+   - **轻量思维支架，拒绝作业化**：前后观察对照仅作为随堂轻量思维支架或口头/记事本随记，**严禁将其异化为额外必修的文书作业**；
+   - **客观因果证据**：评估重点严格定界为**学生对材质选择理由与物理通道映射的因果解释能力**，坚决杜绝单纯以最终作品“是否漂亮”等主观审美偏好作为评判标准；
+   - **实机运行门禁保持 (`RUNTIME REQUIRED`)**：Painter 界面交互、工程保存与重开持久化流程保持目标机房实操 PC 的现场验证门禁。
+
+### 5.10 第一讲教师 GUI 试走操作卡与 PPT 逐页草案准备 (Teacher GUI Walkthrough & Slide Skeleton — 2026-10-21)
+
+为支持授课教师尽快在实机开展 MeetMat 最小闭环试走，并为后续 PPT 课件生产准备可用结构（不等待 160 分钟真实大班容量测量），确立以下交付物与端侧边界：
+
+1. **核心交付物落位**：
+   - **教师最小 GUI 试走操作卡与极简反馈模板**：[`docs/research/painter-week1-teacher-gui-walkthrough-guide.md`](painter-week1-teacher-gui-walkthrough-guide.md)
+     - 提炼 8 步教师最小试走操作（载入 Sample $\to$ 导航与光照旋转 $\to$ Head 锁定 $\to$ 底层黄色塑料与 Roughness $\to$ 覆盖层 $\to$ 黑色遮罩画笔开窗与 X 键擦除 $\to$ B 键单通道核验与截图 $\to$ 另存为 .spp 退出重启重开验证）；
+     - 每步均具备预期画面、常见操作卡点 (Gotchas) 与最小恢复办法 (Recovery Steps)，未经验证项标记为 `RUNTIME REQUIRED`；
+     - 提供一次操作试走的最小反馈模板（3 分钟可填，记录版本、通断、主要卡点、约略耗时，不要求测满 160 分钟）；
+   - **第一讲 Markdown 幻灯片逐页草案骨架**：[`docs/research/painter-week1-slide-draft-skeleton.md`](painter-week1-slide-draft-skeleton.md)
+     - 18 页精炼幻灯片逐页骨架，严格映射 8 大 Block 时间切片候选预算；
+     - 彻底剔除旧课件 P7 违规考勤分（严格遵循教务大纲平时 50% = 表现 20% + 作业 30%）与 P11–P17 念诵 7 页宣传册废话；
+     - 严格收敛于 Head 双层塑料材质与黑遮罩，前移首次动手体验至开课第 30 分钟窗口；
+     - 提供逐页教学目标、讲述提示 (Speaker Notes)、学生操作与期望观察、郑琳教材/PBR Guide 证据指针，以及 10 张实机试走需补拍的高清截图占位符清单；保持 Markdown 骨架形态，不直接生成正式二进制 PPT。
+2. **端侧宿主边界与 SSOT 治理声明 (Host Boundary & SSOT Notice)**：
+   - **访问能力核查**：经系统核查，当前 IDE 端侧环境未配置 Whimsical 九讲白板或 Notion 第一讲备课工作台的 API Token、专用 CLI 或 MCP 插件，无法从端侧直接程序化读取私有云端白板或备课台数据；
+   - **不构成执行阻塞**：该端侧宿主边界不构成对本次 GUI 试走交付与 PPT 草稿准备的阻塞；
+   - **SSOT 唯一性铁律**：严格遵守 `AGENTS.md` 规范，以 **GitHub 仓库为全课程教学决策的唯一真实数据源 (Single Source of Truth, SSOT)**；严禁在外部平台新建替代库，严禁复制代码或私有受限素材至外部平台。
+3. **教师本机实测事实与双轨门禁定界 (Local Probe & Two-Track Gates — 2026-10-22)**：
+   - **教师本机实测事实 (`PASS / PARTIAL ON LOCAL MACOS`)**：Course Owner 于 2026-10-22 在 macOS / Substance 3D Painter 7.2 环境完成 MeetMat GUI 初步试走。成功验证：打开内置 Sample、视口三键客与环境天光旋转、识别 `01_Head/02_Body/03_Base`、底层黄色填充层与 Roughness 0.10 vs 0.85 锐利/哑光因果反差、第二层深色覆盖、Black Mask 白色显现与黑色隐藏纠错、Mesh Maps (`B`) 与 Material (`M`) 模式切换、短英文工程另存为及退出重开持久化（`.spp` 约 103MB，重开主要图层与遮罩完整保留）；
+   - **现场实测发现与避坑收敛**：发现普通图层与填充层混淆曾导致属性显示 `Properties - Eraser`，确立核查属性标题法则；发现保存对话框长文件名粘贴失败，确立物理键盘输入短英文名规范；确认材质外观评判必须在 Material 模式进行；
+   - **未验证项与目标机房门禁 (`RUNTIME REQUIRED / OPEN GATE`)**：单通道循环快捷键 `C`、系统截图流程、完整通道参数逐项核验及学校目标 Windows 机房的安装版本、样本完整性与大班容量仍处于 `RUNTIME REQUIRED`；**严禁将本地 macOS 实测推论为学校目标 Windows 机房已验证通过**。
 
 ---
 *本台账随课程调研与设计推进持续更新，归档于 `docs/research/course-design-ledger.md`。*
