@@ -246,21 +246,26 @@
 
 1. **核心交付物落位**：
    - **教师最小 GUI 试走操作卡与极简反馈模板**：[`docs/research/painter-week1-teacher-gui-walkthrough-guide.md`](painter-week1-teacher-gui-walkthrough-guide.md)
-     - 提炼 8 步教师最小试走操作（载入 Sample $\to$ 导航与光照旋转 $\to$ Head 锁定 $\to$ 底层黄色塑料与 Roughness $\to$ 覆盖层 $\to$ 黑色遮罩画笔开窗与 X 键擦除 $\to$ B 键单通道核验与截图 $\to$ 另存为 .spp 退出重启重开验证）；
+     - 提炼 8 步教师最小试走操作（载入 Sample $\to$ 导航与光照旋转 $\to$ Head 锁定 $\to$ 底层黄色塑料与 Roughness $\to$ 覆盖层 $\to$ 黑色遮罩画笔开窗与 X 键擦除 $\to$ C 键单通道/B 键网格贴图核验与 M 键返回材质及截图 $\to$ 另存为 .spp 退出重启重开验证）；
      - 每步均具备预期画面、常见操作卡点 (Gotchas) 与最小恢复办法 (Recovery Steps)，未经验证项标记为 `RUNTIME REQUIRED`；
      - 提供一次操作试走的最小反馈模板（3 分钟可填，记录版本、通断、主要卡点、约略耗时，不要求测满 160 分钟）；
-   - **第一讲 Markdown 幻灯片逐页草案骨架**：[`docs/research/painter-week1-slide-draft-skeleton.md`](painter-week1-slide-draft-skeleton.md)
-     - 18 页精炼幻灯片逐页骨架，严格映射 8 大 Block 时间切片候选预算；
+   - **第一讲 Markdown 幻灯片逐页草案**：[`docs/research/painter-week1-slide-draft-skeleton.md`](painter-week1-slide-draft-skeleton.md)
+     - 18 页完整教学幻灯片草案，严格映射 8 大 Block 时间切片候选预算；
      - 彻底剔除旧课件 P7 违规考勤分（严格遵循教务大纲平时 50% = 表现 20% + 作业 30%）与 P11–P17 念诵 7 页宣传册废话；
      - 严格收敛于 Head 双层塑料材质与黑遮罩，前移首次动手体验至开课第 30 分钟窗口；
-     - 提供逐页教学目标、讲述提示 (Speaker Notes)、学生操作与期望观察、郑琳教材/PBR Guide 证据指针，以及 10 张实机试走需补拍的高清截图占位符清单；保持 Markdown 骨架形态，不直接生成正式二进制 PPT。
+     - 提供逐页教学目标、学生端可见版面内容、教师演讲提示 (Presenter Notes)、演示与实操指引、学习证据 (Observable Evidence)、郑琳教材/PBR Guide 证据指针，以及实机补拍截图占位清单；
+     - 理论部分（Slide 12–14）通俗化降负，生活化比喻为主，微积分与 Lerp 复杂数学严格降为教师参考，不作为学生必经考核；为正式课件制作门禁（PPT Production Gate）打好基础。
 2. **端侧宿主边界与 SSOT 治理声明 (Host Boundary & SSOT Notice)**：
    - **访问能力核查**：经系统核查，当前 IDE 端侧环境未配置 Whimsical 九讲白板或 Notion 第一讲备课工作台的 API Token、专用 CLI 或 MCP 插件，无法从端侧直接程序化读取私有云端白板或备课台数据；
    - **不构成执行阻塞**：该端侧宿主边界不构成对本次 GUI 试走交付与 PPT 草稿准备的阻塞；
    - **SSOT 唯一性铁律**：严格遵守 `AGENTS.md` 规范，以 **GitHub 仓库为全课程教学决策的唯一真实数据源 (Single Source of Truth, SSOT)**；严禁在外部平台新建替代库，严禁复制代码或私有受限素材至外部平台。
 3. **教师本机实测事实与双轨门禁定界 (Local Probe & Two-Track Gates — 2026-10-22)**：
-   - **教师本机实测事实 (`PASS / PARTIAL ON LOCAL MACOS`)**：Course Owner 于 2026-10-22 在 macOS / Substance 3D Painter 7.2 环境完成 MeetMat GUI 初步试走。成功验证：打开内置 Sample、视口三键客与环境天光旋转、识别 `01_Head/02_Body/03_Base`、底层黄色填充层与 Roughness 0.10 vs 0.85 锐利/哑光因果反差、第二层深色覆盖、Black Mask 白色显现与黑色隐藏纠错、Mesh Maps (`B`) 与 Material (`M`) 模式切换、短英文工程另存为及退出重开持久化（`.spp` 约 103MB，重开主要图层与遮罩完整保留）；
-   - **现场实测发现与避坑收敛**：发现普通图层与填充层混淆曾导致属性显示 `Properties - Eraser`，确立核查属性标题法则；发现保存对话框长文件名粘贴失败，确立物理键盘输入短英文名规范；确认材质外观评判必须在 Material 模式进行；
+   - **教师本机实测事实 (`PASS / PARTIAL ON LOCAL MACOS`)**：Course Owner 于 2026-10-22 在 macOS / Substance 3D Painter 7.2.3 环境完成 MeetMat GUI 初步试走。成功验证：打开内置 Sample、视口三键客与环境天光旋转、识别 `01_Head/02_Body/03_Base`、底层黄色填充层与 Roughness 0.10 vs 0.85 锐利/哑光因果反差、第二层深色覆盖、Black Mask 白色显现与黑色隐藏纠错、Mesh Maps (`B`) 与 Material (`M`) 模式切换、键盘输入短英文名另存为及退出重开持久化（`.spp` 实测约 103MB，重开后主要图层与遮罩完整保留）；
+   - **现场实测发现与避坑收敛**：
+     - *图层混淆与安全删除*：误建普通绘图层曾导致属性面板显示 `Properties - Eraser`，确立看清属性标题法则；针对误建图层删除，增加“先核对图层名称选中再删除，或直接按 `Ctrl+Z` 撤销”的安全提示，防止初学者误删整个图层组或底层底漆；
+     - *保存与持久化精度*：实测长文件名在系统弹窗粘贴失败，确立物理键盘输入简短英文名规范；重开后视口与图层参数完备属于核心链路跑通，但机房中文环境与长路径仍需实机核验；
+     - *工程体积科学定界*：实测 103MB 为 MeetMat 自带全套烘焙图与三套纹理集下的自然体积，严禁让学生误以为“必须达到 100MB 才是存对”，学生端以“重开后视口正常、图层结构与参数无损”为唯一判据；
+     - *视图模式铁律*：确认材质外观质量评判必须且只能在 `M` (Material) 复合渲染模式下进行，单通道 `C` 与网格贴图 `B` 仅作为排错与数据核验手段；
    - **未验证项与目标机房门禁 (`RUNTIME REQUIRED / OPEN GATE`)**：单通道循环快捷键 `C`、系统截图流程、完整通道参数逐项核验及学校目标 Windows 机房的安装版本、样本完整性与大班容量仍处于 `RUNTIME REQUIRED`；**严禁将本地 macOS 实测推论为学校目标 Windows 机房已验证通过**。
 
 ---
