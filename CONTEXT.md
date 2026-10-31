@@ -23,6 +23,22 @@
 - **AI Creative Workflow Notebook**:
   跨课程共享的外部 AI 创作与生产工作流研究空间（Locator: `20a99ba1-092f-40fe-9317-8c7475f15d96`），涵盖游戏、动画、3D 与材质等方向的 AI 模型、工具与实际生产工作流。
 
+- **Diffuse Reflection vs Specular Reflection (漫反射 vs 镜面反射)**:
+  - **Diffuse Reflection (漫反射)**：光线穿透表面进入介质内部，经多次微观折射散射后重新穿出表面形成的光学反射现象，呈现材质漫反射颜色；纯金属会完全吸收折射光转化为热能，因而无漫反射分量；
+  - **Specular Reflection (镜面反射)**：光线在物体表面微平面直接发生的方向性反射；
+  - **Specular Highlight (镜面高光)**：光源照射下由镜面反射产生的动态高光波瓣视觉表现，随视线与光源动态交互，绝非画在贴图里的死颜色，亦非默认独立贴图通道。
+
+- **Base Color vs Diffuse Map vs Albedo Map (基底色 vs 漫反射贴图 vs 反照率贴图)**:
+  - **Base Color (基底色)**：Metallic/Roughness 工作流核心贴图。对绝缘体 (`Metallic=0`) 记录漫反射颜色；对纯金属 (`Metallic=1`) 记录其法向镜面反射率 ($F_0$)；严格剔除烘焙光影与 AO；
+  - **Albedo Map (反照率贴图)**：物理光学中表面纯净固有反射率的度量贴图，严格剔除所有定向光照、高光与阴影信息；
+  - **Diffuse Map (漫反射贴图)**：常用于传统光照模型或 Specular/Glossiness 工作流（在 Specular/Glossiness 中纯金属的 Diffuse 设为纯黑）；传统资产中的 Diffuse 贴图往往混有烘焙阴影与脏污。三者数据组织与物理定义截然不同，严禁作为无条件同义词混用。
+
+- **Material Channel vs Texture Map vs Layer vs Mask (材质通道 vs 纹理贴图 vs 图层 vs 遮罩)**:
+  - **Material Channel (材质通道)**：着色器或材质系统内的数据输入插槽（如 Base Color、Roughness、Metallic、Normal 等）；
+  - **Texture Map (纹理贴图)**：存储在磁盘或显存中的二维位图文件（如 `.png`、`.exr`），可映射至一个或多个通道（或经 Channel Packing 通道打包组装）；
+  - **Layer (图层)**：分层材质绘制软件（如 Substance 3D Painter）中的合成逻辑单元（如 Fill Layer、Paint Layer），可同时包含并驱动多个材质通道；
+  - **Mask (遮罩)**：单通道标量灰度数据，用于定义图层或效果在模型表面的空间可见度与插值混合权重（如 Black Mask、White Mask），本身属于图层控制属性而非着色器材质通道。
+
 ## 架构决策与设计原则
 
 - 决策记录参见 `docs/adr/`（如需创建）。
@@ -38,3 +54,16 @@
   - 负责在既定授权与约束内执行一手实证调研、软件运行时技术切片验证、可执行教学资产包与自动化脚本构建、以及有界文本修订（Bounded Corrections）；
   - 严禁擅自冻结未经人类批准的考核比例、评分标准或跨周架构重排；
   - 严禁在未获人类授权的情况下私自关闭门禁 Issue 或解锁下游阻断任务。
+
+## 平台载体职责与跨 Agent 协作闭环 (Platform Roles & Cross-Agent Loop)
+
+- **载体职责与权威层级**：
+  - **GitHub (代码仓库)**：唯一权威持久化基准（SSOT）。既有基线作为防止未经批准静默覆盖的**保护门禁 (Protective Gate)**，教师提出结构变更须经明确授权后通过正常审查流程更新；
+  - **Notion (备课工作台)**：教师备课与逐页审校工作台（Teacher Review Scratchpad，非第二 SSOT）；
+  - **Whimsical (知识白板)**：课程知识全景与认知演化地图（Course Knowledge Map）；
+  - **优先级准绳**：`Course Owner 显式指令 > GitHub 保护门禁与持久化基准 > Notion 审校工作稿 / Whimsical 视觉布局`。
+- **跨 Agent 协作闭环原则**：
+  - **三步流转与交接包完整性**：Browser 传递包含最低完整性字段（源 URL、锚点/Slide ID、确认差量/快照、依据属性、目标路径、Base SHA）的交接包 $\to$ IDE 本地归并提交推送并回传 Commit SHA $\to$ Browser 基于 SHA 回读核验并在 Issue 更新状态（`PENDING / VERIFIED / CONFLICT`）；
+  - **同步触发与防碎片化**：仅在教师达成阶段性批次审校时触发，严禁逐字/单页频繁同步；
+  - **后续验证案例切片**：以 Notion 审校稿当前实际内容（Slide 12 `Microfacet & Roughness`、Slide 13 `Diffuse & Specular Reflection`、Slide 14 `Layer Mask Math` 候选）为验证切片，未获最终确认前严禁直接覆盖 GitHub 文件；
+  - **完整协议详见**：[`AGENTS.md` (Cross-Platform & Multi-Agent Collaboration Protocol)](AGENTS.md)。
