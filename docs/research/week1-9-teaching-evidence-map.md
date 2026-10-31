@@ -10,7 +10,8 @@
 > - **Normal Bake / 高低模石膏对**：活跃教学候选 (`Active Teaching Candidate`)，其实操组织形式保持未决 (`UNRESOLVED / CONDITIONAL`)；
 > - **W7–W9**：全新独立综合期末大作业 (`New Comprehensive Final Project`)，其具体架构、任务书与交付规范权威归属于 **Issue #22**，当前条目均为输入性候选；
 > - **排课草案 v0.4**：**尚未生成 (NOT YET GENERATED)**，严禁在本工单中提前排定；
-> - **执行主线重定向说明 (2026-10-21)**：依据 Course Owner 权威决议，本学期以广州软件学院 Substance 3D Painter 既有九讲为当前执行主线（由 Issue #40 承载）；本文件作为 Blender-first 完整备选路线的实证路由基线予以完整保留；关于 Painter 主线的逐讲证据映射详见 [legacy-courseware-source-pedagogical-audit.md](legacy-courseware-source-pedagogical-audit.md) 与 [painter-courseware-dependency-contrast-w2-w9.md](painter-courseware-dependency-contrast-w2-w9.md)；选用教材郑琳 2024 版第一版实测证据详见 [textbook-source-map.md](textbook-source-map.md)。
+> - **执行主线重定向说明 (2026-10-21)**：依据 Course Owner 权威决议，本学期以广州软件学院 Substance 3D Painter 既有九讲为当前执行主线（由 Issue #40 承载）；本文件作为 Blender-first 完整备选路线的实证路由基线予以完整保留；关于 Painter 主线的逐讲证据映射详见 [legacy-courseware-source-pedagogical-audit.md](legacy-courseware-source-pedagogical-audit.md) 与 [painter-courseware-dependency-contrast-w2-w9.md](painter-courseware-dependency-contrast-w2-w9.md)；选用教材郑琳 2024 版第一版实测证据详见 [textbook-source-map.md](textbook-source-map.md)。  
+> - **双 PBR 工作流概念对照补漏 (2026-10-31)**：依据 Course Owner 权威确认（`TEACHER ACCEPTED — KNOWLEDGE GAP / CANDIDATE W6 PLACEMENT`），在 Painter 主线 W6（布料贴图导出与跨软件连接）教学中，将 Specular/Glossiness 作为概念辨析与数据组织对照候选落位（以黄金案例对比 Base Color / Diffuse 与 Metallic / Specular 的数据组织差异），不设为全员实操与考核要求，路由见 [painter-courseware-dependency-contrast-w2-w9.md](painter-courseware-dependency-contrast-w2-w9.md) §2.10 与 [Issue #40](https://github.com/carllx/corso-pbr-materials/issues/40)。
 
 ---
 

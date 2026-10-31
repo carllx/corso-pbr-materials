@@ -51,4 +51,18 @@ Course Owner 于 2026-10-21 权威采纳“艺术引导 → 技术支撑 → 创
 1. **全课程通用原则 (`TEACHER ACCEPTED`)**：PBR 与 Substance 3D Painter 技术学习仍是课程主体；当代艺术仅作为材质观察、创作判断与表达意图的引导资源，严禁独立增设艺术史或纯理论教学单元；严禁改变学院既有九讲顺序、严禁增加必修软件功能、严禁修改正式考核标准；
 2. **第一讲专属待验证教学法 (`PROJECT INFERENCE / VALIDATION PENDING`)**：第一讲 MeetMat 采用单组材质身份对比与低负担前后观察对照法提升学生解释能力，属于局部待验证教学法，严格限定为第一讲有界试点，未经教师审查与真实课堂验证闭环，严禁向后续课次推广。完整决策边界与门禁依据见 [`docs/research/course-design-ledger.md` §5.9](docs/research/course-design-ledger.md)。
 
+## Curriculum Terminology Discipline (课程术语规范纪律)
+
+为落实 Course Owner 于 2026-10-31 权威确认的教学纪律（`TEACHER ACCEPTED — TERMINOLOGY POLICY`），全九周课堂课件、教师备课稿、操作卡、资产命名说明及智能体输出必须严格贯彻 **English-first** 术语原则：
+
+1. **准确英文原名优先**：专业术语、界面元素、材质通道、纹理贴图与软件操作命令一律保留真实准确的英文原名（如 `Base Color`、`Roughness`、`Metallic`、`Specular Reflection`、`Diffuse Reflection`、`Specular Highlight`、`Fill Layer`、`Black Mask`、`Texture Set`、`Mesh Maps` 等）；
+2. **中文仅作辅助释义**：中文用于通俗讲解生活现象或辅助认知，严禁单独使用模糊中文词（如笼统使用“反光”、“底色”、“贴图”、“通道”）替代不同英文原名导致指代混同；
+3. **关键概念严禁混同**：
+   - `Specular Reflection` (镜面反射光学现象) $\neq$ `Diffuse Reflection` (漫反射光学现象)；`Specular Highlight` (高光) 为视口观察到的动态镜面高光表现，非默认独立通道；
+   - `Base Color` $\neq$ `Diffuse Map` $\neq$ `Albedo Map`（禁止作为无条件同义词，须按 Metallic/Roughness vs Specular/Glossiness 工作流及是否包含烘焙光照明确区分）；
+   - `Material Channel` (材质通道) $\neq$ `Texture Map` (纹理贴图) $\neq$ `Layer` (图层) $\neq$ `Mask` (遮罩)；
+   - `Microfacet Normal` (微平面法线) $\neq$ `Normal Map` (法线贴图)；`Roughness` 不等于真实几何置换；
+4. **标准教学解释顺序**：遵循“先选英文原名 $\to$ 再用中文解释生活现象 $\to$ 最后回到软件 UI/参数/结果”的教学闭环；遇到不同软件版本 UI 差异与快捷键必须标为 `RUNTIME REQUIRED`，严禁凭空臆造。
+
+
 
