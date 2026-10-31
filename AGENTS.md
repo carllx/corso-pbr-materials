@@ -64,5 +64,36 @@ Course Owner 于 2026-10-21 权威采纳“艺术引导 → 技术支撑 → 创
    - `Microfacet Normal` (微平面法线) $\neq$ `Normal Map` (法线贴图)；`Roughness` 不等于真实几何置换；
 4. **标准教学解释顺序**：遵循“先选英文原名 $\to$ 再用中文解释生活现象 $\to$ 最后回到软件 UI/参数/结果”的教学闭环；遇到不同软件版本 UI 差异与快捷键必须标为 `RUNTIME REQUIRED`，严禁凭空臆造。
 
+## Cross-Platform & Multi-Agent Collaboration Protocol (跨平台与跨 Agent 协作规范)
+
+为确保课程开发在 GitHub、Notion、Whimsical 跨平台及 Browser / IDE 智能体协作中保持严谨一致，避免重复建设与状态混乱，制定本规范：
+
+### 1. 平台载体职责与权威层级 (Platform Roles & Authority Hierarchy)
+- **GitHub (仓库)**：**唯一权威持久化基准 (Single Source of Truth / SSOT)**。所有正式采纳的课程架构、教学草案、实验代码及操作指南以 Git 仓库提交版本为准；
+- **Notion (工作台)**：**教师备课与逐页内容审校工作台 (Teacher Review Scratchpad)**。用于教师交互式批注、逐页微调演讲脚本与视觉需求；Notion 为审校工作副本，**绝非与 GitHub 平级的第二 SSOT**；
+- **Whimsical (白板)**：**课程知识全景与认知演化地图 (Course Knowledge Map)**。承载九讲能力递进与跨工具知识拓扑宏观概览，不承载微观执行代码与逐页讲稿；
+- **权威优先级准绳**：`Course Owner 显式指令 > GitHub 已持久化权威基准 > Notion 审校工作稿 / Whimsical 视觉布局`。
+
+### 2. Agent 职责分工与三步流转闭环 (The 3-Step Multi-Agent Loop)
+跨 Agent 内容同步与任务交接必须严格贯彻以下三步闭环：
+1. **Step 1 (Browser 传递)**：Browser Agent 负责在云端交互界面对接 Course Owner，整理教师已确认的内容变化（Confirmed Deltas），明确标注依据属性（如 `TEACHER ACCEPTED`），作为结构化输入传递给 IDE Agent；
+2. **Step 2 (IDE 归并)**：IDE Agent 负责在本地工作分支执行最小范围、有界且经过技术校验的文档/代码归并，创建规范 Git Commit 并推送至远端，提供完整 SHA、变更文件列表与验证说明；
+3. **Step 3 (Browser 回读核验)**：Browser Agent 负责基于最新 Commit SHA 回读 GitHub 仓库文件与 Diff，核验是否严格符合教师原意、是否引入越界改动，并在 Issue/PR 评论区发布闭环确认（Review Sign-off）。
+
+### 3. 同步触发条件与防碎片化纪律 (Sync Triggers & Anti-Fragmentation)
+- **批量审校达成触发 (Batch Milestones)**：仅当教师在 Notion/交互端完成具有清晰边界的审校批次（如整组连续 Slide 审校完毕或关键教学决策确认）时，方可触发跨 Agent 同步工单；
+- **严禁碎片化同步**：严禁逐字、逐条或单页频繁触发同步，坚决杜绝海量微型提交与状态抖动；
+- **逆向技术事实回传**：IDE 本地环境探针结果（如软件版本限制、API 缺陷）通过 Issue/PR 评论持久化，由 Browser 回读并反馈至教师审校载体。
+
+### 4. 冲突处理策略 (Conflict Resolution)
+- **架构硬门禁拦截**：若 Notion 审校稿或 Whimsical 内容与 GitHub 既有核心架构（如九讲顺序、学时预算、考核大纲、术语规范）发生冲突，**以 GitHub 既有规则为硬门禁拦截**；
+- **禁止未审草稿覆盖**：未经教师最终确认的探索性草稿（`DRAFT / UNCONFIRMED`），**严禁直接覆盖 GitHub 既有文件**；
+- **歧义降级裁决**：当存在冲突或表述不一致时，降级标记为 `CONFLICT DETECTED / PENDING TEACHER DISPOSITION`，由 Browser 提请教师裁决，获得明确确认后方可解锁同步。
+
+### 5. 后续验证案例定界 (Week 1 Slide 12–14 Verification Case)
+- **选定验证切片**：以第一讲 Slide 12–14（能量守恒与光能预算、金属度二值性与微表面、图层遮罩心智模型）作为后续跨 Agent 协作流程的首个端到端验证切片；
+- **执行门禁**：在教师于 Notion 完成这 3 页的逐页审校并由 Browser 明确传递确认 Delta 之前，**任何 Agent 严禁提前批量修改或直接覆盖 GitHub 中的 Slide Draft 对应段落**。
+
+
 
 

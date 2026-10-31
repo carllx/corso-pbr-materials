@@ -54,3 +54,17 @@
   - 负责在既定授权与约束内执行一手实证调研、软件运行时技术切片验证、可执行教学资产包与自动化脚本构建、以及有界文本修订（Bounded Corrections）；
   - 严禁擅自冻结未经人类批准的考核比例、评分标准或跨周架构重排；
   - 严禁在未获人类授权的情况下私自关闭门禁 Issue 或解锁下游阻断任务。
+
+## 平台载体职责与跨 Agent 协作闭环 (Platform Roles & Cross-Agent Loop)
+
+- **各平台职责与权威层级 (Platform Roles & Authority Hierarchy)**：
+  - **GitHub**：**唯一权威持久化基准 (Single Source of Truth / SSOT)**。所有正式采纳的课程架构、教学设计、代码工具及操作指南以 Git 仓库提交版本为准；
+  - **Notion**：**教师备课与逐页审校工作台 (Teacher Review Scratchpad)**。承载教师交互式审校、讲法微调与备课批注；Notion 是审校工作载体，**绝非与 GitHub 平级的第二 SSOT**；
+  - **Whimsical**：**课程知识全景与认知演化地图 (Course Knowledge Map)**。承载九讲能力递进与知识架构可视化，不承载微观操作细节；
+  - **冲突处理准绳**：`Course Owner 显式指令 > GitHub 已持久化权威基准 > Notion 审校工作稿 / Whimsical 视觉布局`。冲突时以 GitHub 规则为门禁拦截，未经教师确认内容严禁覆盖。
+- **跨 Agent 流转三步闭环 (The 3-Step Multi-Agent Loop)**：
+  - **Step 1 (Browser 传递)**：Browser Agent 负责在云端交互界面对接教师，提取并传递已确认的内容变化（Confirmed Deltas，带 `TEACHER ACCEPTED` 等依据属性）；
+  - **Step 2 (IDE 归并)**：IDE Agent 负责在工作分支执行本地技术校验与代码/文档有界归并，创建规范 Git Commit 并推送至远端，提供完整 SHA 与 Diff；
+  - **Step 3 (Browser 回读核验)**：Browser Agent 负责回读 GitHub 仓库最新推送的代码与文档，核验是否严格符合教师原意、是否引入越界改动，并在 Issue/PR 评论区发布闭环确认（Review Sign-off）；
+  - **同步触发条件**：仅在教师达成阶段性批次审校时触发，严禁逐字/单页碎片化同步；
+  - **后续验证案例**：以 Week 1 Slide 12–14 认知降负与术语校准作为首个验证切片，未获教师在 Notion 逐页最终确认前严禁直接覆盖 GitHub 文件。
