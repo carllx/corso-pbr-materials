@@ -53,7 +53,7 @@
 | :---: | :--- | :--- | :--- |
 | **Slide 04** | 泛称“高光从何而来”、“黄色塑料反光” | 统一标注为 **`Specular Highlight`** (镜面高光) | 明确高光是光照与粗糙度计算出的动态反射波瓣，避免初学者误认为它是独立的 `Base Color` 固有通道或画在贴图里的颜色。 |
 | **Slide 08** | 混用“通道”、“贴图”，图层称谓略有不一 | 严格区分 **`Material Channel`** (材质通道) 与 **`Texture Map`** (纹理贴图)；统一使用 **`Fill Layer`** (填充图层) | 在介绍 `color`, `metal`, `rough` 时明确它们是着色器的属性通道 (Channel)，而非磁盘上的图像贴图文件 (Texture Map)。 |
-| **Slide 12** | 解释能量守恒时提及法线，易引起概念混淆 | 明确 **`Microfacet`** (微平面) 与 **`Surface Normal`** (表面法线) 属于微观光学假设模型 | 严禁与后续周次的 **`Normal Map`** (法线贴图) 混为一谈；强调能量守恒是着色器内部计算，制作端核心是 Base Color 禁画光影。 |
+| **Slide 12** | 微表面模型与法线方向易与贴图混同 | 明确 **`Microfacet`** (微表面) 与 **`Surface Normal`** (表面法线) 为解释镜面反射方向分布的理论模型；保留 **`Roughness`** 与 **`Specular Reflection`** 英文原名 | 严禁与后续周次的 **`Normal Map`** (法线贴图) 或宏观几何凹凸混为一谈；明确 Roughness 影响镜面反射的集中与分散（清晰 vs 模糊），不面向学生引入 BRDF 复杂公式。 |
 | **Slide 13** | 使用“反光”、“金属高光带颜色”等通俗表述 | “反光”精确替换为 **`Specular Reflection`** (镜面反射) 或 **`Diffuse Reflection`** (漫反射) | 讲透绝缘体（`Metallic=0`）的高光是单色非彩色反射（Achromatic Specular）；纯金属（`Metallic=1`）的高光带有金属特征固有色，且其 `Base Color` 记录的是法向镜面反射率 $F_0$ 而非漫反射。 |
 | **Slide 14** | 标题“插值数学”易加重认知负担，概念略有混叠 | 严格解耦 **`Layer`** (图层)、**`Mask`** (遮罩) 与 **`Material Channel`** (材质通道) | 标题与正文聚焦于分层与空间遮蔽逻辑，遮罩仅作为单通道灰度权重，避免向初学者传递需要学习高深数学的焦虑心理。 |
 
@@ -479,7 +479,7 @@
   - 学生能准确解释 Roughness 改变的是镜面反射的聚散程度（清晰 vs 模糊），而非改变漫反射固有底色或真实几何模型。
 - **【图像资源与截图占位 (Image Source & Placeholder)】**：
   - 图像定位：微表面方向分布与 Specular Reflection 集中/分散对比原理示意图；
-  - 占位符：`[Placeholder: Slide12_Microfacet_Roughness_Specular_Diagram.png]`（Shot 09）；
+  - 占位符：`[Placeholder: Slide12_Microfacet_Roughness_Specular_Diagram.png]`；
   - **图位状态定界 (未通过门禁)**：Notion 已插入待审 image block；现有图有把粗糙侧反射表达为 Diffuse 的混淆风险，须另核其科学准确性。未来展示 Specular Reflection 的集中／分散，不可误当 Diffuse Reflection；示意图不是显微照片；未获教师最终签字前不推断 Image PASS。
 
 ---
@@ -506,7 +506,7 @@
   - 学生能清晰辨析 Diffuse Reflection 与 Specular Reflection，指出黄色塑料的黄色来自内部漫反射，黄金的黄色来自有色镜面反射。
 - **【图像资源与截图占位 (Image Source & Placeholder)】**：
   - 图像定位：黄色塑料与黄金球体光路与反射颜色对比参考图；
-  - 占位符：`[Placeholder: Slide13_YellowPlastic_vs_Gold_Reflection.png]`（Shot 10）；
+  - 占位符：`[Placeholder: Slide13_YellowPlastic_vs_Gold_Reflection.png]`；
   - **图位状态定界 (未通过门禁)**：Notion 已插入黄色塑料/黄金球体参考 image block（待审），不是已验证的同环境/同相机/同 Roughness Painter 控制实验。未来正式对照仍应采用同一 MeetMat Head 的真实 Painter 截图；图像制作和审定不阻止本次文本同步；不得将 Notion 图片链接当作可直接访问的二进制素材。
 
 ---
@@ -533,7 +533,7 @@
   - 学生能明确口述 Layer 与 Mask 的职责差异，理解 Black/White/Grey 的显隐规则与非破坏性编辑价值。
 - **【图像资源与截图占位 (Image Source & Placeholder)】**：
   - 图像定位：Layer A / Layer B / Mask / Result 四格整合显隐示意图；
-  - 占位符：`[Placeholder: Slide14_Layer_Mask_Composite_Diagram.png]`（Shot 11）；
+  - 占位符：`[Placeholder: Slide14_Layer_Mask_Composite_Diagram.png]`；
   - **图位状态定界 (未通过门禁)**：Notion 已有 Layer A/B/Mask/Result 四格整合 image block（待审）；需核对 Mask 黑侧$\to$显露 A、白侧$\to$显露 B、灰侧$\to$过渡，及投影可读性。三层堆叠参考图不独立占正式图位；后续是否替换为真实 MeetMat Head 图片由教师审校决定；不能将生成图冒充 Painter 截图，也不能自动判图已通过。
 
 ---
