@@ -69,16 +69,27 @@ Course Owner 于 2026-10-21 权威采纳“艺术引导 → 技术支撑 → 创
 为确保课程开发在 GitHub、Notion、Whimsical 跨平台及 Browser / IDE 智能体协作中保持严谨一致，避免重复建设与状态混乱，制定本规范：
 
 ### 1. 平台载体职责与权威层级 (Platform Roles & Authority Hierarchy)
-- **GitHub (仓库)**：**唯一权威持久化基准 (Single Source of Truth / SSOT)**。所有正式采纳的课程架构、教学草案、实验代码及操作指南以 Git 仓库提交版本为准；
-- **Notion (工作台)**：**教师备课与逐页内容审校工作台 (Teacher Review Scratchpad)**。用于教师交互式批注、逐页微调演讲脚本与视觉需求；Notion 为审校工作副本，**绝非与 GitHub 平级的第二 SSOT**；
-- **Whimsical (白板)**：**课程知识全景与认知演化地图 (Course Knowledge Map)**。承载九讲能力递进与跨工具知识拓扑宏观概览，不承载微观执行代码与逐页讲稿；
-- **权威优先级准绳**：`Course Owner 显式指令 > GitHub 已持久化权威基准 > Notion 审校工作稿 / Whimsical 视觉布局`。
+- **GitHub (代码仓库)**：**唯一权威持久化基准 (Single Source of Truth / SSOT)**。所有正式采纳的课程架构、教学草案、实验代码及操作指南以 Git 仓库提交版本为准；
+- **Notion (备课工作台)**：**教师备课与逐页内容审校工作台 (Teacher Review Scratchpad)**。用于教师交互式批注、逐页微调演讲脚本与视觉需求；Notion 为审校工作副本，**绝非与 GitHub 平级的第二 SSOT**；
+- **Whimsical (知识白板)**：**课程知识全景与认知演化地图 (Course Knowledge Map)**。承载九讲能力递进与跨工具知识拓扑宏观概览，不承载微观执行代码与逐页讲稿；
+- **权威层级与保护门禁准绳**：
+  - `Course Owner 显式指令 > GitHub 已持久化权威基准 > Notion 审校工作稿 / Whimsical 视觉布局`；
+  - **保护门禁定位**：GitHub 既有基线是**防止未经批准静默覆盖的保护门禁 (Protective Gate against unapproved silent overwrites)**，绝非用旧规则永久否决教师新决定的枷锁；
+  - **结构变更流转**：若教师提出更改既有核心结构（如重排九讲、调整学时或考核框架），智能体应**暂缓执行、显式标记差异与潜在技术后果**，待教师明确授权后通过正常审查流转更新 GitHub 基线；严禁按时间新旧自动覆盖，严禁把未确认候选私自升格为批准决定。
 
 ### 2. Agent 职责分工与三步流转闭环 (The 3-Step Multi-Agent Loop)
 跨 Agent 内容同步与任务交接必须严格贯彻以下三步闭环：
-1. **Step 1 (Browser 传递)**：Browser Agent 负责在云端交互界面对接 Course Owner，整理教师已确认的内容变化（Confirmed Deltas），明确标注依据属性（如 `TEACHER ACCEPTED`），作为结构化输入传递给 IDE Agent；
-2. **Step 2 (IDE 归并)**：IDE Agent 负责在本地工作分支执行最小范围、有界且经过技术校验的文档/代码归并，创建规范 Git Commit 并推送至远端，提供完整 SHA、变更文件列表与验证说明；
-3. **Step 3 (Browser 回读核验)**：Browser Agent 负责基于最新 Commit SHA 回读 GitHub 仓库文件与 Diff，核验是否严格符合教师原意、是否引入越界改动，并在 Issue/PR 评论区发布闭环确认（Review Sign-off）。
+1. **Step 1 (Browser 传递与交接包完整性)**：
+   - Browser Agent 负责在云端交互界面对接 Course Owner，整理教师已确认的内容变化（Confirmed Deltas），明确标注依据属性（如 `TEACHER ACCEPTED`）；
+   - **交接包最低完整性字段 (Minimum Handoff Payload)**：因 IDE 端无权直接读取私有云端 Notion/Whimsical 内容，仅传外部链接视为无效交接。凡涉及归并的任务交接包必须具备：
+     `source URL + content anchor/slide IDs + confirmed actual delta or accessible snapshot + teacher status + target GitHub path + base commit SHA`；
+   - 图片与节点图等资产以**资源指针与审校状态**移交，不要求每次无谓复制整图数据；
+2. **Step 2 (IDE 归并与凭证回传)**：
+   - IDE Agent 严格基于交接包内的真实差量，在本地工作分支执行最小范围、有界且经过技术校验的文档/代码归并；
+   - 创建规范 Git Commit 并推送至远端，向上游回传目标 Commit SHA、修改文件清单与验证说明；
+3. **Step 3 (Browser 回读核验与状态闭环)**：
+   - Browser Agent 基于 IDE 回传的目标 Commit SHA 回读 GitHub 仓库文件与 Diff，逐项核验是否严格符合教师原意、是否引入越界改动；
+   - 审查通过后，在 Issue/PR 评论区发布闭环确认（Review Sign-off）并更新状态（`PENDING / VERIFIED / CONFLICT`）；**严禁仅凭 IDE“已推送”就单方面宣布内容双向同步完成**。
 
 ### 3. 同步触发条件与防碎片化纪律 (Sync Triggers & Anti-Fragmentation)
 - **批量审校达成触发 (Batch Milestones)**：仅当教师在 Notion/交互端完成具有清晰边界的审校批次（如整组连续 Slide 审校完毕或关键教学决策确认）时，方可触发跨 Agent 同步工单；
@@ -86,13 +97,13 @@ Course Owner 于 2026-10-21 权威采纳“艺术引导 → 技术支撑 → 创
 - **逆向技术事实回传**：IDE 本地环境探针结果（如软件版本限制、API 缺陷）通过 Issue/PR 评论持久化，由 Browser 回读并反馈至教师审校载体。
 
 ### 4. 冲突处理策略 (Conflict Resolution)
-- **架构硬门禁拦截**：若 Notion 审校稿或 Whimsical 内容与 GitHub 既有核心架构（如九讲顺序、学时预算、考核大纲、术语规范）发生冲突，**以 GitHub 既有规则为硬门禁拦截**；
+- **保护门禁拦截**：若 Notion 待审稿或 Whimsical 内容与 GitHub 既有核心架构冲突，**以 GitHub 既有基线为保护门禁拦截**；
 - **禁止未审草稿覆盖**：未经教师最终确认的探索性草稿（`DRAFT / UNCONFIRMED`），**严禁直接覆盖 GitHub 既有文件**；
 - **歧义降级裁决**：当存在冲突或表述不一致时，降级标记为 `CONFLICT DETECTED / PENDING TEACHER DISPOSITION`，由 Browser 提请教师裁决，获得明确确认后方可解锁同步。
 
 ### 5. 后续验证案例定界 (Week 1 Slide 12–14 Verification Case)
-- **选定验证切片**：以第一讲 Slide 12–14（能量守恒与光能预算、金属度二值性与微表面、图层遮罩心智模型）作为后续跨 Agent 协作流程的首个端到端验证切片；
-- **执行门禁**：在教师于 Notion 完成这 3 页的逐页审校并由 Browser 明确传递确认 Delta 之前，**任何 Agent 严禁提前批量修改或直接覆盖 GitHub 中的 Slide Draft 对应段落**。
+- **选定验证切片**：以 Notion 当前审校稿实际标题与内容（**Slide 12 `Microfacet & Roughness`**、**Slide 13 `Diffuse & Specular Reflection`**、**Slide 14 `Layer Mask Math` 候选**）作为后续跨 Agent 协作流程的候选验证切片；
+- **执行门禁**：在教师于 Notion 完成这 3 页的逐页审校并由 Browser 明确传递确认 Delta 之前，**任何 Agent 严禁提前批量修改或直接覆盖 GitHub 中的 Slide Draft 对应段落，防止以旧草案错误覆盖**。
 
 
 

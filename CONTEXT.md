@@ -57,14 +57,13 @@
 
 ## 平台载体职责与跨 Agent 协作闭环 (Platform Roles & Cross-Agent Loop)
 
-- **各平台职责与权威层级 (Platform Roles & Authority Hierarchy)**：
-  - **GitHub**：**唯一权威持久化基准 (Single Source of Truth / SSOT)**。所有正式采纳的课程架构、教学设计、代码工具及操作指南以 Git 仓库提交版本为准；
-  - **Notion**：**教师备课与逐页审校工作台 (Teacher Review Scratchpad)**。承载教师交互式审校、讲法微调与备课批注；Notion 是审校工作载体，**绝非与 GitHub 平级的第二 SSOT**；
-  - **Whimsical**：**课程知识全景与认知演化地图 (Course Knowledge Map)**。承载九讲能力递进与知识架构可视化，不承载微观操作细节；
-  - **冲突处理准绳**：`Course Owner 显式指令 > GitHub 已持久化权威基准 > Notion 审校工作稿 / Whimsical 视觉布局`。冲突时以 GitHub 规则为门禁拦截，未经教师确认内容严禁覆盖。
-- **跨 Agent 流转三步闭环 (The 3-Step Multi-Agent Loop)**：
-  - **Step 1 (Browser 传递)**：Browser Agent 负责在云端交互界面对接教师，提取并传递已确认的内容变化（Confirmed Deltas，带 `TEACHER ACCEPTED` 等依据属性）；
-  - **Step 2 (IDE 归并)**：IDE Agent 负责在工作分支执行本地技术校验与代码/文档有界归并，创建规范 Git Commit 并推送至远端，提供完整 SHA 与 Diff；
-  - **Step 3 (Browser 回读核验)**：Browser Agent 负责回读 GitHub 仓库最新推送的代码与文档，核验是否严格符合教师原意、是否引入越界改动，并在 Issue/PR 评论区发布闭环确认（Review Sign-off）；
-  - **同步触发条件**：仅在教师达成阶段性批次审校时触发，严禁逐字/单页碎片化同步；
-  - **后续验证案例**：以 Week 1 Slide 12–14 认知降负与术语校准作为首个验证切片，未获教师在 Notion 逐页最终确认前严禁直接覆盖 GitHub 文件。
+- **载体职责与权威层级**：
+  - **GitHub (代码仓库)**：唯一权威持久化基准（SSOT）。既有基线作为防止未经批准静默覆盖的**保护门禁 (Protective Gate)**，教师提出结构变更须经明确授权后通过正常审查流程更新；
+  - **Notion (备课工作台)**：教师备课与逐页审校工作台（Teacher Review Scratchpad，非第二 SSOT）；
+  - **Whimsical (知识白板)**：课程知识全景与认知演化地图（Course Knowledge Map）；
+  - **优先级准绳**：`Course Owner 显式指令 > GitHub 保护门禁与持久化基准 > Notion 审校工作稿 / Whimsical 视觉布局`。
+- **跨 Agent 协作闭环原则**：
+  - **三步流转与交接包完整性**：Browser 传递包含最低完整性字段（源 URL、锚点/Slide ID、确认差量/快照、依据属性、目标路径、Base SHA）的交接包 $\to$ IDE 本地归并提交推送并回传 Commit SHA $\to$ Browser 基于 SHA 回读核验并在 Issue 更新状态（`PENDING / VERIFIED / CONFLICT`）；
+  - **同步触发与防碎片化**：仅在教师达成阶段性批次审校时触发，严禁逐字/单页频繁同步；
+  - **后续验证案例切片**：以 Notion 审校稿当前实际内容（Slide 12 `Microfacet & Roughness`、Slide 13 `Diffuse & Specular Reflection`、Slide 14 `Layer Mask Math` 候选）为验证切片，未获最终确认前严禁直接覆盖 GitHub 文件；
+  - **完整协议详见**：[`AGENTS.md` (Cross-Platform & Multi-Agent Collaboration Protocol)](AGENTS.md)。
