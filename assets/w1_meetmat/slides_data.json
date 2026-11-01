@@ -130,17 +130,17 @@
     "embedded_images": [
       {
         "path": "assets/w1_meetmat/img_06_Screenshot_2026-10-28_155822.png",
-        "caption": "图 07-1: 环境天光照明方向 A",
+        "caption": "图 07-1: 环境光偏正面（正面受光 · 背面偏暗）",
         "status": "真实截图 · 待审"
       },
       {
         "path": "assets/w1_meetmat/img_07_Screenshot_2026-10-28_155837.png",
-        "caption": "图 07-2: Shift+右键旋转后方向 B（高光显著位移）",
+        "caption": "图 07-2: Shift+右键旋转天光后（正面偏暗 · 背面受光）",
         "status": "真实截图 · 待审"
       },
       {
         "path": "assets/w1_meetmat/img_08_Screenshot_2026-10-28_160247.png",
-        "caption": "图 07-3: Display Settings 环境光与曝光控制",
+        "caption": "图 07-3: Display Settings → Environment Map（更换 HDRI 入口）",
         "status": "真实截图 · 待审"
       }
     ]
@@ -206,12 +206,12 @@
     "embedded_images": [
       {
         "path": "assets/w1_meetmat/img_11_image.png",
-        "caption": "图 10-1: 第二层深色覆盖与挂载 Black Mask",
+        "caption": "图 10-1: 展示如何添加 Black Mask（黑色遮罩隐藏上层）",
         "status": "已制作 · 已入页（教师已确认完成）"
       },
       {
         "path": "assets/w1_meetmat/img_12_image.png",
-        "caption": "图 10-2: 白色画笔在遮罩开窗与 X 键可逆纠错",
+        "caption": "图 10-2: 展示遮罩实际效果（白色画笔开窗显现深色层）",
         "status": "已制作 · 已入页（教师已确认完成）"
       }
     ]
@@ -245,8 +245,8 @@
     "embedded_images": [
       {
         "path": "assets/w1_meetmat/img_13_image.png",
-        "caption": "图 12-1: Microfacet 微表面法线朝向分布与镜面反射集中／弥散机制",
-        "status": "待同步旧图（新版候选图待同步入页，保留差量记录）"
+        "caption": "图 12-1: Microfacet 微表面方向分布与镜面反射集中／模糊机制（概念示意 · 非显微照片）",
+        "status": "待同步旧图（新候选待同步入页，保留差量记录）"
       }
     ]
   },

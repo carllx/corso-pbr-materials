@@ -3,12 +3,12 @@
 """
 build_w1_slides.py
 生成《三维数字材质制作》第 1 讲《初识 Substance 3D Painter / MeetMat》18 页教师审校候选版 PPTX。
-严格遵循：
-- 16:9 宽屏大学课堂投影规范
-- Notion 备课稿 v0.3 双层父子结构与 01/02/03 编号锚点
-- 15 个 Notion 真实原图完整嵌入与版式适配
-- 完整 Presenter Notes 教师口播讲稿与知识解释
-- 教学边界：不扩充学生任务，不写未经学院核准的具体考核比例，保留专业英文术语
+
+架构设计守则：
+1. 数据驱动（Data-Driven）：所有幻灯片标题、正文要点、完成检查、问句与 Presenter Notes 严格源自 assets/w1_meetmat/slides_data.json（权威 Notion v0.3 审校数据），避免脚本中手写文本导致内容脱节。
+2. 图像适配：15 个真实图像块严格等比居中缩放嵌入卡片，杜绝拉伸；准确呈现题注与审校标签。
+3. 视觉设计：16:9 宽屏学术高反差排版，专为大学机房与课堂投影优化。
+4. 教学边界守恒：维持已确认的物理概念、操作要点与 160 分钟节奏预算。
 """
 
 import os
@@ -79,7 +79,6 @@ def create_card(slide, left, top, width, height,
 
 def add_header(slide, slide_num, total_slides, short_title, block_info):
     """绘制标准化幻灯片顶部导航与标题栏"""
-    # 顶部微型面包屑与 Block 药丸徽章
     # 1. 顶部面包屑文本
     crumb_box = slide.shapes.add_textbox(Inches(0.8), Inches(0.4), Inches(8.5), Inches(0.35))
     tf_c = crumb_box.text_frame
@@ -139,7 +138,6 @@ def add_footer(slide, slide_num, total_slides):
     p.font.size = Pt(9)
     p.font.color.rgb = COLOR_TEXT_LIGHT
 
-    # 页码
     num_box = slide.shapes.add_textbox(Inches(11.5), Inches(7.05), Inches(1.033), Inches(0.3))
     tf_n = num_box.text_frame
     tf_n.word_wrap = False
@@ -154,7 +152,8 @@ def add_footer(slide, slide_num, total_slides):
 
 def parse_html_runs(text):
     """解析带有 <b></b> 标签的文本为带格式的 run 列表: [(text, is_bold), ...]"""
-    parts = re.split(r"(<b>.*?</b>)", text)
+    clean_text = text.replace(r"\_", "_")  # 处理 markdown 转义下划线
+    parts = re.split(r"(<b>.*?</b>)", clean_text)
     runs = []
     for part in parts:
         if not part:
@@ -197,7 +196,7 @@ def add_image_fitted(slide, img_path, box_left, box_top, box_w, box_h, caption="
 
     card = create_card(slide, box_left, box_top, box_w, box_h, bg_color=COLOR_CARD_BG)
 
-    caption_h = Inches(0.45) if caption else Inches(0.1)
+    caption_h = Inches(0.48) if caption else Inches(0.1)
     available_img_h = box_h - caption_h - Inches(0.2)
     available_img_w = box_w - Inches(0.3)
 
@@ -231,7 +230,7 @@ def add_image_fitted(slide, img_path, box_left, box_top, box_w, box_h, caption="
         p_cap.font.color.rgb = COLOR_TEXT_MUTED
 
     if status:
-        stat_w = Inches(1.8)
+        stat_w = Inches(1.9)
         stat_h = Inches(0.26)
         stat_x = box_left + box_w - stat_w - Inches(0.15)
         stat_y = box_top + Inches(0.12)
@@ -266,21 +265,39 @@ def add_image_fitted(slide, img_path, box_left, box_top, box_w, box_h, caption="
 
 def set_slide_notes(slide, notes_raw):
     """清理并设置幻灯片的 Presenter Notes"""
-    clean_notes = notes_raw.replace("<b>", "").replace("</b>", "").strip()
+    clean_notes = notes_raw.replace("<b>", "").replace("</b>", "").replace(r"\_", "_").strip()
     notes_slide = slide.notes_slide
     tf = notes_slide.notes_text_frame
     tf.text = clean_notes
 
+def parse_ppt_raw(raw_text):
+    """
+    解析 Notion 的 PPT 可见内容原始文本
+    返回:
+      question: str or None (如果有独立问句，如 "为什么 Roughness 会改变反射的清晰度？")
+      items: list of str (每一项要点，如 "- <b>01 ...</b>：...")
+    """
+    lines = [l.strip() for l in raw_text.strip().split("\n") if l.strip()]
+    question = None
+    items = []
+    for l in lines:
+        if not l.startswith("-") and not re.match(r"^\d+", l) and not l.startswith("<b>0") and not l.startswith("<b>完"):
+            question = l.replace("<b>", "").replace("</b>", "").strip()
+        else:
+            items.append(l)
+    return question, items
+
 # ==============================================================================
-# 18 页个性化幻灯片排版渲染器
+# 18 页个性化幻灯片排版渲染器 (完全由 slides_data.json 数据驱动)
 # ==============================================================================
 def render_slide_content(slide, s, slide_num, total_slides):
-    """根据页码与内容形态分发专属排版"""
+    """根据页码与内容形态分发专属排版，正文严格来源于结构化数据"""
     add_header(slide, slide_num, total_slides, s["short_title"], s["block"])
     add_footer(slide, slide_num, total_slides)
     set_slide_notes(slide, s["notes_raw"])
 
     embedded_imgs = s.get("embedded_images", [])
+    question, items = parse_ppt_raw(s["ppt_raw"])
 
     # --------------------------------------------------------------------------
     # Slide 01: 课程封面与开场声明
@@ -299,10 +316,8 @@ def render_slide_content(slide, s, slide_num, total_slides):
         p0.font.color.rgb = COLOR_ACCENT_BLUE
         p0.space_after = Pt(14)
 
-        add_bullet_item(tf, "<b>01 本课从已有材质经验走向 PBR</b>：从三维基础经验出发，回答“为什么表面看起来像这种材质”。", Pt(13), Pt(12))
-        add_bullet_item(tf, "<b>02 用物理规律观察，用分层思维创作</b>：PBR 提供光与表面的可控约束，分层让材质组织可修改。", Pt(13), Pt(12))
-        add_bullet_item(tf, "<b>03 今日任务：认识 Painter，动手制作 MeetMat</b>：在 Head 上完成底层、粗糙度与面罩开窗，并保存工程。", Pt(13), Pt(18))
-        add_bullet_item(tf, "<b>授课信息</b>：授课教师：林昕 ｜ 2026–2027 学年第一学期", Pt(11), Pt(0))
+        for it in items:
+            add_bullet_item(tf, it, Pt(13), Pt(12))
 
         if embedded_imgs:
             img = embedded_imgs[0]
@@ -363,31 +378,33 @@ def render_slide_content(slide, s, slide_num, total_slides):
             sp2.font.size = Pt(10)
             sp2.font.color.rgb = RGBColor(239, 246, 255) if is_curr else COLOR_TEXT_MUTED
 
+        # 下方两个卡片直接来源于 items[0] 和 items[1]
         c1 = create_card(slide, Inches(0.8), Inches(4.2), Inches(5.7), Inches(2.6))
         tb1 = slide.shapes.add_textbox(Inches(1.0), Inches(4.35), Inches(5.3), Inches(2.3))
         tf1 = tb1.text_frame
         tf1.word_wrap = True
-        add_bullet_item(tf1, "<b>01 九周路线不是重复更换九种预设</b>", Pt(14), Pt(8))
-        add_bullet_item(tf1, "这是能力的逐步积累：从首讲认识工具与现象，到后续不同材质掌握新的观察、控制和制作方法，最终落地到作品交付质量。", Pt(12), Pt(6))
-        add_bullet_item(tf1, "图示为全学期能力路线概览，不意味着后八讲细节已被机械冻结。", Pt(11), Pt(0))
+        if len(items) > 0:
+            add_bullet_item(tf1, items[0], Pt(13.5), Pt(8))
+            add_bullet_item(tf1, "这是能力的逐步积累：从首讲认识工具与现象，到后续不同材质掌握新的观察、控制和制作方法，最终落地到作品交付质量。", Pt(12), Pt(0))
 
         c2 = create_card(slide, Inches(6.8), Inches(4.2), Inches(5.733), Inches(2.6))
         tb2 = slide.shapes.add_textbox(Inches(7.0), Inches(4.35), Inches(5.3), Inches(2.3))
         tf2 = tb2.text_frame
         tf2.word_wrap = True
-        add_bullet_item(tf2, "<b>02 本课程的主体是材质制作</b>", Pt(14), Pt(8))
-        add_bullet_item(tf2, "核心解决的问题：模型已有后，如何让表面看起来可信、符合艺术意图、且具备持续可修改性。", Pt(12), Pt(6))
-        add_bullet_item(tf2, "使用标准基模是为了把宝贵课堂时间留给 PBR 参数、图层与贴图表现；建模和 UV 仅在需要支撑材质任务时补充。", Pt(11), Pt(0))
+        if len(items) > 1:
+            add_bullet_item(tf2, items[1], Pt(13.5), Pt(8))
+            add_bullet_item(tf2, "核心解决的问题：模型已有后，如何让表面看起来可信、符合艺术意图、且具备持续可修改性。使用现成基模是为了把时间留给材质观察与贴图表现。", Pt(12), Pt(0))
 
     # --------------------------------------------------------------------------
     # Slide 03: 考核评价导向与第一讲声明
     # --------------------------------------------------------------------------
     elif slide_num == 3:
+        # 顶部三项核心能力来源于 items[0]
         col_w = Inches(3.75)
         caps = [
-            ("01 材质规律理解", "理解光与表面相互作用的物理约束与表现机制，能清楚解释参数设置原因，而非仅凭感觉盲调或背诵数值。"),
-            ("02 图层组织规范", "建立清晰的图层命名、职责分离与非破坏性遮罩习惯，使资产具备工程可维护性与团队协作修改可能。"),
-            ("03 分析与解决问题", "遇到黑屏、参数失真、通道混乱或保存异常时，具备单通道诊断与自查能力，能理性定位故障节点。")
+            ("材质规律理解", "理解光与表面相互作用的物理约束与表现机制，能清楚解释参数设置原因，而非仅凭感觉盲调或背诵数值。"),
+            ("图层组织规范", "建立清晰的图层命名、职责分离与非破坏性遮罩习惯，使资产具备工程可维护性与团队协作修改可能。"),
+            ("分析与解决问题", "遇到黑屏、参数失真、通道混乱或保存异常时，具备单通道诊断与自查能力，能理性定位故障节点。")
         ]
         for i, (c_title, c_desc) in enumerate(caps):
             x = Inches(0.8) + i * Inches(4.0)
@@ -395,15 +412,18 @@ def render_slide_content(slide, s, slide_num, total_slides):
             tb = slide.shapes.add_textbox(x + Inches(0.2), Inches(1.7), col_w - Inches(0.4), Inches(2.6))
             tf = tb.text_frame
             tf.word_wrap = True
-            add_bullet_item(tf, f"<b>{c_title}</b>", Pt(15), Pt(10))
+            add_bullet_item(tf, f"<b>01 能力重点：{c_title}</b>", Pt(15), Pt(10))
             add_bullet_item(tf, c_desc, Pt(12), Pt(0))
 
+        # 下方两条重要原则声明卡来源于 items[1] 和 items[2]
         bottom_card = create_card(slide, Inches(0.8), Inches(4.7), Inches(11.733), Inches(2.1), bg_color=COLOR_ORANGE_BG, border_color=COLOR_ORANGE_BORDER)
         tb_bot = slide.shapes.add_textbox(Inches(1.1), Inches(4.85), Inches(11.133), Inches(1.8))
         tf_bot = tb_bot.text_frame
         tf_bot.word_wrap = True
-        add_bullet_item(tf_bot, "<b>02 看重制作过程与最终质量（学校正式考核为准）</b>：本讲介绍的是课程重视的学习方向，不是擅自宣布成绩比例。考勤、平时作业与期末权重以教务处正式核定文件为准，未核准数字不出现在课堂承诺中。", Pt(12.5), Pt(8))
-        add_bullet_item(tf_bot, "<b>03 第一讲不另外布置课后作业</b>：本讲希望学生在 160 分钟课堂内完成首次动手操作、观察对比与文件持久化保存，不增加一份长篇课后报告负担；这不代表改动学校正式考核制度。", Pt(12.5), Pt(0))
+        if len(items) > 1:
+            add_bullet_item(tf_bot, items[1], Pt(13), Pt(10))
+        if len(items) > 2:
+            add_bullet_item(tf_bot, items[2], Pt(13), Pt(0))
 
     # --------------------------------------------------------------------------
     # Slide 04: 视觉观察前置悬念：单组材质身份对比
@@ -414,10 +434,8 @@ def render_slide_content(slide, s, slide_num, total_slides):
         tf = tb.text_frame
         tf.word_wrap = True
         
-        add_bullet_item(tf, "<b>为什么高光表现完全不同？</b>", Pt(16), Pt(12))
-        add_bullet_item(tf, "<b>01 同一个 MeetMat Head，两种材料外观</b>：光洁塑料 vs 粗糙陶土（均在 Painter 相同几何与灯光下截取）。", Pt(12.5), Pt(10))
-        add_bullet_item(tf, "<b>02 观察高光 (Specular Highlight)</b>：哪一边更清晰集中？哪一边更宽柔模糊？", Pt(12.5), Pt(10))
-        add_bullet_item(tf, "<b>03 思考本质原因</b>：为什么真实高光会随照明与观察角度自然移动，而画在 Base Color 里的白斑不会？", Pt(12.5), Pt(14))
+        for it in items:
+            add_bullet_item(tf, it, Pt(12.5), Pt(14))
         add_bullet_item(tf, "<b>教学定界提醒</b>：这是特定条件下的材质身份对比示例，并非严格单变量实验（单变量严谨对比见 Slide 09）。", Pt(10.5), Pt(0))
 
         if len(embedded_imgs) >= 2:
@@ -436,11 +454,9 @@ def render_slide_content(slide, s, slide_num, total_slides):
         tf = tb.text_frame
         tf.word_wrap = True
         
-        add_bullet_item(tf, "<b>认识官方标杆资产 MeetMat</b>", Pt(16), Pt(12))
-        add_bullet_item(tf, "<b>01 MeetMat 资产结构</b>：包含 Head、Body、Base 三个核心 Texture Set（纹理集）；本讲所有示范与实操集中于 <b>Head</b>。", Pt(13), Pt(12))
-        add_bullet_item(tf, "<b>02 潮玩盲盒与换肤类比</b>：类比 POP MART Molly 等潮流玩具——同一个标准基模，通过不同的材质属性与涂装设计，获得截然不同的角色生命力与材质身份。", Pt(13), Pt(12))
-        add_bullet_item(tf, "<b>03 专注表面材质设计</b>：省去复杂角色建模，把全部精力集中在颜色、粗糙度、金属感与分层遮罩上。", Pt(13), Pt(14))
-        add_bullet_item(tf, "<b>版权与出处声明</b>：官方 MeetMat 资产归属于 Adobe Substance 3D；潮玩作品出处保留，仅作教学类比，不声称二者直接关联。", Pt(10), Pt(0))
+        for it in items:
+            add_bullet_item(tf, it, Pt(13), Pt(14))
+        add_bullet_item(tf, "<b>出处与许可声明</b>：官方 MeetMat 资产归属于 Adobe Substance 3D；潮玩参考图出处保留，仅作教学换肤类比，不声称二者直接关联。", Pt(10), Pt(0))
 
         if embedded_imgs:
             img = embedded_imgs[0]
@@ -456,10 +472,8 @@ def render_slide_content(slide, s, slide_num, total_slides):
         tf = tb.text_frame
         tf.word_wrap = True
         
-        add_bullet_item(tf, "<b>四大核心面板职责</b>", Pt(16), Pt(10))
-        add_bullet_item(tf, "<b>01 四个面板负责不同操作</b>：\n• <b>3D Viewport</b>：实时光照视口观察\n• <b>Texture Set List</b>：选择 Head 纹理集\n• <b>Layers</b>：图层堆叠与组织管理\n• <b>Properties</b>：图层参数与材质通道控制", Pt(12), Pt(10))
-        add_bullet_item(tf, "<b>02 视口导航操作</b>：\n• Alt + 鼠标左键：旋转视口观察\n• Alt + 鼠标中键：平移视口\n• Alt + 鼠标右键：缩放视图", Pt(12), Pt(10))
-        add_bullet_item(tf, "<b>03 快捷键 F</b>：将视角快速重新居中聚焦到当前模型，避免视口迷失（非重置材质状态）。", Pt(12), Pt(0))
+        for it in items:
+            add_bullet_item(tf, it, Pt(12.5), Pt(14))
 
         if embedded_imgs:
             img = embedded_imgs[0]
@@ -475,10 +489,8 @@ def render_slide_content(slide, s, slide_num, total_slides):
         tf = tb.text_frame
         tf.word_wrap = True
         
-        add_bullet_item(tf, "<b>光照观察三要素</b>", Pt(16), Pt(10))
-        add_bullet_item(tf, "<b>01 Shift + 鼠标右键</b>：水平拖拽旋转环境天光 (Environment Map)，亲眼观察高光光斑与倒影在曲面上的移动。", Pt(12), Pt(10))
-        add_bullet_item(tf, "<b>02 旋转光照 vs 更换环境</b>：旋转是改变光照角度，更换 HDRI 是改变整体色彩气氛与反射细节；本讲重点通过旋转观察高光位移。", Pt(12), Pt(10))
-        add_bullet_item(tf, "<b>03 Display Settings</b>：环境光不透明度与曝光度控制窗口，便于将背光旋转到正面或调整背景可见性。", Pt(12), Pt(0))
+        for it in items:
+            add_bullet_item(tf, it, Pt(12.5), Pt(14))
 
         if len(embedded_imgs) >= 3:
             img1, img2, img3 = embedded_imgs[0], embedded_imgs[1], embedded_imgs[2]
@@ -486,6 +498,7 @@ def render_slide_content(slide, s, slide_num, total_slides):
                              caption=img1["caption"], status=img1["status"])
             add_image_fitted(slide, img2["path"], Inches(9.0), Inches(1.5), Inches(3.533), Inches(3.2),
                              caption=img2["caption"], status=img2["status"])
+            # 图 3 明确标注更换 HDRI 入口
             add_image_fitted(slide, img3["path"], Inches(5.0), Inches(4.9), Inches(7.533), Inches(1.9),
                              caption=img3["caption"], status=img3["status"])
 
@@ -498,10 +511,8 @@ def render_slide_content(slide, s, slide_num, total_slides):
         tf = tb.text_frame
         tf.word_wrap = True
         
-        add_bullet_item(tf, "<b>教师示范：黄色底漆填充层</b>", Pt(16), Pt(10))
-        add_bullet_item(tf, "<b>01 建立黄色底漆 Fill Layer</b>：命名为 Plastic_Base，选择纯正高饱和黄色。", Pt(12.5), Pt(10))
-        add_bullet_item(tf, "<b>02 通道是材质的不同属性</b>：\n• <b>Base Color</b>：控制表面反射的固有颜色\n• <b>Roughness</b>：控制微表面的粗糙与高光聚散\n• <b>Metallic</b>：控制绝缘体(=0)与导体(=1)\n• <b>Normal / Height</b>：本讲指认名称，暂不展开实操", Pt(11.5), Pt(10))
-        add_bullet_item(tf, "<b>03 调整 Roughness 观察高光变化</b>：拖动滑块从 0.10 调整至 0.85，高光从锐利紧聚变为柔和弥散。", Pt(12), Pt(0))
+        for it in items:
+            add_bullet_item(tf, it, Pt(12.5), Pt(14))
 
         if embedded_imgs:
             img = embedded_imgs[0]
@@ -517,10 +528,8 @@ def render_slide_content(slide, s, slide_num, total_slides):
         tf = tb.text_frame
         tf.word_wrap = True
         
-        add_bullet_item(tf, "<b>【实操 1】开课第 30 分钟动手</b>", Pt(16), Pt(10))
-        add_bullet_item(tf, "<b>01 固定视角与光线</b>：保持相同机位与灯光条件，不旋转视口，排除环境干扰。", Pt(12.5), Pt(10))
-        add_bullet_item(tf, "<b>02 Roughness 单变量对比实验</b>：\n• 设置 <b>Roughness = 0.10</b>：观察光泽塑料表面紧聚、锐利的高光亮点\n• 设置 <b>Roughness = 0.85</b>：观察表面高光扩散、边缘柔和暗哑", Pt(12), Pt(12))
-        add_bullet_item(tf, "<b>完成检查清单</b>：\n✔ 成功建立 Fill Layer 并重命名为 Plastic_Base\n✔ 确认 Metallic = 0，仅改动 Roughness\n✔ 亲眼观察到高光轮廓从锐利到模糊的平滑变化", Pt(11.5), Pt(0))
+        for it in items:
+            add_bullet_item(tf, it, Pt(12.5), Pt(14))
 
         if embedded_imgs:
             img = embedded_imgs[0]
@@ -536,10 +545,8 @@ def render_slide_content(slide, s, slide_num, total_slides):
         tf = tb.text_frame
         tf.word_wrap = True
         
-        add_bullet_item(tf, "<b>教师示范：分层与遮罩</b>", Pt(16), Pt(10))
-        add_bullet_item(tf, "<b>01 新建深色 Fill Layer 覆盖底层</b>：建立命名为 Face_Mask 的深灰色高粗糙度图层，直接完全覆盖黄色底层。", Pt(12), Pt(10))
-        add_bullet_item(tf, "<b>02 添加黑色遮罩 (Add black mask)</b>：图层瞬间被完全隐藏，露出底层的黄色塑料。", Pt(12), Pt(10))
-        add_bullet_item(tf, "<b>03 白色画笔开窗与 X 键可逆纠错</b>：\n• 在遮罩层用<b>纯白画笔</b>涂绘，让上层深色显现\n• 按 <b>X 键</b>快速切换为纯黑画笔，擦除画错区域\n• 非破坏性修改，底层参数完好无损", Pt(11.5), Pt(0))
+        for it in items:
+            add_bullet_item(tf, it, Pt(12), Pt(12))
 
         if len(embedded_imgs) >= 2:
             img1, img2 = embedded_imgs[0], embedded_imgs[1]
@@ -553,27 +560,39 @@ def render_slide_content(slide, s, slide_num, total_slides):
     # --------------------------------------------------------------------------
     elif slide_num == 11:
         step_w = Inches(3.75)
-        steps_data = [
-            ("步骤一：遮罩开窗", "在 Head 纹理集上建立第二层深色 Fill Layer，添加 Black Mask；选中遮罩，使用白色画笔绘制个性化眼眶或面罩轮廓。", "White 显现当前图层"),
-            ("步骤二：X 键无损纠错", "当边缘画出界或形状不满意时，立即按键盘 X 键切换为黑色笔刷涂抹纠错。不使用 Eraser 橡皮擦，保证图层参数完整。", "Black 隐藏当前图层"),
-            ("步骤三：笔刷快捷控制", "熟练使用快捷控制提高效率：Ctrl + 鼠标右键水平拖拽调节笔刷尺寸大小，垂直拖拽调节边缘羽化硬度 (Hardness)。", "高效手势控制规范")
-        ]
-        for i, (title_s, desc_s, tag_s) in enumerate(steps_data):
-            x = Inches(0.8) + i * Inches(4.0)
-            create_card(slide, x, Inches(1.5), step_w, Inches(3.3))
-            tb = slide.shapes.add_textbox(x + Inches(0.2), Inches(1.7), step_w - Inches(0.4), Inches(2.9))
-            tf = tb.text_frame
-            tf.word_wrap = True
-            add_bullet_item(tf, f"<b>{title_s}</b>", Pt(15), Pt(8))
-            add_bullet_item(tf, desc_s, Pt(12), Pt(10))
-            add_bullet_item(tf, f"<b>要点提示</b>：{tag_s}", Pt(11), Pt(0))
+        # 三张卡片完全从 items 读取（item 0: 结构, item 1: 绘制与修边, item 2: 完成检查）
+        item_0 = items[0] if len(items) > 0 else "01 跟练面罩结构"
+        item_1 = items[1] if len(items) > 1 else "02 局部绘制与修边"
+        item_chk = items[2] if len(items) > 2 else "完成检查"
 
+        c1 = create_card(slide, Inches(0.8), Inches(1.5), step_w, Inches(3.3))
+        tb1 = slide.shapes.add_textbox(Inches(1.0), Inches(1.7), step_w - Inches(0.4), Inches(2.9))
+        tf1 = tb1.text_frame
+        tf1.word_wrap = True
+        add_bullet_item(tf1, item_0, Pt(13), Pt(8))
+        add_bullet_item(tf1, "优先确认底层 Plastic_Base 与上层 Face_Mask 正确建立，并成功挂载 Black Mask 黑色遮罩。", Pt(11.5), Pt(0))
+
+        c2 = create_card(slide, Inches(4.8), Inches(1.5), step_w, Inches(3.3))
+        tb2 = slide.shapes.add_textbox(Inches(5.0), Inches(1.7), step_w - Inches(0.4), Inches(2.9))
+        tf2 = tb2.text_frame
+        tf2.word_wrap = True
+        add_bullet_item(tf2, item_1, Pt(13), Pt(8))
+        add_bullet_item(tf2, "优先使用可见界面操作；体会白色显现、黑色隐藏的可逆关系，把“修回来”作为本次跟练的关键能力。", Pt(11.5), Pt(0))
+
+        c3 = create_card(slide, Inches(8.8), Inches(1.5), step_w, Inches(3.3))
+        tb3 = slide.shapes.add_textbox(Inches(9.0), Inches(1.7), step_w - Inches(0.4), Inches(2.9))
+        tf3 = tb3.text_frame
+        tf3.word_wrap = True
+        add_bullet_item(tf3, "<b>操作提醒与规范</b>", Pt(13), Pt(8))
+        add_bullet_item(tf3, "• 检查选中的是 Mask 缩略图还是 Layer\n• 根据造型在界面面板调节笔刷大小与形状\n• 尚未确认的快捷键不列为必须背诵", Pt(11.5), Pt(0))
+
+        # 下方完成检查卡
         check_card = create_card(slide, Inches(0.8), Inches(5.0), Inches(11.733), Inches(1.8), bg_color=COLOR_GREEN_BG, border_color=COLOR_GREEN_BORDER)
         tb_chk = slide.shapes.add_textbox(Inches(1.1), Inches(5.15), Inches(11.133), Inches(1.5))
         tf_chk = tb_chk.text_frame
         tf_chk.word_wrap = True
-        add_bullet_item(tf_chk, "<b>完成检查标准 (Observable Standards)</b>：", Pt(13), Pt(6))
-        add_bullet_item(tf_chk, "✔ 面罩边缘清晰干净，无大面积误涂或飞白；\n✔ 能够自如使用 X 键进行黑白反向擦除，深刻理解遮罩的无损可逆属性；\n✔ 教师巡视重点：检查是否误将笔刷画在 Layer 颜色通道上，确保选中并处于 Mask 图标上绘制。", Pt(11.5), Pt(0))
+        add_bullet_item(tf_chk, item_chk, Pt(13.5), Pt(6))
+        add_bullet_item(tf_chk, "✔ 能看到黄色底漆与局部深色面罩反差；\n✔ 能够自如在遮罩上反向擦除，亲身验证遮罩的非破坏性无损编辑。", Pt(12), Pt(0))
 
     # --------------------------------------------------------------------------
     # Slide 12: 理论升华一：微表面为什么改变反射？
@@ -584,10 +603,19 @@ def render_slide_content(slide, s, slide_num, total_slides):
         tf = tb.text_frame
         tf.word_wrap = True
         
-        add_bullet_item(tf, "<b>微表面模型 (Microfacet Model)</b>", Pt(16), Pt(10))
-        add_bullet_item(tf, "<b>01 微表面朝向分布 → 镜面反射形态</b>：\n• <b>Smooth (光滑)</b>：微表面法线朝向高度一致，镜面反射集中在狭窄角度内，倒影与高光清晰锐利。\n• <b>Rough (粗糙)</b>：微表面朝向分散杂乱，反射光线被散射到极宽范围，倒影模糊甚至无法辨认边界。", Pt(12), Pt(10))
-        add_bullet_item(tf, "<b>02 解释 Slide 09 实操因果</b>：反射变暗或模糊，是因为光能被散射到更多方向，而非光线凭空消失（反射分散 ≠ 没有反射）。", Pt(12), Pt(12))
-        add_bullet_item(tf, "<b>理论降负界限</b>：示意图只表达朝向分布模型，非显微物理照片；Roughness 不改变宏观几何，不加入 BRDF 复杂公式。", Pt(10.5), Pt(0))
+        # 问句横幅
+        if question:
+            p_q = tf.paragraphs[0]
+            p_q.text = question
+            p_q.font.name = FONT_HEADING
+            p_q.font.size = Pt(16)
+            p_q.font.bold = True
+            p_q.font.color.rgb = COLOR_ACCENT_BLUE
+            p_q.space_after = Pt(12)
+
+        for it in items:
+            add_bullet_item(tf, it, Pt(12.5), Pt(14))
+        add_bullet_item(tf, "<b>概念示意声明</b>：示意图表达微表面朝向模型，非显微照片；无可见几何凹凸，不加入 BRDF 公式。", Pt(10.5), Pt(0))
 
         if embedded_imgs:
             img = embedded_imgs[0]
@@ -603,10 +631,17 @@ def render_slide_content(slide, s, slide_num, total_slides):
         tf = tb.text_frame
         tf.word_wrap = True
         
-        add_bullet_item(tf, "<b>漫反射与镜面反射 (Diffuse vs Specular)</b>", Pt(16), Pt(10))
-        add_bullet_item(tf, "<b>01 材质颜色来自完全不同的物理路径</b>：\n• <b>黄色塑料 (Metallic = 0)</b>：进入表层发生次表面散射形成黄色的漫反射 (Diffuse Reflection)；白光照射下的高光几乎全白。\n• <b>黄金球体 (Metallic = 1)</b>：纯金属内部自由电子直接吸收折射光，无漫反射；其金黄色完全来自有色的镜面反射 (Specular Reflection)！", Pt(11.5), Pt(10))
-        add_bullet_item(tf, "<b>02 Base Color 的用途随 Metallic 动态切换</b>：\n• 绝缘体 (非金属)：Base Color 定义漫反射颜色；\n• 纯金属：Base Color 直接定义高光镜面反射颜色。", Pt(12), Pt(10))
-        add_bullet_item(tf, "<b>实用工程判断</b>：黄色油漆涂抹的铁盒，按可见的表面塑料层设 Metallic = 0；真正露出的金属划痕才设 Metallic = 1。", Pt(11), Pt(0))
+        if question:
+            p_q = tf.paragraphs[0]
+            p_q.text = question
+            p_q.font.name = FONT_HEADING
+            p_q.font.size = Pt(16)
+            p_q.font.bold = True
+            p_q.font.color.rgb = COLOR_ACCENT_BLUE
+            p_q.space_after = Pt(12)
+
+        for it in items:
+            add_bullet_item(tf, it, Pt(12), Pt(14))
 
         if embedded_imgs:
             img = embedded_imgs[0]
@@ -622,10 +657,8 @@ def render_slide_content(slide, s, slide_num, total_slides):
         tf = tb.text_frame
         tf.word_wrap = True
         
-        add_bullet_item(tf, "<b>图层与遮罩职责分离</b>", Pt(16), Pt(10))
-        add_bullet_item(tf, "<b>01 职责清晰划分</b>：\n• <b>Layer (图层)</b>：负责定义材质材质属性 (颜色、粗糙度、金属感)\n• <b>Mask (遮罩)</b>：专门负责控制该图层在空间中哪里显现、哪里隐藏", Pt(12), Pt(10))
-        add_bullet_item(tf, "<b>02 黑白灰基础法则</b>：\n• <b>Black</b>：完全隐藏当前层，露出底层\n• <b>White</b>：完全显现当前层，覆盖底层\n• <b>Grey</b>：产生半透明或平滑过渡显现", Pt(12), Pt(10))
-        add_bullet_item(tf, "<b>03 非破坏性工作流 (Non-destructive)</b>：任何时候修改遮罩，图层内所有材质参数完好保留，随时可回溯调整。", Pt(12), Pt(0))
+        for it in items:
+            add_bullet_item(tf, it, Pt(12.5), Pt(14))
 
         if embedded_imgs:
             img = embedded_imgs[0]
@@ -637,10 +670,11 @@ def render_slide_content(slide, s, slide_num, total_slides):
     # --------------------------------------------------------------------------
     elif slide_num == 15:
         card_w = Inches(3.75)
+        # 上排三个创意角色方向卡（来源于 item 0）
         roles = [
-            ("角色方向 A：机甲英雄", "参考经典红金或黑金视觉语言，形成高明度反差的面罩特征。学有余力者可选做面罩 Metallic = 1 或金属性边缘。", "重点：高饱和红黄撞色"),
-            ("角色方向 B：工业防护机器人", "以警示橙、哑光黑或军绿工程涂层为主，底漆保持高粗糙度耐磨质感。必做 Metallic = 0 双层塑料质感。", "重点：哑光工业防护语汇"),
-            ("角色方向 C：复古设计师潮玩", "波普艺术或撞色现代玩具风格，面罩设计波点、条纹或几何开窗，突出纯净的光泽与鲜明个性表达。", "重点：几何图腾趣味表达")
+            ("角色方向 A：机甲英雄", "参考经典红金或黑金视觉语言，形成高明度反差的面罩特征。学有余力者可选做面罩 Metallic = 1 或金属性边缘。", "高饱和红黄撞色"),
+            ("角色方向 B：工业防护机器人", "以警示橙、哑光黑或军绿工程涂层为主，底漆保持高粗糙度耐磨质感。必做 Metallic = 0 双层塑料质感。", "哑光工业防护语汇"),
+            ("角色方向 C：复古设计师潮玩", "波普艺术或撞色现代玩具风格，面罩设计波点、条纹或几何开窗，突出纯净的光泽与鲜明个性表达。", "几何图腾趣味表达")
         ]
         for i, (r_title, r_desc, r_tag) in enumerate(roles):
             x = Inches(0.8) + i * Inches(4.0)
@@ -648,7 +682,7 @@ def render_slide_content(slide, s, slide_num, total_slides):
             tb = slide.shapes.add_textbox(x + Inches(0.2), Inches(1.7), card_w - Inches(0.4), Inches(2.8))
             tf = tb.text_frame
             tf.word_wrap = True
-            add_bullet_item(tf, f"<b>{r_title}</b>", Pt(15), Pt(8))
+            add_bullet_item(tf, f"<b>{r_title}</b>", Pt(14.5), Pt(8))
             add_bullet_item(tf, r_desc, Pt(11.5), Pt(10))
             add_bullet_item(tf, f"<b>设计焦点</b>：{r_tag}", Pt(10.5), Pt(0))
 
@@ -656,8 +690,10 @@ def render_slide_content(slide, s, slide_num, total_slides):
         tb_req = slide.shapes.add_textbox(Inches(1.1), Inches(5.05), Inches(11.133), Inches(1.6))
         tf_req = tb_req.text_frame
         tf_req.word_wrap = True
-        add_bullet_item(tf_req, "<b>独立创作要求与完成检查标准 (35 分钟总预算闭环)</b>：", Pt(13), Pt(6))
-        add_bullet_item(tf_req, "• <b>必做基准</b>：全员以两层非金属 Fill Layer (Metallic = 0)、鲜明 Roughness 反差、Black Mask 干净修边为必做；\n• <b>选做拓展</b>：进度较快学生可尝试面罩 Metallic = 1，不作为强制计分要求；\n• <b>完成检查</b>：能向同桌或老师清晰讲出角色意图，图层保持规范命名与非破坏性结构。", Pt(11.5), Pt(0))
+        if len(items) > 1:
+            add_bullet_item(tf_req, items[1], Pt(12.5), Pt(6))
+        if len(items) > 2:
+            add_bullet_item(tf_req, items[2], Pt(12.5), Pt(0))
 
     # --------------------------------------------------------------------------
     # Slide 16: 轻量前后观察对比与免课后作业卡
@@ -667,41 +703,37 @@ def render_slide_content(slide, s, slide_num, total_slides):
         tb_l = slide.shapes.add_textbox(Inches(1.1), Inches(1.7), Inches(5.1), Inches(4.9))
         tf_l = tb_l.text_frame
         tf_l.word_wrap = True
-        add_bullet_item(tf_l, "<b>随堂 3 行观察记录模板</b>", Pt(17), Pt(12))
-        add_bullet_item(tf_l, "用简单的三行文字记录自己的材质判断，随工程一同保存：", Pt(12.5), Pt(14))
-        
-        add_bullet_item(tf_l, "<b>Before (设计意图)</b>：\n「我想表现怎样的材质身份？（如：复古光泽设计师玩具）」", Pt(12), Pt(10))
-        add_bullet_item(tf_l, "<b>Action (制作行为)</b>：\n「我改变了哪些 Layer、Roughness 或 Metallic 参数？（如：底层黄色 Roughness 0.15，面罩黑色 0.85）」", Pt(12), Pt(10))
-        add_bullet_item(tf_l, "<b>After (观察结果)</b>：\n「我观察到了什么具体的反射变化？（如：黄色部分倒影鲜明集中，黑色面罩呈现哑光扩散）」", Pt(12), Pt(0))
+        add_bullet_item(tf_l, "<b>随堂 3 行观察记录模板</b>", Pt(17), Pt(10))
+        for it in items[:4]:  # 包含 01 及 Before/Action/After
+            add_bullet_item(tf_l, it, Pt(12), Pt(8))
 
         card_r = create_card(slide, Inches(6.8), Inches(1.5), Inches(5.733), Inches(5.3), bg_color=COLOR_ORANGE_BG, border_color=COLOR_ORANGE_BORDER)
         tb_r = slide.shapes.add_textbox(Inches(7.1), Inches(1.7), Inches(5.133), Inches(4.9))
         tf_r = tb_r.text_frame
         tf_r.word_wrap = True
-        add_bullet_item(tf_r, "<b>【免作业声明】课堂闭环交付</b>", Pt(17), Pt(12))
-        add_bullet_item(tf_r, "<b>01 课堂随堂完成，不留长篇作业</b>：\n三行记录旨在引导学生理清创作思考，直接保存在工程旁或随堂备忘录中，不转化为课后冗长报告。", Pt(12.5), Pt(12))
-        add_bullet_item(tf_r, "<b>02 时间紧迫时的剪裁原则</b>：\n若课堂创作时间紧张，优先确保 Slide 18 的工程安全保存，可口头回答三行要点，不把未写完的文字变成隐藏课后作业。", Pt(12.5), Pt(12))
-        add_bullet_item(tf_r, "<b>03 教学边界声明</b>：\n轻量收束仅服务于本讲教学节奏，不违背或替代学院教务处的正式课程考核要求。", Pt(11), Pt(0))
+        add_bullet_item(tf_r, "<b>【免作业声明】课堂闭环交付</b>", Pt(17), Pt(10))
+        if len(items) > 4:
+            add_bullet_item(tf_r, items[4], Pt(13), Pt(12))
+        add_bullet_item(tf_r, "<b>剪裁原则</b>：若课堂时间紧张，优先确保 Slide 18 的工程安全保存，可口头回答三行要点，不把未写完的文字变成隐藏课后作业。", Pt(12), Pt(0))
 
     # --------------------------------------------------------------------------
     # Slide 17: 四级反馈漏斗与同桌 30 秒互查
     # --------------------------------------------------------------------------
     elif slide_num == 17:
         card_w = Inches(3.75)
-        funnels = [
-            ("01 同桌 30 秒互查", "两人并排观察彼此屏幕，快速指出一个做得清楚的亮点、一个需要检查的细节（例如面罩边缘是否有误涂溢出、底层是否误开 Metallic）。\n\n口头反馈，不替对方修改设备。", "同伴诊断 · 30 秒闭环"),
-            ("02 快捷键 C 单通道诊断", "当外观异常或金属感不对时，按键盘 C 键循环查看各 Material Channel：\n• Base Color：检查固有色是否纯正\n• Metallic：重点检查是否全黑(=0)\n• Roughness：检查明暗参数分布", "单通道透视诊断"),
-            ("03 快捷键 M 返回材质视图", "诊断完成后，按键盘 M 键立即返回完整的 Material 材质光照视图。\n\n警示提醒：按 B 键是进入 Mesh Maps (烘焙网格贴图) 模式，切勿与材质视图混淆！", "返回完整视口 · 辨析 B/M 键")
-        ]
-        for i, (f_title, f_desc, f_tag) in enumerate(funnels):
+        for i, it in enumerate(items[:3]):
             x = Inches(0.8) + i * Inches(4.0)
             create_card(slide, x, Inches(1.5), card_w, Inches(4.0))
             tb = slide.shapes.add_textbox(x + Inches(0.2), Inches(1.7), card_w - Inches(0.4), Inches(3.6))
             tf = tb.text_frame
             tf.word_wrap = True
-            add_bullet_item(tf, f"<b>{f_title}</b>", Pt(15), Pt(10))
-            add_bullet_item(tf, f_desc, Pt(12), Pt(12))
-            add_bullet_item(tf, f"<b>核心原则</b>：{f_tag}", Pt(11), Pt(0))
+            add_bullet_item(tf, it, Pt(14), Pt(12))
+            if i == 0:
+                add_bullet_item(tf, "口头反馈，不替对方修改设备；指出一个做得清楚的亮点、一个需要检查的细节。", Pt(11.5), Pt(0))
+            elif i == 1:
+                add_bullet_item(tf, "重点检查 Metallic 通道是否误涂为非零值，快速定位参数异常。", Pt(11.5), Pt(0))
+            elif i == 2:
+                add_bullet_item(tf, "按 M 键返回完整材质视口；切勿与 B 键 (Mesh Maps) 模式混淆。", Pt(11.5), Pt(0))
 
         b_c = create_card(slide, Inches(0.8), Inches(5.7), Inches(11.733), Inches(1.1))
         tb_b = slide.shapes.add_textbox(Inches(1.1), Inches(5.8), Inches(11.133), Inches(0.9))
@@ -714,20 +746,19 @@ def render_slide_content(slide, s, slide_num, total_slides):
     # --------------------------------------------------------------------------
     elif slide_num == 18:
         step_w = Inches(3.75)
-        steps_18 = [
-            ("第一步：规范另存为工程", "在菜单栏点击 File → Save As，保存为独立的 Painter 工程文件 (.spp)。\n\n使用简短、英文字母且具备识别度的命名（如 MeetMat_Head_W1.spp），保存在个人固定目录。", "关键：保存可编辑 .spp 工程"),
-            ("第二步：关闭软件重开验证", "在课堂内彻底关闭 Substance 3D Painter 软件，重新启动并打开刚才保存的 .spp 工程。\n\n亲眼确认：Head 纹理集、两个 Fill Layer、黑白遮罩均完整恢复且仍可编辑！", "关键：打破“保存成功提示假象”"),
-            ("第三步：截图存档与下讲预告", "调整满意角度，截取高清晰度材质效果图。工程与截图按课堂指导提交备份。\n\n下讲预告：第 2 讲《塑料材质进阶与 ID 分区制作》（从双层走向复杂零件结构）。", "关键：交付可追溯工程作品")
-        ]
-        for i, (t18, d18, tag18) in enumerate(steps_18):
+        for i, it in enumerate(items[:3]):
             x = Inches(0.8) + i * Inches(4.0)
             create_card(slide, x, Inches(1.5), step_w, Inches(3.8))
             tb = slide.shapes.add_textbox(x + Inches(0.2), Inches(1.7), step_w - Inches(0.4), Inches(3.4))
             tf = tb.text_frame
             tf.word_wrap = True
-            add_bullet_item(tf, f"<b>{t18}</b>", Pt(15), Pt(10))
-            add_bullet_item(tf, d18, Pt(12), Pt(12))
-            add_bullet_item(tf, f"<b>执行标准</b>：{tag18}", Pt(11), Pt(0))
+            add_bullet_item(tf, it, Pt(14), Pt(12))
+            if i == 0:
+                add_bullet_item(tf, "使用简短、英文字母且具备识别度的命名（如 MeetMat_Head_W1.spp），保存在个人固定目录。", Pt(11.5), Pt(0))
+            elif i == 1:
+                add_bullet_item(tf, "课堂内彻底关闭软件重开，亲眼确认 Head、底漆、面罩和遮罩完整可编辑，打破“提示保存成功假象”。", Pt(11.5), Pt(0))
+            elif i == 2:
+                add_bullet_item(tf, "截取清晰材质视图提交，下讲预告：第 2 讲《塑料材质进阶与 ID 分区制作》。", Pt(11.5), Pt(0))
 
         sum_card = create_card(slide, Inches(0.8), Inches(5.5), Inches(11.733), Inches(1.3), bg_color=COLOR_GREEN_BG, border_color=COLOR_GREEN_BORDER)
         tb_s = slide.shapes.add_textbox(Inches(1.1), Inches(5.62), Inches(11.133), Inches(1.1))
