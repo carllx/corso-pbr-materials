@@ -97,6 +97,10 @@
 2. **生产环境定位收敛**：
    - [Project Inference] **Substance 3D Painter 仍是当前资产级非破坏性图层/遮罩绘制（Non-destructive Layer/Mask Authoring）、局部精确修正与通道级控制的重要成熟环境之一**（同时存在 Mari、Designer 及 DCC 着色器网络等专业环境）。
    - AI 加速了底料准备、随机做旧斑痕生成与初期概念变体探索，但资产级多通道图层拆解（Base Layer $\rightarrow$ Wear $\rightarrow$ Dirt $\rightarrow$ Top Coat）与手绘关键特征遮罩依然由人类艺术家主导。
+3. **宿主内 AI 辅助扩展与实时着色实验候选 (In-App AI Extension Candidates)**：
+   - [Project Inference / Candidate Tracking] 针对学生如何借助 AI 扩展 Painter 宿主能力，仓库设立了两个轻量化且不增加必修负担的研究候选分支（总览索引详见 [`painter-ai-workflow-research-index.md`](painter-ai-workflow-research-index.md)；门禁属性：`RESEARCH CANDIDATE / RUNTIME REQUIRED / NOT TEACHER-APPROVED`）：
+     - **Python Plugin 规范化导出工具**（[`painter-ai-python-export-best-practice.md`](painter-ai-python-export-best-practice.md)）：探索借助 AI 生成基于官方 API 的内部导出脚本，用于规范化重复导出流程并降低命名/通道配置错误，建议作为 W6 教师演示候选（5–8 分钟，学生选做）；
+     - **GLSL Toon Shader 实时光影定制**（[`painter-ai-glsl-toon-best-practice.md`](painter-ai-glsl-toon-best-practice.md)）：探索借助 AI 修改官方 Toon 着色器源码的明暗量化阈值，展示“同模型贴图下仅改着色规则即可重塑视觉风格”，并区分“视口效果 $\neq$ 导出贴图”，建议作为 W8 教师演示候选（6–10 分钟，学生选做）。
 
 ---
 
