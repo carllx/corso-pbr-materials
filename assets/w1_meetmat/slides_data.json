@@ -1,0 +1,345 @@
+[
+  {
+    "number": 1,
+    "title": "Slide 01：课程封面与开场声明 (Title & Opening Notice)",
+    "short_title": "课程封面与开场声明 (Title & Opening Notice)",
+    "block": "",
+    "ppt_raw": "- <b>01 本课从已有材质经验走向 PBR</b>：GR2102 三维数字材质制作｜第 1 讲：初识 Substance 3D Painter 与 MeetMat。\n- <b>02 用物理规律观察，用分层思维创作</b>：观察真实外观，制作可控制的数字材质。\n- <b>03 今日任务：认识 Painter，动手制作 MeetMat</b>。\n- 授课教师：林昕｜2026–2027 学年第一学期。",
+    "notes_raw": "- <b>01 从学生已有经验出发介绍课程</b>\n  - 开场承认学生已经见过材质和三维作品；今天不是让大家从零学习建模，而是开始回答“为什么这个表面看起来像这种材料”。\n  - 提出一个常见问题：只凭感觉不断调参数，或在 Base Color 中直接画出固定高光，为什么可能难以得到随光照自然变化的外观？用这个疑问引出 PBR。\n- <b>02 物理规律和艺术表达在这里怎样配合</b>\n  - PBR 提供描述光与表面作用的一套约束和工作方法；它不是自动生成好作品的按钮。艺术判断仍要决定材料身份、色彩关系与画面质量。\n  - “分层”意味着把不同材质及其显隐关系组织得可修改，而不是一次画死所有外观。\n- <b>03 告诉学生这节课最终要做什么</b>\n  - 先认识 Painter 和 MeetMat，再在 Head 上尝试基本的 Fill Layer、Roughness 与 Mask，并把工程保存下来。\n  - 这是一节入门实践课；不需要把后面九周的全部材质技术提前讲完。",
+    "images": [
+      "notion-file-block://407901ff-a845-8083-b9a6-c787e97473ea/3522983e-6b2d-439d-a3d7-8c3ba1fb294a?space_id=8dae49a8-0894-409c-be8f-b0d923089af9&name=three_classical_busts_three_materials.png"
+    ],
+    "img_placeholders": [
+      "【图位 01｜已插入待审｜同造型三种材质的封面概念图；现有图片块保留在下方】"
+    ],
+    "embedded_images": [
+      {
+        "path": "assets/w1_meetmat/img_01_three_classical_busts_three_materials.png",
+        "caption": "图 01-1: 从古典材质到现代 PBR 渲染（相同几何体 · 不同光学属性）",
+        "status": "已有图块 · 教师待审"
+      }
+    ]
+  },
+  {
+    "number": 2,
+    "title": "Slide 02：课程宏观定位与 9 周进阶阶梯 (Curriculum Map & Progression)",
+    "short_title": "课程宏观定位与 9 周进阶阶梯 (Curriculum Map & Progression)",
+    "block": "",
+    "ppt_raw": "- <b>01 九周路线</b>：W1 Painter／MeetMat → W2 塑料与 ID → W3 木材 → W4 金属 → W5 石材 → W6 布料 → W7 蜡质／皮肤 → W8 综合与发光 → W9 作品精修交付。\n- <b>02 本课程的主体是材质制作</b>：观察、PBR 参数、图层与贴图、作品质量；建模和 UV 按需要提供支撑。",
+    "notes_raw": "- <b>01 九周不是重复更换九种材质预设</b>\n  - 请学生把这条路线看成能力的逐步积累：第一讲认识工具和基本材质现象，后续通过不同材料学习新的观察、控制和制作方法，最后回到作品质量和交付。\n  - 图上展示的是当前课程安排的概览，不表示每一讲的所有细节已完全冻结。\n- <b>02 为什么这门课不把复杂建模放在中心</b>\n  - 这门课要回答的主要问题是：模型已有以后，怎样让表面看起来可信、符合创作意图、可以继续修改。建模、拓扑和 UV 在需要支撑材质任务时才补充。\n  - 使用现成练习模型是为了把课堂时间留给观察、参数、图层和材料表现；必要的技能补充仍服从课程与教务要求。",
+    "images": [],
+    "img_placeholders": [],
+    "embedded_images": []
+  },
+  {
+    "number": 3,
+    "title": "Slide 03：考核评价导向与第一讲声明 (Grading Policy & Non-Formal Notice)",
+    "short_title": "考核评价导向与第一讲声明 (Grading Policy & Non-Formal Notice)",
+    "block": "",
+    "ppt_raw": "- <b>01 关注三种能力</b>：材质规律理解｜图层组织规范｜分析与解决问题。\n- <b>02 看重制作过程与最终质量</b>：具体考核比例以学校正式文件为准。\n- <b>03 第一讲不另外布置课后作业</b>。",
+    "notes_raw": "- <b>01 评价不能只看谁操作得快</b>\n  - 让学生知道：能够解释一个材质为什么这样设置、分层是否清楚、遇到错误能否找出原因，与最后画面好不好看同样值得关注。\n  - 例如 Roughness 调整后的外观变化，应能说出观察到什么，而不只是报出自己输入了多少数值。\n- <b>02 学校的正式考核规则仍是依据</b>\n  - 这里介绍的是课程重视的学习方向，不是擅自宣布成绩比例。考勤、平时作业与期末权重以适用的学校文件为准；尚未核准的数字不能出现在课堂承诺中。\n  - 平时过程和最终作品都是关注对象，但不能因此推定本讲练习已成为正式计分作业。\n- <b>03 第一讲学习活动尽量在课堂闭环</b>\n  - 本讲希望学生在课堂上完成首次操作、观察、保存，不增加一份独立的长篇课后报告。\n  - 这不等于自行更改学校正式考核制度。",
+    "images": [],
+    "img_placeholders": [],
+    "embedded_images": []
+  },
+  {
+    "number": 4,
+    "title": "Slide 04：视觉观察前置悬念：单组材质身份对比 (Visual Suspense & Identity)",
+    "short_title": "视觉观察前置悬念：单组材质身份对比 (Visual Suspense & Identity)",
+    "block": "",
+    "ppt_raw": "- <b>01 同一个 MeetMat Head，两种材料外观</b>：光洁塑料与粗糙陶土的视觉示例（使用本页两张 Painter 截图）。\n- <b>02 观察高光</b>：哪一边更清晰集中？哪一边更宽柔模糊？\n- <b>03 思考</b>：为什么真实高光会随照明与观察条件变化，而画在 Base Color 里的白斑不会？",
+    "notes_raw": "- <b>01 先观察，不急着给材料下定义</b>\n  - 给学生时间先比较同一个 Head 的两张外观：颜色、表面反射和整体感觉有什么变化？这两张图是特定条件下的视觉示例，不代表所有塑料都亮、所有陶土都哑光。\n  - 指出模型身份和造型相同，有利于把注意力集中到表面表现；但两种完整材质不能归结为只改了一个 Roughness 数值。\n- <b>02 引导学生指出具体的反射差异</b>\n  - 两张图片采用相同视角和照明。可让学生先找最清晰的高光边缘，再找最模糊、最宽柔的部分，说明观察依据，而不是只说“左边像塑料”。\n  - 这里只是综合比较两种材料身份，严格的单变量实验留到 Slide 09。\n- <b>03 区分被画上去的亮斑和随光照计算的反射</b>\n  - 设想用白色画笔直接在 Base Color 画一道亮斑。改变光照时，那道颜色仍属于贴图本身；而材质的 Specular Reflection 会随着照明和视角呈现不同的亮度与位置。\n  - 转场：先在 Slide 07 改变 HDRI 观察照明作用，再让 Slide 09 的 Roughness 实验回答具体参数的因果问题。",
+    "images": [
+      "notion-file-block://407901ff-a845-801b-b9b6-dafed5f58e2b/c9d7375e-3100-4c50-aca8-1b6e94e21f99?space_id=8dae49a8-0894-409c-be8f-b0d923089af9&name=1793170130533.png",
+      "notion-file-block://407901ff-a845-805e-914c-f8b898fe5db8/d742369a-0eaa-4fcd-b5fc-5fbe1d4d4252?space_id=8dae49a8-0894-409c-be8f-b0d923089af9&name=1793170142855.png"
+    ],
+    "img_placeholders": [
+      "【图位 01–02｜已插入待审｜塑料／陶土两张真实 Painter 截图；图块保留在本页下方】"
+    ],
+    "embedded_images": [
+      {
+        "path": "assets/w1_meetmat/img_02_1793170130533.png",
+        "caption": "图 04-1: 光洁黄色塑料（高光清晰集中 · Specular 锐利）",
+        "status": "真实 Painter 截图 · 待审"
+      },
+      {
+        "path": "assets/w1_meetmat/img_03_1793170142855.png",
+        "caption": "图 04-2: 粗糙暗哑陶土（高光漫散柔和 · 倒影模糊）",
+        "status": "真实 Painter 截图 · 待审"
+      }
+    ]
+  },
+  {
+    "number": 5,
+    "title": "Slide 05：第一讲标杆资产：认识 MeetMat (Benchmark Asset: MeetMat)",
+    "short_title": "第一讲标杆资产：认识 MeetMat (Benchmark Asset: MeetMat)",
+    "block": "",
+    "ppt_raw": "- <b>01 MeetMat：同一个角色可以呈现多种材料</b>（观察本页示例作品）。\n- <b>02 三个 Texture Sets</b>：Head（本讲重点）／Body／Base。\n- <b>03 材质可以塑造角色身份</b>：颜色、反射、纹样与主题共同影响视觉印象。",
+    "notes_raw": "- <b>01 为什么先使用 MeetMat</b>\n  - 这是 Painter 中用于体验材质创作的角色资产。今天用同一个对象尝试不同材质，能把注意力放在材质表达上，而不是另行花时间制作模型。\n  - 展示实例时问学生：“如果造型不变，只换材料和颜色，它给你的角色感觉会不会改变？”把问题留给后面的独立创作。\n- <b>02 只要先找到 Head，不必讲完所有对象</b>\n  - 引导学生在 Texture Set List 中辨认 Head、Body、Base。今天选中 Head 后再操作图层，以免把变化误做在别的部分。\n  - 这里不延伸讲 Mesh Maps；其与生成器、做旧、烘焙的关系留待后续真正使用时再介绍。\n- <b>03 用潮玩理解“材质身份”，而非宣称设计关联</b>\n  - 可以以常见潮玩角色作类比：同一类造型通过表面颜色、光泽和图案就能表现不同主题。官方 Meet MAT 作品和 POP MART MOLLY 只是视觉身份的对照，并非彼此存在直接制作或授权关系。\n  - 本讲只借此帮助学生想象后续 Head 的创作方向，不要求学习角色建模。",
+    "images": [
+      "notion-file-block://407901ff-a845-802c-8b20-c72fe7f3146a/fc170ad9-b1b7-4d5f-93fd-bd229d691a8b?space_id=8dae49a8-0894-409c-be8f-b0d923089af9&name=image.png"
+    ],
+    "img_placeholders": [
+      "【图位 01｜已插入待审｜当前 MeetMat 截图见下方；需教师确认具体用途】",
+      "【图位 03｜待制作｜官方 Meet MAT 作品与 MOLLY 类比拼图；来源链接保留在本页】"
+    ],
+    "embedded_images": [
+      {
+        "path": "assets/w1_meetmat/img_04_image.png",
+        "caption": "图 05-1: 官方标杆资产 MeetMat 与潮玩角色换肤设计类比（素材出处保留）",
+        "status": "参考示例图 · 待审"
+      }
+    ]
+  },
+  {
+    "number": 6,
+    "title": "Slide 06：认识 Painter 的必要界面与视口操作 (Essential UI & Navigation)",
+    "short_title": "认识 Painter 的必要界面与视口操作 (Essential UI & Navigation)",
+    "block": "",
+    "ppt_raw": "- <b>01 Painter 四个必要界面</b>：3D Viewport（看）｜Texture Set List（选 Head）｜Layers（组织图层）｜Properties（调属性）。\n- <b>02 视口导航</b>：旋转／平移／缩放（以本页界面截图和教师示范为准）。\n- <b>03 F：聚焦观察对象</b>。",
+    "notes_raw": "- <b>01 四个面板分别帮助我们做什么</b>\n  - 先让学生找到角色，再在 Texture Set List 选中 Head，接着到 Layers 观察已有图层，最后指向 Properties 说明“这里显示当前选中对象的参数”。\n  - 本页截图中可能显示 Properties - Paint，因为选中的是绘画图层；Slide 08 选择 Fill Layer 后会显示 Properties - Fill。面板名字会随选择变化，不能误以为学生软件坏了。\n- <b>02 导航改变的是观察方式，而不是材质</b>\n  - 教师连续演示旋转、平移、缩放，让学生看到同一个 Head 从不同角度呈现；提醒他们此时并没有改变 Base Color 或 Roughness。\n  - 鼠标快捷键随环境可能不同，优先结合当前界面操作，学生能跟上即可，不要求立刻死记所有按钮。\n- <b>03 用 F 找回偏离画面的模型</b>\n  - 演示当模型离开视野时，先选中观察对象并使用 F 聚焦，而不是重新打开工程。让学生把它记成一个解决“找不到模型”的简单办法。",
+    "images": [
+      "notion-file-block://407901ff-a845-80d7-a6cb-c7111d66fbb7/8155c4d6-9b51-416a-b1bb-4af39eeea560?space_id=8dae49a8-0894-409c-be8f-b0d923089af9&name=Slide06_Painter_UI_annotated.png"
+    ],
+    "img_placeholders": [
+      "【图位 01｜已插入待审｜教师真实 Painter 四区标注截图；原图块保留在下方】"
+    ],
+    "embedded_images": [
+      {
+        "path": "assets/w1_meetmat/img_05_Slide06_Painter_UI_annotated.png",
+        "caption": "图 06-1: Painter 四核心面板与视口导航标注（3D Viewport / Texture Sets / Layers / Properties）",
+        "status": "真实软件截图 · 待审"
+      }
+    ]
+  },
+  {
+    "number": 7,
+    "title": "Slide 07：观察环境光：旋转与更换 HDRI (Environment Lighting in Painter)",
+    "short_title": "观察环境光：旋转与更换 HDRI (Environment Lighting in Painter)",
+    "block": "",
+    "ppt_raw": "- <b>01 固定视角，观察环境照明变化</b>：图一正面受光／背面偏暗，图二正面偏暗／背面受光（使用原有三张 Painter 截图）。\n- <b>02 旋转 HDRI ≠ 改变材质</b>：Shift + 鼠标右键拖动可改变环境光方向。\n- <b>03 更换 HDRI 是另一件事</b>：Display Settings → Environment Map。",
+    "notes_raw": "- <b>01 为什么外观变了，材质却没变</b>\n  - 让学生先比较两张截图中脸部正面和背面的明暗变化。两次观察保持相同镜头和材质参数，主要改变的是环境照明的方向；不能说成“我们调暗了 Base Color”。\n  - 提醒学生在观察材质时要留心光源条件：一张图看起来更亮，未必意味着材料本身更亮。\n- <b>02 旋转的是整个 HDRI 环境照明</b>\n  - 教师示范 Shift + 鼠标右键拖动引起的受光变化，解释它不是拖动一盏独立的聚光灯，也不是旋转模型本身。快捷键只作辅助，使用当前界面提供的方式即可。\n  - 不把快捷键差异扩展为本轮机房预检任务。\n- <b>03 找到更换 Environment Map 的入口即可</b>\n  - 在第三张截图中指向 Display Settings 的 Environment Map。旋转同一张 HDRI 是改变光照相对方向；换另一张 HDRI，则可能同时改变光照分布和环境内容。\n  - 本讲不要求下载、制作或管理 HDRI 文件。转场：Slide 09 的 Roughness 比较必须固定环境、镜头及其他材质参数。",
+    "images": [
+      "notion-file-block://407901ff-a845-8049-87b1-e2f252192eff/f0975eb4-8532-4788-a9ce-cfadc5642207?space_id=8dae49a8-0894-409c-be8f-b0d923089af9&name=Screenshot_2026-10-28_155822.png",
+      "notion-file-block://407901ff-a845-8049-8981-cf0e04cfd164/c6e1c4af-21d3-42d2-8c77-16d80ec40187?space_id=8dae49a8-0894-409c-be8f-b0d923089af9&name=Screenshot_2026-10-28_155837.png",
+      "notion-file-block://407901ff-a845-80e2-aa85-f34ea77ac2c8/ad1cf18b-eb9c-4cc7-a40a-b13180939a7c?space_id=8dae49a8-0894-409c-be8f-b0d923089af9&name=Screenshot_2026-10-28_160247.png"
+    ],
+    "img_placeholders": [
+      "【图位 01–03｜已插入待审｜灯光一／灯光二／Display Settings 三张真实 Painter 截图；原图块保留在下方】"
+    ],
+    "embedded_images": [
+      {
+        "path": "assets/w1_meetmat/img_06_Screenshot_2026-10-28_155822.png",
+        "caption": "图 07-1: 环境光偏正面（正面受光 · 背面偏暗）",
+        "status": "真实截图 · 待审"
+      },
+      {
+        "path": "assets/w1_meetmat/img_07_Screenshot_2026-10-28_155837.png",
+        "caption": "图 07-2: Shift+右键旋转天光后（正面偏暗 · 背面受光）",
+        "status": "真实截图 · 待审"
+      },
+      {
+        "path": "assets/w1_meetmat/img_08_Screenshot_2026-10-28_160247.png",
+        "caption": "图 07-3: Display Settings → Environment Map（更换 HDRI 入口）",
+        "status": "真实截图 · 待审"
+      }
+    ]
+  },
+  {
+    "number": 8,
+    "title": "Slide 08：教师示范一：黄色底漆填充层与 Roughness (Plastic Base Demo)",
+    "short_title": "教师示范一：黄色底漆填充层与 Roughness (Plastic Base Demo)",
+    "block": "",
+    "ppt_raw": "- <b>01 先建黄色底漆</b>：选择 Head → Add Fill Layer → 命名 Plastic\\_Base。\n- <b>02 设置三个相关通道</b>：Base Color = 明黄色；Metallic = 0（非金属）；Roughness 控制镜面反射的清晰程度。\n- <b>03 对比 Roughness</b>：保持视角、HDRI 和其余参数不变，比较 0.10 与 0.85；示范完成后设回 0.15。",
+    "notes_raw": "- <b>01 为什么这里用 Fill Layer 而不是 Paint Layer</b>\n  - 先选中包含 Head 的 Texture Set，建立新 Fill Layer。它可以在图层中统一设置各通道的材质属性；Paint Layer 则更偏向直接绘制，本页不需要先画一个黄色形状。\n  - 如果学生照做后看不到黄色变化，先检查操作的 Texture Set、图层是否启用以及选中对象，而不是立即重复创建多层。\n- <b>02 三个通道各自负责不同的外观部分</b>\n  - Base Color 提供当前非金属底漆的颜色；Metallic 设为 0，表明这个可见表面以非金属材料处理；Roughness 改变镜面反射的清晰与模糊程度，而不是负责“把黄色调深”。\n  - 请学生看 Properties - Fill 中对应的控件。若显示的是 Properties - Paint，先回到 Layers 选中填充层。Normal 和 Height 本讲只认识名称，后续再说明它们如何参与表面细节。\n- <b>03 让学生先看清反射，再进行单变量对比</b>\n  - 调整到能够看见明显环境反射的观察角度，然后保持其他条件一致，只改变 Roughness。0.10 反射较清楚，0.85 更模糊；0.15 是本次塑料示例的收尾值，而非所有塑料的标准值。\n  - 这一页是教师演示；Slide 09 让学生亲自重复并解释观察到的变化。",
+    "images": [
+      "notion-file-block://409901ff-a845-8047-882d-ce5562193dbd/c958953d-e077-4714-9325-ce13b276b416?space_id=8dae49a8-0894-409c-be8f-b0d923089af9&name=image.png"
+    ],
+    "img_placeholders": [
+      "【图位 01｜已制作并插入 Notion｜现有 Painter 图片保留，教师已报告该图工作完成；不再作为待补拍或反复确认任务。正式 PPT 排版时可利用此图，必要的版面取舍另行处理】"
+    ],
+    "embedded_images": [
+      {
+        "path": "assets/w1_meetmat/img_09_image.png",
+        "caption": "图 08-1: Yellow Plastic 底漆填充层与 Properties - Fill 通道参数面板",
+        "status": "已制作 · 已入页（教师已确认完成）"
+      }
+    ]
+  },
+  {
+    "number": 9,
+    "title": "Slide 09：【实操任务 1】第 30 分钟动手：参数因果实验 (Hands-on Roughness)",
+    "short_title": "【实操任务 1】第 30 分钟动手：参数因果实验 (Hands-on Roughness)",
+    "block": "",
+    "ppt_raw": "- <b>01 独立建立填充层</b>：打开 MeetMat → 选择 Head → Add Fill Layer → 命名 Plastic\\_Base；设置明亮 Base Color、Metallic = 0，并确认 Properties - Fill。\n- <b>02 做一次单变量实验</b>：固定视角、HDRI 及其他设置，依次比较 Roughness 0.10 与 0.85 的反射变化。\n- <b>完成检查</b>：能指出哪一次高光更集中、哪一次更宽柔，并保存当前进度。",
+    "notes_raw": "- <b>01 观察学生是否真的独立选对对象和图层</b>\n  - 让学生先自己完成打开 MeetMat、找到 Head 和建立 Fill Layer 的连续动作。巡视时优先看 Texture Set List 是否指向正确对象，再看图层类型和 Properties 状态。\n  - 出现 Properties - Paint 时，提醒他们检查是否选中了 Paint Layer 或画笔，而不要简单让学生全部重做。快捷键不是本次学习成果的评价重点。\n- <b>02 引导学生给出一个有依据的因果解释</b>\n  - 先提醒“只改 Roughness，其余保持一致”，再让学生指认反射变化的位置：例如环境倒影从清晰变得模糊，高光由相对集中变得较宽柔。\n  - 提问：“我们改了哪个参数？如果同时换 HDRI，还能肯定差异只来自 Roughness 吗？”学生应该能说出实验条件与观察结果，而不只是背诵两个数值。\n  - 如果无意改变了照明或镜头，先恢复可比条件再观察；不把某一瞬间的亮暗差异硬归因为 Roughness。",
+    "images": [
+      "notion-file-block://ea3e37a1-e96c-4774-b964-9916a0e241ac/f343539a-54ff-4486-a406-008ccb9188d5?space_id=8dae49a8-0894-409c-be8f-b0d923089af9&name=Slide09_roughness_fixed_light.svg"
+    ],
+    "img_placeholders": [
+      "【图位 01｜草图待审｜现有 Roughness 概念示意 SVG 见下方】",
+      "【图位 02｜待制作｜同一照明/机位下 Roughness 0.10 对 0.85 的真实 Painter 截图｜教师或 Agent】"
+    ],
+    "embedded_images": [
+      {
+        "path": "assets/w1_meetmat/img_10_Slide09_roughness_fixed_light.png",
+        "caption": "图 09-1: Roughness 单变量受控实验（固定视角与光照：0.10 锐利 vs 0.85 弥散）",
+        "status": "概念矢量图待审 · 真实实操截图待制作"
+      }
+    ]
+  },
+  {
+    "number": 10,
+    "title": "Slide 10：教师示范二：第二层覆盖与黑色遮罩开窗 (Face Mask Demo)",
+    "short_title": "教师示范二：第二层覆盖与黑色遮罩开窗 (Face Mask Demo)",
+    "block": "",
+    "ppt_raw": "- <b>01 增加深色覆盖层</b>：新建 Fill Layer → 命名 Face\\_Mask；示例 Roughness = 0.05、Metallic = 0。\n- <b>02 Add black mask</b>：黑色遮罩隐藏上层，重新看到黄色底漆。\n- <b>03 在遮罩上局部绘制</b>：选中 Mask 缩略图，白色显现深色层，黑色重新隐藏并修边；画笔和 X 切换仅作辅助操作。",
+    "notes_raw": "- <b>01 先让学生理解“上层覆盖”的效果</b>\n  - 在已有黄色底漆上新建深色 Fill Layer，让学生观察上层出现后下面的黄色被遮住。这一瞬间的“整层覆盖”是理解遮罩显隐的起点。\n  - Face\\_Mask 是本讲示例的图层命名；这里设置非金属深色面罩，目的是为后续局部修边制造明显对比。\n- <b>02 黑色遮罩不是删除深色材料</b>\n  - 右键上层选择 Add black mask。上层被遮住，原先黄色底漆重新露出，但深色图层的材质数据仍存在，因此以后可以通过遮罩让它重新出现。\n  - 可借“用一张可以反复修改的遮蔽模板决定哪里露出”的想法解释，但不要把数字遮罩说成一次性的物理喷漆过程。\n- <b>03 关键是选中 Mask，而不是误画在 Layer 上</b>\n  - 点击黑色遮罩的缩略图，再使用 Paint 画笔：白色把深色面罩画出来，黑色把多余部分收回，底层黄色随之露出。可展示一笔画错后如何恢复。\n  - 如果出现无法控制的效果，先查看选中的是图层缩略图还是 Mask；快捷键 1 与 X 可示范，但不应代替可见的界面操作。",
+    "images": [
+      "notion-file-block://409901ff-a845-80be-96b5-fb9d96c46021/1795cb54-4ce5-4dbb-a302-fc5c1cd9ae13?space_id=8dae49a8-0894-409c-be8f-b0d923089af9&name=image.png",
+      "notion-file-block://409901ff-a845-801f-9711-edc541a06ae7/b8eca256-0893-4b3d-b17f-e3318fb660a8?space_id=8dae49a8-0894-409c-be8f-b0d923089af9&name=image.png"
+    ],
+    "img_placeholders": [
+      "【图位 01｜已制作并插入 Notion｜第一张展示 Add black mask；图片工作已完成，不再重复列入制作或复核清单】",
+      "【图位 02｜已制作并插入 Notion｜第二张展示遮罩显隐效果；图片工作已完成，不再以三状态核对为由要求重复补拍】"
+    ],
+    "embedded_images": [
+      {
+        "path": "assets/w1_meetmat/img_11_image.png",
+        "caption": "图 10-1: 展示如何添加 Black Mask（黑色遮罩隐藏上层）",
+        "status": "已制作 · 已入页（教师已确认完成）"
+      },
+      {
+        "path": "assets/w1_meetmat/img_12_image.png",
+        "caption": "图 10-2: 展示遮罩实际效果（白色画笔开窗显现深色层）",
+        "status": "已制作 · 已入页（教师已确认完成）"
+      }
+    ]
+  },
+  {
+    "number": 11,
+    "title": "Slide 11：【实操任务 2】学生跟练：面罩遮罩开窗与快速纠错 (Hands-on Mask)",
+    "short_title": "【实操任务 2】学生跟练：面罩遮罩开窗与快速纠错 (Hands-on Mask)",
+    "block": "",
+    "ppt_raw": "- <b>01 跟练面罩结构</b>：Face\\_Mask Fill Layer → Add black mask → 选中遮罩缩略图。\n- <b>02 局部绘制与修边</b>：用白色显示深色面罩，再用黑色隐藏多余部分；根据造型调整笔刷大小与形状。\n- <b>完成检查</b>：能看到黄色底漆与局部深色面罩，并能把一笔画错的遮罩恢复。",
+    "notes_raw": "- <b>01 先检查结构，再讨论画得好不好</b>\n  - 学生跟做时，优先让他们自己确认底层 Plastic\\_Base、上层 Face\\_Mask，以及上层附带的黑色 Mask 是否存在。\n  - 如果完全没有出现面罩，先看是否选中正确的 Texture Set 和 Mask；如果全身都变深色，要检查上层是否尚未添加或正确使用遮罩。\n- <b>02 把“修回来”作为本次跟练的关键能力</b>\n  - 可让学生故意多画一小笔，再用黑色在同一 Mask 上修正，让他们体验白色显现、黑色隐藏的可逆关系。\n  - 提醒笔刷大小和形状影响边缘的控制感；优先使用可见界面操作，尚未确认的快捷键不列为必须背诵。不要让学生为了跟上步骤而放弃理解遮罩如何工作。",
+    "images": [],
+    "img_placeholders": [
+      "【图位 01｜待制作｜全黄→白笔开窗→黑笔修边三个真实 Painter 状态｜教师或 Agent】"
+    ],
+    "embedded_images": []
+  },
+  {
+    "number": 12,
+    "title": "Slide 12：理论升华一：微表面为什么改变反射？ (Microfacet & Roughness)",
+    "short_title": "理论升华一：微表面为什么改变反射？ (Microfacet & Roughness)",
+    "block": "",
+    "ppt_raw": "<b>为什么 Roughness 会改变反射的清晰度？</b>\n\n- <b>01 微表面方向 → 镜面反射分布</b>：Smooth 时反射较集中、倒影较清晰；Rough 时镜面反射分布更宽、倒影较模糊。（使用本页 Microfacet 示意图位）\n- <b>02 回看 Slide 09 的实验</b>：Roughness 0.10 与 0.85 的反射为什么不同？",
+    "notes_raw": "- <b>01 微表面方向为什么会影响镜面反射</b>\n  - 想象同一块金属，一半仔细抛光、一半做成磨砂。将它们放在窗边，抛光一侧通常能看出较清晰的窗框倒影；磨砂一侧仍反射光，但窗框的边界变得模糊，甚至很难辨认。这帮助学生理解“反射分散”不等于“没有反射”。\n  - 在 Microfacet 模型中，可以把表面理解为无数朝向略有差异的微小反射面。较光滑时，朝向分布相对集中，镜面反射被集中在较窄的方向范围；较粗糙时，分布更广，倒影更模糊。\n  - 示意图只表达这种模型关系，不是显微照片。Roughness 不直接把模型几何做成明显凹凸，也不等于修改 Normal Map；本讲不讲 BRDF 数学公式。\n- <b>02 用原理解释学生刚刚做过的观察</b>\n  - 提醒他们 Slide 09 中同一黄色 MeetMat Head 的 Base Color、Metallic、视角和环境照明都保持一致，只将 Roughness 从 0.10 改为 0.85。较低值时倒影和高光通常更清晰集中；较高值时轮廓更模糊、光斑分布更宽。\n  - 问：“为什么黄色没有变化，反射却变了？”期待学生把答案联系到微表面朝向对镜面反射分布的影响，而不是仅说“因为数字变大了”。高光实际的亮度与位置还依赖照明条件，不能把清晰度直接等同于亮暗。\n  - 不重做一轮参数演示。转场：下一页讨论为什么黄色塑料与黄金的反射颜色来源不同。",
+    "images": [
+      "notion-file-block://40a901ff-a845-80ec-8097-f42e779f9286/3f9f1851-5124-48e6-be88-73a14ddd7026?space_id=8dae49a8-0894-409c-be8f-b0d923089af9&name=image.png"
+    ],
+    "img_placeholders": [
+      "【图位 01｜新修订候选已制作、Notion 尚待同步｜候选 roughness\\_controls\\_reflection\\_clarity.png 已生成，不需要重新绘制；当前页面仍为原有图块，未发现新候选入页的可核实证据。后续仅须完成文件与 Notion 图块的版本同步；不以旧图位说明重复发起图片设计审查。正式 PPT 采用前仍要保持 Specular Reflection 集中／分散与无可见几何凹凸的科学边界】"
+    ],
+    "embedded_images": [
+      {
+        "path": "assets/w1_meetmat/img_13_image.png",
+        "caption": "图 12-1: Microfacet 微表面方向分布与镜面反射集中／模糊机制（概念示意 · 非显微照片）",
+        "status": "待同步旧图（新候选待同步入页，保留差量记录）"
+      }
+    ]
+  },
+  {
+    "number": 13,
+    "title": "Slide 13：理论升华二：为什么黄色塑料与黄金的反射不同？ (Diffuse & Specular Reflection)",
+    "short_title": "理论升华二：为什么黄色塑料与黄金的反射不同？ (Diffuse & Specular Reflection)",
+    "block": "",
+    "ppt_raw": "<b>同样是黄色，反射的颜色从哪里来？</b>\n\n- <b>01 黄色塑料 vs 黄金</b>：塑料（Metallic = 0）的 Diffuse Reflection 呈黄色，白光下镜面反射通常接近白色；黄金（Metallic = 1）的 Specular Reflection 带有金黄色，纯金属基本没有漫反射分量。\n- <b>02 Metallic 决定 Base Color 的使用方式</b>：非金属主要用它描述漫反射颜色；裸露金属用它描述有色镜面反射。（沿用本页已有参考图）",
+    "notes_raw": "- <b>01 黄色塑料和黄金看起来都黄，来源却不相同</b>\n  - 先让学生看黄色塑料：在常见的白色照明下，塑料表面的黄色更多体现在 Diffuse Reflection；明亮高光的颜色通常接近照明的颜色，而不是所有反射都变黄色。\n  - 再看黄金：金属的镜面反射本身带有颜色，所以能看到金色反光；理想纯金属在这种 PBR 工作流中通常不使用普通非金属式的漫反射。\n  - Diffuse Reflection 是光学反射现象，不等于名字相近的 Diffuse Map。图片是理解外观差异的视觉参考，不是同条件控制实验；也不能把高光误解为画在 Base Color 的白点。\n- <b>02 根据看得见的表面判断 Metallic</b>\n  - 举一只黄色油漆铁盒：外面被油漆覆盖的表面是非金属涂层，按 Metallic = 0 处理；只有油漆剥落、裸露金属的地方才按金属处理。\n  - 在 Metallic/Roughness 工作流中，Metallic 不是简单控制“亮不亮”，还改变 Base Color 对应的反射含义；Roughness 已在 Slide 12 解释，此处不重复，也不提前讲 W6 其他工作流。",
+    "images": [
+      "notion-file-block://40a901ff-a845-8082-a7d9-ed8c7c17461e/94c79d7f-544f-4f31-bbb6-74c2a4e6e4d0?space_id=8dae49a8-0894-409c-be8f-b0d923089af9&name=image.png"
+    ],
+    "img_placeholders": [
+      "【图位 01｜参考图已插入；教师确认本轮不再调整｜现有黄色塑料／黄金球体图作为两类反射的视觉启发，不代表同条件 Painter 实验。不得把参考图说成控制变量结果；若后续需要严格实验对照，再另行制作同 MeetMat Head、同机位／光照／Roughness 的真实截图】"
+    ],
+    "embedded_images": [
+      {
+        "path": "assets/w1_meetmat/img_14_image.png",
+        "caption": "图 13-1: 黄色塑料 (Metallic=0) 与黄金球体 (Metallic=1) 反射光学差异对比",
+        "status": "参考图已插入 · 教师确认本轮不再调整"
+      }
+    ]
+  },
+  {
+    "number": 14,
+    "title": "Slide 14：理论升华三：图层与遮罩的显隐关系 (Layer & Mask)",
+    "short_title": "理论升华三：图层与遮罩的显隐关系 (Layer & Mask)",
+    "block": "",
+    "ppt_raw": "- <b>01 Layer 与 Mask 的职责不同</b>：Layer A（黄色底层）＋ Layer B（深色上层）＋ Mask（控制上层显隐）→ 最终外观。\n- <b>02 Black／White／Grey</b>：Black 隐藏上层，White 显示上层，Grey 使上层部分显现。\n- <b>03 Non-destructive Editing</b>：改遮罩不等于删除材质。（沿用本页四格图）",
+    "notes_raw": "- <b>01 Layer 保存材料，Mask 决定材料在哪儿出现</b>\n  - 回到 Slide 11：在 Mask 上涂黑后为什么底层黄色又出现？因为底层没有被删除，上层深色材质仍然存在，只是显隐范围改变了。\n  - 可以借两层颜色和遮蔽模板理解，但数字遮罩允许反复修改，不能完全等同一次性的物理喷漆或贴胶带。\n- <b>02 用黑、白、灰解释结果，不只背口诀</b>\n  - Black 位置隐藏 Layer B、露出 Layer A；White 显示 Layer B；Grey 可形成过渡。指向现有四格图逐一比较。\n  - 真正绘制时要选中 Mask 缩略图而不是 Layer 本身。X 可切换黑白，但快捷键不是本页理论重点。\n- <b>03 为什么称为非破坏性编辑</b>\n  - 深色面罩画得太多时，不需要删掉整层重来，只要在同一 Mask 上修回去；底层材质与上层属性仍可以继续调整。\n  - 只解释学生已经体验过的操作，不加新练习，也不引入 Lerp 数学公式。",
+    "images": [
+      "notion-file-block://40a901ff-a845-8034-8732-f5fe024b4b88/9089d66e-912c-4422-8f9b-88c9e29da285?space_id=8dae49a8-0894-409c-be8f-b0d923089af9&name=image.png"
+    ],
+    "img_placeholders": [
+      "【图位 01｜四格图已插入；教师确认本轮不再调整｜Layer A／Layer B／Mask／Result 图作为讲解图；Mask 黑侧露出 A、白侧显示 B、灰侧形成过渡的关系与投影文字清晰度仍需授课前核查。三层堆叠不独立占正式图位，不要求本轮重做】"
+    ],
+    "embedded_images": [
+      {
+        "path": "assets/w1_meetmat/img_15_image.png",
+        "caption": "图 14-1: Layer A（底层）+ Layer B（上层）+ Mask（显隐）= Result 空间合成关系",
+        "status": "整合图已插入 · 教师确认本轮不再调整"
+      }
+    ]
+  },
+  {
+    "number": 15,
+    "title": "Slide 15：【独立创作】MeetMat Head 个性化材质定制 (Independent Practice)",
+    "short_title": "【独立创作】MeetMat Head 个性化材质定制 (Independent Practice)",
+    "block": "",
+    "ppt_raw": "- <b>01 为 MeetMat Head 设计一种材质身份</b>：机甲英雄（可参考红金配色与面罩语言但不要求复刻）、工业防护机器人、复古设计师玩具，或自拟方向。\n- <b>02 用材质差异表达这个身份</b>：底漆与面罩的 Base Color、Roughness 反差及局部 Black Mask 图案。\n- <b>完成检查</b>：能解释创作意图；图层可编辑、遮罩边缘可控，工程保存完整。",
+    "notes_raw": "- <b>01 先讲清想塑造什么角色，再调参数</b>\n  - 例如选工业防护机器人：先想象它的用途是耐用、工作化或带警示感，再决定主色与面罩分区。这样调整不是随机改数值，而是把材质选择服务于身份表达。\n  - 影视和潮玩参考只启发材质身份，不要求精确复刻；本讲仍集中在 Head，不强制做 Body/Base 或新的建模任务。\n- <b>02 用质量与选择理由指导学生</b>\n  - 问学生为什么面罩需要更亮、粗糙或有某种色彩？边缘是否干净？分层能否继续编辑？先提高已有两层的质量，而不是堆更多功能。\n  - 全员以两层非金属 Fill Layer（Metallic = 0）、Roughness 对比、Black Mask 修边为必做；进度快者可选做面罩 Metallic = 1 或 Alpha 印章，不形成评分优势。\n  - Block 7 与 Slide 16 共用原定 35 分钟，不因为选做扩充课时。",
+    "images": [],
+    "img_placeholders": [
+      "【图位 01｜真实 MeetMat Head 范例图待选／制作｜本页已登记四个 Sketchfab／Adobe 外部浏览链接供教师投屏，不等于图片已上传或作品获得许可。若用于正式 PPT，仍需明确来源、作者、图片许可及投影适用性】"
+    ],
+    "embedded_images": []
+  },
+  {
+    "number": 16,
+    "title": "Slide 16：轻量前后观察对比与免课后作业卡 (Before/After Contrast Card)",
+    "short_title": "轻量前后观察对比与免课后作业卡 (Before/After Contrast Card)",
+    "block": "",
+    "ppt_raw": "- <b>01 用三行记录自己的判断</b>\n  - Before：我想表现怎样的材质身份？\n  - Action：我改变了哪些 Layer、Roughness／Metallic 设置？\n  - After：我观察到什么反射变化？\n- <b>02 课堂完成，不另加长篇课后报告</b>：把记录和工程放在一起。",
+    "notes_raw": "- <b>01 让学生说明创作思路，而不是增加文字作业</b>\n  - Before 是创作意图，Action 是关键图层与参数决策，After 是一条真实观察；不必重述课堂全部步骤。\n  - 教师可用这三行了解学生是否理解自己的选择，但不能未经规定就把它算作新的正式评分任务。\n- <b>02 时间紧张时先保证工程保存</b>\n  - 这是轻量的课堂收束，不需要长报告或额外信息图。若超时，先剪掉可选的文字量，不把遗漏变成隐藏课后作业。\n  - 留出 Slide 18 的 .spp 保存与学生课堂内重开检查时间；这不是教师开展机房环境验证。",
+    "images": [],
+    "img_placeholders": [],
+    "embedded_images": []
+  },
+  {
+    "number": 17,
+    "title": "Slide 17：四级反馈漏斗与同桌 30 秒互查 (Peer Review & 4-Level Funnel)",
+    "short_title": "四级反馈漏斗与同桌 30 秒互查 (Peer Review & 4-Level Funnel)",
+    "block": "",
+    "ppt_raw": "- <b>01 同桌快速互查</b>：底漆、面罩图层、Metallic 与高光表现是否合理？\n- <b>02 单通道检查</b>：可用 C 查看材质通道，重点检查 Metallic。\n- <b>03 返回 Material 外观</b>：可用 M 返回完整材质视图；B 是 Mesh Maps 查看模式，不要混淆。",
+    "notes_raw": "- <b>01 互查是口头反馈，不是替同学修改</b>\n  - 让两人并排观察，指出一个做得清楚的地方、一个值得检查的地方，例如面罩边缘是否误画，底漆是否被错误设置成金属。\n  - 不强制触碰他人的设备或修改对方工程；30 秒互查只帮助迅速发现问题。\n- <b>02 单通道有助于找到参数错误</b>\n  - 外观异常时先问：是颜色、Metallic，还是其他通道？C 可以辅助轮换查看，但不要求仅靠记忆快捷键完成诊断。\n  - 不在此处展开 Mesh Maps 的系统教学。\n- <b>03 诊断完成后再看整体作品</b>\n  - 单通道可以发现问题，却不等于完整的最终视觉效果。回到 Material 视图，从创作意图和作品质量判断；如快捷键不同，可使用界面操作，不进行额外机房验证。",
+    "images": [],
+    "img_placeholders": [
+      "【图位 01｜待制作｜Metallic/Color 通道与完整 Material 视图对照｜教师真实 Painter 截图】"
+    ],
+    "embedded_images": []
+  },
+  {
+    "number": 18,
+    "title": "Slide 18：数据持久化：规范另存为、退出软件与重开验证 (Lifecycle & Summary)",
+    "short_title": "数据持久化：规范另存为、退出软件与重开验证 (Lifecycle & Summary)",
+    "block": "",
+    "ppt_raw": "- <b>01 保存可编辑工程</b>：File → Save As，保存 .spp 并使用简短、可识别的文件名。\n- <b>02 关闭并重开</b>：确认 Head、Plastic\\_Base、Face\\_Mask 与遮罩仍可编辑。\n- <b>03 保存成果图并收束</b>：截取材质效果图，工程和图片按课堂要求存放／提交。下讲：塑料材质进阶与 ID 分区。",
+    "notes_raw": "- <b>01 工程和截图承担不同用途</b>\n  - 让学生选择自己找得回的目录和文件名，使用 Save As 保存 .spp；它是下次还可以打开和修改的 Painter 工程，不能由一张截图代替。\n  - 可以建议路径简短，但不要把单个约 103MB 的保存个例当作所有项目的标准。\n- <b>02 让学生实际确认已保存的内容可恢复</b>\n  - 课堂中关闭工程，再打开刚才保存的 .spp，看 Head、黄色底漆 Plastic\\_Base、深色 Face\\_Mask 和 Black Mask 是否完整，能否继续编辑。不能只相信“保存成功”的提示。\n  - 这是学生课堂学习的文件操作，不意味着需要重新开展课前机房与软件环境核验。\n- <b>03 交付的是可追溯的作品</b>\n  - 图片用于呈现结果，.spp 用于继续编辑；教师确认工程可重开、图层完整、截图清晰。实际提交路径仍依学院安排，不能猜测。\n  - 用下一讲的塑料材质进阶与 ID 分区收束，不延长本次课程。",
+    "images": [],
+    "img_placeholders": [
+      "【图位 01｜待制作｜Save As / 重开核查 / 无 UI 成果图｜教师真实 Painter 截图，注意脱敏路径】"
+    ],
+    "embedded_images": []
+  }
+]
