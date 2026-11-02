@@ -72,3 +72,27 @@
    - 当前采用高清晰度矢量概念图作为教学过渡；后续是否需要补拍真实 Painter 视口截图（固定机位与光照下的 Roughness 0.10 与 0.85 对比），由教师视课堂试讲效果决定。
 3. **Slide 05 商业 IP 替换时机**：
    - 在高校校内授课期间，保留 Molly 潮流玩具类比具备极高教学吸引力；是否需要在开源前制作自有基模潮玩替代图，待课程开源阶段统筹决策。
+
+---
+
+## 5. Slide 04、08、12、15 视觉减负试验专项台账 (2026-11-02)
+
+> 依据指令：IDE Mission｜W1 PPT 视觉减负试验 (/guizang-ppt-skill)  
+> 基线版本：Draft PR #41 HEAD (`694f18b`) ｜ 遵守 Notion PPT Skill v0.3  
+> 状态定界：**PROPOSED TRIAL · TEACHER VISUAL REVIEW GATE OPEN**（未获教师确认前不批量修改其余 14 页）
+
+### ① 试验改版成效核验 (Visual Decluttering Verification)
+
+| 页面 | 旧版诊断 (18页审校稿) | 新版试验方案 (Declutter Trial) | 5 大维度核验判定 |
+| :--- | :--- | :--- | :--- |
+| **Slide 04 材质观察** | 小图居中、文字卡片拥挤、焦点分散 | 大图 Duo Compare 铺展、聚焦核心问题「两种材料的反射有什么不同？」 | **通过**：远读清晰、原图无拉伸、Notes 100% 完整保留 |
+| **Slide 08 操作示范** | 三栏文字挤压右侧截图、UI 细节看不清 | 大幅放大 Hero 截图至 8.0 英寸、侧边 3 步操作徽标流、排错细节进 Notes | **通过**：Texture Set/Layers/Properties 一目了然、操作任务可执行 |
+| **Slide 12 原理升华** | 密集理论文字堆叠、Microfacet 示意图局促 | Microfacet 大图为主体、核心提问引出 Smooth vs Rough 反射因果链 | **通过**：恪守科学边界（Roughness ≠ 几何凹凸，Roughness ≠ Normal Map） |
+| **Slide 15 独立创作** | 纯文字三栏、零视觉参考、学生缺乏感官启发 | 3 组角色身份视觉参考卡（机甲英雄、防护机器人、潮玩）、达标线与选做边界分明 | **通过**：复用已有合法素材、全员必做与选做边界清晰、可直接落地练习 |
+
+### ② 产出工件索引 (Deliverables)
+1. **试验 PPTX**：`W1_MeetMat_4slides_declutter_trial.pptx`
+2. **预览 PDF**：`W1_MeetMat_4slides_declutter_trial.pdf`
+3. **新旧并排对照总览**：`W1_MeetMat_4slides_side_by_side_overview.png`
+4. **确定性构建脚本**：`tools/teaching/build_w1_slides_declutter_trial.py`
+
